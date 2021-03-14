@@ -29,7 +29,11 @@
 		vertical-align: middle;
 		margin: auto;
 		display: table;
-		padding-top: 100px;
+		border: outset;
+		border-width: thick;
+		box-sizing: unset;
+		padding-top: unset;
+		padding-bottom: 15px;
 	}
 
 	.btn {
@@ -46,6 +50,23 @@
 		margin: 8px 0;
 		box-sizing: border-box;
 	}
+
+	.img {
+		height: 50px;
+		width: 75px;
+		margin-left: 69px;
+		margin-bottom: 15px;
+	}
+
+	h1 {
+		display: block;
+		font-size: 2em;
+		margin-block-start: 0.70em;
+		margin-block-end: 0.67em;
+		margin-inline-start: 8px;
+		margin-inline-end: 0px;
+		font-weight: bold;
+	}
 </style>
 
 
@@ -57,9 +78,9 @@
 
 <div class="body-content">
 
-	<h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
+	<h1>Please Sign In</h1>
 	<div>
-		<img src="~/Content/Images/wallpaper-1945409.jpg" />
+		<img src="~/Content/Images/companylogo.jpg" class="img"/>
 	</div>
 	<div class="form-group">
 		@Html.TextBoxFor(m => m.strUserName, new { @class = "form-control", placeholder = "Username", autofocus = "true" })

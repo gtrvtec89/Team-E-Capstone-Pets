@@ -288,6 +288,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\clients.JPG" />
+    <Content Include="Content\Images\companylogo.JPG" />
     <Content Include="Content\Images\employees.JPG" />
     <Content Include="Content\Images\icon.PNG" />
     <Content Include="Content\Images\icon2.PNG" />
