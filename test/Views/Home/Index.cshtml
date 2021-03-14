@@ -2,38 +2,52 @@
 	ViewBag.Title = "Home Page";
 }
 
-<div class="btn-group">
-	<button type="submit" name="btnPets" "btn btn-info custom">
-		Pets
-		<img src="~/Content/Images/pets.jpg" alt="Icon" />
-		@Html.ActionLink("Pets", "Index", "TPets")
-	</button>
-	<button type="submit" class="btn btn-info custom">
-		Clients
-		<img src="~/Content/Images/clients.jpg" alt="Icon" />
-	</button>
-	<button type="submit" class="btn btn-info custom">
-		Services
-		<img src="~/Content/Images/services.jpg" alt="Icon" />
-	</button>
-</div>
 
-<br />
-<br />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="btn-group">
-	<button type="submit" class="btn btn-info custom">
-		Medications
-		<img src="~/Content/Images/medications.jpg" alt="Icon" />
-	</button>
-	<button type="submit" class="btn btn-info custom">
-		Reports
-		<img src="~/Content/Images/reports.jpg" alt="Icon" />
-	</button>
-	<button type="submit" class="btn btn-info custom">
-		Employees
-		<img src="~/Content/Images/employees.jpg" alt="Icon" />
-	</button>
+
+<style>
+
+	
+
+</style>
+
+
+<div class="body-content">
+
+	<div class="btn-group">
+		<button type="submit" class="btn" name="btnPets"><i class="fa fa-home"></i>
+			@*<img src="~/Content/Images/pets.jpg" alt="Icon" />*@
+			@Html.ActionLink("Index", "TPets")
+		</button>
+		<button type="submit" class="btn btn-info custom">
+			<img src="~/Content/Images/clients.jpg" alt="Icon" />
+			@Html.ActionLink("Index", "TOwners")
+		</button>
+		<button type="submit" class="btn btn-info custom">
+			<img src="~/Content/Images/services.jpg" alt="Icon" />
+			@Html.ActionLink("Index", "TServices")
+		</button>
+	</div>
+
+	<br />
+	<br />
+
+	<div class="btn-group">
+		<button type="submit" class="btn btn-info custom">
+			<img src="~/Content/Images/medications.jpg" alt="Icon" />
+			@Html.ActionLink("Medications", "Index", "TMedictions")
+		</button>
+		<button type="submit" class="btn btn-info custom">
+			<img src="~/Content/Images/reports.jpg" alt="Icon" />
+			@Html.ActionLink("Reports", "Index", "TReports")
+		</button>
+		<button type="submit" class="btn btn-info custom">
+			<img src="~/Content/Images/employees.jpg" alt="Icon" />
+			@Html.ActionLink("Employees", "Index", "TEmployees")
+		</button>
+
+	</div>
 
 </div>
 

@@ -27,6 +27,7 @@ namespace test
     
         public DbSet<TAbdomenInfo> TAbdomenInfos { get; set; }
         public DbSet<TBreed> TBreeds { get; set; }
+        public DbSet<TDepartment> TDepartments { get; set; }
         public DbSet<TEarStatusInfo> TEarStatusInfos { get; set; }
         public DbSet<TEmployee> TEmployees { get; set; }
         public DbSet<TEyeStatusInfo> TEyeStatusInfos { get; set; }
@@ -52,6 +53,7 @@ namespace test
         public DbSet<TSkinInfo> TSkinInfos { get; set; }
         public DbSet<TState> TStates { get; set; }
         public DbSet<TUrogenitalInfo> TUrogenitalInfos { get; set; }
+        public DbSet<TUserRoleMapping> TUserRoleMappings { get; set; }
         public DbSet<TUser> TUsers { get; set; }
         public DbSet<TVaccination> TVaccinations { get; set; }
         public DbSet<TVisitEmployee> TVisitEmployees { get; set; }

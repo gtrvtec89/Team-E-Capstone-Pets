@@ -14,11 +14,17 @@ namespace test
     
     public partial class TUser
     {
+        public TUser()
+        {
+            this.TUserRoleMappings = new HashSet<TUserRoleMapping>();
+        }
+    
         public int intUserID { get; set; }
         public string strUserName { get; set; }
         public string strPassword { get; set; }
         public int intRoleID { get; set; }
     
         public virtual TRole TRole { get; set; }
+        public virtual ICollection<TUserRoleMapping> TUserRoleMappings { get; set; }
     }
 }

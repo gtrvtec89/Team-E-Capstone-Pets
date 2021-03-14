@@ -1,0 +1,68 @@
+﻿@model test.TUser
+
+@{
+	Layout = null;
+}
+
+@{
+	ViewBag.Title = "Login";
+}
+
+<style type="text/css">
+
+	body {
+		padding-top: 50px;
+		padding-bottom: 20px;
+		background-image: url(../../Content/Images/wallpaper-1945409.jpg);
+		background-size: cover;
+		background-color: #fff;
+	}
+
+	.body-content {
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color: white;
+		height: 300px;
+		overflow-y: auto;
+		width: 150px;;
+		margin: 25px;
+		align-content: center;
+	}
+
+	h1 {
+		text-align: center;
+	}
+</style>
+
+<h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
+
+
+@using (Html.BeginForm()) {
+
+	@Html.AntiForgeryToken()
+
+<div class="body-content">
+
+	<div style="margin-left: 397px; margin-right: 397px;">
+		<div class="form-group">
+			@*@Html.LabelFor(m => m.strUserName, "Username")*@
+			@Html.TextBoxFor(m => m.strUserName, new { @class = "form-control", placeholder = "Username", autofocus = "true" })
+			@Html.ValidationMessageFor(m => m.strUserName)
+		</div>
+		<div class="form-group">
+			@*@Html.LabelFor(m => m.strPassword, "Password")*@
+			@Html.PasswordFor(m => m.strPassword, new { @class = "form-control", placeholder = "Password" })
+			@Html.ValidationMessageFor(m => m.strPassword)
+		</div>
+		<div class="form-group">
+			<button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
+			@Html.ActionLink("Index", "Home")
+		</div>
+	</div>
+
+</div>
+		}
+
+
+
+

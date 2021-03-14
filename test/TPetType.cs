@@ -14,7 +14,14 @@ namespace test
     
     public partial class TPetType
     {
+        public TPetType()
+        {
+            this.TPets = new HashSet<TPet>();
+        }
+    
         public int intPetTypeID { get; set; }
         public string strPetType { get; set; }
+    
+        public virtual ICollection<TPet> TPets { get; set; }
     }
 }

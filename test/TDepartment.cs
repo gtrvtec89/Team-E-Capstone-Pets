@@ -12,16 +12,16 @@ namespace test
     using System;
     using System.Collections.Generic;
     
-    public partial class TEmployee
+    public partial class TDepartment
     {
-        public int intEmployeeID { get; set; }
-        public string strFirstName { get; set; }
-        public string strLastName { get; set; }
-        public int intJobTitleID { get; set; }
-        public bool isActive { get; set; }
-        public int intUserID { get; set; }
-        public int intDepartmentID { get; set; }
+        public TDepartment()
+        {
+            this.TEmployees = new HashSet<TEmployee>();
+        }
     
-        public virtual TDepartment TDepartment { get; set; }
+        public int intDepartmentID { get; set; }
+        public string strDepartment { get; set; }
+    
+        public virtual ICollection<TEmployee> TEmployees { get; set; }
     }
 }

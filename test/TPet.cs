@@ -32,5 +32,7 @@ namespace test
         public string strNotes { get; set; }
         public bool isActive { get; set; }
         public int intOwnerID { get; set; }
+    
+        public virtual TPetType TPetType { get; set; }
     }
 }

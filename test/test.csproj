@@ -145,12 +145,15 @@
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TBreedsController.cs" />
+    <Compile Include="Controllers\TEmployees1Controller.cs" />
     <Compile Include="Controllers\TEmployeesController.cs" />
     <Compile Include="Controllers\TJobTitlesController.cs" />
     <Compile Include="Controllers\TMedicationsController.cs" />
     <Compile Include="Controllers\TOwnersController.cs" />
     <Compile Include="Controllers\TPetsController.cs" />
+    <Compile Include="Controllers\TRolesController.cs" />
     <Compile Include="Controllers\TServicesController.cs" />
+    <Compile Include="Controllers\TUsersController.cs" />
     <Compile Include="Controllers\TVisitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -162,6 +165,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="TBreed.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TDepartment.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="TEarStatusInfo.cs">
@@ -240,6 +246,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="TUser.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TUserRoleMapping.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="TVaccination.cs">
@@ -362,6 +371,23 @@
     <Content Include="Views\TBreeds\Details.cshtml" />
     <Content Include="Views\TBreeds\Edit.cshtml" />
     <Content Include="Views\TBreeds\Index.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\TUsers\Create.cshtml" />
+    <Content Include="Views\TUsers\Delete.cshtml" />
+    <Content Include="Views\TUsers\Details.cshtml" />
+    <Content Include="Views\TUsers\Edit.cshtml" />
+    <Content Include="Views\TUsers\Index.cshtml" />
+    <Content Include="Views\TEmployees1\Create.cshtml" />
+    <Content Include="Views\TEmployees1\Delete.cshtml" />
+    <Content Include="Views\TEmployees1\Details.cshtml" />
+    <Content Include="Views\TEmployees1\Edit.cshtml" />
+    <Content Include="Views\TEmployees1\Index.cshtml" />
+    <Content Include="Views\TRoles\Create.cshtml" />
+    <Content Include="Views\TRoles\Delete.cshtml" />
+    <Content Include="Views\TRoles\Details.cshtml" />
+    <Content Include="Views\TRoles\Edit.cshtml" />
+    <Content Include="Views\TRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,6 +36,7 @@ namespace test.Controllers
         }
 
         // GET: TEmployees/Create
+        [Authorize]
         public ActionResult Create()
         {
             

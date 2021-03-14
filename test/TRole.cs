@@ -16,12 +16,14 @@ namespace test
     {
         public TRole()
         {
+            this.TUserRoleMappings = new HashSet<TUserRoleMapping>();
             this.TUsers = new HashSet<TUser>();
         }
     
         public int intRoleID { get; set; }
-        public string strRoleName { get; set; }
+        public string strRole { get; set; }
     
+        public virtual ICollection<TUserRoleMapping> TUserRoleMappings { get; set; }
         public virtual ICollection<TUser> TUsers { get; set; }
     }
 }

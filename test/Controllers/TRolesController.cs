@@ -10,114 +10,107 @@ using test;
 
 namespace test.Controllers
 {
-    public class TPetsController : Controller
+    public class TRolesController : Controller
     {
         private capstoneEntities db = new capstoneEntities();
 
-        // GET: TPets
+        // GET: TRoles
         public ActionResult Index()
         {
-            var tPets = db.TPets.Include(t => t.TPetType);
-            return View(tPets.ToList());
+            return View(db.TRoles.ToList());
         }
 
-        // GET: TPets/Details/5
+        // GET: TRoles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TPet tPet = db.TPets.Find(id);
-            if (tPet == null)
+            TRole tRole = db.TRoles.Find(id);
+            if (tRole == null)
             {
                 return HttpNotFound();
             }
-            return View(tPet);
+            return View(tRole);
         }
 
-        // GET: TPets/Create
+        // GET: TRoles/Create
         public ActionResult Create()
         {
-            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType");
-  
-
             return View();
         }
 
-        // POST: TPets/Create
+        // POST: TRoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isActive,intOwnerID")] TPet tPet)
+        public ActionResult Create([Bind(Include = "intRoleID,strRole")] TRole tRole)
         {
             if (ModelState.IsValid)
             {
-                db.TPets.Add(tPet);
+                db.TRoles.Add(tRole);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
-            return View(tPet);
+            return View(tRole);
         }
 
-        // GET: TPets/Edit/5
+        // GET: TRoles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TPet tPet = db.TPets.Find(id);
-            if (tPet == null)
+            TRole tRole = db.TRoles.Find(id);
+            if (tRole == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
-            return View(tPet);
+            return View(tRole);
         }
 
-        // POST: TPets/Edit/5
+        // POST: TRoles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isActive,intOwnerID")] TPet tPet)
+        public ActionResult Edit([Bind(Include = "intRoleID,strRole")] TRole tRole)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tPet).State = EntityState.Modified;
+                db.Entry(tRole).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
-            return View(tPet);
+            return View(tRole);
         }
 
-        // GET: TPets/Delete/5
+        // GET: TRoles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TPet tPet = db.TPets.Find(id);
-            if (tPet == null)
+            TRole tRole = db.TRoles.Find(id);
+            if (tRole == null)
             {
                 return HttpNotFound();
             }
-            return View(tPet);
+            return View(tRole);
         }
 
-        // POST: TPets/Delete/5
+        // POST: TRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TPet tPet = db.TPets.Find(id);
-            db.TPets.Remove(tPet);
+            TRole tRole = db.TRoles.Find(id);
+            db.TRoles.Remove(tRole);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
