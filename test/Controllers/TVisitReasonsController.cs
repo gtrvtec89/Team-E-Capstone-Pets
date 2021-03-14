@@ -10,126 +10,107 @@ using test;
 
 namespace test.Controllers
 {
-    public class TVisitsController : Controller
+    public class TVisitReasonsController : Controller
     {
         private capstoneEntities db = new capstoneEntities();
 
-        // GET: TVisits
+        // GET: TVisitReasons
         public ActionResult Index()
         {
-            var tVisits = db.TVisits.Include(t => t.TVisitReason);
-            return View(tVisits.ToList());
+            return View(db.TVisitReasons.ToList());
         }
 
-        // GET: TVisits/Details/5
+        // GET: TVisitReasons/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TVisit tVisit = db.TVisits.Find(id);
-            if (tVisit == null)
+            TVisitReason tVisitReason = db.TVisitReasons.Find(id);
+            if (tVisitReason == null)
             {
                 return HttpNotFound();
             }
-            return View(tVisit);
+            return View(tVisitReason);
         }
 
-        // GET: TVisits/Create
+        // GET: TVisitReasons/Create
         public ActionResult Create()
         {
-            ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason");
             return View();
         }
 
-        // POST: TVisits/Create
+        // POST: TVisitReasons/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intVisitID,intPetID,intVisitReasonID,dtmDateOfVist")] TVisit tVisit)
+        public ActionResult Create([Bind(Include = "intVisitReasonID,strVisitReason")] TVisitReason tVisitReason)
         {
-            if (ModelState.IsValid) {
-                db.TVisits.Add(tVisit);
+            if (ModelState.IsValid)
+            {
+                db.TVisitReasons.Add(tVisitReason);
                 db.SaveChanges();
-
-                int intVisitReasonID = Int16.Parse("intVisitReasonID");
-
-                switch(intVisitReasonID) 
-                {
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-
-
-				}
-
                 return RedirectToAction("Index");
             }
 
-            ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason", tVisit.intVisitReasonID);
-            return View(tVisit);
+            return View(tVisitReason);
         }
 
-        // GET: TVisits/Edit/5
+        // GET: TVisitReasons/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TVisit tVisit = db.TVisits.Find(id);
-            if (tVisit == null)
+            TVisitReason tVisitReason = db.TVisitReasons.Find(id);
+            if (tVisitReason == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason", tVisit.intVisitReasonID);
-            return View(tVisit);
+            return View(tVisitReason);
         }
 
-        // POST: TVisits/Edit/5
+        // POST: TVisitReasons/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intVisitID,intPetID,intVisitReasonID,dtmDateOfVist")] TVisit tVisit)
+        public ActionResult Edit([Bind(Include = "intVisitReasonID,strVisitReason")] TVisitReason tVisitReason)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tVisit).State = EntityState.Modified;
+                db.Entry(tVisitReason).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason", tVisit.intVisitReasonID);
-            return View(tVisit);
+            return View(tVisitReason);
         }
 
-        // GET: TVisits/Delete/5
+        // GET: TVisitReasons/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TVisit tVisit = db.TVisits.Find(id);
-            if (tVisit == null)
+            TVisitReason tVisitReason = db.TVisitReasons.Find(id);
+            if (tVisitReason == null)
             {
                 return HttpNotFound();
             }
-            return View(tVisit);
+            return View(tVisitReason);
         }
 
-        // POST: TVisits/Delete/5
+        // POST: TVisitReasons/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TVisit tVisit = db.TVisits.Find(id);
-            db.TVisits.Remove(tVisit);
+            TVisitReason tVisitReason = db.TVisitReasons.Find(id);
+            db.TVisitReasons.Remove(tVisitReason);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

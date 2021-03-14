@@ -147,6 +147,7 @@
     <Compile Include="Controllers\TBreedsController.cs" />
     <Compile Include="Controllers\TEmployees1Controller.cs" />
     <Compile Include="Controllers\TEmployeesController.cs" />
+    <Compile Include="Controllers\THealthExamController.cs" />
     <Compile Include="Controllers\TJobTitlesController.cs" />
     <Compile Include="Controllers\TMedicationsController.cs" />
     <Compile Include="Controllers\TOwnersController.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Controllers\TRolesController.cs" />
     <Compile Include="Controllers\TServicesController.cs" />
     <Compile Include="Controllers\TUsersController.cs" />
+    <Compile Include="Controllers\TVisitReasonsController.cs" />
     <Compile Include="Controllers\TVisitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -388,9 +390,15 @@
     <Content Include="Views\TRoles\Details.cshtml" />
     <Content Include="Views\TRoles\Edit.cshtml" />
     <Content Include="Views\TRoles\Index.cshtml" />
+    <Content Include="Views\TVisitReasons\Create.cshtml" />
+    <Content Include="Views\TVisitReasons\Delete.cshtml" />
+    <Content Include="Views\TVisitReasons\Details.cshtml" />
+    <Content Include="Views\TVisitReasons\Edit.cshtml" />
+    <Content Include="Views\TVisitReasons\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\THealthExam\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

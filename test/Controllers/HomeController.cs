@@ -44,9 +44,10 @@ namespace test.Controllers {
                 if (IsValidUser) {
                     FormsAuthentication.SetAuthCookie(user.strUserName, false);
                     return RedirectToAction("Index", "Home");
-                }
+                }              
             }
-            ModelState.AddModelError("", "invalid Username or Password");
+            //ModelState.AddModelError("", "invalid Username or Password");
+            ViewBag.PromptMessage = "Invalid Credentials Supplied";
             return View();
         }
 
@@ -59,7 +60,7 @@ namespace test.Controllers {
 
         public ActionResult Logout() {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Home");
         }
 
 
