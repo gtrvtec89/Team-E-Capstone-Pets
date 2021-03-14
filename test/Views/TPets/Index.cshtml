@@ -1,0 +1,129 @@
+﻿@model IEnumerable<test.TPet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.strPetNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strMicrochipID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strPetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intPetTypeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intGenderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intBreedID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtmDateofBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dblWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isBlind)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDeaf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isAggressive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDeceased)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isAllergic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intOwnerID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.strPetNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strMicrochipID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strPetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intPetTypeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intGenderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intBreedID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtmDateofBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dblWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isBlind)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isDeaf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isAggressive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isDeceased)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isAllergic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strColor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intOwnerID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.intPetID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.intPetID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.intPetID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,103 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url('Images/wallpaper-1945409.jpg');
+    background-color: #fff;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white;
+    border: 30px solid #6495ed;
+    height: 540px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#test {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 51px;
+    height: auto;
+    margin: auto;
+    width: 100%;
+    background: #f9f9f9;
+    border: 30px solid #6495ed;
+    position: relative;
+    color: black;
+}
+
+a.classname {
+    background: url(../Content/Images/icon3.png) no-repeat top left;
+    display: block;
+    width: 60px;
+    height: 51px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+.custom {
+    width: 200px !important;
+    height: 160px;
+    display: inline-block;
+}
+
+
+/* Style inputs with type="text", select elements and textareas */
+/*input[type=text], select, textarea {
+    width: 33%;
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    resize: vertical*/ /* Allow the user to vertically resize the textarea (not horizontally) *//*;
+    display: inherit;
+}*/
+
+/* Style the submit button with a specific background color etc */
+/*input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}*/
+
+/* When moving the mouse over the submit button, add a darker green color */
+/*input[type=submit]:hover {
+    background-color: #45a049;
+}*/
+
+/* Add a background color and some padding around the form */
+/*.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 51px;
+    height: auto;
+    margin: auto;
+    color: white;
+    width: 75%;
+    background: #f9f9f9;
+    border: 23px solid #6495ed;
+    position: relative;*/
+}

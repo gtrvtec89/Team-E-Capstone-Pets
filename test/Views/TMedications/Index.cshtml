@@ -1,0 +1,69 @@
+﻿@model IEnumerable<test.TMedication>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.strMedicationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strMedicationDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dblCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dblPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intMethodID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.strMedicationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strMedicationDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dblCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dblPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intMethodID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.intMedicationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.intMedicationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.intMedicationID })
+        </td>
+    </tr>
+}
+
+</table>

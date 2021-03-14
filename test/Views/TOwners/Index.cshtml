@@ -1,0 +1,117 @@
+﻿@model IEnumerable<test.TOwner>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.strFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intGenderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strZip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strPhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strOwner2Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strOwner2PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strOwner2Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intUserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TState.strStateCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.strFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intGenderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strZip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strPhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strOwner2Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strOwner2PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strOwner2Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intUserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TState.strStateCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.intOwnerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.intOwnerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.intOwnerID })
+        </td>
+    </tr>
+}
+
+</table>
