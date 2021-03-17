@@ -13,36 +13,52 @@
 </style>
 
 
-<div class="body-content">
+<div class="invisible-box">
 
 	<div class="btn-group">
-		<button type="submit" class="btn" name="btnPets"><i class="fa fa-home"></i>
-			@*<img src="~/Content/Images/pets.jpg" alt="Icon" />*@
-			@Html.ActionLink("Index", "TPets")
+		<button type="submit" class="home-btn" name="btnPets">
+			@*<i class="fa fa-home"></i>*@
+
+			<img src="~/Content/Images/Paws.png" class="center" />
+			Pets
+			@*@Html.ActionLink("Index", "TPets")*@
 		</button>
-		<button type="submit" class="btn btn-info custom">
+		<button type="submit" class="home-btn" name="btnClients">
+			@*<i class="fa fa-home"></i>*@
+			<img src="~/Content/Images/Clients.png" class="center" />
+			
+			Clients
+			@*@Html.ActionLink("Index", "TPets")*@
+		</button>
+		<button type="submit" class="home-btn" name="btnServices">
+			@*<i class="fa fa-home"></i>*@
+			<img src="~/Content/Images/services.jpg" class="center" />
+			Services
+			@*@Html.ActionLink("Index", "TPets")*@
+		</button>
+		@*<button type="submit" class="home-btn">
 			<img src="~/Content/Images/clients.jpg" alt="Icon" />
 			@Html.ActionLink("Index", "TOwners")
 		</button>
-		<button type="submit" class="btn btn-info custom">
+		<button type="submit" class="home-btn">
 			<img src="~/Content/Images/services.jpg" alt="Icon" />
 			@Html.ActionLink("Index", "TServices")
-		</button>
+		</button>*@
 	</div>
 
 	<br />
 	<br />
 
 	<div class="btn-group">
-		<button type="submit" class="btn btn-info custom">
+		<button type="submit" class="home-btn">
 			<img src="~/Content/Images/medications.jpg" alt="Icon" />
 			@Html.ActionLink("Medications", "Index", "TMedictions")
 		</button>
-		<button type="submit" class="btn btn-info custom">
+		<button type="submit" class="home-btn">
 			<img src="~/Content/Images/reports.jpg" alt="Icon" />
 			@Html.ActionLink("Reports", "Index", "TReports")
 		</button>
-		<button type="submit" class="btn btn-info custom">
+		<button type="submit" class="home-btn">
 			<img src="~/Content/Images/employees.jpg" alt="Icon" />
 			@Html.ActionLink("Employees", "Index", "TEmployees")
 		</button>
