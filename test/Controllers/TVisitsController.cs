@@ -12,12 +12,12 @@ namespace test.Controllers
 {
     public class TVisitsController : Controller
     {
-        private capstoneEntities db = new capstoneEntities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TVisits
         public ActionResult Index()
         {
-            var tVisits = db.TVisits.Include(t => t.TVisitReason);
+            var tVisits = db.TVisits.Include(t => t.intVisitReasonID);
             return View(tVisits.ToList());
         }
 

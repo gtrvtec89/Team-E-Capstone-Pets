@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.strPassword)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TRole.strRole)
+            @Html.DisplayNameFor(model => model.TRole.strRoleName)
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.strPassword)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TRole.strRole)
+            @Html.DisplayFor(modelItem => item.TRole.strRoleName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.intUserID }) |
