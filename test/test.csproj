@@ -145,7 +145,6 @@
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TBreedsController.cs" />
-    <Compile Include="Controllers\TEmployees1Controller.cs" />
     <Compile Include="Controllers\TEmployeesController.cs" />
     <Compile Include="Controllers\THealthExamController.cs" />
     <Compile Include="Controllers\TJobTitlesController.cs" />
@@ -154,22 +153,18 @@
     <Compile Include="Controllers\TPetsController.cs" />
     <Compile Include="Controllers\TRolesController.cs" />
     <Compile Include="Controllers\TServicesController.cs" />
+    <Compile Include="Controllers\TServiceTypesController.cs" />
     <Compile Include="Controllers\TUsersController.cs" />
     <Compile Include="Controllers\TVisitReasonsController.cs" />
     <Compile Include="Controllers\TVisitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\TEmployee.cs" />
-    <Compile Include="Models\TOwners.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TAbdomenInfo.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="TBreed.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TDepartment.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="TEarStatusInfo.cs">
@@ -250,9 +245,6 @@
     <Compile Include="TUser.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
-    <Compile Include="TUserRoleMapping.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
     <Compile Include="TVaccination.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -271,12 +263,39 @@
     <Compile Include="TVisitService.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewEmployees_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewMedications_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewOwners_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetGeneralInformation_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetMedications_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPets_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetVaccinations_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetVisits_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewServices_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Capstone.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Capstone.Context.cs</LastGenOutput>
       <DependentUpon>Capstone.edmx</DependentUpon>
+      <LastGenOutput>Capstone.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Capstone.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -396,9 +415,15 @@
     <Content Include="Views\TVisitReasons\Details.cshtml" />
     <Content Include="Views\TVisitReasons\Edit.cshtml" />
     <Content Include="Views\TVisitReasons\Index.cshtml" />
+    <Content Include="Views\TServiceTypes\Create.cshtml" />
+    <Content Include="Views\TServiceTypes\Delete.cshtml" />
+    <Content Include="Views\TServiceTypes\Details.cshtml" />
+    <Content Include="Views\TServiceTypes\Edit.cshtml" />
+    <Content Include="Views\TServiceTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
     <Folder Include="Views\THealthExam\" />
   </ItemGroup>
   <ItemGroup>

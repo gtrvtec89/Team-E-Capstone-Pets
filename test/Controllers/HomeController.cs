@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-using test.Models;
+//using test.Models;
 using System.Web.Security;
 
 namespace test.Controllers {
 	public class HomeController : Controller {
 
-		private readonly capstoneEntities db = new capstoneEntities();
+		private readonly CapstoneEntities db = new CapstoneEntities();
 
 
 		public ActionResult Index() {
