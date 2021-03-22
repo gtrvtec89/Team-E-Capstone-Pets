@@ -1,0 +1,30 @@
+﻿
+@{
+	ViewBag.Title = "About Us";
+}
+
+<style>
+	.user-image-container {
+		height: unset;
+	}
+</style>
+
+
+<h2>@ViewBag.Title</h2>
+
+<p>Thank you for using our web application. The contact information for the architects are below. </p>
+
+<div class="user-image-container">
+	<div class="section">
+			<div>Tabitha Godsey</div>
+			<a href="mailto:trgodsey@cincinnatistate.com?subject=Tri-State Music Events">Email the architect.</a>.<br>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		SetActiveMenus('aboutus');
+	});
+</script>
+

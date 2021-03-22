@@ -9,15 +9,14 @@
 <style>
 
 	.body-content {
-		background-color: hsla(120, 60%, 70%);
-		border: outset;
-		padding-top: 50px;
-		padding-bottom: 50px;
-		max-width: 840px;
-		margin-left: 23%;
-		margin-top: 8%;
-		margin-bottom: 10%;
-		padding-left: 2%;
+		background-color: white;
+		border: 30px solid #6495ed;
+		height: 800px;
+		width: 30%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		margin-bottom: auto;
 	}
 
 	.hmebtn {
@@ -66,8 +65,8 @@
 		<button type="submit" class="hmebtn" name="btnMedications"><i class="fas fa-prescription-bottle-alt", style="font-size:45px"></i>
 			@Html.ActionLink("Medications", "Index", "TMedications")
 		</button>
-		<button type="submit" class="hmebtn" name="btnReports"><i class="fas fa-chart-pie", style="font-size:45px"></i>
-			@Html.ActionLink("Reports", "Index", "TReports")
+		<button type="submit" class="hmebtn" name="btnSettings"><i class="fas fa-cogs", style="font-size:45px"></i>
+			@Html.ActionLink("Settings", "Settings")
 		</button>
 		<button type="submit" class="hmebtn" name="btnEmployees"><i class="fas fa-user-md", style="font-size:45px"></i>
 			@Html.ActionLink("Employees", "Index", "TEmployees")
