@@ -10,116 +10,107 @@ using test;
 
 namespace test.Controllers
 {
-    public class TUsersController : Controller
+    public class TMethodsController : Controller
     {
         private CapstoneEntities db = new CapstoneEntities();
 
-        // GET: TUsers
+        // GET: TMethods
         public ActionResult Index()
         {
-            var tUsers = db.TUsers.Include(t => t.TRole);
-            return View(tUsers.ToList());
+            return View(db.TMethods.ToList());
         }
 
-        // GET: TUsers/Details/5
-
-        [Authorize(Roles ="Admin, Doctor")]
+        // GET: TMethods/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TUser tUser = db.TUsers.Find(id);
-            if (tUser == null)
+            TMethod tMethod = db.TMethods.Find(id);
+            if (tMethod == null)
             {
                 return HttpNotFound();
             }
-            return View(tUser);
+            return View(tMethod);
         }
 
-        // GET: TUsers/Create
-       
-
+        // GET: TMethods/Create
         public ActionResult Create()
         {
-            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRoleName");
             return View();
         }
 
-        // POST: TUsers/Create
+        // POST: TMethods/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intUserID,strUserName,strPassword,intRoleID")] TUser tUser)
+        public ActionResult Create([Bind(Include = "intMethodID,strMethod")] TMethod tMethod)
         {
             if (ModelState.IsValid)
             {
-                db.TUsers.Add(tUser);
+                db.TMethods.Add(tMethod);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRoleName", tUser.intRoleID);
-            return View(tUser);
+            return View(tMethod);
         }
 
-        // GET: TUsers/Edit/5
+        // GET: TMethods/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TUser tUser = db.TUsers.Find(id);
-            if (tUser == null)
+            TMethod tMethod = db.TMethods.Find(id);
+            if (tMethod == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRoleName", tUser.intRoleID);
-            return View(tUser);
+            return View(tMethod);
         }
 
-        // POST: TUsers/Edit/5
+        // POST: TMethods/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intUserID,strUserName,strPassword,intRoleID")] TUser tUser)
+        public ActionResult Edit([Bind(Include = "intMethodID,strMethod")] TMethod tMethod)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tUser).State = EntityState.Modified;
+                db.Entry(tMethod).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRoleName", tUser.intRoleID);
-            return View(tUser);
+            return View(tMethod);
         }
 
-        // GET: TUsers/Delete/5
+        // GET: TMethods/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TUser tUser = db.TUsers.Find(id);
-            if (tUser == null)
+            TMethod tMethod = db.TMethods.Find(id);
+            if (tMethod == null)
             {
                 return HttpNotFound();
             }
-            return View(tUser);
+            return View(tMethod);
         }
 
-        // POST: TUsers/Delete/5
+        // POST: TMethods/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TUser tUser = db.TUsers.Find(id);
-            db.TUsers.Remove(tUser);
+            TMethod tMethod = db.TMethods.Find(id);
+            db.TMethods.Remove(tMethod);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

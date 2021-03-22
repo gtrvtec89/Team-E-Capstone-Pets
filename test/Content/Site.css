@@ -2,11 +2,12 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url('Images/wallpaper-1945409.jpg');
-    background-size:cover;
     background-color: #fff;
+    overflow:hidden;
+    background-size:cover;
 }
 
-/* Set padding to keep content from hitting the edges */
+
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -85,55 +86,36 @@ h4{
     background-color: RoyalBlue;
 }
 
-.footer {
-    background-color: #080808;
-    color: white;
-}
-
 footer {
     background-color: #080808;
     color: white;
+    height: 148px;
+    font-size: xx-large;
+}
+
+.link-icon-edit:before {
+    display: inline-block;
+    height: 32px;
+    width: 20px;
+    font-family: "FontAwesome";
+    content: "\f044";
+    
+}
+
+.link-icon-details:before {
+    display: inline-block;
+    height: 32px;
+    width: 20px;
+    font-family: "FontAwesome";
+    content: "\f05a";
+}
+
+.link-icon-delete:before {
+    display: inline-block;
+    height: 32px;
+    width: 20px;
+    font-family: "FontAwesome";
+    content: "\f2ed";
 }
 
 
-/* Style inputs with type="text", select elements and textareas */
-/*input[type=text], select, textarea {
-    width: 33%;
-    padding: 0px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    resize: vertical*/ /* Allow the user to vertically resize the textarea (not horizontally) *//*;
-    display: inherit;
-}*/
-
-/* Style the submit button with a specific background color etc */
-/*input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}*/
-
-/* When moving the mouse over the submit button, add a darker green color */
-/*input[type=submit]:hover {
-    background-color: #45a049;
-}*/
-
-/* Add a background color and some padding around the form */
-/*.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 51px;
-    height: auto;
-    margin: auto;
-    color: white;
-    width: 75%;
-    background: #f9f9f9;
-    border: 23px solid #6495ed;
-    position: relative;*/
-}
