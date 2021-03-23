@@ -2,21 +2,23 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url('Images/wallpaper-1945409.jpg');
-    background-color: #fff;
-    overflow:hidden;
     background-size:cover;
+    background-color: #fff;
 }
 
 
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    background-color: white;
-    border: 30px solid #6495ed;
-    max-height: 500px;
-    overflow-y:auto;
-    width:auto;
-    margin:25px;
+    padding-top:7px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: 23px solid #6495ed;
+    max-height: 525px;
+    overflow-y: overlay;
+    overflow-x: overlay;
+    max-width: 1400px;
+    margin: auto;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -47,11 +49,11 @@ textarea {
 }
 
 a.classname {
-    background: url(../Content/Images/icon3.png) no-repeat top left;
+    /*background: url(../Content/Images/icon3.png) no-repeat top left;*/
     display: block;
     width: 60px;
     height: 51px;
-    text-indent: -9999px; /* hides the link text */
+    /*text-indent: -9999px;*/ /* hides the link text */
 }
 
 .custom {
@@ -70,37 +72,68 @@ h4{
 
 /* Style buttons */
 .btn {
-    background-color: DodgerBlue;
-    border: none;
-    color: white;
-    padding: 12px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 165px;
-    height: 80px;
-    display: inline-grid;
+    background-color: DodgerBlue; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
 }
 
 /* Darker background on mouse-over */
 .btn:hover {
     background-color: RoyalBlue;
+    /*border-color: midnightblue;*/
 }
 
-footer {
-    background-color: #080808;
+/* Style buttons */
+.home-btn {
+    height: 200px;
+    width: 200px;
+    margin: 18px;
+    background-color: cornflowerblue;
+    border: 3.2px solid black;
+    color: black;
+    font-family: Calibri;
+    font-size: x-large
+    /*background-color: DodgerBlue;*/ /* Blue background */
+    /*border: none;*/ /* Remove borders */
+    /*color: white;*/ /* White text */
+    /*padding: 12px 16px;*/ /* Some padding */
+    /*font-size: 16px;*/ /* Set a font size */
+    /*cursor: pointer;*/ /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.home-btn:hover {
+    background-color: RoyalBlue;
+    border-color: midnightblue;
+    color:white;
+}
+
+
+/* Style inputs with type="text", select elements and textareas */
+/*input[type=text], select, textarea {
+    width: 33%;
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    resize: vertical*/ /* Allow the user to vertically resize the textarea (not horizontally) *//*;
+    display: inherit;
+}*/
+
+/* Style the submit button with a specific background color etc */
+/*input[type=submit] {
+    background-color: #4CAF50;
     color: white;
-    height: 148px;
-    font-size: xx-large;
-}
-
-.link-icon-edit:before {
-    display: inline-block;
-    height: 32px;
-    width: 20px;
-    font-family: "FontAwesome";
-    content: "\f044";
-    
-}
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}*/
 
 .link-icon-details:before {
     display: inline-block;
