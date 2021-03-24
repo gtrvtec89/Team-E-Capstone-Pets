@@ -8,6 +8,30 @@
 
 <style>
 
+	.body-content {
+		background-color: white;
+		border: 30px solid #6495ed;
+		height: 800px;
+		width: 30%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+
+	.hmebtn {
+		background-color: DodgerBlue;
+		border: none;
+		color: white;
+		padding: 12px 16px;
+		font-size: 16px;
+		cursor: pointer;
+		display: inline-grid;
+		width: 200px;
+		height: 100px;
+		font-size: 20px;
+		color: black;
+	}
 	
 
 </style>
@@ -15,35 +39,36 @@
 
 <div class="body-content">
 
-	<div class="btn-group">
-		<button type="submit" class="btn" name="btnPets"><i class="fa fa-home"></i>
-			@*<img src="~/Content/Images/pets.jpg" alt="Icon" />*@
-			@Html.ActionLink("Index", "TPets")
-		</button>
-		<button type="submit" class="btn btn-info custom">
-			<img src="~/Content/Images/clients.jpg" alt="Icon" />
-			@Html.ActionLink("Index", "TOwners")
-		</button>
-		<button type="submit" class="btn btn-info custom">
-			<img src="~/Content/Images/services.jpg" alt="Icon" />
-			@Html.ActionLink("Index", "TServices")
-		</button>
+	<div style="margin-left:87px;">
+	
+			<button type="submit" class="hmebtn" name="btnPets">
+				<i class="fas fa-dog", style="font-size:45px"></i>
+				@Html.ActionLink("Pets", "Index", "TPets")
+			</button>
+
+			<button type="submit" class="hmebtn" name="btnOwners">
+				<i class="fas fa-users", style="font-size:45px"></i>
+				@Html.ActionLink("Owners", "Index", "TOwners")
+			</button>
+
+			<button type="submit" class="hmebtn" name="btnServices">
+				<i class="fas fa-notes-medical", style="font-size:45px"></i>
+				@Html.ActionLink("Services", "Index", "TServices")
+			</button>
+		
 	</div>
 
 	<br />
 	<br />
 
-	<div class="btn-group">
-		<button type="submit" class="btn btn-info custom">
-			<img src="~/Content/Images/medications.jpg" alt="Icon" />
-			@Html.ActionLink("Medications", "Index", "TMedictions")
+	<div style="margin-left:87px;">
+		<button type="submit" class="hmebtn" name="btnMedications"><i class="fas fa-prescription-bottle-alt", style="font-size:45px"></i>
+			@Html.ActionLink("Medications", "Index", "TMedications")
 		</button>
-		<button type="submit" class="btn btn-info custom">
-			<img src="~/Content/Images/reports.jpg" alt="Icon" />
-			@Html.ActionLink("Reports", "Index", "TReports")
+		<button type="submit" class="hmebtn" name="btnSettings"><i class="fas fa-cogs", style="font-size:45px"></i>
+			@Html.ActionLink("Settings", "Settings")
 		</button>
-		<button type="submit" class="btn btn-info custom">
-			<img src="~/Content/Images/employees.jpg" alt="Icon" />
+		<button type="submit" class="hmebtn" name="btnEmployees"><i class="fas fa-user-md", style="font-size:45px"></i>
 			@Html.ActionLink("Employees", "Index", "TEmployees")
 		</button>
 

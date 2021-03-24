@@ -22,8 +22,8 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("Settings", "Index", "Home")</li>
-					<li>@Html.ActionLink("About", "About", "Home")</li>
+					<li>@Html.ActionLink("Help", "Help", "Home")</li>
+					<li>@Html.ActionLink("About Us", "About", "Home")</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>@Html.ActionLink("Sign Out", "Login", "Home")</li>
@@ -33,15 +33,9 @@
 	</div>
 
 
-	@*<div class="container body-content">
-			@RenderBody()
-			<hr />
-			<footer>
-				<p>&copy; @DateTime.Now.Year - Capstone Pets</p>
-			</footer>
-		</div>*@
-
 	@RenderBody()
+
+
 	<hr />
 	<footer>
 		<p>&copy; @DateTime.Now.Year - Capstone Pets</p>

@@ -12,7 +12,7 @@ namespace test.Controllers
 {
     public class TRolesController : Controller
     {
-        private capstoneEntities db = new capstoneEntities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TRoles
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intRoleID,strRole")] TRole tRole)
+        public ActionResult Create([Bind(Include = "intRoleID,strRoleName")] TRole tRole)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intRoleID,strRole")] TRole tRole)
+        public ActionResult Edit([Bind(Include = "intRoleID,strRoleName")] TRole tRole)
         {
             if (ModelState.IsValid)
             {

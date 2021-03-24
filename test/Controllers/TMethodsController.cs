@@ -10,112 +10,107 @@ using test;
 
 namespace test.Controllers
 {
-    public class TEmployees1Controller : Controller
+    public class TMethodsController : Controller
     {
-        private capstoneEntities db = new capstoneEntities();
+        private CapstoneEntities db = new CapstoneEntities();
 
-        // GET: TEmployees1
+        // GET: TMethods
         public ActionResult Index()
         {
-            var tEmployees = db.TEmployees.Include(t => t.TDepartment);
-            return View(tEmployees.ToList());
+            return View(db.TMethods.ToList());
         }
 
-        // GET: TEmployees1/Details/5
+        // GET: TMethods/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TEmployee tEmployee = db.TEmployees.Find(id);
-            if (tEmployee == null)
+            TMethod tMethod = db.TMethods.Find(id);
+            if (tMethod == null)
             {
                 return HttpNotFound();
             }
-            return View(tEmployee);
+            return View(tMethod);
         }
 
-        // GET: TEmployees1/Create
+        // GET: TMethods/Create
         public ActionResult Create()
         {
-            ViewBag.intDepartmentID = new SelectList(db.TDepartments, "intDepartmentID", "strDepartment");
             return View();
         }
 
-        // POST: TEmployees1/Create
+        // POST: TMethods/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intEmployeeID,strFirstName,strLastName,intJobTitleID,isActive,intUserID,intDepartmentID")] TEmployee tEmployee)
+        public ActionResult Create([Bind(Include = "intMethodID,strMethod")] TMethod tMethod)
         {
             if (ModelState.IsValid)
             {
-                db.TEmployees.Add(tEmployee);
+                db.TMethods.Add(tMethod);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.intDepartmentID = new SelectList(db.TDepartments, "intDepartmentID", "strDepartment", tEmployee.intDepartmentID);
-            return View(tEmployee);
+            return View(tMethod);
         }
 
-        // GET: TEmployees1/Edit/5
+        // GET: TMethods/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TEmployee tEmployee = db.TEmployees.Find(id);
-            if (tEmployee == null)
+            TMethod tMethod = db.TMethods.Find(id);
+            if (tMethod == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.intDepartmentID = new SelectList(db.TDepartments, "intDepartmentID", "strDepartment", tEmployee.intDepartmentID);
-            return View(tEmployee);
+            return View(tMethod);
         }
 
-        // POST: TEmployees1/Edit/5
+        // POST: TMethods/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intEmployeeID,strFirstName,strLastName,intJobTitleID,isActive,intUserID,intDepartmentID")] TEmployee tEmployee)
+        public ActionResult Edit([Bind(Include = "intMethodID,strMethod")] TMethod tMethod)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tEmployee).State = EntityState.Modified;
+                db.Entry(tMethod).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.intDepartmentID = new SelectList(db.TDepartments, "intDepartmentID", "strDepartment", tEmployee.intDepartmentID);
-            return View(tEmployee);
+            return View(tMethod);
         }
 
-        // GET: TEmployees1/Delete/5
+        // GET: TMethods/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TEmployee tEmployee = db.TEmployees.Find(id);
-            if (tEmployee == null)
+            TMethod tMethod = db.TMethods.Find(id);
+            if (tMethod == null)
             {
                 return HttpNotFound();
             }
-            return View(tEmployee);
+            return View(tMethod);
         }
 
-        // POST: TEmployees1/Delete/5
+        // POST: TMethods/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TEmployee tEmployee = db.TEmployees.Find(id);
-            db.TEmployees.Remove(tEmployee);
+            TMethod tMethod = db.TMethods.Find(id);
+            db.TMethods.Remove(tMethod);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
