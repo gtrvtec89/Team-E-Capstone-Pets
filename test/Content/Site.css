@@ -86,11 +86,58 @@ h4{
     background-color: RoyalBlue;
 }
 
-footer {
-    background-color: #080808;
+/* Style buttons */
+.home-btn {
+    height: 200px;
+    width: 200px;
+    margin: 18px;
+    background-color: cornflowerblue;
+    border: 3.2px solid black;
+    color: black;
+    font-family: Calibri;
+    font-size: x-large
+}
+
+/* Darker background on mouse-over */
+.home-btn:hover {
+    background-color: RoyalBlue;
+    border-color: midnightblue;
     color: white;
-    height: 148px;
-    font-size: xx-large;
+}
+
+
+.container {
+    width: 100%;
+    padding-right: 60px;
+}
+
+.invisible-box {
+    padding-top: 30px;
+    height: 625px;
+    width: 900px;
+    margin: auto;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 65%;
+}
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+    background-color: #101010;
+    color: #9d9d9d;
+    font-size: 12px;
+    padding-left: 2px;
+    padding-top: 3px;
 }
 
 .link-icon-edit:before {
