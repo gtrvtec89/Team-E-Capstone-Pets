@@ -152,6 +152,7 @@
     <Compile Include="Controllers\TMethodsController.cs" />
     <Compile Include="Controllers\TOwnersController.cs" />
     <Compile Include="Controllers\TPetsController.cs" />
+    <Compile Include="Controllers\TPetTypesController.cs" />
     <Compile Include="Controllers\TRolesController.cs" />
     <Compile Include="Controllers\TServicesController.cs" />
     <Compile Include="Controllers\TServiceTypesController.cs" />
@@ -265,28 +266,58 @@
     <Compile Include="TVisitService.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewEmployees1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewEmployees_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewMedications1_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewOwnerPets_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewOwners1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewOwners_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetGeneralInformation1_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetGeneralInformation_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetMedications1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetMedications_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPets1_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPets_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetVaccinations1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetVaccinations_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetVisits1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetVisits_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewServices1_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewServices_Result.cs">
@@ -424,7 +455,13 @@
     <Content Include="Views\TMethods\Index.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\TPetTypes\Create.cshtml" />
+    <Content Include="Views\TPetTypes\Delete.cshtml" />
+    <Content Include="Views\TPetTypes\Details.cshtml" />
+    <Content Include="Views\TPetTypes\Edit.cshtml" />
+    <Content Include="Views\TPetTypes\Index.cshtml" />
     <Content Include="Views\THealthExam\Create.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
