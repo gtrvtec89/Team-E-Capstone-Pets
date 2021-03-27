@@ -4,14 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Service Details</h2>
 
-<div>
-    <h4>TService</h4>
+<div class="body-content">
+    <h4>Services</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.strServiceDesc)
+            Description
         </dt>
 
         <dd>
@@ -19,15 +19,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.intServiceTypeID)
+            Type
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.intServiceTypeID)
+            @Html.DisplayFor(model => model.TServiceType.strServiceType)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dblPrice)
+            Price
         </dt>
 
         <dd>

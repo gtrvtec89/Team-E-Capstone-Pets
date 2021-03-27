@@ -4,13 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-using test.Models;
+
 using System.Web.Security;
+using System.Data.Entity;
+using System.Net;
 
 namespace test.Controllers {
 	public class HomeController : Controller {
 
-		private readonly capstoneEntities db = new capstoneEntities();
+		private readonly CapstoneEntities db = new CapstoneEntities();
 
 
 		public ActionResult Index() {
@@ -44,9 +46,11 @@ namespace test.Controllers {
                 if (IsValidUser) {
                     FormsAuthentication.SetAuthCookie(user.strUserName, false);
                     return RedirectToAction("Index", "Home");
-                }
+                }  
+
+
             }
-            ModelState.AddModelError("", "invalid Username or Password");
+            ViewBag.PromptMessage = "Invalid Credentials Supplied";
             return View();
         }
 
@@ -59,35 +63,33 @@ namespace test.Controllers {
 
         public ActionResult Logout() {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Home");
         }
 
 
 
+        public ActionResult Settings() {
 
 
+            return View();
 
 
-        //public ActionResult Register() {
+        }
 
-        //    return View();
+        public ActionResult About() {
+
+            return View();
 
 
-        //}
+        }
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Register(TUser registerUser) {
-        //    if (ModelState.IsValid) {
-        //        db.TUsers.Add(registerUser);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Login");
+        public ActionResult Help() {
 
-        //    }
-        //    return View();
-        //}
+            return View();
 
+
+        }
 
 
 

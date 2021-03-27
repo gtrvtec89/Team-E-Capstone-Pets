@@ -2,20 +2,25 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url('Images/wallpaper-1945409.jpg');
+    background-color: black;
+    overflow:hidden;
     background-size:cover;
-    background-color: #fff;
+    background-repeat:no-repeat;
 }
 
-/* Set padding to keep content from hitting the edges */
+
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    background-color: white;
-    border: 30px solid #6495ed;
-    max-height: 500px;
-    overflow-y:auto;
-    width:auto;
-    margin:25px;
+    padding-top:7px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: 23px solid #6495ed;
+    max-height: 525px;
+    overflow-y: overlay;
+    overflow-x: overlay;
+    max-width: 1400px;
+    margin: auto;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -46,11 +51,11 @@ textarea {
 }
 
 a.classname {
-    background: url(../Content/Images/icon3.png) no-repeat top left;
+    /*background: url(../Content/Images/icon3.png) no-repeat top left;*/
     display: block;
     width: 60px;
     height: 51px;
-    text-indent: -9999px; /* hides the link text */
+    /*text-indent: -9999px;*/ /* hides the link text */
 }
 
 .custom {
@@ -82,6 +87,84 @@ h4{
     background-color: RoyalBlue;
 }
 
+/* Style buttons */
+.home-btn {
+    height: 200px;
+    width: 200px;
+    margin: 18px;
+    background-color: cornflowerblue;
+    border: 3.2px solid black;
+    color: black;
+    font-family: Calibri;
+    font-size: x-large
+}
+
+/* Darker background on mouse-over */
+.home-btn:hover {
+    background-color: RoyalBlue;
+    border-color: midnightblue;
+    color: white;
+}
+
+
+.container {
+    width: 100%;
+    padding-right: 60px;
+    /*border-color: midnightblue;*/
+}
+
+.invisible-box {
+    padding-top: 30px;
+    height: 625px;
+    width: 900px;
+    margin: auto;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 65%;
+}
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+    background-color: #101010;
+    color: #9d9d9d;
+    font-size: 12px;
+    padding-left: 2px;
+    padding-top: 3px;
+/* Style buttons */
+.home-btn {
+    height: 200px;
+    width: 200px;
+    margin: 18px;
+    background-color: cornflowerblue;
+    border: 3.2px solid black;
+    color: black;
+    font-family: Calibri;
+    font-size: x-large
+    /*background-color: DodgerBlue;*/ /* Blue background */
+    /*border: none;*/ /* Remove borders */
+    /*color: white;*/ /* White text */
+    /*padding: 12px 16px;*/ /* Some padding */
+    /*font-size: 16px;*/ /* Set a font size */
+    /*cursor: pointer;*/ /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.home-btn:hover {
+    background-color: RoyalBlue;
+    border-color: midnightblue;
+    color:white;
+}
+
 
 /* Style inputs with type="text", select elements and textareas */
 /*input[type=text], select, textarea {
@@ -106,21 +189,20 @@ h4{
     cursor: pointer;
 }*/
 
-/* When moving the mouse over the submit button, add a darker green color */
-/*input[type=submit]:hover {
-    background-color: #45a049;
-}*/
-
-/* Add a background color and some padding around the form */
-/*.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 51px;
-    height: auto;
-    margin: auto;
-    color: white;
-    width: 75%;
-    background: #f9f9f9;
-    border: 23px solid #6495ed;
-    position: relative;*/
+.link-icon-details:before {
+    display: inline-block;
+    height: 32px;
+    width: 20px;
+    font-family: "FontAwesome";
+    content: "\f05a";
 }
+
+.link-icon-delete:before {
+    display: inline-block;
+    height: 32px;
+    width: 20px;
+    font-family: "FontAwesome";
+    content: "\f2ed";
+}
+
+

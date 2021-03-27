@@ -12,12 +12,12 @@ namespace test.Controllers
 {
     public class TVisitsController : Controller
     {
-        private capstoneEntities db = new capstoneEntities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TVisits
         public ActionResult Index()
         {
-            var tVisits = db.TVisits.Include(t => t.TVisitReason);
+            var tVisits = db.TVisits.Include(t => t.intVisitReasonID);
             return View(tVisits.ToList());
         }
 
@@ -50,10 +50,24 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "intVisitID,intPetID,intVisitReasonID,dtmDateOfVist")] TVisit tVisit)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
                 db.TVisits.Add(tVisit);
                 db.SaveChanges();
+
+                int intVisitReasonID = Int16.Parse("intVisitReasonID");
+
+                switch(intVisitReasonID) 
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+
+
+				}
+
                 return RedirectToAction("Index");
             }
 

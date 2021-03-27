@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="capstoneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TAbdomenInfos">
           <Key>
             <PropertyRef Name="intAbdomenInfoID" />
@@ -23,15 +23,8 @@
           <Key>
             <PropertyRef Name="intBreedID" />
           </Key>
-          <Property Name="intBreedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intBreedID" Type="int" Nullable="false" />
           <Property Name="strBreedName" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TDepartments">
-          <Key>
-            <PropertyRef Name="intDepartmentID" />
-          </Key>
-          <Property Name="intDepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="strDepartment" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TEarStatusInfos">
           <Key>
@@ -54,9 +47,7 @@
           <Property Name="strFirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="strLastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="intJobTitleID" Type="int" Nullable="false" />
-          <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="intUserID" Type="int" Nullable="false" />
-          <Property Name="intDepartmentID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TEyeStatusInfos">
           <Key>
@@ -235,7 +226,6 @@
           <Property Name="strOwner2PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="strOwner2Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="strNotes" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="intUserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TPetImages">
@@ -270,14 +260,13 @@
           <Property Name="isAllergic" Type="bit" Nullable="false" />
           <Property Name="strColor" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="strNotes" Type="varchar" MaxLength="1000" Nullable="false" />
-          <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="intOwnerID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TPetTypes">
           <Key>
             <PropertyRef Name="intPetTypeID" />
           </Key>
-          <Property Name="intPetTypeID" Type="int" Nullable="false" />
+          <Property Name="intPetTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="strPetType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TRoles">
@@ -285,7 +274,7 @@
             <PropertyRef Name="intRoleID" />
           </Key>
           <Property Name="intRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="strRole" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="strRoleName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TServices">
           <Key>
@@ -341,14 +330,6 @@
           <Property Name="isAbnormalTesticles" Type="bit" Nullable="false" />
           <Property Name="isBloodSeen" Type="bit" Nullable="false" />
           <Property Name="intHealthExamID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TUserRoleMapping">
-          <Key>
-            <PropertyRef Name="intUserRoleID" />
-          </Key>
-          <Property Name="intUserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="intUserID" Type="int" Nullable="false" />
-          <Property Name="intRoleID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TUsers">
           <Key>
@@ -436,18 +417,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TEmployees_TDepartments_FK1">
-          <End Role="TDepartments" Type="Self.TDepartments" Multiplicity="1" />
-          <End Role="TEmployees" Type="Self.TEmployees" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TDepartments">
-              <PropertyRef Name="intDepartmentID" />
-            </Principal>
-            <Dependent Role="TEmployees">
-              <PropertyRef Name="intDepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="TEyeStatusInfos_THealthExams_FK1">
           <End Role="THealthExams" Type="Self.THealthExams" Multiplicity="1" />
           <End Role="TEyeStatusInfos" Type="Self.TEyeStatusInfos" Multiplicity="*" />
@@ -508,6 +477,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TMedications_TMethods_FK1">
+          <End Role="TMethods" Type="Self.TMethods" Multiplicity="1" />
+          <End Role="TMedications" Type="Self.TMedications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMethods">
+              <PropertyRef Name="intMethodID" />
+            </Principal>
+            <Dependent Role="TMedications">
+              <PropertyRef Name="intMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TMouthInfos_THealthExams_FK1">
           <End Role="THealthExams" Type="Self.THealthExams" Multiplicity="1" />
           <End Role="TMouthInfos" Type="Self.TMouthInfos" Multiplicity="*" />
@@ -556,6 +537,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TOwners_TGenders_FK1">
+          <End Role="TGenders" Type="Self.TGenders" Multiplicity="1" />
+          <End Role="TOwners" Type="Self.TOwners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TGenders">
+              <PropertyRef Name="intGenderID" />
+            </Principal>
+            <Dependent Role="TOwners">
+              <PropertyRef Name="intGenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TOwners_TStates_FK1">
           <End Role="TStates" Type="Self.TStates" Multiplicity="1" />
           <End Role="TOwners" Type="Self.TOwners" Multiplicity="*" />
@@ -568,6 +561,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TOwners_TUsers_FK1">
+          <End Role="TUsers" Type="Self.TUsers" Multiplicity="1" />
+          <End Role="TOwners" Type="Self.TOwners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUsers">
+              <PropertyRef Name="intUserID" />
+            </Principal>
+            <Dependent Role="TOwners">
+              <PropertyRef Name="intUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TPetImages_TPets_FK1">
+          <End Role="TPets" Type="Self.TPets" Multiplicity="1" />
+          <End Role="TPetImages" Type="Self.TPetImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TPets">
+              <PropertyRef Name="intPetID" />
+            </Principal>
+            <Dependent Role="TPetImages">
+              <PropertyRef Name="intPetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TPets_TBreeds_FK1">
+          <End Role="TBreeds" Type="Self.TBreeds" Multiplicity="1" />
+          <End Role="TPets" Type="Self.TPets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBreeds">
+              <PropertyRef Name="intBreedID" />
+            </Principal>
+            <Dependent Role="TPets">
+              <PropertyRef Name="intBreedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TPets_TGenders_FK1">
+          <End Role="TGenders" Type="Self.TGenders" Multiplicity="1" />
+          <End Role="TPets" Type="Self.TPets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TGenders">
+              <PropertyRef Name="intGenderID" />
+            </Principal>
+            <Dependent Role="TPets">
+              <PropertyRef Name="intGenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TPets_TOwners_FK1">
+          <End Role="TOwners" Type="Self.TOwners" Multiplicity="1" />
+          <End Role="TPets" Type="Self.TPets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOwners">
+              <PropertyRef Name="intOwnerID" />
+            </Principal>
+            <Dependent Role="TPets">
+              <PropertyRef Name="intOwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TPets_TPetTypes_FK1">
           <End Role="TPetTypes" Type="Self.TPetTypes" Multiplicity="1" />
           <End Role="TPets" Type="Self.TPets" Multiplicity="*" />
@@ -577,6 +630,18 @@
             </Principal>
             <Dependent Role="TPets">
               <PropertyRef Name="intPetTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TServices_TServiceTypes_FK1">
+          <End Role="TServiceTypes" Type="Self.TServiceTypes" Multiplicity="1" />
+          <End Role="TServices" Type="Self.TServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TServiceTypes">
+              <PropertyRef Name="intServiceTypeID" />
+            </Principal>
+            <Dependent Role="TServices">
+              <PropertyRef Name="intServiceTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -604,30 +669,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TUserRoleMapping_TRoles_FK1">
-          <End Role="TRoles" Type="Self.TRoles" Multiplicity="1" />
-          <End Role="TUserRoleMapping" Type="Self.TUserRoleMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TRoles">
-              <PropertyRef Name="intRoleID" />
-            </Principal>
-            <Dependent Role="TUserRoleMapping">
-              <PropertyRef Name="intRoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TUserRoleMapping_TUsers_FK1">
-          <End Role="TUsers" Type="Self.TUsers" Multiplicity="1" />
-          <End Role="TUserRoleMapping" Type="Self.TUserRoleMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TUsers">
-              <PropertyRef Name="intUserID" />
-            </Principal>
-            <Dependent Role="TUserRoleMapping">
-              <PropertyRef Name="intUserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="TUsers_TRoles_FK1">
           <End Role="TRoles" Type="Self.TRoles" Multiplicity="1" />
           <End Role="TUsers" Type="Self.TUsers" Multiplicity="*" />
@@ -637,6 +678,78 @@
             </Principal>
             <Dependent Role="TUsers">
               <PropertyRef Name="intRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVaccinations_TVisitServices_FK1">
+          <End Role="TVisitServices" Type="Self.TVisitServices" Multiplicity="1" />
+          <End Role="TVaccinations" Type="Self.TVaccinations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVisitServices">
+              <PropertyRef Name="intVisitServiceID" />
+            </Principal>
+            <Dependent Role="TVaccinations">
+              <PropertyRef Name="intVisitServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitEmployees_TEmployees_FK1">
+          <End Role="TEmployees" Type="Self.TEmployees" Multiplicity="1" />
+          <End Role="TVisitEmployees" Type="Self.TVisitEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEmployees">
+              <PropertyRef Name="intEmployeeID" />
+            </Principal>
+            <Dependent Role="TVisitEmployees">
+              <PropertyRef Name="intEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitEmployees_TVisits_FK1">
+          <End Role="TVisits" Type="Self.TVisits" Multiplicity="1" />
+          <End Role="TVisitEmployees" Type="Self.TVisitEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVisits">
+              <PropertyRef Name="intVisitID" />
+            </Principal>
+            <Dependent Role="TVisitEmployees">
+              <PropertyRef Name="intVisitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitMedications_TMedications_FK1">
+          <End Role="TMedications" Type="Self.TMedications" Multiplicity="1" />
+          <End Role="TVisitMedications" Type="Self.TVisitMedications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMedications">
+              <PropertyRef Name="intMedicationID" />
+            </Principal>
+            <Dependent Role="TVisitMedications">
+              <PropertyRef Name="intMedicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitMedications_TVisits_FK1">
+          <End Role="TVisits" Type="Self.TVisits" Multiplicity="1" />
+          <End Role="TVisitMedications" Type="Self.TVisitMedications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVisits">
+              <PropertyRef Name="intVisitID" />
+            </Principal>
+            <Dependent Role="TVisitMedications">
+              <PropertyRef Name="intVisitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisits_TPets_FK1">
+          <End Role="TPets" Type="Self.TPets" Multiplicity="1" />
+          <End Role="TVisits" Type="Self.TVisits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TPets">
+              <PropertyRef Name="intPetID" />
+            </Principal>
+            <Dependent Role="TVisits">
+              <PropertyRef Name="intPetID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -652,43 +765,320 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="capstoneModelStoreContainer">
-          <EntitySet Name="TAbdomenInfos" EntityType="Self.TAbdomenInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBreeds" EntityType="Self.TBreeds" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TDepartments" EntityType="Self.TDepartments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TEarStatusInfos" EntityType="Self.TEarStatusInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TEmployees" EntityType="Self.TEmployees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TEyeStatusInfos" EntityType="Self.TEyeStatusInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TGenders" EntityType="Self.TGenders" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TGIInfos" EntityType="Self.TGIInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="THealthExams" EntityType="Self.THealthExams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="THeartInfos" EntityType="Self.THeartInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TJobTitles" EntityType="Self.TJobTitles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TLungInfos" EntityType="Self.TLungInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TMedications" EntityType="Self.TMedications" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TMethods" EntityType="Self.TMethods" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TMouthInfos" EntityType="Self.TMouthInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TMusculoskeletalInfos" EntityType="Self.TMusculoskeletalInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TNeurologicalInfos" EntityType="Self.TNeurologicalInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TNoseThroatInfos" EntityType="Self.TNoseThroatInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TOwners" EntityType="Self.TOwners" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TPetImages" EntityType="Self.TPetImages" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TPets" EntityType="Self.TPets" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TPetTypes" EntityType="Self.TPetTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TRoles" EntityType="Self.TRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TServices" EntityType="Self.TServices" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TServiceTypes" EntityType="Self.TServiceTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TSkinInfos" EntityType="Self.TSkinInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TStates" EntityType="Self.TStates" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TUrogenitalInfos" EntityType="Self.TUrogenitalInfos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TUserRoleMapping" EntityType="Self.TUserRoleMapping" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TUsers" EntityType="Self.TUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TVaccinations" EntityType="Self.TVaccinations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TVisitEmployees" EntityType="Self.TVisitEmployees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TVisitMedications" EntityType="Self.TVisitMedications" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TVisitReasons" EntityType="Self.TVisitReasons" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TVisits" EntityType="Self.TVisits" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TVisitServices" EntityType="Self.TVisitServices" Schema="dbo" store:Type="Tables" />
+        <Association Name="TVisitServices_TServices_FK1">
+          <End Role="TServices" Type="Self.TServices" Multiplicity="1" />
+          <End Role="TVisitServices" Type="Self.TVisitServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TServices">
+              <PropertyRef Name="intServiceID" />
+            </Principal>
+            <Dependent Role="TVisitServices">
+              <PropertyRef Name="intServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitServices_TVisits_FK1">
+          <End Role="TVisits" Type="Self.TVisits" Multiplicity="1" />
+          <End Role="TVisitServices" Type="Self.TVisitServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVisits">
+              <PropertyRef Name="intVisitID" />
+            </Principal>
+            <Dependent Role="TVisitServices">
+              <PropertyRef Name="intVisitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="uspAddAbdomenInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalMass" Type="bit" Mode="In" />
+          <Parameter Name="isPainful" Type="bit" Mode="In" />
+          <Parameter Name="isBloated" Type="bit" Mode="In" />
+          <Parameter Name="isEnlarged" Type="bit" Mode="In" />
+          <Parameter Name="isFluid" Type="bit" Mode="In" />
+          <Parameter Name="isHernia" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddHealthExam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="dblWeight" Type="float" Mode="In" />
+          <Parameter Name="dblTemperature" Type="float" Mode="In" />
+          <Parameter Name="intHeartRate" Type="int" Mode="In" />
+          <Parameter Name="intRespRate" Type="int" Mode="In" />
+          <Parameter Name="intCapillaryRefillTime" Type="int" Mode="In" />
+          <Parameter Name="strMucousMembrane" Type="varchar" Mode="In" />
+          <Parameter Name="intVisitServiceID" Type="int" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspAddHeartInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isMurMur" Type="bit" Mode="In" />
+          <Parameter Name="isFast" Type="bit" Mode="In" />
+          <Parameter Name="isSlow" Type="bit" Mode="In" />
+          <Parameter Name="isMuffled" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddLunglInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isBreathingDifficulty" Type="bit" Mode="In" />
+          <Parameter Name="isRapidRespiration" Type="bit" Mode="In" />
+          <Parameter Name="isTrachealPinchPositive" Type="bit" Mode="In" />
+          <Parameter Name="isTrachealPinchNegative" Type="bit" Mode="In" />
+          <Parameter Name="isCongestion" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalSound" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddMusculoskeletalInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isJointProblems" Type="bit" Mode="In" />
+          <Parameter Name="isNailProblems" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessLF" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessRF" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessLR" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessRR" Type="bit" Mode="In" />
+          <Parameter Name="isLigaments" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddNoseThroatInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isLargeLymphNodes" Type="bit" Mode="In" />
+          <Parameter Name="isInflamedThroat" Type="bit" Mode="In" />
+          <Parameter Name="isNasalDishcharge" Type="bit" Mode="In" />
+          <Parameter Name="isInflamedTonsils" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="strLastName" Type="varchar" Mode="In" />
+          <Parameter Name="intGenderID" Type="int" Mode="In" />
+          <Parameter Name="strAddress" Type="varchar" Mode="In" />
+          <Parameter Name="strCity" Type="varchar" Mode="In" />
+          <Parameter Name="intStateID" Type="int" Mode="In" />
+          <Parameter Name="strZip" Type="varchar" Mode="In" />
+          <Parameter Name="strPhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strEmail" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2Name" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2Email" Type="varchar" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="intUserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddPetVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="dblWeight" Type="float" Mode="In" />
+          <Parameter Name="dblTemperature" Type="float" Mode="In" />
+          <Parameter Name="intHeartRate" Type="int" Mode="In" />
+          <Parameter Name="intRespRate" Type="int" Mode="In" />
+          <Parameter Name="intCapillaryRefillTime" Type="int" Mode="In" />
+          <Parameter Name="strMucousMembrane" Type="varchar" Mode="In" />
+          <Parameter Name="intVisitServiceID" Type="int" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="isEyeNormal" Type="bit" Mode="In" />
+          <Parameter Name="isDischarge" Type="bit" Mode="In" />
+          <Parameter Name="isInfection" Type="bit" Mode="In" />
+          <Parameter Name="isSclerosisLeft" Type="bit" Mode="In" />
+          <Parameter Name="isSclerosisRight" Type="bit" Mode="In" />
+          <Parameter Name="isCataractLeft" Type="bit" Mode="In" />
+          <Parameter Name="isCataractRight" Type="bit" Mode="In" />
+          <Parameter Name="isEyeInflamed" Type="bit" Mode="In" />
+          <Parameter Name="isEyelidTumor" Type="bit" Mode="In" />
+          <Parameter Name="isEarNormal" Type="bit" Mode="In" />
+          <Parameter Name="isEarInflamed" Type="bit" Mode="In" />
+          <Parameter Name="isEarTumor" Type="bit" Mode="In" />
+          <Parameter Name="isDirty" Type="bit" Mode="In" />
+          <Parameter Name="isEarPainful" Type="bit" Mode="In" />
+          <Parameter Name="isExcessiveHair" Type="bit" Mode="In" />
+          <Parameter Name="isSkinNormal" Type="bit" Mode="In" />
+          <Parameter Name="isScaly" Type="bit" Mode="In" />
+          <Parameter Name="isInfected" Type="bit" Mode="In" />
+          <Parameter Name="isMatted" Type="bit" Mode="In" />
+          <Parameter Name="isSkinScrape" Type="bit" Mode="In" />
+          <Parameter Name="isPruritus" Type="bit" Mode="In" />
+          <Parameter Name="isHairLoss" Type="bit" Mode="In" />
+          <Parameter Name="isMass" Type="bit" Mode="In" />
+          <Parameter Name="isSkinParasites" Type="bit" Mode="In" />
+          <Parameter Name="isMouthNormal" Type="bit" Mode="In" />
+          <Parameter Name="isMouthTumor" Type="bit" Mode="In" />
+          <Parameter Name="isGingivitis" Type="bit" Mode="In" />
+          <Parameter Name="isPeriodontitis" Type="bit" Mode="In" />
+          <Parameter Name="isTartarBuildup" Type="bit" Mode="In" />
+          <Parameter Name="isLooseTeeth" Type="bit" Mode="In" />
+          <Parameter Name="isBiteOVerUnder" Type="bit" Mode="In" />
+          <Parameter Name="isNoseThroatNormal" Type="bit" Mode="In" />
+          <Parameter Name="isLargeLymphNodes" Type="bit" Mode="In" />
+          <Parameter Name="isInflamedThroat" Type="bit" Mode="In" />
+          <Parameter Name="isNasalDishcharge" Type="bit" Mode="In" />
+          <Parameter Name="isInflamedTonsils" Type="bit" Mode="In" />
+          <Parameter Name="isGINormal" Type="bit" Mode="In" />
+          <Parameter Name="isExcessiveGas" Type="bit" Mode="In" />
+          <Parameter Name="isGIParasites" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalFeces" Type="bit" Mode="In" />
+          <Parameter Name="isAnorexia" Type="bit" Mode="In" />
+          <Parameter Name="isNeurologicalNormal" Type="bit" Mode="In" />
+          <Parameter Name="isPLRL" Type="bit" Mode="In" />
+          <Parameter Name="isPLRR" Type="bit" Mode="In" />
+          <Parameter Name="isCPLF" Type="bit" Mode="In" />
+          <Parameter Name="isCPRF" Type="bit" Mode="In" />
+          <Parameter Name="isCPLR" Type="bit" Mode="In" />
+          <Parameter Name="isCPRR" Type="bit" Mode="In" />
+          <Parameter Name="isPalpebralL" Type="bit" Mode="In" />
+          <Parameter Name="isPalpebralR" Type="bit" Mode="In" />
+          <Parameter Name="isAbdomenNormal" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalMass" Type="bit" Mode="In" />
+          <Parameter Name="isAbdomenPainful" Type="bit" Mode="In" />
+          <Parameter Name="isBloated" Type="bit" Mode="In" />
+          <Parameter Name="isEnlarged" Type="bit" Mode="In" />
+          <Parameter Name="isFluid" Type="bit" Mode="In" />
+          <Parameter Name="isHernia" Type="bit" Mode="In" />
+          <Parameter Name="isUrogenitalNormal" Type="bit" Mode="In" />
+          <Parameter Name="isUrogenAbnormalUrination" Type="bit" Mode="In" />
+          <Parameter Name="isGenitalDischarge" Type="bit" Mode="In" />
+          <Parameter Name="isAnalSacs" Type="bit" Mode="In" />
+          <Parameter Name="isRectal" Type="bit" Mode="In" />
+          <Parameter Name="isMammaryTumors" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalTesticles" Type="bit" Mode="In" />
+          <Parameter Name="isBloodSeen" Type="bit" Mode="In" />
+          <Parameter Name="isMusculoskeletalNormal" Type="bit" Mode="In" />
+          <Parameter Name="isJointProblems" Type="bit" Mode="In" />
+          <Parameter Name="isNailProblems" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessLF" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessRF" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessLR" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessRR" Type="bit" Mode="In" />
+          <Parameter Name="isLigaments" Type="bit" Mode="In" />
+          <Parameter Name="isLungNormal" Type="bit" Mode="In" />
+          <Parameter Name="isBreathingDifficulty" Type="bit" Mode="In" />
+          <Parameter Name="isRapidRespiration" Type="bit" Mode="In" />
+          <Parameter Name="isTrachealPinchPositive" Type="bit" Mode="In" />
+          <Parameter Name="isTrachealPinchNegative" Type="bit" Mode="In" />
+          <Parameter Name="isCongestion" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalSound" Type="bit" Mode="In" />
+          <Parameter Name="isHeartNormal" Type="bit" Mode="In" />
+          <Parameter Name="isMurMur" Type="bit" Mode="In" />
+          <Parameter Name="isFast" Type="bit" Mode="In" />
+          <Parameter Name="isSlow" Type="bit" Mode="In" />
+          <Parameter Name="isMuffled" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="uspAddService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strServiceDesc" Type="varchar" Mode="In" />
+          <Parameter Name="intServiceTypeID" Type="int" Mode="In" />
+          <Parameter Name="dblPrice" Type="money" Mode="In" />
+        </Function>
+        <Function Name="uspAddUrogenitalInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalUrination" Type="bit" Mode="In" />
+          <Parameter Name="isGenitalDischarge" Type="bit" Mode="In" />
+          <Parameter Name="isAnalSacs" Type="bit" Mode="In" />
+          <Parameter Name="isRectal" Type="bit" Mode="In" />
+          <Parameter Name="isMammaryTumors" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalTesticles" Type="bit" Mode="In" />
+          <Parameter Name="isBloodSeen" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddVaccinations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitServiceID" Type="int" Mode="In" />
+          <Parameter Name="dtmDateOfVaccination" Type="date" Mode="In" />
+          <Parameter Name="dtmDateOfExpiration" Type="date" Mode="In" />
+          <Parameter Name="strVaccineDesc" Type="varchar" Mode="In" />
+          <Parameter Name="strRabiesNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspAddVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intPetID" Type="int" Mode="In" />
+          <Parameter Name="intVisitReasonID" Type="int" Mode="In" />
+          <Parameter Name="dtmDateOfVist" Type="date" Mode="In" />
+        </Function>
+        <Function Name="uspAddVisitEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitID" Type="int" Mode="In" />
+          <Parameter Name="intEmployeeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddVisitMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitID" Type="int" Mode="In" />
+          <Parameter Name="intMedicationID" Type="int" Mode="In" />
+          <Parameter Name="dtmDatePrescribed" Type="date" Mode="In" />
+          <Parameter Name="intQuantity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddVisitService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitID" Type="int" Mode="In" />
+          <Parameter Name="intServiceID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspCleanDatabase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspDropUserForeignKeys" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspDropUserStoredProcedures" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspDropUserTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspDropUserViews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspUpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intEmployeeID" Type="int" Mode="In" />
+          <Parameter Name="strFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="strLastName" Type="varchar" Mode="In" />
+          <Parameter Name="intJobTitleID" Type="int" Mode="In" />
+          <Parameter Name="intUserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intMedicationID" Type="int" Mode="In" />
+          <Parameter Name="strMedicationName" Type="varchar" Mode="In" />
+          <Parameter Name="strMedicationDesc" Type="varchar" Mode="In" />
+          <Parameter Name="dblCost" Type="money" Mode="In" />
+          <Parameter Name="dblPrice" Type="money" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="intQuantity" Type="int" Mode="In" />
+          <Parameter Name="intMethodID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intOwnerID" Type="int" Mode="In" />
+          <Parameter Name="strFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="strLastName" Type="varchar" Mode="In" />
+          <Parameter Name="intGenderID" Type="int" Mode="In" />
+          <Parameter Name="strAddress" Type="varchar" Mode="In" />
+          <Parameter Name="strCity" Type="varchar" Mode="In" />
+          <Parameter Name="intStateID" Type="int" Mode="In" />
+          <Parameter Name="strZip" Type="varchar" Mode="In" />
+          <Parameter Name="strPhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strEmail" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2Name" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2Email" Type="varchar" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="intUserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intServiceID" Type="int" Mode="In" />
+          <Parameter Name="strServiceDesc" Type="varchar" Mode="In" />
+          <Parameter Name="intServiceTypeID" Type="int" Mode="In" />
+          <Parameter Name="dblPrice" Type="money" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="TAbdomenInfos" EntityType="Self.TAbdomenInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TBreeds" EntityType="Self.TBreeds" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TEarStatusInfos" EntityType="Self.TEarStatusInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TEmployees" EntityType="Self.TEmployees" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TEyeStatusInfos" EntityType="Self.TEyeStatusInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TGenders" EntityType="Self.TGenders" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TGIInfos" EntityType="Self.TGIInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="THealthExams" EntityType="Self.THealthExams" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="THeartInfos" EntityType="Self.THeartInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TJobTitles" EntityType="Self.TJobTitles" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TLungInfos" EntityType="Self.TLungInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TMedications" EntityType="Self.TMedications" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TMethods" EntityType="Self.TMethods" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TMouthInfos" EntityType="Self.TMouthInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TMusculoskeletalInfos" EntityType="Self.TMusculoskeletalInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TNeurologicalInfos" EntityType="Self.TNeurologicalInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TNoseThroatInfos" EntityType="Self.TNoseThroatInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TOwners" EntityType="Self.TOwners" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TPetImages" EntityType="Self.TPetImages" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TPets" EntityType="Self.TPets" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TPetTypes" EntityType="Self.TPetTypes" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TRoles" EntityType="Self.TRoles" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TServices" EntityType="Self.TServices" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TServiceTypes" EntityType="Self.TServiceTypes" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TSkinInfos" EntityType="Self.TSkinInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TStates" EntityType="Self.TStates" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TUrogenitalInfos" EntityType="Self.TUrogenitalInfos" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TUsers" EntityType="Self.TUsers" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TVaccinations" EntityType="Self.TVaccinations" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TVisitEmployees" EntityType="Self.TVisitEmployees" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TVisitMedications" EntityType="Self.TVisitMedications" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TVisitReasons" EntityType="Self.TVisitReasons" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TVisits" EntityType="Self.TVisits" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="TVisitServices" EntityType="Self.TVisitServices" Schema="db_owner" store:Type="Tables" />
           <AssociationSet Name="TAbdomenInfos_THealthExams_FK1" Association="Self.TAbdomenInfos_THealthExams_FK1">
             <End Role="THealthExams" EntitySet="THealthExams" />
             <End Role="TAbdomenInfos" EntitySet="TAbdomenInfos" />
@@ -696,10 +1086,6 @@
           <AssociationSet Name="TEarStatusInfos_THealthExams_FK1" Association="Self.TEarStatusInfos_THealthExams_FK1">
             <End Role="THealthExams" EntitySet="THealthExams" />
             <End Role="TEarStatusInfos" EntitySet="TEarStatusInfos" />
-          </AssociationSet>
-          <AssociationSet Name="TEmployees_TDepartments_FK1" Association="Self.TEmployees_TDepartments_FK1">
-            <End Role="TDepartments" EntitySet="TDepartments" />
-            <End Role="TEmployees" EntitySet="TEmployees" />
           </AssociationSet>
           <AssociationSet Name="TEyeStatusInfos_THealthExams_FK1" Association="Self.TEyeStatusInfos_THealthExams_FK1">
             <End Role="THealthExams" EntitySet="THealthExams" />
@@ -721,6 +1107,10 @@
             <End Role="THealthExams" EntitySet="THealthExams" />
             <End Role="TLungInfos" EntitySet="TLungInfos" />
           </AssociationSet>
+          <AssociationSet Name="TMedications_TMethods_FK1" Association="Self.TMedications_TMethods_FK1">
+            <End Role="TMethods" EntitySet="TMethods" />
+            <End Role="TMedications" EntitySet="TMedications" />
+          </AssociationSet>
           <AssociationSet Name="TMouthInfos_THealthExams_FK1" Association="Self.TMouthInfos_THealthExams_FK1">
             <End Role="THealthExams" EntitySet="THealthExams" />
             <End Role="TMouthInfos" EntitySet="TMouthInfos" />
@@ -737,13 +1127,41 @@
             <End Role="THealthExams" EntitySet="THealthExams" />
             <End Role="TNoseThroatInfos" EntitySet="TNoseThroatInfos" />
           </AssociationSet>
+          <AssociationSet Name="TOwners_TGenders_FK1" Association="Self.TOwners_TGenders_FK1">
+            <End Role="TGenders" EntitySet="TGenders" />
+            <End Role="TOwners" EntitySet="TOwners" />
+          </AssociationSet>
           <AssociationSet Name="TOwners_TStates_FK1" Association="Self.TOwners_TStates_FK1">
             <End Role="TStates" EntitySet="TStates" />
             <End Role="TOwners" EntitySet="TOwners" />
           </AssociationSet>
+          <AssociationSet Name="TOwners_TUsers_FK1" Association="Self.TOwners_TUsers_FK1">
+            <End Role="TUsers" EntitySet="TUsers" />
+            <End Role="TOwners" EntitySet="TOwners" />
+          </AssociationSet>
+          <AssociationSet Name="TPetImages_TPets_FK1" Association="Self.TPetImages_TPets_FK1">
+            <End Role="TPets" EntitySet="TPets" />
+            <End Role="TPetImages" EntitySet="TPetImages" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TBreeds_FK1" Association="Self.TPets_TBreeds_FK1">
+            <End Role="TBreeds" EntitySet="TBreeds" />
+            <End Role="TPets" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TGenders_FK1" Association="Self.TPets_TGenders_FK1">
+            <End Role="TGenders" EntitySet="TGenders" />
+            <End Role="TPets" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TOwners_FK1" Association="Self.TPets_TOwners_FK1">
+            <End Role="TOwners" EntitySet="TOwners" />
+            <End Role="TPets" EntitySet="TPets" />
+          </AssociationSet>
           <AssociationSet Name="TPets_TPetTypes_FK1" Association="Self.TPets_TPetTypes_FK1">
             <End Role="TPetTypes" EntitySet="TPetTypes" />
             <End Role="TPets" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TServices_TServiceTypes_FK1" Association="Self.TServices_TServiceTypes_FK1">
+            <End Role="TServiceTypes" EntitySet="TServiceTypes" />
+            <End Role="TServices" EntitySet="TServices" />
           </AssociationSet>
           <AssociationSet Name="TSkinInfos_THealthExams_FK1" Association="Self.TSkinInfos_THealthExams_FK1">
             <End Role="THealthExams" EntitySet="THealthExams" />
@@ -753,145 +1171,960 @@
             <End Role="THealthExams" EntitySet="THealthExams" />
             <End Role="TUrogenitalInfos" EntitySet="TUrogenitalInfos" />
           </AssociationSet>
-          <AssociationSet Name="TUserRoleMapping_TRoles_FK1" Association="Self.TUserRoleMapping_TRoles_FK1">
-            <End Role="TRoles" EntitySet="TRoles" />
-            <End Role="TUserRoleMapping" EntitySet="TUserRoleMapping" />
-          </AssociationSet>
-          <AssociationSet Name="TUserRoleMapping_TUsers_FK1" Association="Self.TUserRoleMapping_TUsers_FK1">
-            <End Role="TUsers" EntitySet="TUsers" />
-            <End Role="TUserRoleMapping" EntitySet="TUserRoleMapping" />
-          </AssociationSet>
           <AssociationSet Name="TUsers_TRoles_FK1" Association="Self.TUsers_TRoles_FK1">
             <End Role="TRoles" EntitySet="TRoles" />
             <End Role="TUsers" EntitySet="TUsers" />
+          </AssociationSet>
+          <AssociationSet Name="TVaccinations_TVisitServices_FK1" Association="Self.TVaccinations_TVisitServices_FK1">
+            <End Role="TVisitServices" EntitySet="TVisitServices" />
+            <End Role="TVaccinations" EntitySet="TVaccinations" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitEmployees_TEmployees_FK1" Association="Self.TVisitEmployees_TEmployees_FK1">
+            <End Role="TEmployees" EntitySet="TEmployees" />
+            <End Role="TVisitEmployees" EntitySet="TVisitEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitEmployees_TVisits_FK1" Association="Self.TVisitEmployees_TVisits_FK1">
+            <End Role="TVisits" EntitySet="TVisits" />
+            <End Role="TVisitEmployees" EntitySet="TVisitEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitMedications_TMedications_FK1" Association="Self.TVisitMedications_TMedications_FK1">
+            <End Role="TMedications" EntitySet="TMedications" />
+            <End Role="TVisitMedications" EntitySet="TVisitMedications" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitMedications_TVisits_FK1" Association="Self.TVisitMedications_TVisits_FK1">
+            <End Role="TVisits" EntitySet="TVisits" />
+            <End Role="TVisitMedications" EntitySet="TVisitMedications" />
+          </AssociationSet>
+          <AssociationSet Name="TVisits_TPets_FK1" Association="Self.TVisits_TPets_FK1">
+            <End Role="TPets" EntitySet="TPets" />
+            <End Role="TVisits" EntitySet="TVisits" />
           </AssociationSet>
           <AssociationSet Name="TVisits_TVisitReasons_FK1" Association="Self.TVisits_TVisitReasons_FK1">
             <End Role="TVisitReasons" EntitySet="TVisitReasons" />
             <End Role="TVisits" EntitySet="TVisits" />
           </AssociationSet>
+          <AssociationSet Name="TVisitServices_TServices_FK1" Association="Self.TVisitServices_TServices_FK1">
+            <End Role="TServices" EntitySet="TServices" />
+            <End Role="TVisitServices" EntitySet="TVisitServices" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitServices_TVisits_FK1" Association="Self.TVisitServices_TVisits_FK1">
+            <End Role="TVisits" EntitySet="TVisits" />
+            <End Role="TVisitServices" EntitySet="TVisitServices" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="capstoneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="capstoneEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TAbdomenInfos" EntityType="capstoneModel.TAbdomenInfo" />
-          <EntitySet Name="TBreeds" EntityType="capstoneModel.TBreed" />
-          <EntitySet Name="TDepartments" EntityType="capstoneModel.TDepartment" />
-          <EntitySet Name="TEarStatusInfos" EntityType="capstoneModel.TEarStatusInfo" />
-          <EntitySet Name="TEmployees" EntityType="capstoneModel.TEmployee" />
-          <EntitySet Name="TEyeStatusInfos" EntityType="capstoneModel.TEyeStatusInfo" />
-          <EntitySet Name="TGenders" EntityType="capstoneModel.TGender" />
-          <EntitySet Name="TGIInfos" EntityType="capstoneModel.TGIInfo" />
-          <EntitySet Name="THealthExams" EntityType="capstoneModel.THealthExam" />
-          <EntitySet Name="THeartInfos" EntityType="capstoneModel.THeartInfo" />
-          <EntitySet Name="TJobTitles" EntityType="capstoneModel.TJobTitle" />
-          <EntitySet Name="TLungInfos" EntityType="capstoneModel.TLungInfo" />
-          <EntitySet Name="TMedications" EntityType="capstoneModel.TMedication" />
-          <EntitySet Name="TMethods" EntityType="capstoneModel.TMethod" />
-          <EntitySet Name="TMouthInfos" EntityType="capstoneModel.TMouthInfo" />
-          <EntitySet Name="TMusculoskeletalInfos" EntityType="capstoneModel.TMusculoskeletalInfo" />
-          <EntitySet Name="TNeurologicalInfos" EntityType="capstoneModel.TNeurologicalInfo" />
-          <EntitySet Name="TNoseThroatInfos" EntityType="capstoneModel.TNoseThroatInfo" />
-          <EntitySet Name="TOwners" EntityType="capstoneModel.TOwner" />
-          <EntitySet Name="TPetImages" EntityType="capstoneModel.TPetImage" />
-          <EntitySet Name="TPets" EntityType="capstoneModel.TPet" />
-          <EntitySet Name="TPetTypes" EntityType="capstoneModel.TPetType" />
-          <EntitySet Name="TRoles" EntityType="capstoneModel.TRole" />
-          <EntitySet Name="TServices" EntityType="capstoneModel.TService" />
-          <EntitySet Name="TServiceTypes" EntityType="capstoneModel.TServiceType" />
-          <EntitySet Name="TSkinInfos" EntityType="capstoneModel.TSkinInfo" />
-          <EntitySet Name="TStates" EntityType="capstoneModel.TState" />
-          <EntitySet Name="TUrogenitalInfos" EntityType="capstoneModel.TUrogenitalInfo" />
-          <EntitySet Name="TUserRoleMappings" EntityType="capstoneModel.TUserRoleMapping" />
-          <EntitySet Name="TUsers" EntityType="capstoneModel.TUser" />
-          <EntitySet Name="TVaccinations" EntityType="capstoneModel.TVaccination" />
-          <EntitySet Name="TVisitEmployees" EntityType="capstoneModel.TVisitEmployee" />
-          <EntitySet Name="TVisitMedications" EntityType="capstoneModel.TVisitMedication" />
-          <EntitySet Name="TVisitReasons" EntityType="capstoneModel.TVisitReason" />
-          <EntitySet Name="TVisits" EntityType="capstoneModel.TVisit" />
-          <EntitySet Name="TVisitServices" EntityType="capstoneModel.TVisitService" />
-          <AssociationSet Name="TAbdomenInfos_THealthExams_FK1" Association="capstoneModel.TAbdomenInfos_THealthExams_FK1">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CapstoneEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="uspAddAbdomenInfos">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloated" Mode="In" Type="Boolean" />
+            <Parameter Name="isEnlarged" Mode="In" Type="Boolean" />
+            <Parameter Name="isFluid" Mode="In" Type="Boolean" />
+            <Parameter Name="isHernia" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddEarStatusInfo">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isDirty" Mode="In" Type="Boolean" />
+            <Parameter Name="isPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveHair" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddEmployee">
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intJobTitleID" Mode="In" Type="Int32" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddEyeStatusInfo">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfection" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyelidTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddGIInfo">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveGas" Mode="In" Type="Boolean" />
+            <Parameter Name="isParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalFeces" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnorexia" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddHealthExam">
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="dblTemperature" Mode="In" Type="Double" />
+            <Parameter Name="intHeartRate" Mode="In" Type="Int32" />
+            <Parameter Name="intRespRate" Mode="In" Type="Int32" />
+            <Parameter Name="intCapillaryRefillTime" Mode="In" Type="Int32" />
+            <Parameter Name="strMucousMembrane" Mode="In" Type="String" />
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddHeartInfos">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMurMur" Mode="In" Type="Boolean" />
+            <Parameter Name="isFast" Mode="In" Type="Boolean" />
+            <Parameter Name="isSlow" Mode="In" Type="Boolean" />
+            <Parameter Name="isMuffled" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddLunglInfos">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isBreathingDifficulty" Mode="In" Type="Boolean" />
+            <Parameter Name="isRapidRespiration" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchPositive" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchNegative" Mode="In" Type="Boolean" />
+            <Parameter Name="isCongestion" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalSound" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMedication">
+            <Parameter Name="strMedicationName" Mode="In" Type="String" />
+            <Parameter Name="strMedicationDesc" Mode="In" Type="String" />
+            <Parameter Name="dblCost" Mode="In" Type="Decimal" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="intMethodID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMouthInfo">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isGingivitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isPeriodontitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isTartarBuildup" Mode="In" Type="Boolean" />
+            <Parameter Name="isLooseTeeth" Mode="In" Type="Boolean" />
+            <Parameter Name="isBiteOVerUnder" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMusculoskeletalInfos">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isJointProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isNailProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLigaments" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNeurologicalInfo">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralR" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNewUser">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+            <Parameter Name="intRoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNoseThroatInfo">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isLargeLymphNodes" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedThroat" Mode="In" Type="Boolean" />
+            <Parameter Name="isNasalDishcharge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedTonsils" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddOwner">
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="strAddress" Mode="In" Type="String" />
+            <Parameter Name="strCity" Mode="In" Type="String" />
+            <Parameter Name="intStateID" Mode="In" Type="Int32" />
+            <Parameter Name="strZip" Mode="In" Type="String" />
+            <Parameter Name="strPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strEmail" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Name" Mode="In" Type="String" />
+            <Parameter Name="strOwner2PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Email" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddPets">
+            <Parameter Name="strPetNumber" Mode="In" Type="String" />
+            <Parameter Name="strMicrochipID" Mode="In" Type="String" />
+            <Parameter Name="strPetName" Mode="In" Type="String" />
+            <Parameter Name="intPetTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="intBreedID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateofBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="isBlind" Mode="In" Type="Boolean" />
+            <Parameter Name="isDeaf" Mode="In" Type="Boolean" />
+            <Parameter Name="isAggressive" Mode="In" Type="Boolean" />
+            <Parameter Name="isDeceased" Mode="In" Type="Boolean" />
+            <Parameter Name="isAllergic" Mode="In" Type="Boolean" />
+            <Parameter Name="strColor" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intOwnerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddPetVisit">
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="dblTemperature" Mode="In" Type="Double" />
+            <Parameter Name="intHeartRate" Mode="In" Type="Int32" />
+            <Parameter Name="intRespRate" Mode="In" Type="Int32" />
+            <Parameter Name="intCapillaryRefillTime" Mode="In" Type="Int32" />
+            <Parameter Name="strMucousMembrane" Mode="In" Type="String" />
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="isEyeNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfection" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyeInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyelidTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isDirty" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveHair" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isScaly" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfected" Mode="In" Type="Boolean" />
+            <Parameter Name="isMatted" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinScrape" Mode="In" Type="Boolean" />
+            <Parameter Name="isPruritus" Mode="In" Type="Boolean" />
+            <Parameter Name="isHairLoss" Mode="In" Type="Boolean" />
+            <Parameter Name="isMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isMouthNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMouthTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isGingivitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isPeriodontitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isTartarBuildup" Mode="In" Type="Boolean" />
+            <Parameter Name="isLooseTeeth" Mode="In" Type="Boolean" />
+            <Parameter Name="isBiteOVerUnder" Mode="In" Type="Boolean" />
+            <Parameter Name="isNoseThroatNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isLargeLymphNodes" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedThroat" Mode="In" Type="Boolean" />
+            <Parameter Name="isNasalDishcharge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedTonsils" Mode="In" Type="Boolean" />
+            <Parameter Name="isGINormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveGas" Mode="In" Type="Boolean" />
+            <Parameter Name="isGIParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalFeces" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnorexia" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+            <Parameter Name="isNeurologicalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralR" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbdomenNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbdomenPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloated" Mode="In" Type="Boolean" />
+            <Parameter Name="isEnlarged" Mode="In" Type="Boolean" />
+            <Parameter Name="isFluid" Mode="In" Type="Boolean" />
+            <Parameter Name="isHernia" Mode="In" Type="Boolean" />
+            <Parameter Name="isUrogenitalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isUrogenAbnormalUrination" Mode="In" Type="Boolean" />
+            <Parameter Name="isGenitalDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnalSacs" Mode="In" Type="Boolean" />
+            <Parameter Name="isRectal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMammaryTumors" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalTesticles" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloodSeen" Mode="In" Type="Boolean" />
+            <Parameter Name="isMusculoskeletalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isJointProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isNailProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLigaments" Mode="In" Type="Boolean" />
+            <Parameter Name="isLungNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isBreathingDifficulty" Mode="In" Type="Boolean" />
+            <Parameter Name="isRapidRespiration" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchPositive" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchNegative" Mode="In" Type="Boolean" />
+            <Parameter Name="isCongestion" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalSound" Mode="In" Type="Boolean" />
+            <Parameter Name="isHeartNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMurMur" Mode="In" Type="Boolean" />
+            <Parameter Name="isFast" Mode="In" Type="Boolean" />
+            <Parameter Name="isSlow" Mode="In" Type="Boolean" />
+            <Parameter Name="isMuffled" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddService">
+            <Parameter Name="strServiceDesc" Mode="In" Type="String" />
+            <Parameter Name="intServiceTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddSkinInfo">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isScaly" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfected" Mode="In" Type="Boolean" />
+            <Parameter Name="isMatted" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinScrape" Mode="In" Type="Boolean" />
+            <Parameter Name="isPruritus" Mode="In" Type="Boolean" />
+            <Parameter Name="isHairLoss" Mode="In" Type="Boolean" />
+            <Parameter Name="isMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddUrogenitalInfos">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalUrination" Mode="In" Type="Boolean" />
+            <Parameter Name="isGenitalDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnalSacs" Mode="In" Type="Boolean" />
+            <Parameter Name="isRectal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMammaryTumors" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalTesticles" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloodSeen" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVaccinations">
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateOfVaccination" Mode="In" Type="DateTime" />
+            <Parameter Name="dtmDateOfExpiration" Mode="In" Type="DateTime" />
+            <Parameter Name="strVaccineDesc" Mode="In" Type="String" />
+            <Parameter Name="strRabiesNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisit">
+            <Parameter Name="intPetID" Mode="In" Type="Int32" />
+            <Parameter Name="intVisitReasonID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateOfVist" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitEmployee">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitMedication">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDatePrescribed" Mode="In" Type="DateTime" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitService">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckEmployees" ReturnType="Collection(Int32)">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckMedication" ReturnType="Collection(Int32)">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckServices" ReturnType="Collection(Int32)">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCleanDatabase" />
+          <FunctionImport Name="uspDeleteEmployee">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDeleteMedication">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDeleteService">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDropUserForeignKeys" />
+          <FunctionImport Name="uspDropUserStoredProcedures" />
+          <FunctionImport Name="uspDropUserTables" />
+          <FunctionImport Name="uspDropUserViews" />
+          <FunctionImport Name="uspGetUserOwnerID" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetUserRole" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateEmployee">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intJobTitleID" Mode="In" Type="Int32" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateMedication">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+            <Parameter Name="strMedicationName" Mode="In" Type="String" />
+            <Parameter Name="strMedicationDesc" Mode="In" Type="String" />
+            <Parameter Name="dblCost" Mode="In" Type="Decimal" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="intMethodID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateOwner">
+            <Parameter Name="intOwnerID" Mode="In" Type="Int32" />
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="strAddress" Mode="In" Type="String" />
+            <Parameter Name="strCity" Mode="In" Type="String" />
+            <Parameter Name="intStateID" Mode="In" Type="Int32" />
+            <Parameter Name="strZip" Mode="In" Type="String" />
+            <Parameter Name="strPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strEmail" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Name" Mode="In" Type="String" />
+            <Parameter Name="strOwner2PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Email" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateService">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strServiceDesc" Mode="In" Type="String" />
+            <Parameter Name="intServiceTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="uspUserLogin" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspViewEmployees" ReturnType="Collection(Model.uspViewEmployees_Result)" />
+          <FunctionImport Name="uspViewMedications" ReturnType="Collection(Model.uspViewMedications_Result)" />
+          <FunctionImport Name="uspViewOwners" ReturnType="Collection(Model.uspViewOwners_Result)" />
+          <FunctionImport Name="uspViewPetGeneralInformation" ReturnType="Collection(Model.uspViewPetGeneralInformation_Result)" />
+          <FunctionImport Name="uspViewPetMedications" ReturnType="Collection(Model.uspViewPetMedications_Result)" />
+          <FunctionImport Name="uspViewPets" ReturnType="Collection(Model.uspViewPets_Result)" />
+          <FunctionImport Name="uspViewPetVaccinations" ReturnType="Collection(Model.uspViewPetVaccinations_Result)" />
+          <FunctionImport Name="uspViewPetVisits" ReturnType="Collection(Model.uspViewPetVisits_Result)" />
+          <FunctionImport Name="uspViewServices" ReturnType="Collection(Model.uspViewServices_Result)" />
+          <EntitySet Name="TAbdomenInfos" EntityType="Model.TAbdomenInfo" />
+          <EntitySet Name="TBreeds" EntityType="Model.TBreed" />
+          <EntitySet Name="TEarStatusInfos" EntityType="Model.TEarStatusInfo" />
+          <EntitySet Name="TEmployees" EntityType="Model.TEmployee" />
+          <EntitySet Name="TEyeStatusInfos" EntityType="Model.TEyeStatusInfo" />
+          <EntitySet Name="TGenders" EntityType="Model.TGender" />
+          <EntitySet Name="TGIInfos" EntityType="Model.TGIInfo" />
+          <EntitySet Name="THealthExams" EntityType="Model.THealthExam" />
+          <EntitySet Name="THeartInfos" EntityType="Model.THeartInfo" />
+          <EntitySet Name="TJobTitles" EntityType="Model.TJobTitle" />
+          <EntitySet Name="TLungInfos" EntityType="Model.TLungInfo" />
+          <EntitySet Name="TMedications" EntityType="Model.TMedication" />
+          <EntitySet Name="TMethods" EntityType="Model.TMethod" />
+          <EntitySet Name="TMouthInfos" EntityType="Model.TMouthInfo" />
+          <EntitySet Name="TMusculoskeletalInfos" EntityType="Model.TMusculoskeletalInfo" />
+          <EntitySet Name="TNeurologicalInfos" EntityType="Model.TNeurologicalInfo" />
+          <EntitySet Name="TNoseThroatInfos" EntityType="Model.TNoseThroatInfo" />
+          <EntitySet Name="TOwners" EntityType="Model.TOwner" />
+          <EntitySet Name="TPetImages" EntityType="Model.TPetImage" />
+          <EntitySet Name="TPets" EntityType="Model.TPet" />
+          <EntitySet Name="TPetTypes" EntityType="Model.TPetType" />
+          <EntitySet Name="TRoles" EntityType="Model.TRole" />
+          <EntitySet Name="TServices" EntityType="Model.TService" />
+          <EntitySet Name="TServiceTypes" EntityType="Model.TServiceType" />
+          <EntitySet Name="TSkinInfos" EntityType="Model.TSkinInfo" />
+          <EntitySet Name="TStates" EntityType="Model.TState" />
+          <EntitySet Name="TUrogenitalInfos" EntityType="Model.TUrogenitalInfo" />
+          <EntitySet Name="TUsers" EntityType="Model.TUser" />
+          <EntitySet Name="TVaccinations" EntityType="Model.TVaccination" />
+          <EntitySet Name="TVisitEmployees" EntityType="Model.TVisitEmployee" />
+          <EntitySet Name="TVisitMedications" EntityType="Model.TVisitMedication" />
+          <EntitySet Name="TVisitReasons" EntityType="Model.TVisitReason" />
+          <EntitySet Name="TVisits" EntityType="Model.TVisit" />
+          <EntitySet Name="TVisitServices" EntityType="Model.TVisitService" />
+          <AssociationSet Name="TAbdomenInfos_THealthExams_FK1" Association="Model.TAbdomenInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TAbdomenInfo" EntitySet="TAbdomenInfos" />
           </AssociationSet>
-          <AssociationSet Name="TEmployees_TDepartments_FK1" Association="capstoneModel.TEmployees_TDepartments_FK1">
-            <End Role="TDepartment" EntitySet="TDepartments" />
-            <End Role="TEmployee" EntitySet="TEmployees" />
+          <AssociationSet Name="TPets_TBreeds_FK1" Association="Model.TPets_TBreeds_FK1">
+            <End Role="TBreed" EntitySet="TBreeds" />
+            <End Role="TPet" EntitySet="TPets" />
           </AssociationSet>
-          <AssociationSet Name="TEarStatusInfos_THealthExams_FK1" Association="capstoneModel.TEarStatusInfos_THealthExams_FK1">
+          <AssociationSet Name="TEarStatusInfos_THealthExams_FK1" Association="Model.TEarStatusInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TEarStatusInfo" EntitySet="TEarStatusInfos" />
           </AssociationSet>
-          <AssociationSet Name="TEyeStatusInfos_THealthExams_FK1" Association="capstoneModel.TEyeStatusInfos_THealthExams_FK1">
+          <AssociationSet Name="TVisitEmployees_TEmployees_FK1" Association="Model.TVisitEmployees_TEmployees_FK1">
+            <End Role="TEmployee" EntitySet="TEmployees" />
+            <End Role="TVisitEmployee" EntitySet="TVisitEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="TEyeStatusInfos_THealthExams_FK1" Association="Model.TEyeStatusInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TEyeStatusInfo" EntitySet="TEyeStatusInfos" />
           </AssociationSet>
-          <AssociationSet Name="TGIInfos_THealthExams_FK1" Association="capstoneModel.TGIInfos_THealthExams_FK1">
+          <AssociationSet Name="TOwners_TGenders_FK1" Association="Model.TOwners_TGenders_FK1">
+            <End Role="TGender" EntitySet="TGenders" />
+            <End Role="TOwner" EntitySet="TOwners" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TGenders_FK1" Association="Model.TPets_TGenders_FK1">
+            <End Role="TGender" EntitySet="TGenders" />
+            <End Role="TPet" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TGIInfos_THealthExams_FK1" Association="Model.TGIInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TGIInfo" EntitySet="TGIInfos" />
           </AssociationSet>
-          <AssociationSet Name="THealthExams_TVisitServices_FK1" Association="capstoneModel.THealthExams_TVisitServices_FK1">
+          <AssociationSet Name="THealthExams_TVisitServices_FK1" Association="Model.THealthExams_TVisitServices_FK1">
             <End Role="TVisitService" EntitySet="TVisitServices" />
             <End Role="THealthExam" EntitySet="THealthExams" />
           </AssociationSet>
-          <AssociationSet Name="THeartInfos_THealthExams_FK1" Association="capstoneModel.THeartInfos_THealthExams_FK1">
+          <AssociationSet Name="THeartInfos_THealthExams_FK1" Association="Model.THeartInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="THeartInfo" EntitySet="THeartInfos" />
           </AssociationSet>
-          <AssociationSet Name="TLungInfos_THealthExams_FK1" Association="capstoneModel.TLungInfos_THealthExams_FK1">
+          <AssociationSet Name="TLungInfos_THealthExams_FK1" Association="Model.TLungInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TLungInfo" EntitySet="TLungInfos" />
           </AssociationSet>
-          <AssociationSet Name="TMouthInfos_THealthExams_FK1" Association="capstoneModel.TMouthInfos_THealthExams_FK1">
+          <AssociationSet Name="TMouthInfos_THealthExams_FK1" Association="Model.TMouthInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TMouthInfo" EntitySet="TMouthInfos" />
           </AssociationSet>
-          <AssociationSet Name="TMusculoskeletalInfos_THealthExams_FK1" Association="capstoneModel.TMusculoskeletalInfos_THealthExams_FK1">
+          <AssociationSet Name="TMusculoskeletalInfos_THealthExams_FK1" Association="Model.TMusculoskeletalInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TMusculoskeletalInfo" EntitySet="TMusculoskeletalInfos" />
           </AssociationSet>
-          <AssociationSet Name="TNeurologicalInfos_THealthExams_FK1" Association="capstoneModel.TNeurologicalInfos_THealthExams_FK1">
+          <AssociationSet Name="TNeurologicalInfos_THealthExams_FK1" Association="Model.TNeurologicalInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TNeurologicalInfo" EntitySet="TNeurologicalInfos" />
           </AssociationSet>
-          <AssociationSet Name="TNoseThroatInfos_THealthExams_FK1" Association="capstoneModel.TNoseThroatInfos_THealthExams_FK1">
+          <AssociationSet Name="TNoseThroatInfos_THealthExams_FK1" Association="Model.TNoseThroatInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TNoseThroatInfo" EntitySet="TNoseThroatInfos" />
           </AssociationSet>
-          <AssociationSet Name="TSkinInfos_THealthExams_FK1" Association="capstoneModel.TSkinInfos_THealthExams_FK1">
+          <AssociationSet Name="TSkinInfos_THealthExams_FK1" Association="Model.TSkinInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TSkinInfo" EntitySet="TSkinInfos" />
           </AssociationSet>
-          <AssociationSet Name="TUrogenitalInfos_THealthExams_FK1" Association="capstoneModel.TUrogenitalInfos_THealthExams_FK1">
+          <AssociationSet Name="TUrogenitalInfos_THealthExams_FK1" Association="Model.TUrogenitalInfos_THealthExams_FK1">
             <End Role="THealthExam" EntitySet="THealthExams" />
             <End Role="TUrogenitalInfo" EntitySet="TUrogenitalInfos" />
           </AssociationSet>
-          <AssociationSet Name="TOwners_TStates_FK1" Association="capstoneModel.TOwners_TStates_FK1">
+          <AssociationSet Name="TMedications_TMethods_FK1" Association="Model.TMedications_TMethods_FK1">
+            <End Role="TMethod" EntitySet="TMethods" />
+            <End Role="TMedication" EntitySet="TMedications" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitMedications_TMedications_FK1" Association="Model.TVisitMedications_TMedications_FK1">
+            <End Role="TMedication" EntitySet="TMedications" />
+            <End Role="TVisitMedication" EntitySet="TVisitMedications" />
+          </AssociationSet>
+          <AssociationSet Name="TOwners_TStates_FK1" Association="Model.TOwners_TStates_FK1">
             <End Role="TState" EntitySet="TStates" />
             <End Role="TOwner" EntitySet="TOwners" />
           </AssociationSet>
-          <AssociationSet Name="TPets_TPetTypes_FK1" Association="capstoneModel.TPets_TPetTypes_FK1">
+          <AssociationSet Name="TOwners_TUsers_FK1" Association="Model.TOwners_TUsers_FK1">
+            <End Role="TUser" EntitySet="TUsers" />
+            <End Role="TOwner" EntitySet="TOwners" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TOwners_FK1" Association="Model.TPets_TOwners_FK1">
+            <End Role="TOwner" EntitySet="TOwners" />
+            <End Role="TPet" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TPetImages_TPets_FK1" Association="Model.TPetImages_TPets_FK1">
+            <End Role="TPet" EntitySet="TPets" />
+            <End Role="TPetImage" EntitySet="TPetImages" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TPetTypes_FK1" Association="Model.TPets_TPetTypes_FK1">
             <End Role="TPetType" EntitySet="TPetTypes" />
             <End Role="TPet" EntitySet="TPets" />
           </AssociationSet>
-          <AssociationSet Name="TUserRoleMapping_TRoles_FK1" Association="capstoneModel.TUserRoleMapping_TRoles_FK1">
-            <End Role="TRole" EntitySet="TRoles" />
-            <End Role="TUserRoleMapping" EntitySet="TUserRoleMappings" />
+          <AssociationSet Name="TVisits_TPets_FK1" Association="Model.TVisits_TPets_FK1">
+            <End Role="TPet" EntitySet="TPets" />
+            <End Role="TVisit" EntitySet="TVisits" />
           </AssociationSet>
-          <AssociationSet Name="TUsers_TRoles_FK1" Association="capstoneModel.TUsers_TRoles_FK1">
+          <AssociationSet Name="TUsers_TRoles_FK1" Association="Model.TUsers_TRoles_FK1">
             <End Role="TRole" EntitySet="TRoles" />
             <End Role="TUser" EntitySet="TUsers" />
           </AssociationSet>
-          <AssociationSet Name="TUserRoleMapping_TUsers_FK1" Association="capstoneModel.TUserRoleMapping_TUsers_FK1">
-            <End Role="TUser" EntitySet="TUsers" />
-            <End Role="TUserRoleMapping" EntitySet="TUserRoleMappings" />
+          <AssociationSet Name="TServices_TServiceTypes_FK1" Association="Model.TServices_TServiceTypes_FK1">
+            <End Role="TServiceType" EntitySet="TServiceTypes" />
+            <End Role="TService" EntitySet="TServices" />
           </AssociationSet>
-          <AssociationSet Name="TVisits_TVisitReasons_FK1" Association="capstoneModel.TVisits_TVisitReasons_FK1">
+          <AssociationSet Name="TVisitServices_TServices_FK1" Association="Model.TVisitServices_TServices_FK1">
+            <End Role="TService" EntitySet="TServices" />
+            <End Role="TVisitService" EntitySet="TVisitServices" />
+          </AssociationSet>
+          <AssociationSet Name="TVaccinations_TVisitServices_FK1" Association="Model.TVaccinations_TVisitServices_FK1">
+            <End Role="TVisitService" EntitySet="TVisitServices" />
+            <End Role="TVaccination" EntitySet="TVaccinations" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitEmployees_TVisits_FK1" Association="Model.TVisitEmployees_TVisits_FK1">
+            <End Role="TVisit" EntitySet="TVisits" />
+            <End Role="TVisitEmployee" EntitySet="TVisitEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitMedications_TVisits_FK1" Association="Model.TVisitMedications_TVisits_FK1">
+            <End Role="TVisit" EntitySet="TVisits" />
+            <End Role="TVisitMedication" EntitySet="TVisitMedications" />
+          </AssociationSet>
+          <AssociationSet Name="TVisits_TVisitReasons_FK1" Association="Model.TVisits_TVisitReasons_FK1">
             <End Role="TVisitReason" EntitySet="TVisitReasons" />
             <End Role="TVisit" EntitySet="TVisits" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="TVisitServices_TVisits_FK1" Association="Model.TVisitServices_TVisits_FK1">
+            <End Role="TVisit" EntitySet="TVisits" />
+            <End Role="TVisitService" EntitySet="TVisitServices" />
+          </AssociationSet>
+          <FunctionImport Name="uspAddAbdomenInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloated" Mode="In" Type="Boolean" />
+            <Parameter Name="isEnlarged" Mode="In" Type="Boolean" />
+            <Parameter Name="isFluid" Mode="In" Type="Boolean" />
+            <Parameter Name="isHernia" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddHealthExam1">
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="dblTemperature" Mode="In" Type="Double" />
+            <Parameter Name="intHeartRate" Mode="In" Type="Int32" />
+            <Parameter Name="intRespRate" Mode="In" Type="Int32" />
+            <Parameter Name="intCapillaryRefillTime" Mode="In" Type="Int32" />
+            <Parameter Name="strMucousMembrane" Mode="In" Type="String" />
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddHeartInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMurMur" Mode="In" Type="Boolean" />
+            <Parameter Name="isFast" Mode="In" Type="Boolean" />
+            <Parameter Name="isSlow" Mode="In" Type="Boolean" />
+            <Parameter Name="isMuffled" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddLunglInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isBreathingDifficulty" Mode="In" Type="Boolean" />
+            <Parameter Name="isRapidRespiration" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchPositive" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchNegative" Mode="In" Type="Boolean" />
+            <Parameter Name="isCongestion" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalSound" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMusculoskeletalInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isJointProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isNailProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLigaments" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNoseThroatInfo1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isLargeLymphNodes" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedThroat" Mode="In" Type="Boolean" />
+            <Parameter Name="isNasalDishcharge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedTonsils" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddOwner1">
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="strAddress" Mode="In" Type="String" />
+            <Parameter Name="strCity" Mode="In" Type="String" />
+            <Parameter Name="intStateID" Mode="In" Type="Int32" />
+            <Parameter Name="strZip" Mode="In" Type="String" />
+            <Parameter Name="strPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strEmail" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Name" Mode="In" Type="String" />
+            <Parameter Name="strOwner2PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Email" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddPetVisit1">
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="dblTemperature" Mode="In" Type="Double" />
+            <Parameter Name="intHeartRate" Mode="In" Type="Int32" />
+            <Parameter Name="intRespRate" Mode="In" Type="Int32" />
+            <Parameter Name="intCapillaryRefillTime" Mode="In" Type="Int32" />
+            <Parameter Name="strMucousMembrane" Mode="In" Type="String" />
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="isEyeNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfection" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyeInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyelidTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isDirty" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveHair" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isScaly" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfected" Mode="In" Type="Boolean" />
+            <Parameter Name="isMatted" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinScrape" Mode="In" Type="Boolean" />
+            <Parameter Name="isPruritus" Mode="In" Type="Boolean" />
+            <Parameter Name="isHairLoss" Mode="In" Type="Boolean" />
+            <Parameter Name="isMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isMouthNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMouthTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isGingivitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isPeriodontitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isTartarBuildup" Mode="In" Type="Boolean" />
+            <Parameter Name="isLooseTeeth" Mode="In" Type="Boolean" />
+            <Parameter Name="isBiteOVerUnder" Mode="In" Type="Boolean" />
+            <Parameter Name="isNoseThroatNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isLargeLymphNodes" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedThroat" Mode="In" Type="Boolean" />
+            <Parameter Name="isNasalDishcharge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedTonsils" Mode="In" Type="Boolean" />
+            <Parameter Name="isGINormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveGas" Mode="In" Type="Boolean" />
+            <Parameter Name="isGIParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalFeces" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnorexia" Mode="In" Type="Boolean" />
+            <Parameter Name="isNeurologicalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralR" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbdomenNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbdomenPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloated" Mode="In" Type="Boolean" />
+            <Parameter Name="isEnlarged" Mode="In" Type="Boolean" />
+            <Parameter Name="isFluid" Mode="In" Type="Boolean" />
+            <Parameter Name="isHernia" Mode="In" Type="Boolean" />
+            <Parameter Name="isUrogenitalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isUrogenAbnormalUrination" Mode="In" Type="Boolean" />
+            <Parameter Name="isGenitalDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnalSacs" Mode="In" Type="Boolean" />
+            <Parameter Name="isRectal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMammaryTumors" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalTesticles" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloodSeen" Mode="In" Type="Boolean" />
+            <Parameter Name="isMusculoskeletalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isJointProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isNailProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLigaments" Mode="In" Type="Boolean" />
+            <Parameter Name="isLungNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isBreathingDifficulty" Mode="In" Type="Boolean" />
+            <Parameter Name="isRapidRespiration" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchPositive" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchNegative" Mode="In" Type="Boolean" />
+            <Parameter Name="isCongestion" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalSound" Mode="In" Type="Boolean" />
+            <Parameter Name="isHeartNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMurMur" Mode="In" Type="Boolean" />
+            <Parameter Name="isFast" Mode="In" Type="Boolean" />
+            <Parameter Name="isSlow" Mode="In" Type="Boolean" />
+            <Parameter Name="isMuffled" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddService1">
+            <Parameter Name="strServiceDesc" Mode="In" Type="String" />
+            <Parameter Name="intServiceTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddUrogenitalInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalUrination" Mode="In" Type="Boolean" />
+            <Parameter Name="isGenitalDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnalSacs" Mode="In" Type="Boolean" />
+            <Parameter Name="isRectal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMammaryTumors" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalTesticles" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloodSeen" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVaccinations1">
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateOfVaccination" Mode="In" Type="DateTime" />
+            <Parameter Name="dtmDateOfExpiration" Mode="In" Type="DateTime" />
+            <Parameter Name="strVaccineDesc" Mode="In" Type="String" />
+            <Parameter Name="strRabiesNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisit1">
+            <Parameter Name="intPetID" Mode="In" Type="Int32" />
+            <Parameter Name="intVisitReasonID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateOfVist" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitEmployee1">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitMedication1">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDatePrescribed" Mode="In" Type="DateTime" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitService1">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateEmployee1">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intJobTitleID" Mode="In" Type="Int32" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateMedication1">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+            <Parameter Name="strMedicationName" Mode="In" Type="String" />
+            <Parameter Name="strMedicationDesc" Mode="In" Type="String" />
+            <Parameter Name="dblCost" Mode="In" Type="Decimal" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="intMethodID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateOwner1">
+            <Parameter Name="intOwnerID" Mode="In" Type="Int32" />
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="strAddress" Mode="In" Type="String" />
+            <Parameter Name="strCity" Mode="In" Type="String" />
+            <Parameter Name="intStateID" Mode="In" Type="Int32" />
+            <Parameter Name="strZip" Mode="In" Type="String" />
+            <Parameter Name="strPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strEmail" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Name" Mode="In" Type="String" />
+            <Parameter Name="strOwner2PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Email" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateService1">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strServiceDesc" Mode="In" Type="String" />
+            <Parameter Name="intServiceTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="uspViewEmployees_Result">
+          <Property Type="Int32" Name="intEmployeeID" Nullable="false" />
+          <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intJobTitleID" Nullable="false" />
+          <Property Type="Int32" Name="intUserID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewMedications_Result">
+          <Property Type="Int32" Name="intMedicationID" Nullable="false" />
+          <Property Type="String" Name="strMedicationName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strMedicationDesc" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="dblCost" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intQuantity" Nullable="false" />
+          <Property Type="Int32" Name="intMethodID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewOwners_Result">
+          <Property Type="Int32" Name="intOwnerID" Nullable="false" />
+          <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intGenderID" Nullable="false" />
+          <Property Type="String" Name="strAddress" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strCity" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intStateID" Nullable="false" />
+          <Property Type="String" Name="strZip" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwner2Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwner2PhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwner2Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="intUserID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetGeneralInformation_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetType" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strGender" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strBreedName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intAge" Nullable="true" />
+          <Property Type="Double" Name="dblWeight" Nullable="false" />
+          <Property Type="String" Name="strColor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwnerName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="strPhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwnerAddress" Nullable="false" MaxLength="203" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetMedications_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDatePrescribed" Nullable="false" />
+          <Property Type="Int32" Name="intMedicationID" Nullable="false" />
+          <Property Type="Int32" Name="intQuantity" Nullable="false" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="uspViewPets_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intPetTypeID" Nullable="false" />
+          <Property Type="Int32" Name="intGenderID" Nullable="false" />
+          <Property Type="Int32" Name="intBreedID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateofBirth" Nullable="false" />
+          <Property Type="Double" Name="dblWeight" Nullable="false" />
+          <Property Type="Boolean" Name="isBlind" Nullable="false" />
+          <Property Type="Boolean" Name="isDeaf" Nullable="false" />
+          <Property Type="Boolean" Name="isAggressive" Nullable="false" />
+          <Property Type="Boolean" Name="isDeceased" Nullable="false" />
+          <Property Type="Boolean" Name="isAllergic" Nullable="false" />
+          <Property Type="String" Name="strColor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="intOwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetVaccinations_Result">
+          <Property Type="Int32" Name="intVaccinationID" Nullable="false" />
+          <Property Type="Int32" Name="intVisitServiceID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfVaccination" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfExpiration" Nullable="false" />
+          <Property Type="String" Name="strVaccineDesc" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strRabiesNumber" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetVisits_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfVist" Nullable="false" />
+          <Property Type="String" Name="strVisitReason" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strDoctor" Nullable="false" MaxLength="105" />
+        </ComplexType>
+        <ComplexType Name="uspViewServices_Result">
+          <Property Type="Int32" Name="intServiceID" Nullable="false" />
+          <Property Type="String" Name="strServiceDesc" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intServiceTypeID" Nullable="false" />
+          <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
+        </ComplexType>
         <EntityType Name="TAbdomenInfo">
           <Key>
             <PropertyRef Name="intAbdomenInfoID" />
@@ -905,22 +2138,15 @@
           <Property Name="isFluid" Type="Boolean" Nullable="false" />
           <Property Name="isHernia" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TAbdomenInfos_THealthExams_FK1" FromRole="TAbdomenInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TAbdomenInfos_THealthExams_FK1" FromRole="TAbdomenInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TBreed">
           <Key>
             <PropertyRef Name="intBreedID" />
           </Key>
-          <Property Name="intBreedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intBreedID" Type="Int32" Nullable="false" />
           <Property Name="strBreedName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="TDepartment">
-          <Key>
-            <PropertyRef Name="intDepartmentID" />
-          </Key>
-          <Property Name="intDepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="strDepartment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TEmployees" Relationship="capstoneModel.TEmployees_TDepartments_FK1" FromRole="TDepartment" ToRole="TEmployee" />
+          <NavigationProperty Name="TPets" Relationship="Model.TPets_TBreeds_FK1" FromRole="TBreed" ToRole="TPet" />
         </EntityType>
         <EntityType Name="TEarStatusInfo">
           <Key>
@@ -934,7 +2160,7 @@
           <Property Name="isPainful" Type="Boolean" Nullable="false" />
           <Property Name="isExcessiveHair" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TEarStatusInfos_THealthExams_FK1" FromRole="TEarStatusInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TEarStatusInfos_THealthExams_FK1" FromRole="TEarStatusInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TEmployee">
           <Key>
@@ -944,10 +2170,8 @@
           <Property Name="strFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="intJobTitleID" Type="Int32" Nullable="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="intUserID" Type="Int32" Nullable="false" />
-          <Property Name="intDepartmentID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TDepartment" Relationship="capstoneModel.TEmployees_TDepartments_FK1" FromRole="TEmployee" ToRole="TDepartment" />
+          <NavigationProperty Name="TVisitEmployees" Relationship="Model.TVisitEmployees_TEmployees_FK1" FromRole="TEmployee" ToRole="TVisitEmployee" />
         </EntityType>
         <EntityType Name="TEyeStatusInfo">
           <Key>
@@ -964,7 +2188,7 @@
           <Property Name="isInflamed" Type="Boolean" Nullable="false" />
           <Property Name="isEyelidTumor" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TEyeStatusInfos_THealthExams_FK1" FromRole="TEyeStatusInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TEyeStatusInfos_THealthExams_FK1" FromRole="TEyeStatusInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TGender">
           <Key>
@@ -972,6 +2196,8 @@
           </Key>
           <Property Name="intGenderID" Type="Int32" Nullable="false" />
           <Property Name="strGender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TOwners" Relationship="Model.TOwners_TGenders_FK1" FromRole="TGender" ToRole="TOwner" />
+          <NavigationProperty Name="TPets" Relationship="Model.TPets_TGenders_FK1" FromRole="TGender" ToRole="TPet" />
         </EntityType>
         <EntityType Name="TGIInfo">
           <Key>
@@ -984,7 +2210,7 @@
           <Property Name="isAbnormalFeces" Type="Boolean" Nullable="false" />
           <Property Name="isAnorexia" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TGIInfos_THealthExams_FK1" FromRole="TGIInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TGIInfos_THealthExams_FK1" FromRole="TGIInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="THealthExam">
           <Key>
@@ -999,19 +2225,19 @@
           <Property Name="strMucousMembrane" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="intVisitServiceID" Type="Int32" Nullable="false" />
           <Property Name="strNotes" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TAbdomenInfos" Relationship="capstoneModel.TAbdomenInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TAbdomenInfo" />
-          <NavigationProperty Name="TEarStatusInfos" Relationship="capstoneModel.TEarStatusInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TEarStatusInfo" />
-          <NavigationProperty Name="TEyeStatusInfos" Relationship="capstoneModel.TEyeStatusInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TEyeStatusInfo" />
-          <NavigationProperty Name="TGIInfos" Relationship="capstoneModel.TGIInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TGIInfo" />
-          <NavigationProperty Name="TVisitService" Relationship="capstoneModel.THealthExams_TVisitServices_FK1" FromRole="THealthExam" ToRole="TVisitService" />
-          <NavigationProperty Name="THeartInfos" Relationship="capstoneModel.THeartInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="THeartInfo" />
-          <NavigationProperty Name="TLungInfos" Relationship="capstoneModel.TLungInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TLungInfo" />
-          <NavigationProperty Name="TMouthInfos" Relationship="capstoneModel.TMouthInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TMouthInfo" />
-          <NavigationProperty Name="TMusculoskeletalInfos" Relationship="capstoneModel.TMusculoskeletalInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TMusculoskeletalInfo" />
-          <NavigationProperty Name="TNeurologicalInfos" Relationship="capstoneModel.TNeurologicalInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TNeurologicalInfo" />
-          <NavigationProperty Name="TNoseThroatInfos" Relationship="capstoneModel.TNoseThroatInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TNoseThroatInfo" />
-          <NavigationProperty Name="TSkinInfos" Relationship="capstoneModel.TSkinInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TSkinInfo" />
-          <NavigationProperty Name="TUrogenitalInfos" Relationship="capstoneModel.TUrogenitalInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TUrogenitalInfo" />
+          <NavigationProperty Name="TAbdomenInfos" Relationship="Model.TAbdomenInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TAbdomenInfo" />
+          <NavigationProperty Name="TEarStatusInfos" Relationship="Model.TEarStatusInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TEarStatusInfo" />
+          <NavigationProperty Name="TEyeStatusInfos" Relationship="Model.TEyeStatusInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TEyeStatusInfo" />
+          <NavigationProperty Name="TGIInfos" Relationship="Model.TGIInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TGIInfo" />
+          <NavigationProperty Name="TVisitService" Relationship="Model.THealthExams_TVisitServices_FK1" FromRole="THealthExam" ToRole="TVisitService" />
+          <NavigationProperty Name="THeartInfos" Relationship="Model.THeartInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="THeartInfo" />
+          <NavigationProperty Name="TLungInfos" Relationship="Model.TLungInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TLungInfo" />
+          <NavigationProperty Name="TMouthInfos" Relationship="Model.TMouthInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TMouthInfo" />
+          <NavigationProperty Name="TMusculoskeletalInfos" Relationship="Model.TMusculoskeletalInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TMusculoskeletalInfo" />
+          <NavigationProperty Name="TNeurologicalInfos" Relationship="Model.TNeurologicalInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TNeurologicalInfo" />
+          <NavigationProperty Name="TNoseThroatInfos" Relationship="Model.TNoseThroatInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TNoseThroatInfo" />
+          <NavigationProperty Name="TSkinInfos" Relationship="Model.TSkinInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TSkinInfo" />
+          <NavigationProperty Name="TUrogenitalInfos" Relationship="Model.TUrogenitalInfos_THealthExams_FK1" FromRole="THealthExam" ToRole="TUrogenitalInfo" />
         </EntityType>
         <EntityType Name="THeartInfo">
           <Key>
@@ -1024,7 +2250,7 @@
           <Property Name="isSlow" Type="Boolean" Nullable="false" />
           <Property Name="isMuffled" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.THeartInfos_THealthExams_FK1" FromRole="THeartInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.THeartInfos_THealthExams_FK1" FromRole="THeartInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TJobTitle">
           <Key>
@@ -1046,7 +2272,7 @@
           <Property Name="isCongestion" Type="Boolean" Nullable="false" />
           <Property Name="isAbnormalSound" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TLungInfos_THealthExams_FK1" FromRole="TLungInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TLungInfos_THealthExams_FK1" FromRole="TLungInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TMedication">
           <Key>
@@ -1060,6 +2286,8 @@
           <Property Name="strNotes" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="intQuantity" Type="Int32" Nullable="false" />
           <Property Name="intMethodID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TMethod" Relationship="Model.TMedications_TMethods_FK1" FromRole="TMedication" ToRole="TMethod" />
+          <NavigationProperty Name="TVisitMedications" Relationship="Model.TVisitMedications_TMedications_FK1" FromRole="TMedication" ToRole="TVisitMedication" />
         </EntityType>
         <EntityType Name="TMethod">
           <Key>
@@ -1067,6 +2295,7 @@
           </Key>
           <Property Name="intMethodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="strMethod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TMedications" Relationship="Model.TMedications_TMethods_FK1" FromRole="TMethod" ToRole="TMedication" />
         </EntityType>
         <EntityType Name="TMouthInfo">
           <Key>
@@ -1081,7 +2310,7 @@
           <Property Name="isLooseTeeth" Type="Boolean" Nullable="false" />
           <Property Name="isBiteOVerUnder" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TMouthInfos_THealthExams_FK1" FromRole="TMouthInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TMouthInfos_THealthExams_FK1" FromRole="TMouthInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TMusculoskeletalInfo">
           <Key>
@@ -1097,7 +2326,7 @@
           <Property Name="isLamenessRR" Type="Boolean" Nullable="false" />
           <Property Name="isLigaments" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TMusculoskeletalInfos_THealthExams_FK1" FromRole="TMusculoskeletalInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TMusculoskeletalInfos_THealthExams_FK1" FromRole="TMusculoskeletalInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TNeurologicalInfo">
           <Key>
@@ -1114,7 +2343,7 @@
           <Property Name="isPalpebralL" Type="Boolean" Nullable="false" />
           <Property Name="isPalpebralR" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TNeurologicalInfos_THealthExams_FK1" FromRole="TNeurologicalInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TNeurologicalInfos_THealthExams_FK1" FromRole="TNeurologicalInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TNoseThroatInfo">
           <Key>
@@ -1127,7 +2356,7 @@
           <Property Name="isNasalDishcharge" Type="Boolean" Nullable="false" />
           <Property Name="isInflamedTonsils" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TNoseThroatInfos_THealthExams_FK1" FromRole="TNoseThroatInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TNoseThroatInfos_THealthExams_FK1" FromRole="TNoseThroatInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TOwner">
           <Key>
@@ -1147,9 +2376,11 @@
           <Property Name="strOwner2PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strOwner2Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strNotes" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="intUserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TState" Relationship="capstoneModel.TOwners_TStates_FK1" FromRole="TOwner" ToRole="TState" />
+          <NavigationProperty Name="TGender" Relationship="Model.TOwners_TGenders_FK1" FromRole="TOwner" ToRole="TGender" />
+          <NavigationProperty Name="TState" Relationship="Model.TOwners_TStates_FK1" FromRole="TOwner" ToRole="TState" />
+          <NavigationProperty Name="TUser" Relationship="Model.TOwners_TUsers_FK1" FromRole="TOwner" ToRole="TUser" />
+          <NavigationProperty Name="TPets" Relationship="Model.TPets_TOwners_FK1" FromRole="TOwner" ToRole="TPet" />
         </EntityType>
         <EntityType Name="TPetImage">
           <Key>
@@ -1162,6 +2393,7 @@
           <Property Name="strFileName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="intImageSize" Type="Int32" Nullable="false" />
           <Property Name="dtmDateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="TPet" Relationship="Model.TPetImages_TPets_FK1" FromRole="TPetImage" ToRole="TPet" />
         </EntityType>
         <EntityType Name="TPet">
           <Key>
@@ -1183,26 +2415,29 @@
           <Property Name="isAllergic" Type="Boolean" Nullable="false" />
           <Property Name="strColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strNotes" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="intOwnerID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TPetType" Relationship="capstoneModel.TPets_TPetTypes_FK1" FromRole="TPet" ToRole="TPetType" />
+          <NavigationProperty Name="TBreed" Relationship="Model.TPets_TBreeds_FK1" FromRole="TPet" ToRole="TBreed" />
+          <NavigationProperty Name="TGender" Relationship="Model.TPets_TGenders_FK1" FromRole="TPet" ToRole="TGender" />
+          <NavigationProperty Name="TOwner" Relationship="Model.TPets_TOwners_FK1" FromRole="TPet" ToRole="TOwner" />
+          <NavigationProperty Name="TPetImages" Relationship="Model.TPetImages_TPets_FK1" FromRole="TPet" ToRole="TPetImage" />
+          <NavigationProperty Name="TPetType" Relationship="Model.TPets_TPetTypes_FK1" FromRole="TPet" ToRole="TPetType" />
+          <NavigationProperty Name="TVisits" Relationship="Model.TVisits_TPets_FK1" FromRole="TPet" ToRole="TVisit" />
         </EntityType>
         <EntityType Name="TPetType">
           <Key>
             <PropertyRef Name="intPetTypeID" />
           </Key>
-          <Property Name="intPetTypeID" Type="Int32" Nullable="false" />
+          <Property Name="intPetTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="strPetType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TPets" Relationship="capstoneModel.TPets_TPetTypes_FK1" FromRole="TPetType" ToRole="TPet" />
+          <NavigationProperty Name="TPets" Relationship="Model.TPets_TPetTypes_FK1" FromRole="TPetType" ToRole="TPet" />
         </EntityType>
         <EntityType Name="TRole">
           <Key>
             <PropertyRef Name="intRoleID" />
           </Key>
           <Property Name="intRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="strRole" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TUserRoleMappings" Relationship="capstoneModel.TUserRoleMapping_TRoles_FK1" FromRole="TRole" ToRole="TUserRoleMapping" />
-          <NavigationProperty Name="TUsers" Relationship="capstoneModel.TUsers_TRoles_FK1" FromRole="TRole" ToRole="TUser" />
+          <Property Name="strRoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TUsers" Relationship="Model.TUsers_TRoles_FK1" FromRole="TRole" ToRole="TUser" />
         </EntityType>
         <EntityType Name="TService">
           <Key>
@@ -1212,6 +2447,8 @@
           <Property Name="strServiceDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="intServiceTypeID" Type="Int32" Nullable="false" />
           <Property Name="dblPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="TServiceType" Relationship="Model.TServices_TServiceTypes_FK1" FromRole="TService" ToRole="TServiceType" />
+          <NavigationProperty Name="TVisitServices" Relationship="Model.TVisitServices_TServices_FK1" FromRole="TService" ToRole="TVisitService" />
         </EntityType>
         <EntityType Name="TServiceType">
           <Key>
@@ -1219,6 +2456,7 @@
           </Key>
           <Property Name="intServiceTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="strServiceType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TServices" Relationship="Model.TServices_TServiceTypes_FK1" FromRole="TServiceType" ToRole="TService" />
         </EntityType>
         <EntityType Name="TSkinInfo">
           <Key>
@@ -1235,7 +2473,7 @@
           <Property Name="isMass" Type="Boolean" Nullable="false" />
           <Property Name="isParasites" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TSkinInfos_THealthExams_FK1" FromRole="TSkinInfo" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TSkinInfos_THealthExams_FK1" FromRole="TSkinInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TState">
           <Key>
@@ -1244,7 +2482,7 @@
           <Property Name="intStateID" Type="Int32" Nullable="false" />
           <Property Name="strStateCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="strStateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TOwners" Relationship="capstoneModel.TOwners_TStates_FK1" FromRole="TState" ToRole="TOwner" />
+          <NavigationProperty Name="TOwners" Relationship="Model.TOwners_TStates_FK1" FromRole="TState" ToRole="TOwner" />
         </EntityType>
         <EntityType Name="TUrogenitalInfo">
           <Key>
@@ -1260,17 +2498,7 @@
           <Property Name="isAbnormalTesticles" Type="Boolean" Nullable="false" />
           <Property Name="isBloodSeen" Type="Boolean" Nullable="false" />
           <Property Name="intHealthExamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExam" Relationship="capstoneModel.TUrogenitalInfos_THealthExams_FK1" FromRole="TUrogenitalInfo" ToRole="THealthExam" />
-        </EntityType>
-        <EntityType Name="TUserRoleMapping">
-          <Key>
-            <PropertyRef Name="intUserRoleID" />
-          </Key>
-          <Property Name="intUserRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="intUserID" Type="Int32" Nullable="false" />
-          <Property Name="intRoleID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TRole" Relationship="capstoneModel.TUserRoleMapping_TRoles_FK1" FromRole="TUserRoleMapping" ToRole="TRole" />
-          <NavigationProperty Name="TUser" Relationship="capstoneModel.TUserRoleMapping_TUsers_FK1" FromRole="TUserRoleMapping" ToRole="TUser" />
+          <NavigationProperty Name="THealthExam" Relationship="Model.TUrogenitalInfos_THealthExams_FK1" FromRole="TUrogenitalInfo" ToRole="THealthExam" />
         </EntityType>
         <EntityType Name="TUser">
           <Key>
@@ -1280,8 +2508,8 @@
           <Property Name="strUserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="intRoleID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TRole" Relationship="capstoneModel.TUsers_TRoles_FK1" FromRole="TUser" ToRole="TRole" />
-          <NavigationProperty Name="TUserRoleMappings" Relationship="capstoneModel.TUserRoleMapping_TUsers_FK1" FromRole="TUser" ToRole="TUserRoleMapping" />
+          <NavigationProperty Name="TOwners" Relationship="Model.TOwners_TUsers_FK1" FromRole="TUser" ToRole="TOwner" />
+          <NavigationProperty Name="TRole" Relationship="Model.TUsers_TRoles_FK1" FromRole="TUser" ToRole="TRole" />
         </EntityType>
         <EntityType Name="TVaccination">
           <Key>
@@ -1293,6 +2521,7 @@
           <Property Name="dtmDateOfExpiration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="strVaccineDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strRabiesNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TVisitService" Relationship="Model.TVaccinations_TVisitServices_FK1" FromRole="TVaccination" ToRole="TVisitService" />
         </EntityType>
         <EntityType Name="TVisitEmployee">
           <Key>
@@ -1301,6 +2530,8 @@
           <Property Name="intVisitEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="intVisitID" Type="Int32" Nullable="false" />
           <Property Name="intEmployeeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TEmployee" Relationship="Model.TVisitEmployees_TEmployees_FK1" FromRole="TVisitEmployee" ToRole="TEmployee" />
+          <NavigationProperty Name="TVisit" Relationship="Model.TVisitEmployees_TVisits_FK1" FromRole="TVisitEmployee" ToRole="TVisit" />
         </EntityType>
         <EntityType Name="TVisitMedication">
           <Key>
@@ -1311,6 +2542,8 @@
           <Property Name="intMedicationID" Type="Int32" Nullable="false" />
           <Property Name="dtmDatePrescribed" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="intQuantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TMedication" Relationship="Model.TVisitMedications_TMedications_FK1" FromRole="TVisitMedication" ToRole="TMedication" />
+          <NavigationProperty Name="TVisit" Relationship="Model.TVisitMedications_TVisits_FK1" FromRole="TVisitMedication" ToRole="TVisit" />
         </EntityType>
         <EntityType Name="TVisitReason">
           <Key>
@@ -1318,7 +2551,7 @@
           </Key>
           <Property Name="intVisitReasonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="strVisitReason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TVisits" Relationship="capstoneModel.TVisits_TVisitReasons_FK1" FromRole="TVisitReason" ToRole="TVisit" />
+          <NavigationProperty Name="TVisits" Relationship="Model.TVisits_TVisitReasons_FK1" FromRole="TVisitReason" ToRole="TVisit" />
         </EntityType>
         <EntityType Name="TVisit">
           <Key>
@@ -1328,7 +2561,11 @@
           <Property Name="intPetID" Type="Int32" Nullable="false" />
           <Property Name="intVisitReasonID" Type="Int32" Nullable="false" />
           <Property Name="dtmDateOfVist" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="TVisitReason" Relationship="capstoneModel.TVisits_TVisitReasons_FK1" FromRole="TVisit" ToRole="TVisitReason" />
+          <NavigationProperty Name="TPet" Relationship="Model.TVisits_TPets_FK1" FromRole="TVisit" ToRole="TPet" />
+          <NavigationProperty Name="TVisitEmployees" Relationship="Model.TVisitEmployees_TVisits_FK1" FromRole="TVisit" ToRole="TVisitEmployee" />
+          <NavigationProperty Name="TVisitMedications" Relationship="Model.TVisitMedications_TVisits_FK1" FromRole="TVisit" ToRole="TVisitMedication" />
+          <NavigationProperty Name="TVisitReason" Relationship="Model.TVisits_TVisitReasons_FK1" FromRole="TVisit" ToRole="TVisitReason" />
+          <NavigationProperty Name="TVisitServices" Relationship="Model.TVisitServices_TVisits_FK1" FromRole="TVisit" ToRole="TVisitService" />
         </EntityType>
         <EntityType Name="TVisitService">
           <Key>
@@ -1337,11 +2574,14 @@
           <Property Name="intVisitServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="intVisitID" Type="Int32" Nullable="false" />
           <Property Name="intServiceID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="THealthExams" Relationship="capstoneModel.THealthExams_TVisitServices_FK1" FromRole="TVisitService" ToRole="THealthExam" />
+          <NavigationProperty Name="THealthExams" Relationship="Model.THealthExams_TVisitServices_FK1" FromRole="TVisitService" ToRole="THealthExam" />
+          <NavigationProperty Name="TService" Relationship="Model.TVisitServices_TServices_FK1" FromRole="TVisitService" ToRole="TService" />
+          <NavigationProperty Name="TVaccinations" Relationship="Model.TVaccinations_TVisitServices_FK1" FromRole="TVisitService" ToRole="TVaccination" />
+          <NavigationProperty Name="TVisit" Relationship="Model.TVisitServices_TVisits_FK1" FromRole="TVisitService" ToRole="TVisit" />
         </EntityType>
         <Association Name="TAbdomenInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TAbdomenInfo" Role="TAbdomenInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TAbdomenInfo" Role="TAbdomenInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1351,21 +2591,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TEmployees_TDepartments_FK1">
-          <End Type="capstoneModel.TDepartment" Role="TDepartment" Multiplicity="1" />
-          <End Type="capstoneModel.TEmployee" Role="TEmployee" Multiplicity="*" />
+        <Association Name="TPets_TBreeds_FK1">
+          <End Type="Model.TBreed" Role="TBreed" Multiplicity="1" />
+          <End Type="Model.TPet" Role="TPet" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TDepartment">
-              <PropertyRef Name="intDepartmentID" />
+            <Principal Role="TBreed">
+              <PropertyRef Name="intBreedID" />
             </Principal>
-            <Dependent Role="TEmployee">
-              <PropertyRef Name="intDepartmentID" />
+            <Dependent Role="TPet">
+              <PropertyRef Name="intBreedID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="TEarStatusInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TEarStatusInfo" Role="TEarStatusInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TEarStatusInfo" Role="TEarStatusInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1375,9 +2615,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TVisitEmployees_TEmployees_FK1">
+          <End Type="Model.TEmployee" Role="TEmployee" Multiplicity="1" />
+          <End Type="Model.TVisitEmployee" Role="TVisitEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEmployee">
+              <PropertyRef Name="intEmployeeID" />
+            </Principal>
+            <Dependent Role="TVisitEmployee">
+              <PropertyRef Name="intEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TEyeStatusInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TEyeStatusInfo" Role="TEyeStatusInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TEyeStatusInfo" Role="TEyeStatusInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1387,9 +2639,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TOwners_TGenders_FK1">
+          <End Type="Model.TGender" Role="TGender" Multiplicity="1" />
+          <End Type="Model.TOwner" Role="TOwner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TGender">
+              <PropertyRef Name="intGenderID" />
+            </Principal>
+            <Dependent Role="TOwner">
+              <PropertyRef Name="intGenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TPets_TGenders_FK1">
+          <End Type="Model.TGender" Role="TGender" Multiplicity="1" />
+          <End Type="Model.TPet" Role="TPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TGender">
+              <PropertyRef Name="intGenderID" />
+            </Principal>
+            <Dependent Role="TPet">
+              <PropertyRef Name="intGenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TGIInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TGIInfo" Role="TGIInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TGIInfo" Role="TGIInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1400,8 +2676,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="THealthExams_TVisitServices_FK1">
-          <End Type="capstoneModel.TVisitService" Role="TVisitService" Multiplicity="1" />
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="*" />
+          <End Type="Model.TVisitService" Role="TVisitService" Multiplicity="1" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TVisitService">
               <PropertyRef Name="intVisitServiceID" />
@@ -1412,8 +2688,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="THeartInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.THeartInfo" Role="THeartInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.THeartInfo" Role="THeartInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1424,8 +2700,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TLungInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TLungInfo" Role="TLungInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TLungInfo" Role="TLungInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1436,8 +2712,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TMouthInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TMouthInfo" Role="TMouthInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TMouthInfo" Role="TMouthInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1448,8 +2724,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TMusculoskeletalInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TMusculoskeletalInfo" Role="TMusculoskeletalInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TMusculoskeletalInfo" Role="TMusculoskeletalInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1460,8 +2736,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TNeurologicalInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TNeurologicalInfo" Role="TNeurologicalInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TNeurologicalInfo" Role="TNeurologicalInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1472,8 +2748,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TNoseThroatInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TNoseThroatInfo" Role="TNoseThroatInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TNoseThroatInfo" Role="TNoseThroatInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1484,8 +2760,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TSkinInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TSkinInfo" Role="TSkinInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TSkinInfo" Role="TSkinInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1496,8 +2772,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TUrogenitalInfos_THealthExams_FK1">
-          <End Type="capstoneModel.THealthExam" Role="THealthExam" Multiplicity="1" />
-          <End Type="capstoneModel.TUrogenitalInfo" Role="TUrogenitalInfo" Multiplicity="*" />
+          <End Type="Model.THealthExam" Role="THealthExam" Multiplicity="1" />
+          <End Type="Model.TUrogenitalInfo" Role="TUrogenitalInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THealthExam">
               <PropertyRef Name="intHealthExamID" />
@@ -1507,9 +2783,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TMedications_TMethods_FK1">
+          <End Type="Model.TMethod" Role="TMethod" Multiplicity="1" />
+          <End Type="Model.TMedication" Role="TMedication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMethod">
+              <PropertyRef Name="intMethodID" />
+            </Principal>
+            <Dependent Role="TMedication">
+              <PropertyRef Name="intMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitMedications_TMedications_FK1">
+          <End Type="Model.TMedication" Role="TMedication" Multiplicity="1" />
+          <End Type="Model.TVisitMedication" Role="TVisitMedication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMedication">
+              <PropertyRef Name="intMedicationID" />
+            </Principal>
+            <Dependent Role="TVisitMedication">
+              <PropertyRef Name="intMedicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TOwners_TStates_FK1">
-          <End Type="capstoneModel.TState" Role="TState" Multiplicity="1" />
-          <End Type="capstoneModel.TOwner" Role="TOwner" Multiplicity="*" />
+          <End Type="Model.TState" Role="TState" Multiplicity="1" />
+          <End Type="Model.TOwner" Role="TOwner" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TState">
               <PropertyRef Name="intStateID" />
@@ -1519,9 +2819,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TOwners_TUsers_FK1">
+          <End Type="Model.TUser" Role="TUser" Multiplicity="1" />
+          <End Type="Model.TOwner" Role="TOwner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="intUserID" />
+            </Principal>
+            <Dependent Role="TOwner">
+              <PropertyRef Name="intUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TPets_TOwners_FK1">
+          <End Type="Model.TOwner" Role="TOwner" Multiplicity="1" />
+          <End Type="Model.TPet" Role="TPet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOwner">
+              <PropertyRef Name="intOwnerID" />
+            </Principal>
+            <Dependent Role="TPet">
+              <PropertyRef Name="intOwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TPetImages_TPets_FK1">
+          <End Type="Model.TPet" Role="TPet" Multiplicity="1" />
+          <End Type="Model.TPetImage" Role="TPetImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TPet">
+              <PropertyRef Name="intPetID" />
+            </Principal>
+            <Dependent Role="TPetImage">
+              <PropertyRef Name="intPetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TPets_TPetTypes_FK1">
-          <End Type="capstoneModel.TPetType" Role="TPetType" Multiplicity="1" />
-          <End Type="capstoneModel.TPet" Role="TPet" Multiplicity="*" />
+          <End Type="Model.TPetType" Role="TPetType" Multiplicity="1" />
+          <End Type="Model.TPet" Role="TPet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TPetType">
               <PropertyRef Name="intPetTypeID" />
@@ -1531,21 +2867,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TUserRoleMapping_TRoles_FK1">
-          <End Type="capstoneModel.TRole" Role="TRole" Multiplicity="1" />
-          <End Type="capstoneModel.TUserRoleMapping" Role="TUserRoleMapping" Multiplicity="*" />
+        <Association Name="TVisits_TPets_FK1">
+          <End Type="Model.TPet" Role="TPet" Multiplicity="1" />
+          <End Type="Model.TVisit" Role="TVisit" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TRole">
-              <PropertyRef Name="intRoleID" />
+            <Principal Role="TPet">
+              <PropertyRef Name="intPetID" />
             </Principal>
-            <Dependent Role="TUserRoleMapping">
-              <PropertyRef Name="intRoleID" />
+            <Dependent Role="TVisit">
+              <PropertyRef Name="intPetID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="TUsers_TRoles_FK1">
-          <End Type="capstoneModel.TRole" Role="TRole" Multiplicity="1" />
-          <End Type="capstoneModel.TUser" Role="TUser" Multiplicity="*" />
+          <End Type="Model.TRole" Role="TRole" Multiplicity="1" />
+          <End Type="Model.TUser" Role="TUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TRole">
               <PropertyRef Name="intRoleID" />
@@ -1555,21 +2891,69 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TUserRoleMapping_TUsers_FK1">
-          <End Type="capstoneModel.TUser" Role="TUser" Multiplicity="1" />
-          <End Type="capstoneModel.TUserRoleMapping" Role="TUserRoleMapping" Multiplicity="*" />
+        <Association Name="TServices_TServiceTypes_FK1">
+          <End Type="Model.TServiceType" Role="TServiceType" Multiplicity="1" />
+          <End Type="Model.TService" Role="TService" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TUser">
-              <PropertyRef Name="intUserID" />
+            <Principal Role="TServiceType">
+              <PropertyRef Name="intServiceTypeID" />
             </Principal>
-            <Dependent Role="TUserRoleMapping">
-              <PropertyRef Name="intUserID" />
+            <Dependent Role="TService">
+              <PropertyRef Name="intServiceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitServices_TServices_FK1">
+          <End Type="Model.TService" Role="TService" Multiplicity="1" />
+          <End Type="Model.TVisitService" Role="TVisitService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TService">
+              <PropertyRef Name="intServiceID" />
+            </Principal>
+            <Dependent Role="TVisitService">
+              <PropertyRef Name="intServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVaccinations_TVisitServices_FK1">
+          <End Type="Model.TVisitService" Role="TVisitService" Multiplicity="1" />
+          <End Type="Model.TVaccination" Role="TVaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVisitService">
+              <PropertyRef Name="intVisitServiceID" />
+            </Principal>
+            <Dependent Role="TVaccination">
+              <PropertyRef Name="intVisitServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitEmployees_TVisits_FK1">
+          <End Type="Model.TVisit" Role="TVisit" Multiplicity="1" />
+          <End Type="Model.TVisitEmployee" Role="TVisitEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVisit">
+              <PropertyRef Name="intVisitID" />
+            </Principal>
+            <Dependent Role="TVisitEmployee">
+              <PropertyRef Name="intVisitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TVisitMedications_TVisits_FK1">
+          <End Type="Model.TVisit" Role="TVisit" Multiplicity="1" />
+          <End Type="Model.TVisitMedication" Role="TVisitMedication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVisit">
+              <PropertyRef Name="intVisitID" />
+            </Principal>
+            <Dependent Role="TVisitMedication">
+              <PropertyRef Name="intVisitID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="TVisits_TVisitReasons_FK1">
-          <End Type="capstoneModel.TVisitReason" Role="TVisitReason" Multiplicity="1" />
-          <End Type="capstoneModel.TVisit" Role="TVisit" Multiplicity="*" />
+          <End Type="Model.TVisitReason" Role="TVisitReason" Multiplicity="1" />
+          <End Type="Model.TVisit" Role="TVisit" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TVisitReason">
               <PropertyRef Name="intVisitReasonID" />
@@ -1579,14 +2963,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="TVisitServices_TVisits_FK1">
+          <End Type="Model.TVisit" Role="TVisit" Multiplicity="1" />
+          <End Type="Model.TVisitService" Role="TVisitService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TVisit">
+              <PropertyRef Name="intVisitID" />
+            </Principal>
+            <Dependent Role="TVisitService">
+              <PropertyRef Name="intVisitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="capstoneModelStoreContainer" CdmEntityContainer="capstoneEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="CapstoneEntities">
+          <FunctionImportMapping FunctionImportName="uspCleanDatabase" FunctionName="Model.Store.uspCleanDatabase" />
+          <FunctionImportMapping FunctionImportName="uspDropUserForeignKeys" FunctionName="Model.Store.uspDropUserForeignKeys" />
+          <FunctionImportMapping FunctionImportName="uspDropUserStoredProcedures" FunctionName="Model.Store.uspDropUserStoredProcedures" />
+          <FunctionImportMapping FunctionImportName="uspDropUserTables" FunctionName="Model.Store.uspDropUserTables" />
+          <FunctionImportMapping FunctionImportName="uspDropUserViews" FunctionName="Model.Store.uspDropUserViews" />
           <EntitySetMapping Name="TAbdomenInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TAbdomenInfo">
+            <EntityTypeMapping TypeName="Model.TAbdomenInfo">
               <MappingFragment StoreEntitySet="TAbdomenInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isHernia" ColumnName="isHernia" />
@@ -1601,23 +3002,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TBreeds">
-            <EntityTypeMapping TypeName="capstoneModel.TBreed">
+            <EntityTypeMapping TypeName="Model.TBreed">
               <MappingFragment StoreEntitySet="TBreeds">
                 <ScalarProperty Name="strBreedName" ColumnName="strBreedName" />
                 <ScalarProperty Name="intBreedID" ColumnName="intBreedID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TDepartments">
-            <EntityTypeMapping TypeName="capstoneModel.TDepartment">
-              <MappingFragment StoreEntitySet="TDepartments">
-                <ScalarProperty Name="strDepartment" ColumnName="strDepartment" />
-                <ScalarProperty Name="intDepartmentID" ColumnName="intDepartmentID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TEarStatusInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TEarStatusInfo">
+            <EntityTypeMapping TypeName="Model.TEarStatusInfo">
               <MappingFragment StoreEntitySet="TEarStatusInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isExcessiveHair" ColumnName="isExcessiveHair" />
@@ -1631,11 +3024,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TEmployees">
-            <EntityTypeMapping TypeName="capstoneModel.TEmployee">
+            <EntityTypeMapping TypeName="Model.TEmployee">
               <MappingFragment StoreEntitySet="TEmployees">
-                <ScalarProperty Name="intDepartmentID" ColumnName="intDepartmentID" />
                 <ScalarProperty Name="intUserID" ColumnName="intUserID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="intJobTitleID" ColumnName="intJobTitleID" />
                 <ScalarProperty Name="strLastName" ColumnName="strLastName" />
                 <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
@@ -1644,7 +3035,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TEyeStatusInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TEyeStatusInfo">
+            <EntityTypeMapping TypeName="Model.TEyeStatusInfo">
               <MappingFragment StoreEntitySet="TEyeStatusInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isEyelidTumor" ColumnName="isEyelidTumor" />
@@ -1661,7 +3052,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TGenders">
-            <EntityTypeMapping TypeName="capstoneModel.TGender">
+            <EntityTypeMapping TypeName="Model.TGender">
               <MappingFragment StoreEntitySet="TGenders">
                 <ScalarProperty Name="strGender" ColumnName="strGender" />
                 <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
@@ -1669,7 +3060,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TGIInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TGIInfo">
+            <EntityTypeMapping TypeName="Model.TGIInfo">
               <MappingFragment StoreEntitySet="TGIInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isAnorexia" ColumnName="isAnorexia" />
@@ -1682,7 +3073,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="THealthExams">
-            <EntityTypeMapping TypeName="capstoneModel.THealthExam">
+            <EntityTypeMapping TypeName="Model.THealthExam">
               <MappingFragment StoreEntitySet="THealthExams">
                 <ScalarProperty Name="strNotes" ColumnName="strNotes" />
                 <ScalarProperty Name="intVisitServiceID" ColumnName="intVisitServiceID" />
@@ -1697,7 +3088,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="THeartInfos">
-            <EntityTypeMapping TypeName="capstoneModel.THeartInfo">
+            <EntityTypeMapping TypeName="Model.THeartInfo">
               <MappingFragment StoreEntitySet="THeartInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isMuffled" ColumnName="isMuffled" />
@@ -1710,7 +3101,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TJobTitles">
-            <EntityTypeMapping TypeName="capstoneModel.TJobTitle">
+            <EntityTypeMapping TypeName="Model.TJobTitle">
               <MappingFragment StoreEntitySet="TJobTitles">
                 <ScalarProperty Name="strJobTitleDesc" ColumnName="strJobTitleDesc" />
                 <ScalarProperty Name="intJobTitleID" ColumnName="intJobTitleID" />
@@ -1718,7 +3109,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TLungInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TLungInfo">
+            <EntityTypeMapping TypeName="Model.TLungInfo">
               <MappingFragment StoreEntitySet="TLungInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isAbnormalSound" ColumnName="isAbnormalSound" />
@@ -1733,7 +3124,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TMedications">
-            <EntityTypeMapping TypeName="capstoneModel.TMedication">
+            <EntityTypeMapping TypeName="Model.TMedication">
               <MappingFragment StoreEntitySet="TMedications">
                 <ScalarProperty Name="intMethodID" ColumnName="intMethodID" />
                 <ScalarProperty Name="intQuantity" ColumnName="intQuantity" />
@@ -1747,7 +3138,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TMethods">
-            <EntityTypeMapping TypeName="capstoneModel.TMethod">
+            <EntityTypeMapping TypeName="Model.TMethod">
               <MappingFragment StoreEntitySet="TMethods">
                 <ScalarProperty Name="strMethod" ColumnName="strMethod" />
                 <ScalarProperty Name="intMethodID" ColumnName="intMethodID" />
@@ -1755,7 +3146,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TMouthInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TMouthInfo">
+            <EntityTypeMapping TypeName="Model.TMouthInfo">
               <MappingFragment StoreEntitySet="TMouthInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isBiteOVerUnder" ColumnName="isBiteOVerUnder" />
@@ -1770,7 +3161,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TMusculoskeletalInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TMusculoskeletalInfo">
+            <EntityTypeMapping TypeName="Model.TMusculoskeletalInfo">
               <MappingFragment StoreEntitySet="TMusculoskeletalInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isLigaments" ColumnName="isLigaments" />
@@ -1786,7 +3177,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TNeurologicalInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TNeurologicalInfo">
+            <EntityTypeMapping TypeName="Model.TNeurologicalInfo">
               <MappingFragment StoreEntitySet="TNeurologicalInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isPalpebralR" ColumnName="isPalpebralR" />
@@ -1803,7 +3194,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TNoseThroatInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TNoseThroatInfo">
+            <EntityTypeMapping TypeName="Model.TNoseThroatInfo">
               <MappingFragment StoreEntitySet="TNoseThroatInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isInflamedTonsils" ColumnName="isInflamedTonsils" />
@@ -1816,10 +3207,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TOwners">
-            <EntityTypeMapping TypeName="capstoneModel.TOwner">
+            <EntityTypeMapping TypeName="Model.TOwner">
               <MappingFragment StoreEntitySet="TOwners">
                 <ScalarProperty Name="intUserID" ColumnName="intUserID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="strNotes" ColumnName="strNotes" />
                 <ScalarProperty Name="strOwner2Email" ColumnName="strOwner2Email" />
                 <ScalarProperty Name="strOwner2PhoneNumber" ColumnName="strOwner2PhoneNumber" />
@@ -1838,7 +3228,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TPetImages">
-            <EntityTypeMapping TypeName="capstoneModel.TPetImage">
+            <EntityTypeMapping TypeName="Model.TPetImage">
               <MappingFragment StoreEntitySet="TPetImages">
                 <ScalarProperty Name="dtmDateAdded" ColumnName="dtmDateAdded" />
                 <ScalarProperty Name="intImageSize" ColumnName="intImageSize" />
@@ -1851,10 +3241,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TPets">
-            <EntityTypeMapping TypeName="capstoneModel.TPet">
+            <EntityTypeMapping TypeName="Model.TPet">
               <MappingFragment StoreEntitySet="TPets">
                 <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="strNotes" ColumnName="strNotes" />
                 <ScalarProperty Name="strColor" ColumnName="strColor" />
                 <ScalarProperty Name="isAllergic" ColumnName="isAllergic" />
@@ -1875,7 +3264,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TPetTypes">
-            <EntityTypeMapping TypeName="capstoneModel.TPetType">
+            <EntityTypeMapping TypeName="Model.TPetType">
               <MappingFragment StoreEntitySet="TPetTypes">
                 <ScalarProperty Name="strPetType" ColumnName="strPetType" />
                 <ScalarProperty Name="intPetTypeID" ColumnName="intPetTypeID" />
@@ -1883,15 +3272,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TRoles">
-            <EntityTypeMapping TypeName="capstoneModel.TRole">
+            <EntityTypeMapping TypeName="Model.TRole">
               <MappingFragment StoreEntitySet="TRoles">
-                <ScalarProperty Name="strRole" ColumnName="strRole" />
+                <ScalarProperty Name="strRoleName" ColumnName="strRoleName" />
                 <ScalarProperty Name="intRoleID" ColumnName="intRoleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TServices">
-            <EntityTypeMapping TypeName="capstoneModel.TService">
+            <EntityTypeMapping TypeName="Model.TService">
               <MappingFragment StoreEntitySet="TServices">
                 <ScalarProperty Name="dblPrice" ColumnName="dblPrice" />
                 <ScalarProperty Name="intServiceTypeID" ColumnName="intServiceTypeID" />
@@ -1901,7 +3290,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TServiceTypes">
-            <EntityTypeMapping TypeName="capstoneModel.TServiceType">
+            <EntityTypeMapping TypeName="Model.TServiceType">
               <MappingFragment StoreEntitySet="TServiceTypes">
                 <ScalarProperty Name="strServiceType" ColumnName="strServiceType" />
                 <ScalarProperty Name="intServiceTypeID" ColumnName="intServiceTypeID" />
@@ -1909,7 +3298,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TSkinInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TSkinInfo">
+            <EntityTypeMapping TypeName="Model.TSkinInfo">
               <MappingFragment StoreEntitySet="TSkinInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isParasites" ColumnName="isParasites" />
@@ -1926,7 +3315,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TStates">
-            <EntityTypeMapping TypeName="capstoneModel.TState">
+            <EntityTypeMapping TypeName="Model.TState">
               <MappingFragment StoreEntitySet="TStates">
                 <ScalarProperty Name="strStateName" ColumnName="strStateName" />
                 <ScalarProperty Name="strStateCode" ColumnName="strStateCode" />
@@ -1935,7 +3324,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TUrogenitalInfos">
-            <EntityTypeMapping TypeName="capstoneModel.TUrogenitalInfo">
+            <EntityTypeMapping TypeName="Model.TUrogenitalInfo">
               <MappingFragment StoreEntitySet="TUrogenitalInfos">
                 <ScalarProperty Name="intHealthExamID" ColumnName="intHealthExamID" />
                 <ScalarProperty Name="isBloodSeen" ColumnName="isBloodSeen" />
@@ -1950,17 +3339,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TUserRoleMappings">
-            <EntityTypeMapping TypeName="capstoneModel.TUserRoleMapping">
-              <MappingFragment StoreEntitySet="TUserRoleMapping">
-                <ScalarProperty Name="intRoleID" ColumnName="intRoleID" />
-                <ScalarProperty Name="intUserID" ColumnName="intUserID" />
-                <ScalarProperty Name="intUserRoleID" ColumnName="intUserRoleID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TUsers">
-            <EntityTypeMapping TypeName="capstoneModel.TUser">
+            <EntityTypeMapping TypeName="Model.TUser">
               <MappingFragment StoreEntitySet="TUsers">
                 <ScalarProperty Name="intRoleID" ColumnName="intRoleID" />
                 <ScalarProperty Name="strPassword" ColumnName="strPassword" />
@@ -1970,7 +3350,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVaccinations">
-            <EntityTypeMapping TypeName="capstoneModel.TVaccination">
+            <EntityTypeMapping TypeName="Model.TVaccination">
               <MappingFragment StoreEntitySet="TVaccinations">
                 <ScalarProperty Name="strRabiesNumber" ColumnName="strRabiesNumber" />
                 <ScalarProperty Name="strVaccineDesc" ColumnName="strVaccineDesc" />
@@ -1982,7 +3362,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVisitEmployees">
-            <EntityTypeMapping TypeName="capstoneModel.TVisitEmployee">
+            <EntityTypeMapping TypeName="Model.TVisitEmployee">
               <MappingFragment StoreEntitySet="TVisitEmployees">
                 <ScalarProperty Name="intEmployeeID" ColumnName="intEmployeeID" />
                 <ScalarProperty Name="intVisitID" ColumnName="intVisitID" />
@@ -1991,7 +3371,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVisitMedications">
-            <EntityTypeMapping TypeName="capstoneModel.TVisitMedication">
+            <EntityTypeMapping TypeName="Model.TVisitMedication">
               <MappingFragment StoreEntitySet="TVisitMedications">
                 <ScalarProperty Name="intQuantity" ColumnName="intQuantity" />
                 <ScalarProperty Name="dtmDatePrescribed" ColumnName="dtmDatePrescribed" />
@@ -2002,7 +3382,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVisitReasons">
-            <EntityTypeMapping TypeName="capstoneModel.TVisitReason">
+            <EntityTypeMapping TypeName="Model.TVisitReason">
               <MappingFragment StoreEntitySet="TVisitReasons">
                 <ScalarProperty Name="strVisitReason" ColumnName="strVisitReason" />
                 <ScalarProperty Name="intVisitReasonID" ColumnName="intVisitReasonID" />
@@ -2010,7 +3390,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVisits">
-            <EntityTypeMapping TypeName="capstoneModel.TVisit">
+            <EntityTypeMapping TypeName="Model.TVisit">
               <MappingFragment StoreEntitySet="TVisits">
                 <ScalarProperty Name="dtmDateOfVist" ColumnName="dtmDateOfVist" />
                 <ScalarProperty Name="intVisitReasonID" ColumnName="intVisitReasonID" />
@@ -2020,7 +3400,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVisitServices">
-            <EntityTypeMapping TypeName="capstoneModel.TVisitService">
+            <EntityTypeMapping TypeName="Model.TVisitService">
               <MappingFragment StoreEntitySet="TVisitServices">
                 <ScalarProperty Name="intServiceID" ColumnName="intServiceID" />
                 <ScalarProperty Name="intVisitID" ColumnName="intVisitID" />
@@ -2028,7 +3408,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="uspAddAbdomenInfos1" FunctionName="Model.Store.uspAddAbdomenInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddHealthExam1" FunctionName="Model.Store.uspAddHealthExam" />
+          <FunctionImportMapping FunctionImportName="uspAddHeartInfos1" FunctionName="Model.Store.uspAddHeartInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddLunglInfos1" FunctionName="Model.Store.uspAddLunglInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddMusculoskeletalInfos1" FunctionName="Model.Store.uspAddMusculoskeletalInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddNoseThroatInfo1" FunctionName="Model.Store.uspAddNoseThroatInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddOwner1" FunctionName="Model.Store.uspAddOwner" />
+          <FunctionImportMapping FunctionImportName="uspAddPetVisit1" FunctionName="Model.Store.uspAddPetVisit" />
+          <FunctionImportMapping FunctionImportName="uspAddService1" FunctionName="Model.Store.uspAddService" />
+          <FunctionImportMapping FunctionImportName="uspAddUrogenitalInfos1" FunctionName="Model.Store.uspAddUrogenitalInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddVaccinations1" FunctionName="Model.Store.uspAddVaccinations" />
+          <FunctionImportMapping FunctionImportName="uspAddVisit1" FunctionName="Model.Store.uspAddVisit" />
+          <FunctionImportMapping FunctionImportName="uspAddVisitEmployee1" FunctionName="Model.Store.uspAddVisitEmployee" />
+          <FunctionImportMapping FunctionImportName="uspAddVisitMedication1" FunctionName="Model.Store.uspAddVisitMedication" />
+          <FunctionImportMapping FunctionImportName="uspAddVisitService1" FunctionName="Model.Store.uspAddVisitService" />
+          <FunctionImportMapping FunctionImportName="uspUpdateEmployee1" FunctionName="Model.Store.uspUpdateEmployee" />
+          <FunctionImportMapping FunctionImportName="uspUpdateMedication1" FunctionName="Model.Store.uspUpdateMedication" />
+          <FunctionImportMapping FunctionImportName="uspUpdateOwner1" FunctionName="Model.Store.uspUpdateOwner" />
+          <FunctionImportMapping FunctionImportName="uspUpdateService1" FunctionName="Model.Store.uspUpdateService" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -2044,7 +3443,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
