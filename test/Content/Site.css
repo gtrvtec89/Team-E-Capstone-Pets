@@ -23,6 +23,32 @@
     margin: auto;
 }
 
+.flex-container {
+    display: flex;
+    border: ridge;
+    padding: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.flex-row {
+    width: 50%;
+}
+
+.form-group-inline {
+    margin-bottom: 15px;
+    width: 60%;
+    display: inline-grid;
+}
+
+.text-area {
+    display: inline-grid;
+    width: 60px;
+    margin: 3px;
+}
+
+
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
