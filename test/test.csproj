@@ -144,6 +144,7 @@
       <DependentUpon>Capstone.edmx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OwnerHomeController.cs" />
     <Compile Include="Controllers\TBreedsController.cs" />
     <Compile Include="Controllers\TEmployeesController.cs" />
     <Compile Include="Controllers\THealthExamController.cs" />
@@ -423,6 +424,9 @@
     <Content Include="Views\TMethods\Index.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\OwnerHome\Index.cshtml" />
+    <Content Include="Views\OwnerHome\About.cshtml" />
+    <Content Include="Views\OwnerHome\Help.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

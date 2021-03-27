@@ -2,9 +2,10 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url('Images/wallpaper-1945409.jpg');
-    background-color: #fff;
+    background-color: black;
     overflow:hidden;
     background-size:cover;
+    background-repeat:no-repeat;
 }
 
 
@@ -12,11 +13,12 @@
     padding-left: 15px;
     padding-right: 15px;
     background-color: white;
-    border: 30px solid #6495ed;
+    border: 23px solid #6495ed;
     max-height: 500px;
-    overflow-y:auto;
-    width:auto;
-    margin:25px;
+    overflow-y: auto;
+    width: auto;
+    margin: 25px;
+    background-repeat: no-repeat;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -103,6 +105,14 @@ h4{
     background-color: RoyalBlue;
     border-color: midnightblue;
     color: white;
+}
+
+.btn-edit {
+    background-color: yellow;
+    color: black;
+    font-family: Calibri;
+    height: auto;
+    width: auto;
 }
 
 

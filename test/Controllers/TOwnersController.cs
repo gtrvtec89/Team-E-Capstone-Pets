@@ -17,7 +17,10 @@ namespace test.Controllers
         // GET: TOwners
         public ActionResult Index()
         {
-            var tOwners = db.TOwners.Include(t => t.TState);
+            var tOwners = db.TOwners
+                .Include(t => t.TState)
+                .Include(t => t.TUser)
+                .Include(t => t.TGender);
             return View(tOwners.ToList());
         }
 
@@ -40,6 +43,8 @@ namespace test.Controllers
         public ActionResult Create()
         {
             ViewBag.intStateID = new SelectList(db.TStates, "intStateID", "strStateCode");
+            ViewBag.intUserID = new SelectList(db.TUsers, "intUserID", "strUserName");
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender");
             return View();
         }
 
@@ -48,7 +53,7 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes,isActive,intUserID")] TOwner tOwner)
+        public ActionResult Create([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes,intUserID")] TOwner tOwner)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +63,8 @@ namespace test.Controllers
             }
 
             ViewBag.intStateID = new SelectList(db.TStates, "intStateID", "strStateCode", tOwner.intStateID);
+            ViewBag.intUserID = new SelectList(db.TUsers, "intUserID", "strUserName", tOwner.intUserID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tOwner.intGenderID);
             return View(tOwner);
         }
 
@@ -74,6 +81,8 @@ namespace test.Controllers
                 return HttpNotFound();
             }
             ViewBag.intStateID = new SelectList(db.TStates, "intStateID", "strStateCode", tOwner.intStateID);
+            ViewBag.intUserID = new SelectList(db.TUsers, "intUserID", "strUserName", tOwner.intUserID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tOwner.intGenderID);
             return View(tOwner);
         }
 
@@ -91,6 +100,9 @@ namespace test.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.intStateID = new SelectList(db.TStates, "intStateID", "strStateCode", tOwner.intStateID);
+            ViewBag.intUserID = new SelectList(db.TUsers, "intUserID", "strUserName", tOwner.intUserID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tOwner.intGenderID);
+
             return View(tOwner);
         }
 

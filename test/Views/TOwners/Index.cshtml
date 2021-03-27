@@ -6,112 +6,111 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p style="margin-left: 25px">
+	<button class="btn-success" onclick="location.href='@Url.Action("Create", "TOwners")';return false;">
+		<i class="fas fa-plus"></i>  Create New
+	</button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.strFirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strLastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.intGenderID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strCity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strZip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strPhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strOwner2Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strOwner2PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strOwner2Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strNotes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.intUserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TState.strStateCode)
-        </th>
-        <th></th>
-    </tr>
+<div class="body-content">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.strFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.intGenderID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strCity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strZip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strPhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strOwner2Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strOwner2PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strOwner2Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strNotes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.intUserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TState.strStateCode)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.intOwnerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.intOwnerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.intOwnerID })
-        </td>
-    </tr>
-}
+	<div class="form-horizontal">
+		<table class="table">
+			<tr>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("First Name")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Last Name")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Gender")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Address")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("City")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("State")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Zip")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Phone #")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Email")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Owner 2 Name")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Owner 2 Phone #")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Owner 2 Email")
+				</th>
+					
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Username")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("View | Edit | Delete")
+				</th>
+			</tr>
 
-</table>
+			@foreach (var item in Model) {
+		<tr>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strFirstName)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strLastName)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.TGender.strGender)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strAddress)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strCity)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.TState.strStateCode)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strZip)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strPhoneNumber)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strEmail)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strOwner2Name)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strOwner2PhoneNumber)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.strOwner2Email)
+			</td>
+			<td style="white-space:nowrap">
+				@Html.DisplayFor(modelItem => item.TUser.strUserName)
+			</td>
+
+			<td style="white-space:nowrap">
+				<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TOwners", new { id = item.intOwnerID })' ;return false;>  <i class="far fa-eye"></i></a> 
+				<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TOwners", new { id = item.intOwnerID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+				<a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TOwners", new { id = item.intOwnerID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+			</td>
+		</tr>
+			}
+
+		</table>
+			</div>
+</div>
