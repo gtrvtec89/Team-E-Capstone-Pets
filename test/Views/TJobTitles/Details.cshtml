@@ -4,21 +4,23 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Job Description Details</h2>
 
-<div>
-    <h4>TJobTitle</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.strJobTitleDesc)
-        </dt>
+<div class="body-content">
+	<div>
+		<h4>Job Descriptions</h4>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				Job Description
+			</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.strJobTitleDesc)
-        </dd>
+			<dd>
+				@Html.DisplayFor(model => model.strJobTitleDesc)
+			</dd>
 
-    </dl>
+		</dl>
+	</div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.intJobTitleID }) |

@@ -1,0 +1,26 @@
+﻿@model test.TMethod
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Medication Method Detail</h2>
+
+<div class="body-content">
+    <h4>Medication Method</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Form
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strMethod)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intMethodID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

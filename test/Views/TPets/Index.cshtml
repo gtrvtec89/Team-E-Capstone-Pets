@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.strPetName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.intPetTypeID)
+            @Html.DisplayNameFor(model => model.TPetType.intPetTypeID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.intGenderID)
@@ -57,7 +57,7 @@
             @Html.DisplayNameFor(model => model.strNotes)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isActive)
+            @Html.DisplayNameFor(model => model.isDeceased)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.intOwnerID)
@@ -113,7 +113,7 @@
             @Html.DisplayFor(modelItem => item.strNotes)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.isActive)
+            @Html.DisplayFor(modelItem => item.isDeceased)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.intOwnerID)

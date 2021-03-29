@@ -1,0 +1,95 @@
+﻿
+@{
+	ViewBag.Title = "Settings";
+}
+
+<h2>Settings</h2>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<style>
+
+	.body-content {
+		background-color: white;
+		border: 30px solid #6495ed;
+		height: 800px;
+		width: 30%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+
+	.rowonebtn {
+		background-color: DodgerBlue;
+		border: none;
+		color: white;
+		padding: 12px 16px;
+		font-size: 16px;
+		cursor: pointer;
+		display: inline-grid;
+		width: 200px;
+		height: 150px;
+		font-size: 20px;
+		color: black;
+	}
+
+	.rowtwobtn {
+		background-color: DodgerBlue;
+		border: none;
+		color: white;
+		padding: 12px 16px;
+		font-size: 16px;
+		cursor: pointer;
+		display: inline-grid;
+		width: 200px;
+		height: 150px;
+		font-size: 20px;
+		color: black;
+	}
+</style>
+
+<body>
+<div class="body-content">
+
+	<div style="margin-left:87px;">
+
+		<button type="submit" class="settingsbtn" name="btnSvcTypes">
+			<i class="fas fa-notes-medical" , style="font-size:45px"></i>
+			@Html.ActionLink("Add Service Type", "Create", "TServiceTypes")
+		</button>
+
+		<button type="submit" class="settingsbtn" name="btnPetTypes">
+			<i class="fas fa-paw" , style="font-size:45px"></i>
+			@Html.ActionLink("Add Pet Type", "Create", "TPetTypes")
+		</button>
+
+		<button type="submit" class="settingsbtn" name="btnBreeds">
+			<i class="fas fa-dog" , style="font-size:45px"></i>
+			@Html.ActionLink("Add Breed", "Create", "TBreeds")
+		</button>
+
+	</div>
+
+	<br />
+	<br />
+
+	<div style="margin-left:87px;">
+		<button type="submit" class="rowtwobtn" name="btnMedicationType">
+			<i class="fas fa-prescription-bottle-alt" , style="font-size:45px"></i>
+			@Html.ActionLink("Add Medication Type", "Create", "TMethods")
+		</button>
+		<button type="submit" class="rowtwobtn" name="btnJobTitles">
+			<i class="fas fa-id-badge" , style="font-size:45px"></i>
+			@Html.ActionLink("Add User", "Create", "TUsers")
+		</button>
+		<button type="submit" class="rowtwobtn" name="btnRole">
+			<i class="fas fa-user-tag" , style="font-size:45px"></i>
+			@Html.ActionLink("Add Employee Role", "Create", "TRoles")
+		</button>
+
+	</div>
+
+</div>
+</body>

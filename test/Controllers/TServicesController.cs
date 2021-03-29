@@ -12,12 +12,13 @@ namespace test.Controllers
 {
     public class TServicesController : Controller
     {
-        private capstoneEntities db = new capstoneEntities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TServices
         public ActionResult Index()
         {
-            return View(db.TServices.ToList());
+            var tService = db.TServices.Include(t => t.TServiceType);
+            return View(tService.ToList());
         }
 
         // GET: TServices/Details/5
@@ -38,6 +39,7 @@ namespace test.Controllers
         // GET: TServices/Create
         public ActionResult Create()
         {
+            ViewBag.intServiceTypeID = new SelectList(db.TServiceTypes, "intServiceTypeID", "strServiceType");
             return View();
         }
 
@@ -54,7 +56,7 @@ namespace test.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.intServiceTypeID = new SelectList(db.TServiceTypes, "intServiceTypeID", "strServiceType", tService.intServiceTypeID);
             return View(tService);
         }
 
@@ -70,6 +72,7 @@ namespace test.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.intServiceTypeID = new SelectList(db.TServiceTypes, "intServiceTypeID", "strServiceType", tService.intServiceTypeID);
             return View(tService);
         }
 
@@ -86,6 +89,7 @@ namespace test.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.intServiceTypeID = new SelectList(db.TServiceTypes, "intServiceTypeID", "strServiceType", tService.intServiceTypeID);
             return View(tService);
         }
 

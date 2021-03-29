@@ -12,7 +12,7 @@ namespace test.Controllers
 {
     public class TUsersController : Controller
     {
-        private capstoneEntities db = new capstoneEntities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TUsers
         public ActionResult Index()
@@ -40,9 +40,10 @@ namespace test.Controllers
 
         // GET: TUsers/Create
        
+
         public ActionResult Create()
         {
-            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRole");
+            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRoleName");
             return View();
         }
 
@@ -60,7 +61,7 @@ namespace test.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRole", tUser.intRoleID);
+            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRoleName", tUser.intRoleID);
             return View(tUser);
         }
 
@@ -76,7 +77,7 @@ namespace test.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRole", tUser.intRoleID);
+            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRoleName", tUser.intRoleID);
             return View(tUser);
         }
 
@@ -93,7 +94,7 @@ namespace test.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRole", tUser.intRoleID);
+            ViewBag.intRoleID = new SelectList(db.TRoles, "intRoleID", "strRoleName", tUser.intRoleID);
             return View(tUser);
         }
 
