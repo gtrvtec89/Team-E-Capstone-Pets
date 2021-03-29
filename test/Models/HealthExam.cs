@@ -28,6 +28,11 @@ namespace test.Models
         public bool isInfection { get; set; }
         public bool isSclerosisLeft { get; set; }
         public bool isSclerosisRight { get; set; }
+        public bool isCataractLeft { get; set; }
+        public bool isCataractRight { get; set; }
+        public bool isEyeInflamed { get; set; }
+        public bool isEyelidTumor { get; set; }
+
 
         // Ear Status Info Parameters 
         public bool isEarNormal { get; set; }
