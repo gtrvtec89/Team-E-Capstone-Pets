@@ -1,14 +1,10 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewBag.Title - My ASP.NET Application</title>
-	@Styles.Render("~/Content/css")
-	<script src="https://kit.fontawesome.com/a75ff89abd.js" crossorigin="anonymous"></script>
-	@Scripts.Render("~/bundles/modernizr")
-</head>
+﻿
+@{
+	ViewBag.Title = "Help";
+}
 
+
+<h2>@ViewBag.Title</h2>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container" style="margin: 0px">
@@ -29,9 +25,9 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					@*<li><a style="display:block; text-align:left; color:cornflowerblue; font-family:Calibri; font-size: 25px">Capstone Pets</a></li>*@
-					<li>@Html.ActionLink("Home", "Index", "Home")</li>
-					<li>@Html.ActionLink("Help", "Help", "Home")</li>
-					<li>@Html.ActionLink("About", "About", "Home")</li>
+					<li>@Html.ActionLink("Home", "Index", "OwnerHome")</li>
+					<li>@Html.ActionLink("Help", "Help", "OwnerHome")</li>
+					<li>@Html.ActionLink("About", "About", "OwnerHome")</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>@Html.ActionLink("Sign Out", "Login", "Home")</li>
@@ -39,27 +35,7 @@
 			</div>
 		</div>
 	</div>
-
-
-	@*<div class="container body-content">
-			@RenderBody()
-			<hr />
-			<footer>
-				<p>&copy; @DateTime.Now.Year - Capstone Pets</p>
-			</footer>
-		</div>*@
-
-	@RenderBody()
-
-	<footer>
-		<p>&copy; @DateTime.Now.Year - Capstone Pets</p>
-	</footer>
-
-
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/bootstrap")
-	@RenderSection("scripts", required: false)
 </body>
+<p>For any assistance please contact the developers. Their contact information is listed in the About Us link.</p>
 
 
-</html>

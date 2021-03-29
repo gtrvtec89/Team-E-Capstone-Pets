@@ -144,6 +144,7 @@
       <DependentUpon>Capstone.edmx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OwnerHomeController.cs" />
     <Compile Include="Controllers\TBreedsController.cs" />
     <Compile Include="Controllers\TEmployeesController.cs" />
     <Compile Include="Controllers\THealthExamController.cs" />
