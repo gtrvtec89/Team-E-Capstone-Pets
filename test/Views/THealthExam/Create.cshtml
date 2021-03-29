@@ -11,10 +11,21 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="body-content" style="max-height: 650px">
+    <div class="body-content" style="max-height: 575px">
         <div class="form-horizontal">
             @*<h2 style="text-decoration: none; text-align: center; font-weight: 900; ">Health Exam</h2>*@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="flex-container">
+                <p>
+                    Date: @ViewBag.Date
+                    <br />
+                    Owner: @ViewBag.Owner
+                <br />
+                    Patient: @ViewBag.Patient
+                <br />
+                    Patient ID: @ViewBag.PatientID
+                </p>
+            </div>
             <div class="flex-container">
                 <div class="flex-row">
                     <div class="form-group-inline">
@@ -41,7 +52,7 @@
                     <div class="form-group" style="display:inline-grid; width: 60%; margin: 3px;">
                         @Html.LabelFor(model => model.strNotes, "Notes", new { htmlAttributes = new { @class = "control-label col-md-2" }, style = "font-size: 16px; font-weight: 700; padding-left:  15px;" })
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.strNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width: 910px; height: 170px;" });
+                            @Html.TextAreaFor(model => model.strNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width: 910px; height: 170px;" })
                             @Html.ValidationMessageFor(model => model.strNotes, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -1007,8 +1018,7 @@
 
             <div class="flex-container" style="border: none; padding: 15px;">
                 <div style="margin-right: 20px;">
-                    <a href='@Url.Action("Index", "Home")' class="btn btn-warning">Cancel</a>
-                    @*@Html.ActionLink("Back to List", "Index")*@
+                    <a class="btn btn-warning" id="btnCancel">Cancel</a>
                 </div>
                 <div>
                     <input type="submit" value="Submit" class="btn btn-default" />
@@ -1022,9 +1032,30 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
     $(function () {
+        $("#btnCancel").click(function (e) {
+            var bResponse = confirm('Are you sure you want to exit?');
+
+        if (bResponse === true) {
+            ////console.log("lnkLogout_Confirm clciked.");
+            var url = '@Url.Action("Index", "Home")';
+            window.location.href = url;
+        }
+        return bResponse;
+        });
+    });
+
+    $(function () {
         $("#isEyeNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherEyeStatusInformation").hide();
+                $("#isDischarge").prop("checked", false);
+                $("#isInfection").prop("checked", false);
+                $("#isSclerosisLeft").prop("checked", false);
+                $("#isSclerosisRight").prop("checked", false);
+                $("#isCataractLeft").prop("checked", false);
+                $("#isCataractRight").prop("checked", false);
+                $("#isEyeInflamed").prop("checked", false);
+                $("#isEyelidTumor").prop("checked", false);
             }
             else {
                 $("#divAllOtherEyeStatusInformation").show();
@@ -1036,6 +1067,11 @@
         $("#isEarNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherEarStatusInformation").hide();
+                $("#isEarInflamed").prop("checked", false);
+                $("#isEarTumor").prop("checked", false);
+                $("#isDirty").prop("checked", false);
+                $("#isEarPainful").prop("checked", false);
+                $("#isExcessiveHair").prop("checked", false);
             }
             else {
                 $("#divAllOtherEarStatusInformation").show();
@@ -1047,6 +1083,14 @@
         $("#isSkinNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherSkinStatusInformation").hide();
+                $("#isScaly").prop("checked", false);
+                $("#isInfected").prop("checked", false);
+                $("#isMatted").prop("checked", false);
+                $("#isSkinScrape").prop("checked", false);
+                $("#isPruritus").prop("checked", false);
+                $("#isHairLoss").prop("checked", false);
+                $("#isMass").prop("checked", false);
+                $("#isSkinParasites").prop("checked", false);
             }
             else {
                 $("#divAllOtherSkinStatusInformation").show();
@@ -1058,6 +1102,12 @@
         $("#isMouthNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherMouthStatusInformation").hide();
+                $("#isMouthTumor").prop("checked", false);
+                $("#isGingivitis").prop("checked", false);
+                $("#isPeriodontitis").prop("checked", false);
+                $("#isTartarBuildup").prop("checked", false);
+                $("#isLooseTeeth").prop("checked", false);
+                $("#isBiteOVerUnder").prop("checked", false);
             }
             else {
                 $("#divAllOtherMouthStatusInformation").show();
@@ -1069,6 +1119,10 @@
         $("#isNoseThroatNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherNoseStatusInformation").hide();
+                $("#isLargeLymphNodes").prop("checked", false);
+                $("#isInflamedThroat").prop("checked", false);
+                $("#isNasalDishcharge").prop("checked", false);
+                $("#isInflamedTonsils").prop("checked", false);
             }
             else {
                 $("#divAllOtherNoseStatusInformation").show();
@@ -1080,6 +1134,10 @@
         $("#isGINormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherGIStatusInformation").hide();
+                $("#isExcessiveGas").prop("checked", false);
+                $("#isGIParasites").prop("checked", false);
+                $("#isAbnormalFeces").prop("checked", false);
+                $("#isAnorexia").prop("checked", false);
             }
             else {
                 $("#divAllOtherGIStatusInformation").show();
@@ -1091,6 +1149,14 @@
         $("#isNeurologicalNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherNeurologicalStatusInformation").hide();
+                $("#isPLRL").prop("checked", false);
+                $("#isPLRR").prop("checked", false);
+                $("#isCPLF").prop("checked", false);
+                $("#isCPRF").prop("checked", false);
+                $("#isCPLR").prop("checked", false);
+                $("#isCPRR").prop("checked", false);
+                $("#isPalpebralL").prop("checked", false);
+                $("#isPalpebralR").prop("checked", false);
             }
             else {
                 $("#divAllOtherNeurologicalStatusInformation").show();
@@ -1102,6 +1168,12 @@
         $("#isAbdomenNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherAbdomenStatusInformation").hide();
+                $("#isAbnormalMass").prop("checked", false);
+                $("#isAbdomenPainful").prop("checked", false);
+                $("#isBloated").prop("checked", false);
+                $("#isEnlarged").prop("checked", false);
+                $("#isFluid").prop("checked", false);
+                $("#isHernia").prop("checked", false);
             }
             else {
                 $("#divAllOtherAbdomenStatusInformation").show();
@@ -1113,6 +1185,13 @@
         $("#isUrogenitalNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherUrogenitalStatusInformation").hide();
+                $("#isUrogenAbnormalUrination").prop("checked", false);
+                $("#isGenitalDischarge").prop("checked", false);
+                $("#isAnalSacs").prop("checked", false);
+                $("#isRectal").prop("checked", false);
+                $("#isMammaryTumors").prop("checked", false);
+                $("#isAbnormalTesticles").prop("checked", false);
+                $("#isBloodSeen").prop("checked", false);
             }
             else {
                 $("#divAllOtherUrogenitalStatusInformation").show();
@@ -1124,6 +1203,13 @@
         $("#isMusculoskeletalNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherMusculoskeletalStatusInformation").hide();
+                $("#isJointProblems").prop("checked", false);
+                $("#isNailProblems").prop("checked", false);
+                $("#isLamenessLF").prop("checked", false);
+                $("#isLamenessRF").prop("checked", false);
+                $("#isLamenessLR").prop("checked", false);
+                $("#isLamenessRR").prop("checked", false);
+                $("#isLigaments").prop("checked", false);
             }
             else {
                 $("#divAllOtherMusculoskeletalStatusInformation").show();
@@ -1135,6 +1221,12 @@
         $("#isLungNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherLungStatusInformation").hide();
+                $("#isBreathingDifficulty").prop("checked", false);
+                $("#isRapidRespiration").prop("checked", false);
+                $("#isTrachealPinchPositive").prop("checked", false);
+                $("#isTrachealPinchNegative").prop("checked", false);
+                $("#isCongestion").prop("checked", false);
+                $("#isAbnormalSound").prop("checked", false);
             }
             else {
                 $("#divAllOtherLungStatusInformation").show();
@@ -1146,6 +1238,10 @@
         $("#isHeartNormal").click(function () {
             if ($(this).is(':checked')) {
                 $("#divAllOtherHeartStatusInformation").hide();
+                $("#isMurMur").prop("checked", false);
+                $("#isFast").prop("checked", false);
+                $("#isSlow").prop("checked", false);
+                $("#isMuffled").prop("checked", false);
             }
             else {
                 $("#divAllOtherHeartStatusInformation").show();
