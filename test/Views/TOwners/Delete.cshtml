@@ -139,12 +139,12 @@
 			@using (Html.BeginForm()) {
 				@Html.AntiForgeryToken()
 
-		<div class="form-actions no-color">
-			<input type="submit" value="Delete" class="btn-danger" />
-			<button class="btn-warning" onclick="location.href='@Url.Action("Index", "TOwners")';return false;">
-				<i class="fas fa-times"></i>  Cancel
-			</button>
-		</div>
+				<div class="form-actions no-color">
+					<input type="submit" value="Delete" class="btn-danger" />
+					<button class="btn-warning" onclick="location.href='@Url.Action("Index", "TOwners")';return false;">
+						<i class="fas fa-times"></i>  Cancel
+					</button>
+				</div>
 			}
 
 		</div>

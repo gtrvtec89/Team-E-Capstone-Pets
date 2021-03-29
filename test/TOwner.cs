@@ -11,8 +11,11 @@ namespace test
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class TOwner
+	using System.Data;
+	using System.Data.SqlClient;
+	using System.Diagnostics;
+
+	public partial class TOwner
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TOwner()
@@ -41,5 +44,111 @@ namespace test
         public virtual TUser TUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TPet> TPets { get; set; }
-    }
+
+
+        /// <summary>
+        /// Insert new Owner
+        /// </summary>
+        /// <param name="strFirstName">Owner first name required</param>
+        /// <param name="strLastName">Owner Last name required</param>
+        /// <param name="intGenderID">Owner gender required</param>
+        /// <param name="strAddress">Owner Address required</param>
+        /// <param name="strCity">Owner city required</param>
+        /// <param name="intStateID">Owner state required</param>
+        /// <param name="strZip">Owner zip required</param>
+        /// <param name="strPhoneNumber">Owner phone number required</param>
+        /// <param name="strEmail">Owner email required</param>
+        /// <param name="strOwner2Name">Owner 2 name required</param>
+        /// <param name="strOwner2PhoneNumber">Owner 2 phone number required</param>       
+        /// <param name="strOwner2Email">Owner 2 email required</param>
+        /// <param name="strNotes">Category description</param>
+        public static void InsertOwner(string strFirstName, string strLastName, int intGenderID, string strAddress, string strCity, int intStateID, string strZip, string strPhoneNumber, string strEmail, string strOwner2Name, string strOwner2PhoneNumber, string strOwner2Email, string strNotes) {
+            var context = new CapstoneEntities();
+            try {
+                var parameters = new[] {
+        new SqlParameter("@strFirstName", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strFirstName
+        },
+        new SqlParameter("@strLastName", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strLastName
+        },
+        new SqlParameter("@intGenderID", SqlDbType.Int)
+        {
+          Direction = ParameterDirection.Input,
+          Value = intGenderID
+        },
+        new SqlParameter("@strAddress", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strAddress
+        },
+        new SqlParameter("@strCity", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strCity
+        },
+        new SqlParameter("@intStateID", SqlDbType.Int)
+        {
+          Direction = ParameterDirection.Input,
+          Value = intStateID
+        },
+        new SqlParameter("@strZip", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strZip
+        },
+        new SqlParameter("@strPhoneNumber", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strPhoneNumber
+        },
+        new SqlParameter("@strEmail", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strEmail
+        },
+        new SqlParameter("@strOwner2Name", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strOwner2Name
+        },
+        new SqlParameter("@strOwner2PhoneNumber", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strOwner2PhoneNumber
+        },
+        new SqlParameter("@strOwner2Email", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strOwner2Email
+        },
+        new SqlParameter("@strNotes", SqlDbType.VarChar)
+        {
+          Direction = ParameterDirection.Input,
+          Value = strNotes
+        }
+      };
+                context.Database.ExecuteSqlCommand(
+                  // context.Database.ExecuteSqlRaw(
+                  "exec uspAddOwner @strFirstName, @strLastName, @intGenderID, @strAddress, @strCity, @intStateID, @strZip, @strPhoneNumber, @strEmail, @strOwner2Name, @strOwner2PhoneNumber, @strOwner2Email, @strNotes", parameters:
+                  parameters);
+
+                var newPrimaryKey = Convert.ToInt32(parameters[2].Value);
+                Debug.WriteLine(newPrimaryKey.ToString());
+
+
+            }
+            catch (Exception ex) {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+		internal static void InsertOwner(object strFirstName, object strLastName) {
+			throw new NotImplementedException();
+		}
+	}
 }

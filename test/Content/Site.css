@@ -14,12 +14,67 @@
     padding-right: 15px;
     background-color: white;
     border: 23px solid #6495ed;
-    max-height: 500px;
-    overflow-y: auto;
-    width: auto;
-    margin: 25px;
-    background-repeat: no-repeat;
+    max-height: 575px;
+    overflow-y: overlay;
+    overflow-x: overlay;
+    max-width: 1400px;
+    margin: auto;
 }
+
+/*Health Exam Page CSS - start*/
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    border: ridge;
+    padding: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 99%;
+}
+
+.flex-container > p {
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+.flex-row {
+    width: 50%;
+}
+
+.checkbox-mainlabel 
+{
+    width: 100%
+}
+
+.checkbox-mainlabel > h4 
+{
+    font-weight: 900;
+    margin-left: 15px;
+}
+
+.form-group-inline {
+    margin-bottom: 15px;
+    width: 60%;
+    display: inline-grid;
+}
+
+.text-area {
+    display: inline-grid;
+    width: 60px;
+    margin: 3px;
+}
+
+.check-box {
+    margin-bottom: 15px;
+    display: contents;
+}
+
+.check-box > label {
+   margin-right: 10px;
+}
+
+/*Health Exam Page CSS - end*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -32,7 +87,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 910px;
 }
 
 #test {
@@ -148,6 +203,24 @@ footer {
     font-size: 12px;
     padding-left: 2px;
     padding-top: 3px;
+}
+/* Style buttons */
+.home-btn {
+    height: 200px;
+    width: 200px;
+    margin: 18px;
+    background-color: cornflowerblue;
+    border: 3.2px solid black;
+    color: black;
+    font-family: Calibri;
+    font-size: x-large
+}
+
+/* Darker background on mouse-over */
+.home-btn:hover {
+    background-color: RoyalBlue;
+    border-color: midnightblue;
+    color:white;
 }
 
 .link-icon-edit:before {

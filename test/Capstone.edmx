@@ -23,7 +23,7 @@
           <Key>
             <PropertyRef Name="intBreedID" />
           </Key>
-          <Property Name="intBreedID" Type="int" Nullable="false" />
+          <Property Name="intBreedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="strBreedName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TEarStatusInfos">
@@ -789,11 +789,404 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="uspAddAbdomenInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalMass" Type="bit" Mode="In" />
+          <Parameter Name="isPainful" Type="bit" Mode="In" />
+          <Parameter Name="isBloated" Type="bit" Mode="In" />
+          <Parameter Name="isEnlarged" Type="bit" Mode="In" />
+          <Parameter Name="isFluid" Type="bit" Mode="In" />
+          <Parameter Name="isHernia" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddEarStatusInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isInflamed" Type="bit" Mode="In" />
+          <Parameter Name="isTumor" Type="bit" Mode="In" />
+          <Parameter Name="isDirty" Type="bit" Mode="In" />
+          <Parameter Name="isPainful" Type="bit" Mode="In" />
+          <Parameter Name="isExcessiveHair" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="strLastName" Type="varchar" Mode="In" />
+          <Parameter Name="intJobTitleID" Type="int" Mode="In" />
+          <Parameter Name="intUserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddEyeStatusInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isDischarge" Type="bit" Mode="In" />
+          <Parameter Name="isInfection" Type="bit" Mode="In" />
+          <Parameter Name="isSclerosisLeft" Type="bit" Mode="In" />
+          <Parameter Name="isSclerosisRight" Type="bit" Mode="In" />
+          <Parameter Name="isCataractLeft" Type="bit" Mode="In" />
+          <Parameter Name="isCataractRight" Type="bit" Mode="In" />
+          <Parameter Name="isInflamed" Type="bit" Mode="In" />
+          <Parameter Name="isEyelidTumor" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddGIInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isExcessiveGas" Type="bit" Mode="In" />
+          <Parameter Name="isParasites" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalFeces" Type="bit" Mode="In" />
+          <Parameter Name="isAnorexia" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddHealthExam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="dblWeight" Type="float" Mode="In" />
+          <Parameter Name="dblTemperature" Type="float" Mode="In" />
+          <Parameter Name="intHeartRate" Type="int" Mode="In" />
+          <Parameter Name="intRespRate" Type="int" Mode="In" />
+          <Parameter Name="intCapillaryRefillTime" Type="int" Mode="In" />
+          <Parameter Name="strMucousMembrane" Type="varchar" Mode="In" />
+          <Parameter Name="intVisitServiceID" Type="int" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspAddHeartInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isMurMur" Type="bit" Mode="In" />
+          <Parameter Name="isFast" Type="bit" Mode="In" />
+          <Parameter Name="isSlow" Type="bit" Mode="In" />
+          <Parameter Name="isMuffled" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddLunglInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isBreathingDifficulty" Type="bit" Mode="In" />
+          <Parameter Name="isRapidRespiration" Type="bit" Mode="In" />
+          <Parameter Name="isTrachealPinchPositive" Type="bit" Mode="In" />
+          <Parameter Name="isTrachealPinchNegative" Type="bit" Mode="In" />
+          <Parameter Name="isCongestion" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalSound" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strMedicationName" Type="varchar" Mode="In" />
+          <Parameter Name="strMedicationDesc" Type="varchar" Mode="In" />
+          <Parameter Name="dblCost" Type="money" Mode="In" />
+          <Parameter Name="dblPrice" Type="money" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="intQuantity" Type="int" Mode="In" />
+          <Parameter Name="intMethodID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddMouthInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isTumor" Type="bit" Mode="In" />
+          <Parameter Name="isGingivitis" Type="bit" Mode="In" />
+          <Parameter Name="isPeriodontitis" Type="bit" Mode="In" />
+          <Parameter Name="isTartarBuildup" Type="bit" Mode="In" />
+          <Parameter Name="isLooseTeeth" Type="bit" Mode="In" />
+          <Parameter Name="isBiteOVerUnder" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddMusculoskeletalInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isJointProblems" Type="bit" Mode="In" />
+          <Parameter Name="isNailProblems" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessLF" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessRF" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessLR" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessRR" Type="bit" Mode="In" />
+          <Parameter Name="isLigaments" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddNeurologicalInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isPLRL" Type="bit" Mode="In" />
+          <Parameter Name="isPLRR" Type="bit" Mode="In" />
+          <Parameter Name="isCPLF" Type="bit" Mode="In" />
+          <Parameter Name="isCPRF" Type="bit" Mode="In" />
+          <Parameter Name="isCPLR" Type="bit" Mode="In" />
+          <Parameter Name="isCPRR" Type="bit" Mode="In" />
+          <Parameter Name="isPalpebralL" Type="bit" Mode="In" />
+          <Parameter Name="isPalpebralR" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddNewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strUserName" Type="varchar" Mode="In" />
+          <Parameter Name="strPassword" Type="varchar" Mode="In" />
+          <Parameter Name="intRoleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddNoseThroatInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isLargeLymphNodes" Type="bit" Mode="In" />
+          <Parameter Name="isInflamedThroat" Type="bit" Mode="In" />
+          <Parameter Name="isNasalDishcharge" Type="bit" Mode="In" />
+          <Parameter Name="isInflamedTonsils" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="strLastName" Type="varchar" Mode="In" />
+          <Parameter Name="intGenderID" Type="int" Mode="In" />
+          <Parameter Name="strAddress" Type="varchar" Mode="In" />
+          <Parameter Name="strCity" Type="varchar" Mode="In" />
+          <Parameter Name="intStateID" Type="int" Mode="In" />
+          <Parameter Name="strZip" Type="varchar" Mode="In" />
+          <Parameter Name="strPhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strEmail" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2Name" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2Email" Type="varchar" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="intUserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddPets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strPetNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strMicrochipID" Type="varchar" Mode="In" />
+          <Parameter Name="strPetName" Type="varchar" Mode="In" />
+          <Parameter Name="intPetTypeID" Type="int" Mode="In" />
+          <Parameter Name="intGenderID" Type="int" Mode="In" />
+          <Parameter Name="intBreedID" Type="int" Mode="In" />
+          <Parameter Name="dtmDateofBirth" Type="date" Mode="In" />
+          <Parameter Name="dblWeight" Type="float" Mode="In" />
+          <Parameter Name="isBlind" Type="bit" Mode="In" />
+          <Parameter Name="isDeaf" Type="bit" Mode="In" />
+          <Parameter Name="isAggressive" Type="bit" Mode="In" />
+          <Parameter Name="isDeceased" Type="bit" Mode="In" />
+          <Parameter Name="isAllergic" Type="bit" Mode="In" />
+          <Parameter Name="strColor" Type="varchar" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="intOwnerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddPetVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="dblWeight" Type="float" Mode="In" />
+          <Parameter Name="dblTemperature" Type="float" Mode="In" />
+          <Parameter Name="intHeartRate" Type="int" Mode="In" />
+          <Parameter Name="intRespRate" Type="int" Mode="In" />
+          <Parameter Name="intCapillaryRefillTime" Type="int" Mode="In" />
+          <Parameter Name="strMucousMembrane" Type="varchar" Mode="In" />
+          <Parameter Name="intVisitServiceID" Type="int" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="isEyeNormal" Type="bit" Mode="In" />
+          <Parameter Name="isDischarge" Type="bit" Mode="In" />
+          <Parameter Name="isInfection" Type="bit" Mode="In" />
+          <Parameter Name="isSclerosisLeft" Type="bit" Mode="In" />
+          <Parameter Name="isSclerosisRight" Type="bit" Mode="In" />
+          <Parameter Name="isCataractLeft" Type="bit" Mode="In" />
+          <Parameter Name="isCataractRight" Type="bit" Mode="In" />
+          <Parameter Name="isEyeInflamed" Type="bit" Mode="In" />
+          <Parameter Name="isEyelidTumor" Type="bit" Mode="In" />
+          <Parameter Name="isEarNormal" Type="bit" Mode="In" />
+          <Parameter Name="isEarInflamed" Type="bit" Mode="In" />
+          <Parameter Name="isEarTumor" Type="bit" Mode="In" />
+          <Parameter Name="isDirty" Type="bit" Mode="In" />
+          <Parameter Name="isEarPainful" Type="bit" Mode="In" />
+          <Parameter Name="isExcessiveHair" Type="bit" Mode="In" />
+          <Parameter Name="isSkinNormal" Type="bit" Mode="In" />
+          <Parameter Name="isScaly" Type="bit" Mode="In" />
+          <Parameter Name="isInfected" Type="bit" Mode="In" />
+          <Parameter Name="isMatted" Type="bit" Mode="In" />
+          <Parameter Name="isSkinScrape" Type="bit" Mode="In" />
+          <Parameter Name="isPruritus" Type="bit" Mode="In" />
+          <Parameter Name="isHairLoss" Type="bit" Mode="In" />
+          <Parameter Name="isMass" Type="bit" Mode="In" />
+          <Parameter Name="isSkinParasites" Type="bit" Mode="In" />
+          <Parameter Name="isMouthNormal" Type="bit" Mode="In" />
+          <Parameter Name="isMouthTumor" Type="bit" Mode="In" />
+          <Parameter Name="isGingivitis" Type="bit" Mode="In" />
+          <Parameter Name="isPeriodontitis" Type="bit" Mode="In" />
+          <Parameter Name="isTartarBuildup" Type="bit" Mode="In" />
+          <Parameter Name="isLooseTeeth" Type="bit" Mode="In" />
+          <Parameter Name="isBiteOVerUnder" Type="bit" Mode="In" />
+          <Parameter Name="isNoseThroatNormal" Type="bit" Mode="In" />
+          <Parameter Name="isLargeLymphNodes" Type="bit" Mode="In" />
+          <Parameter Name="isInflamedThroat" Type="bit" Mode="In" />
+          <Parameter Name="isNasalDishcharge" Type="bit" Mode="In" />
+          <Parameter Name="isInflamedTonsils" Type="bit" Mode="In" />
+          <Parameter Name="isGINormal" Type="bit" Mode="In" />
+          <Parameter Name="isExcessiveGas" Type="bit" Mode="In" />
+          <Parameter Name="isGIParasites" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalFeces" Type="bit" Mode="In" />
+          <Parameter Name="isAnorexia" Type="bit" Mode="In" />
+          <Parameter Name="isNeurologicalNormal" Type="bit" Mode="In" />
+          <Parameter Name="isPLRL" Type="bit" Mode="In" />
+          <Parameter Name="isPLRR" Type="bit" Mode="In" />
+          <Parameter Name="isCPLF" Type="bit" Mode="In" />
+          <Parameter Name="isCPRF" Type="bit" Mode="In" />
+          <Parameter Name="isCPLR" Type="bit" Mode="In" />
+          <Parameter Name="isCPRR" Type="bit" Mode="In" />
+          <Parameter Name="isPalpebralL" Type="bit" Mode="In" />
+          <Parameter Name="isPalpebralR" Type="bit" Mode="In" />
+          <Parameter Name="isAbdomenNormal" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalMass" Type="bit" Mode="In" />
+          <Parameter Name="isAbdomenPainful" Type="bit" Mode="In" />
+          <Parameter Name="isBloated" Type="bit" Mode="In" />
+          <Parameter Name="isEnlarged" Type="bit" Mode="In" />
+          <Parameter Name="isFluid" Type="bit" Mode="In" />
+          <Parameter Name="isHernia" Type="bit" Mode="In" />
+          <Parameter Name="isUrogenitalNormal" Type="bit" Mode="In" />
+          <Parameter Name="isUrogenAbnormalUrination" Type="bit" Mode="In" />
+          <Parameter Name="isGenitalDischarge" Type="bit" Mode="In" />
+          <Parameter Name="isAnalSacs" Type="bit" Mode="In" />
+          <Parameter Name="isRectal" Type="bit" Mode="In" />
+          <Parameter Name="isMammaryTumors" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalTesticles" Type="bit" Mode="In" />
+          <Parameter Name="isBloodSeen" Type="bit" Mode="In" />
+          <Parameter Name="isMusculoskeletalNormal" Type="bit" Mode="In" />
+          <Parameter Name="isJointProblems" Type="bit" Mode="In" />
+          <Parameter Name="isNailProblems" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessLF" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessRF" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessLR" Type="bit" Mode="In" />
+          <Parameter Name="isLamenessRR" Type="bit" Mode="In" />
+          <Parameter Name="isLigaments" Type="bit" Mode="In" />
+          <Parameter Name="isLungNormal" Type="bit" Mode="In" />
+          <Parameter Name="isBreathingDifficulty" Type="bit" Mode="In" />
+          <Parameter Name="isRapidRespiration" Type="bit" Mode="In" />
+          <Parameter Name="isTrachealPinchPositive" Type="bit" Mode="In" />
+          <Parameter Name="isTrachealPinchNegative" Type="bit" Mode="In" />
+          <Parameter Name="isCongestion" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalSound" Type="bit" Mode="In" />
+          <Parameter Name="isHeartNormal" Type="bit" Mode="In" />
+          <Parameter Name="isMurMur" Type="bit" Mode="In" />
+          <Parameter Name="isFast" Type="bit" Mode="In" />
+          <Parameter Name="isSlow" Type="bit" Mode="In" />
+          <Parameter Name="isMuffled" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="uspAddService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strServiceDesc" Type="varchar" Mode="In" />
+          <Parameter Name="intServiceTypeID" Type="int" Mode="In" />
+          <Parameter Name="dblPrice" Type="money" Mode="In" />
+        </Function>
+        <Function Name="uspAddSkinInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isScaly" Type="bit" Mode="In" />
+          <Parameter Name="isInfected" Type="bit" Mode="In" />
+          <Parameter Name="isMatted" Type="bit" Mode="In" />
+          <Parameter Name="isSkinScrape" Type="bit" Mode="In" />
+          <Parameter Name="isPruritus" Type="bit" Mode="In" />
+          <Parameter Name="isHairLoss" Type="bit" Mode="In" />
+          <Parameter Name="isMass" Type="bit" Mode="In" />
+          <Parameter Name="isParasites" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddUrogenitalInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="isNormal" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalUrination" Type="bit" Mode="In" />
+          <Parameter Name="isGenitalDischarge" Type="bit" Mode="In" />
+          <Parameter Name="isAnalSacs" Type="bit" Mode="In" />
+          <Parameter Name="isRectal" Type="bit" Mode="In" />
+          <Parameter Name="isMammaryTumors" Type="bit" Mode="In" />
+          <Parameter Name="isAbnormalTesticles" Type="bit" Mode="In" />
+          <Parameter Name="isBloodSeen" Type="bit" Mode="In" />
+          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddVaccinations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitServiceID" Type="int" Mode="In" />
+          <Parameter Name="dtmDateOfVaccination" Type="date" Mode="In" />
+          <Parameter Name="dtmDateOfExpiration" Type="date" Mode="In" />
+          <Parameter Name="strVaccineDesc" Type="varchar" Mode="In" />
+          <Parameter Name="strRabiesNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspAddVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intPetID" Type="int" Mode="In" />
+          <Parameter Name="intVisitReasonID" Type="int" Mode="In" />
+          <Parameter Name="dtmDateOfVist" Type="date" Mode="In" />
+        </Function>
+        <Function Name="uspAddVisitEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitID" Type="int" Mode="In" />
+          <Parameter Name="intEmployeeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddVisitMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitID" Type="int" Mode="In" />
+          <Parameter Name="intMedicationID" Type="int" Mode="In" />
+          <Parameter Name="dtmDatePrescribed" Type="date" Mode="In" />
+          <Parameter Name="intQuantity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddVisitService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitID" Type="int" Mode="In" />
+          <Parameter Name="intServiceID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspCheckEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intEmployeeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspCheckMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intMedicationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspCheckServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intServiceID" Type="int" Mode="In" />
+        </Function>
         <Function Name="uspCleanDatabase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspDeleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intEmployeeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspDeleteMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intMedicationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspDeleteService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intServiceID" Type="int" Mode="In" />
+        </Function>
         <Function Name="uspDropUserForeignKeys" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
         <Function Name="uspDropUserStoredProcedures" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
         <Function Name="uspDropUserTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
         <Function Name="uspDropUserViews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspGetUserOwnerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strUserName" Type="varchar" Mode="In" />
+          <Parameter Name="strPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetUserRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strUserName" Type="varchar" Mode="In" />
+          <Parameter Name="strPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intEmployeeID" Type="int" Mode="In" />
+          <Parameter Name="strFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="strLastName" Type="varchar" Mode="In" />
+          <Parameter Name="intJobTitleID" Type="int" Mode="In" />
+          <Parameter Name="intUserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intMedicationID" Type="int" Mode="In" />
+          <Parameter Name="strMedicationName" Type="varchar" Mode="In" />
+          <Parameter Name="strMedicationDesc" Type="varchar" Mode="In" />
+          <Parameter Name="dblCost" Type="money" Mode="In" />
+          <Parameter Name="dblPrice" Type="money" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="intQuantity" Type="int" Mode="In" />
+          <Parameter Name="intMethodID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intOwnerID" Type="int" Mode="In" />
+          <Parameter Name="strFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="strLastName" Type="varchar" Mode="In" />
+          <Parameter Name="intGenderID" Type="int" Mode="In" />
+          <Parameter Name="strAddress" Type="varchar" Mode="In" />
+          <Parameter Name="strCity" Type="varchar" Mode="In" />
+          <Parameter Name="intStateID" Type="int" Mode="In" />
+          <Parameter Name="strZip" Type="varchar" Mode="In" />
+          <Parameter Name="strPhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strEmail" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2Name" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="strOwner2Email" Type="varchar" Mode="In" />
+          <Parameter Name="strNotes" Type="varchar" Mode="In" />
+          <Parameter Name="intUserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intServiceID" Type="int" Mode="In" />
+          <Parameter Name="strServiceDesc" Type="varchar" Mode="In" />
+          <Parameter Name="intServiceTypeID" Type="int" Mode="In" />
+          <Parameter Name="dblPrice" Type="money" Mode="In" />
+        </Function>
+        <Function Name="uspUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="strUserName" Type="varchar" Mode="In" />
+          <Parameter Name="strPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspViewEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspViewMedications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspViewOwnerPets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="ownerid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="uspViewOwners" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspViewPetGeneralInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspViewPetMedications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspViewPets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspViewPetVaccinations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspViewPetVisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
+        <Function Name="uspViewServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="TAbdomenInfos" EntityType="Self.TAbdomenInfos" Schema="db_owner" store:Type="Tables" />
           <EntitySet Name="TBreeds" EntityType="Self.TBreeds" Schema="db_owner" store:Type="Tables" />
@@ -1363,6 +1756,256 @@
           <FunctionImport Name="uspViewPetVaccinations" ReturnType="Collection(Model.uspViewPetVaccinations_Result)" />
           <FunctionImport Name="uspViewPetVisits" ReturnType="Collection(Model.uspViewPetVisits_Result)" />
           <FunctionImport Name="uspViewServices" ReturnType="Collection(Model.uspViewServices_Result)" />
+          <FunctionImport Name="uspAddAbdomenInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloated" Mode="In" Type="Boolean" />
+            <Parameter Name="isEnlarged" Mode="In" Type="Boolean" />
+            <Parameter Name="isFluid" Mode="In" Type="Boolean" />
+            <Parameter Name="isHernia" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddHealthExam1">
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="dblTemperature" Mode="In" Type="Double" />
+            <Parameter Name="intHeartRate" Mode="In" Type="Int32" />
+            <Parameter Name="intRespRate" Mode="In" Type="Int32" />
+            <Parameter Name="intCapillaryRefillTime" Mode="In" Type="Int32" />
+            <Parameter Name="strMucousMembrane" Mode="In" Type="String" />
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddHeartInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMurMur" Mode="In" Type="Boolean" />
+            <Parameter Name="isFast" Mode="In" Type="Boolean" />
+            <Parameter Name="isSlow" Mode="In" Type="Boolean" />
+            <Parameter Name="isMuffled" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddLunglInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isBreathingDifficulty" Mode="In" Type="Boolean" />
+            <Parameter Name="isRapidRespiration" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchPositive" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchNegative" Mode="In" Type="Boolean" />
+            <Parameter Name="isCongestion" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalSound" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMusculoskeletalInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isJointProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isNailProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLigaments" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNoseThroatInfo1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isLargeLymphNodes" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedThroat" Mode="In" Type="Boolean" />
+            <Parameter Name="isNasalDishcharge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedTonsils" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddOwner1">
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="strAddress" Mode="In" Type="String" />
+            <Parameter Name="strCity" Mode="In" Type="String" />
+            <Parameter Name="intStateID" Mode="In" Type="Int32" />
+            <Parameter Name="strZip" Mode="In" Type="String" />
+            <Parameter Name="strPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strEmail" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Name" Mode="In" Type="String" />
+            <Parameter Name="strOwner2PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Email" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddPetVisit1">
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="dblTemperature" Mode="In" Type="Double" />
+            <Parameter Name="intHeartRate" Mode="In" Type="Int32" />
+            <Parameter Name="intRespRate" Mode="In" Type="Int32" />
+            <Parameter Name="intCapillaryRefillTime" Mode="In" Type="Int32" />
+            <Parameter Name="strMucousMembrane" Mode="In" Type="String" />
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="isEyeNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfection" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyeInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyelidTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isDirty" Mode="In" Type="Boolean" />
+            <Parameter Name="isEarPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveHair" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isScaly" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfected" Mode="In" Type="Boolean" />
+            <Parameter Name="isMatted" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinScrape" Mode="In" Type="Boolean" />
+            <Parameter Name="isPruritus" Mode="In" Type="Boolean" />
+            <Parameter Name="isHairLoss" Mode="In" Type="Boolean" />
+            <Parameter Name="isMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isMouthNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMouthTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isGingivitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isPeriodontitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isTartarBuildup" Mode="In" Type="Boolean" />
+            <Parameter Name="isLooseTeeth" Mode="In" Type="Boolean" />
+            <Parameter Name="isBiteOVerUnder" Mode="In" Type="Boolean" />
+            <Parameter Name="isNoseThroatNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isLargeLymphNodes" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedThroat" Mode="In" Type="Boolean" />
+            <Parameter Name="isNasalDishcharge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamedTonsils" Mode="In" Type="Boolean" />
+            <Parameter Name="isGINormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveGas" Mode="In" Type="Boolean" />
+            <Parameter Name="isGIParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalFeces" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnorexia" Mode="In" Type="Boolean" />
+            <Parameter Name="isNeurologicalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralR" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbdomenNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbdomenPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloated" Mode="In" Type="Boolean" />
+            <Parameter Name="isEnlarged" Mode="In" Type="Boolean" />
+            <Parameter Name="isFluid" Mode="In" Type="Boolean" />
+            <Parameter Name="isHernia" Mode="In" Type="Boolean" />
+            <Parameter Name="isUrogenitalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isUrogenAbnormalUrination" Mode="In" Type="Boolean" />
+            <Parameter Name="isGenitalDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnalSacs" Mode="In" Type="Boolean" />
+            <Parameter Name="isRectal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMammaryTumors" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalTesticles" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloodSeen" Mode="In" Type="Boolean" />
+            <Parameter Name="isMusculoskeletalNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isJointProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isNailProblems" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLamenessRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isLigaments" Mode="In" Type="Boolean" />
+            <Parameter Name="isLungNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isBreathingDifficulty" Mode="In" Type="Boolean" />
+            <Parameter Name="isRapidRespiration" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchPositive" Mode="In" Type="Boolean" />
+            <Parameter Name="isTrachealPinchNegative" Mode="In" Type="Boolean" />
+            <Parameter Name="isCongestion" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalSound" Mode="In" Type="Boolean" />
+            <Parameter Name="isHeartNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMurMur" Mode="In" Type="Boolean" />
+            <Parameter Name="isFast" Mode="In" Type="Boolean" />
+            <Parameter Name="isSlow" Mode="In" Type="Boolean" />
+            <Parameter Name="isMuffled" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddService1">
+            <Parameter Name="strServiceDesc" Mode="In" Type="String" />
+            <Parameter Name="intServiceTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddUrogenitalInfos1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalUrination" Mode="In" Type="Boolean" />
+            <Parameter Name="isGenitalDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnalSacs" Mode="In" Type="Boolean" />
+            <Parameter Name="isRectal" Mode="In" Type="Boolean" />
+            <Parameter Name="isMammaryTumors" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalTesticles" Mode="In" Type="Boolean" />
+            <Parameter Name="isBloodSeen" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVaccinations1">
+            <Parameter Name="intVisitServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateOfVaccination" Mode="In" Type="DateTime" />
+            <Parameter Name="dtmDateOfExpiration" Mode="In" Type="DateTime" />
+            <Parameter Name="strVaccineDesc" Mode="In" Type="String" />
+            <Parameter Name="strRabiesNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisit1">
+            <Parameter Name="intPetID" Mode="In" Type="Int32" />
+            <Parameter Name="intVisitReasonID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateOfVist" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitEmployee1">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitMedication1">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDatePrescribed" Mode="In" Type="DateTime" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddVisitService1">
+            <Parameter Name="intVisitID" Mode="In" Type="Int32" />
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateEmployee1">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intJobTitleID" Mode="In" Type="Int32" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateMedication1">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+            <Parameter Name="strMedicationName" Mode="In" Type="String" />
+            <Parameter Name="strMedicationDesc" Mode="In" Type="String" />
+            <Parameter Name="dblCost" Mode="In" Type="Decimal" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="intMethodID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateOwner1">
+            <Parameter Name="intOwnerID" Mode="In" Type="Int32" />
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="strAddress" Mode="In" Type="String" />
+            <Parameter Name="strCity" Mode="In" Type="String" />
+            <Parameter Name="intStateID" Mode="In" Type="Int32" />
+            <Parameter Name="strZip" Mode="In" Type="String" />
+            <Parameter Name="strPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strEmail" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Name" Mode="In" Type="String" />
+            <Parameter Name="strOwner2PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="strOwner2Email" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateService1">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+            <Parameter Name="strServiceDesc" Mode="In" Type="String" />
+            <Parameter Name="intServiceTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+          </FunctionImport>
           <EntitySet Name="TAbdomenInfos" EntityType="Model.TAbdomenInfo" />
           <EntitySet Name="TBreeds" EntityType="Model.TBreed" />
           <EntitySet Name="TEarStatusInfos" EntityType="Model.TEarStatusInfo" />
@@ -1529,6 +2172,149 @@
             <End Role="TVisit" EntitySet="TVisits" />
             <End Role="TVisitService" EntitySet="TVisitServices" />
           </AssociationSet>
+          <FunctionImport Name="uspAddEarStatusInfo1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isDirty" Mode="In" Type="Boolean" />
+            <Parameter Name="isPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveHair" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddEmployee1">
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intJobTitleID" Mode="In" Type="Int32" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddEyeStatusInfo1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfection" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyelidTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddGIInfo1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveGas" Mode="In" Type="Boolean" />
+            <Parameter Name="isParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalFeces" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnorexia" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMedication1">
+            <Parameter Name="strMedicationName" Mode="In" Type="String" />
+            <Parameter Name="strMedicationDesc" Mode="In" Type="String" />
+            <Parameter Name="dblCost" Mode="In" Type="Decimal" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="intMethodID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMouthInfo1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isGingivitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isPeriodontitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isTartarBuildup" Mode="In" Type="Boolean" />
+            <Parameter Name="isLooseTeeth" Mode="In" Type="Boolean" />
+            <Parameter Name="isBiteOVerUnder" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNeurologicalInfo1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralR" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNewUser1">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+            <Parameter Name="intRoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddPets1">
+            <Parameter Name="strPetNumber" Mode="In" Type="String" />
+            <Parameter Name="strMicrochipID" Mode="In" Type="String" />
+            <Parameter Name="strPetName" Mode="In" Type="String" />
+            <Parameter Name="intPetTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="intBreedID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateofBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="isBlind" Mode="In" Type="Boolean" />
+            <Parameter Name="isDeaf" Mode="In" Type="Boolean" />
+            <Parameter Name="isAggressive" Mode="In" Type="Boolean" />
+            <Parameter Name="isDeceased" Mode="In" Type="Boolean" />
+            <Parameter Name="isAllergic" Mode="In" Type="Boolean" />
+            <Parameter Name="strColor" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intOwnerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddSkinInfo1">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isScaly" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfected" Mode="In" Type="Boolean" />
+            <Parameter Name="isMatted" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinScrape" Mode="In" Type="Boolean" />
+            <Parameter Name="isPruritus" Mode="In" Type="Boolean" />
+            <Parameter Name="isHairLoss" Mode="In" Type="Boolean" />
+            <Parameter Name="isMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckEmployees1" ReturnType="Collection(Int32)">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckMedication1" ReturnType="Collection(Int32)">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckServices1" ReturnType="Collection(Int32)">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDeleteEmployee1">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDeleteMedication1">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDeleteService1">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetUserOwnerID1" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetUserRole1" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspUserLogin1" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspViewEmployees1" ReturnType="Collection(Model.uspViewEmployees1_Result)" />
+          <FunctionImport Name="uspViewMedications1" ReturnType="Collection(Model.uspViewMedications1_Result)" />
+          <FunctionImport Name="uspViewOwnerPets" ReturnType="Collection(Model.uspViewOwnerPets_Result)">
+            <Parameter Name="ownerid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="uspViewOwners1" ReturnType="Collection(Model.uspViewOwners1_Result)" />
+          <FunctionImport Name="uspViewPetGeneralInformation1" ReturnType="Collection(Model.uspViewPetGeneralInformation1_Result)" />
+          <FunctionImport Name="uspViewPetMedications1" ReturnType="Collection(Model.uspViewPetMedications1_Result)" />
+          <FunctionImport Name="uspViewPets1" ReturnType="Collection(Model.uspViewPets1_Result)" />
+          <FunctionImport Name="uspViewPetVaccinations1" ReturnType="Collection(Model.uspViewPetVaccinations1_Result)" />
+          <FunctionImport Name="uspViewPetVisits1" ReturnType="Collection(Model.uspViewPetVisits1_Result)" />
+          <FunctionImport Name="uspViewServices1" ReturnType="Collection(Model.uspViewServices1_Result)" />
           </EntityContainer>
         <ComplexType Name="uspViewEmployees_Result">
           <Property Type="Int32" Name="intEmployeeID" Nullable="false" />
@@ -1644,7 +2430,7 @@
           <Key>
             <PropertyRef Name="intBreedID" />
           </Key>
-          <Property Name="intBreedID" Type="Int32" Nullable="false" />
+          <Property Name="intBreedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="strBreedName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TPets" Relationship="Model.TPets_TBreeds_FK1" FromRole="TBreed" ToRole="TPet" />
         </EntityType>
@@ -2475,6 +3261,125 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="uspViewEmployees1_Result">
+          <Property Type="Int32" Name="intEmployeeID" Nullable="false" />
+          <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intJobTitleID" Nullable="false" />
+          <Property Type="Int32" Name="intUserID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewMedications1_Result">
+          <Property Type="Int32" Name="intMedicationID" Nullable="false" />
+          <Property Type="String" Name="strMedicationName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strMedicationDesc" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="dblCost" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intQuantity" Nullable="false" />
+          <Property Type="Int32" Name="intMethodID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewOwnerPets_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intPetTypeID" Nullable="false" />
+          <Property Type="Int32" Name="intGenderID" Nullable="false" />
+          <Property Type="Int32" Name="intBreedID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateofBirth" Nullable="false" />
+          <Property Type="Double" Name="dblWeight" Nullable="false" />
+          <Property Type="Boolean" Name="isBlind" Nullable="false" />
+          <Property Type="Boolean" Name="isDeaf" Nullable="false" />
+          <Property Type="Boolean" Name="isAggressive" Nullable="false" />
+          <Property Type="Boolean" Name="isDeceased" Nullable="false" />
+          <Property Type="Boolean" Name="isAllergic" Nullable="false" />
+          <Property Type="String" Name="strColor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="intOwnerID" Nullable="false" />
+          <Property Type="Int32" Name="intOwnerID1" Nullable="false" />
+          <Property Type="Int32" Name="intOwnerID2" Nullable="false" />
+          <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="uspViewOwners1_Result">
+          <Property Type="Int32" Name="intOwnerID" Nullable="false" />
+          <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intGenderID" Nullable="false" />
+          <Property Type="String" Name="strAddress" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strCity" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intStateID" Nullable="false" />
+          <Property Type="String" Name="strZip" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwner2Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwner2PhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwner2Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="intUserID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetGeneralInformation1_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetType" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strGender" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strBreedName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intAge" Nullable="true" />
+          <Property Type="Double" Name="dblWeight" Nullable="false" />
+          <Property Type="String" Name="strColor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwnerName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="strPhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwnerAddress" Nullable="false" MaxLength="203" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetMedications1_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDatePrescribed" Nullable="false" />
+          <Property Type="Int32" Name="intMedicationID" Nullable="false" />
+          <Property Type="Int32" Name="intQuantity" Nullable="false" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="uspViewPets1_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intPetTypeID" Nullable="false" />
+          <Property Type="Int32" Name="intGenderID" Nullable="false" />
+          <Property Type="Int32" Name="intBreedID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateofBirth" Nullable="false" />
+          <Property Type="Double" Name="dblWeight" Nullable="false" />
+          <Property Type="Boolean" Name="isBlind" Nullable="false" />
+          <Property Type="Boolean" Name="isDeaf" Nullable="false" />
+          <Property Type="Boolean" Name="isAggressive" Nullable="false" />
+          <Property Type="Boolean" Name="isDeceased" Nullable="false" />
+          <Property Type="Boolean" Name="isAllergic" Nullable="false" />
+          <Property Type="String" Name="strColor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="intOwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetVaccinations1_Result">
+          <Property Type="Int32" Name="intVaccinationID" Nullable="false" />
+          <Property Type="Int32" Name="intVisitServiceID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfVaccination" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfExpiration" Nullable="false" />
+          <Property Type="String" Name="strVaccineDesc" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strRabiesNumber" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetVisits1_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfVist" Nullable="false" />
+          <Property Type="String" Name="strVisitReason" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strDoctor" Nullable="false" MaxLength="105" />
+        </ComplexType>
+        <ComplexType Name="uspViewServices1_Result">
+          <Property Type="Int32" Name="intServiceID" Nullable="false" />
+          <Property Type="String" Name="strServiceDesc" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intServiceTypeID" Nullable="false" />
+          <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2486,6 +3391,25 @@
           <FunctionImportMapping FunctionImportName="uspDropUserStoredProcedures" FunctionName="Model.Store.uspDropUserStoredProcedures" />
           <FunctionImportMapping FunctionImportName="uspDropUserTables" FunctionName="Model.Store.uspDropUserTables" />
           <FunctionImportMapping FunctionImportName="uspDropUserViews" FunctionName="Model.Store.uspDropUserViews" />
+          <FunctionImportMapping FunctionImportName="uspAddAbdomenInfos1" FunctionName="Model.Store.uspAddAbdomenInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddHealthExam1" FunctionName="Model.Store.uspAddHealthExam" />
+          <FunctionImportMapping FunctionImportName="uspAddHeartInfos1" FunctionName="Model.Store.uspAddHeartInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddLunglInfos1" FunctionName="Model.Store.uspAddLunglInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddMusculoskeletalInfos1" FunctionName="Model.Store.uspAddMusculoskeletalInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddNoseThroatInfo1" FunctionName="Model.Store.uspAddNoseThroatInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddOwner1" FunctionName="Model.Store.uspAddOwner" />
+          <FunctionImportMapping FunctionImportName="uspAddPetVisit1" FunctionName="Model.Store.uspAddPetVisit" />
+          <FunctionImportMapping FunctionImportName="uspAddService1" FunctionName="Model.Store.uspAddService" />
+          <FunctionImportMapping FunctionImportName="uspAddUrogenitalInfos1" FunctionName="Model.Store.uspAddUrogenitalInfos" />
+          <FunctionImportMapping FunctionImportName="uspAddVaccinations1" FunctionName="Model.Store.uspAddVaccinations" />
+          <FunctionImportMapping FunctionImportName="uspAddVisit1" FunctionName="Model.Store.uspAddVisit" />
+          <FunctionImportMapping FunctionImportName="uspAddVisitEmployee1" FunctionName="Model.Store.uspAddVisitEmployee" />
+          <FunctionImportMapping FunctionImportName="uspAddVisitMedication1" FunctionName="Model.Store.uspAddVisitMedication" />
+          <FunctionImportMapping FunctionImportName="uspAddVisitService1" FunctionName="Model.Store.uspAddVisitService" />
+          <FunctionImportMapping FunctionImportName="uspUpdateEmployee1" FunctionName="Model.Store.uspUpdateEmployee" />
+          <FunctionImportMapping FunctionImportName="uspUpdateMedication1" FunctionName="Model.Store.uspUpdateMedication" />
+          <FunctionImportMapping FunctionImportName="uspUpdateOwner1" FunctionName="Model.Store.uspUpdateOwner" />
+          <FunctionImportMapping FunctionImportName="uspUpdateService1" FunctionName="Model.Store.uspUpdateService" />
           <EntitySetMapping Name="TAbdomenInfos">
             <EntityTypeMapping TypeName="Model.TAbdomenInfo">
               <MappingFragment StoreEntitySet="TAbdomenInfos">
@@ -2908,6 +3832,184 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="uspAddEarStatusInfo1" FunctionName="Model.Store.uspAddEarStatusInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddEmployee1" FunctionName="Model.Store.uspAddEmployee" />
+          <FunctionImportMapping FunctionImportName="uspAddEyeStatusInfo1" FunctionName="Model.Store.uspAddEyeStatusInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddGIInfo1" FunctionName="Model.Store.uspAddGIInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddMedication1" FunctionName="Model.Store.uspAddMedication" />
+          <FunctionImportMapping FunctionImportName="uspAddMouthInfo1" FunctionName="Model.Store.uspAddMouthInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddNeurologicalInfo1" FunctionName="Model.Store.uspAddNeurologicalInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddNewUser1" FunctionName="Model.Store.uspAddNewUser" />
+          <FunctionImportMapping FunctionImportName="uspAddPets1" FunctionName="Model.Store.uspAddPets" />
+          <FunctionImportMapping FunctionImportName="uspAddSkinInfo1" FunctionName="Model.Store.uspAddSkinInfo" />
+          <FunctionImportMapping FunctionImportName="uspCheckEmployees1" FunctionName="Model.Store.uspCheckEmployees" />
+          <FunctionImportMapping FunctionImportName="uspCheckMedication1" FunctionName="Model.Store.uspCheckMedication" />
+          <FunctionImportMapping FunctionImportName="uspCheckServices1" FunctionName="Model.Store.uspCheckServices" />
+          <FunctionImportMapping FunctionImportName="uspDeleteEmployee1" FunctionName="Model.Store.uspDeleteEmployee" />
+          <FunctionImportMapping FunctionImportName="uspDeleteMedication1" FunctionName="Model.Store.uspDeleteMedication" />
+          <FunctionImportMapping FunctionImportName="uspDeleteService1" FunctionName="Model.Store.uspDeleteService" />
+          <FunctionImportMapping FunctionImportName="uspGetUserOwnerID1" FunctionName="Model.Store.uspGetUserOwnerID" />
+          <FunctionImportMapping FunctionImportName="uspGetUserRole1" FunctionName="Model.Store.uspGetUserRole" />
+          <FunctionImportMapping FunctionImportName="uspUserLogin1" FunctionName="Model.Store.uspUserLogin" />
+          <FunctionImportMapping FunctionImportName="uspViewEmployees1" FunctionName="Model.Store.uspViewEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewEmployees1_Result">
+                <ScalarProperty Name="intEmployeeID" ColumnName="intEmployeeID" />
+                <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
+                <ScalarProperty Name="strLastName" ColumnName="strLastName" />
+                <ScalarProperty Name="intJobTitleID" ColumnName="intJobTitleID" />
+                <ScalarProperty Name="intUserID" ColumnName="intUserID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewMedications1" FunctionName="Model.Store.uspViewMedications">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewMedications1_Result">
+                <ScalarProperty Name="intMedicationID" ColumnName="intMedicationID" />
+                <ScalarProperty Name="strMedicationName" ColumnName="strMedicationName" />
+                <ScalarProperty Name="strMedicationDesc" ColumnName="strMedicationDesc" />
+                <ScalarProperty Name="dblCost" ColumnName="dblCost" />
+                <ScalarProperty Name="dblPrice" ColumnName="dblPrice" />
+                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
+                <ScalarProperty Name="intQuantity" ColumnName="intQuantity" />
+                <ScalarProperty Name="intMethodID" ColumnName="intMethodID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewOwnerPets" FunctionName="Model.Store.uspViewOwnerPets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewOwnerPets_Result">
+                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
+                <ScalarProperty Name="strPetNumber" ColumnName="strPetNumber" />
+                <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
+                <ScalarProperty Name="strPetName" ColumnName="strPetName" />
+                <ScalarProperty Name="intPetTypeID" ColumnName="intPetTypeID" />
+                <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
+                <ScalarProperty Name="intBreedID" ColumnName="intBreedID" />
+                <ScalarProperty Name="dtmDateofBirth" ColumnName="dtmDateofBirth" />
+                <ScalarProperty Name="dblWeight" ColumnName="dblWeight" />
+                <ScalarProperty Name="isBlind" ColumnName="isBlind" />
+                <ScalarProperty Name="isDeaf" ColumnName="isDeaf" />
+                <ScalarProperty Name="isAggressive" ColumnName="isAggressive" />
+                <ScalarProperty Name="isDeceased" ColumnName="isDeceased" />
+                <ScalarProperty Name="isAllergic" ColumnName="isAllergic" />
+                <ScalarProperty Name="strColor" ColumnName="strColor" />
+                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
+                <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
+                <ScalarProperty Name="intOwnerID1" ColumnName="intOwnerID1" />
+                <ScalarProperty Name="intOwnerID2" ColumnName="intOwnerID2" />
+                <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
+                <ScalarProperty Name="strLastName" ColumnName="strLastName" />
+                <ScalarProperty Name="strEmail" ColumnName="strEmail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewOwners1" FunctionName="Model.Store.uspViewOwners">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewOwners1_Result">
+                <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
+                <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
+                <ScalarProperty Name="strLastName" ColumnName="strLastName" />
+                <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
+                <ScalarProperty Name="strAddress" ColumnName="strAddress" />
+                <ScalarProperty Name="strCity" ColumnName="strCity" />
+                <ScalarProperty Name="intStateID" ColumnName="intStateID" />
+                <ScalarProperty Name="strZip" ColumnName="strZip" />
+                <ScalarProperty Name="strPhoneNumber" ColumnName="strPhoneNumber" />
+                <ScalarProperty Name="strEmail" ColumnName="strEmail" />
+                <ScalarProperty Name="strOwner2Name" ColumnName="strOwner2Name" />
+                <ScalarProperty Name="strOwner2PhoneNumber" ColumnName="strOwner2PhoneNumber" />
+                <ScalarProperty Name="strOwner2Email" ColumnName="strOwner2Email" />
+                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
+                <ScalarProperty Name="intUserID" ColumnName="intUserID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewPetGeneralInformation1" FunctionName="Model.Store.uspViewPetGeneralInformation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewPetGeneralInformation1_Result">
+                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
+                <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
+                <ScalarProperty Name="strPetName" ColumnName="strPetName" />
+                <ScalarProperty Name="strPetType" ColumnName="strPetType" />
+                <ScalarProperty Name="strGender" ColumnName="strGender" />
+                <ScalarProperty Name="strBreedName" ColumnName="strBreedName" />
+                <ScalarProperty Name="intAge" ColumnName="intAge" />
+                <ScalarProperty Name="dblWeight" ColumnName="dblWeight" />
+                <ScalarProperty Name="strColor" ColumnName="strColor" />
+                <ScalarProperty Name="strOwnerName" ColumnName="strOwnerName" />
+                <ScalarProperty Name="strPhoneNumber" ColumnName="strPhoneNumber" />
+                <ScalarProperty Name="strEmail" ColumnName="strEmail" />
+                <ScalarProperty Name="strOwnerAddress" ColumnName="strOwnerAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewPetMedications1" FunctionName="Model.Store.uspViewPetMedications">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewPetMedications1_Result">
+                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
+                <ScalarProperty Name="dtmDatePrescribed" ColumnName="dtmDatePrescribed" />
+                <ScalarProperty Name="intMedicationID" ColumnName="intMedicationID" />
+                <ScalarProperty Name="intQuantity" ColumnName="intQuantity" />
+                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewPets1" FunctionName="Model.Store.uspViewPets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewPets1_Result">
+                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
+                <ScalarProperty Name="strPetNumber" ColumnName="strPetNumber" />
+                <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
+                <ScalarProperty Name="strPetName" ColumnName="strPetName" />
+                <ScalarProperty Name="intPetTypeID" ColumnName="intPetTypeID" />
+                <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
+                <ScalarProperty Name="intBreedID" ColumnName="intBreedID" />
+                <ScalarProperty Name="dtmDateofBirth" ColumnName="dtmDateofBirth" />
+                <ScalarProperty Name="dblWeight" ColumnName="dblWeight" />
+                <ScalarProperty Name="isBlind" ColumnName="isBlind" />
+                <ScalarProperty Name="isDeaf" ColumnName="isDeaf" />
+                <ScalarProperty Name="isAggressive" ColumnName="isAggressive" />
+                <ScalarProperty Name="isDeceased" ColumnName="isDeceased" />
+                <ScalarProperty Name="isAllergic" ColumnName="isAllergic" />
+                <ScalarProperty Name="strColor" ColumnName="strColor" />
+                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
+                <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewPetVaccinations1" FunctionName="Model.Store.uspViewPetVaccinations">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewPetVaccinations1_Result">
+                <ScalarProperty Name="intVaccinationID" ColumnName="intVaccinationID" />
+                <ScalarProperty Name="intVisitServiceID" ColumnName="intVisitServiceID" />
+                <ScalarProperty Name="dtmDateOfVaccination" ColumnName="dtmDateOfVaccination" />
+                <ScalarProperty Name="dtmDateOfExpiration" ColumnName="dtmDateOfExpiration" />
+                <ScalarProperty Name="strVaccineDesc" ColumnName="strVaccineDesc" />
+                <ScalarProperty Name="strRabiesNumber" ColumnName="strRabiesNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewPetVisits1" FunctionName="Model.Store.uspViewPetVisits">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewPetVisits1_Result">
+                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
+                <ScalarProperty Name="dtmDateOfVist" ColumnName="dtmDateOfVist" />
+                <ScalarProperty Name="strVisitReason" ColumnName="strVisitReason" />
+                <ScalarProperty Name="strDoctor" ColumnName="strDoctor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspViewServices1" FunctionName="Model.Store.uspViewServices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspViewServices1_Result">
+                <ScalarProperty Name="intServiceID" ColumnName="intServiceID" />
+                <ScalarProperty Name="strServiceDesc" ColumnName="strServiceDesc" />
+                <ScalarProperty Name="intServiceTypeID" ColumnName="intServiceTypeID" />
+                <ScalarProperty Name="dblPrice" ColumnName="dblPrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

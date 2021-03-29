@@ -1,0 +1,26 @@
+﻿@model test.TPetType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TPetType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.strPetType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strPetType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intPetTypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
