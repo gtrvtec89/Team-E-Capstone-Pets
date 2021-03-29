@@ -114,7 +114,7 @@
           <Key>
             <PropertyRef Name="intJobTitleID" />
           </Key>
-          <Property Name="intJobTitleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intJobTitleID" Type="int" Nullable="false" />
           <Property Name="strJobTitleDesc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TLungInfos">
@@ -148,7 +148,7 @@
           <Key>
             <PropertyRef Name="intMethodID" />
           </Key>
-          <Property Name="intMethodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intMethodID" Type="int" Nullable="false" />
           <Property Name="strMethod" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TMouthInfos">
@@ -266,7 +266,7 @@
           <Key>
             <PropertyRef Name="intPetTypeID" />
           </Key>
-          <Property Name="intPetTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intPetTypeID" Type="int" Nullable="false" />
           <Property Name="strPetType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TRoles">
@@ -289,7 +289,7 @@
           <Key>
             <PropertyRef Name="intServiceTypeID" />
           </Key>
-          <Property Name="intServiceTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intServiceTypeID" Type="int" Nullable="false" />
           <Property Name="strServiceType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TSkinInfos">
@@ -2542,7 +2542,7 @@
           <Key>
             <PropertyRef Name="intJobTitleID" />
           </Key>
-          <Property Name="intJobTitleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intJobTitleID" Type="Int32" Nullable="false" />
           <Property Name="strJobTitleDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TLungInfo">
@@ -2579,7 +2579,7 @@
           <Key>
             <PropertyRef Name="intMethodID" />
           </Key>
-          <Property Name="intMethodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intMethodID" Type="Int32" Nullable="false" />
           <Property Name="strMethod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TMedications" Relationship="Model.TMedications_TMethods_FK1" FromRole="TMethod" ToRole="TMedication" />
         </EntityType>
@@ -2713,7 +2713,7 @@
           <Key>
             <PropertyRef Name="intPetTypeID" />
           </Key>
-          <Property Name="intPetTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intPetTypeID" Type="Int32" Nullable="false" />
           <Property Name="strPetType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TPets" Relationship="Model.TPets_TPetTypes_FK1" FromRole="TPetType" ToRole="TPet" />
         </EntityType>
@@ -2740,7 +2740,7 @@
           <Key>
             <PropertyRef Name="intServiceTypeID" />
           </Key>
-          <Property Name="intServiceTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intServiceTypeID" Type="Int32" Nullable="false" />
           <Property Name="strServiceType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TServices" Relationship="Model.TServices_TServiceTypes_FK1" FromRole="TServiceType" ToRole="TService" />
         </EntityType>
