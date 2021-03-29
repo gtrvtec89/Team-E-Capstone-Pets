@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -53,18 +54,31 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes")] TOwner tOwner)
-        {
-            if (ModelState.IsValid)
-            {
+        public ActionResult Create([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes")] TOwner tOwner) {
+            if (ModelState.IsValid) {
+                SqlParameter[] param = new SqlParameter[] {
+                    new SqlParameter("@strFirstName", tOwner.strFirstName),
+                    new SqlParameter("@strLastName", tOwner.strLastName),
+                    new SqlParameter("@intGenderID", tOwner.intGenderID),
+                    new SqlParameter("@strAddress", tOwner.strAddress),
+                    new SqlParameter("@strCity", tOwner.strCity),
+                    new SqlParameter("@intStateID", tOwner.intStateID),
+                    new SqlParameter("@strZip", tOwner.strZip),
+                    new SqlParameter("@strPhoneNumber", tOwner.strPhoneNumber),
+                    new SqlParameter("@strEmail", tOwner.strEmail),
+                    new SqlParameter("@strOwner2Name", tOwner.strOwner2Name),
+                    new SqlParameter("@strOwner2PhoneNumber", tOwner.strOwner2PhoneNumber),
+                    new SqlParameter("@strOwner2Email", tOwner.strOwner2Email),
+                    new SqlParameter("@strNotes", tOwner.strNotes)
+                };
+                db.uspAddNewUser(tOwner.strEmail, tOwner.strZip, 1);
+                var userID = db.TUsers.Max(u => u.intUserID);
                 db.TOwners.Add(tOwner);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.intStateID = new SelectList(db.TStates, "intStateID", "strStateCode", tOwner.intStateID);
-            ViewBag.intUserID = new SelectList(db.TUsers, "intUserID", "strUserName", tOwner.intUserID);
-            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tOwner.intGenderID);
             return View(tOwner);
         }
 
