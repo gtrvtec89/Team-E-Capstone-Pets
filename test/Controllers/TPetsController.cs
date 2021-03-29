@@ -17,7 +17,12 @@ namespace test.Controllers
         // GET: TPets
         public ActionResult Index()
         {
-            var tPets = db.TPets.Include(t => t.TPetType);
+            var tPets = db.TPets
+                .Include(t => t.TPetType)
+                .Include(t => t.TOwner)
+                .Include(t => t.TBreed)
+                .Include(t => t.TGender);
+                
             return View(tPets.ToList());
         }
 
@@ -40,7 +45,9 @@ namespace test.Controllers
         public ActionResult Create()
         {
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType");
-  
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender");
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strFirstName" + "strLastName");
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName");
 
             return View();
         }
@@ -60,6 +67,10 @@ namespace test.Controllers
             }
 
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strFirstName" + "strLastName", tPet.intOwnerID);
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
+
             return View(tPet);
         }
 
@@ -76,6 +87,9 @@ namespace test.Controllers
                 return HttpNotFound();
             }
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strFirstName" + "strLastName", tPet.intOwnerID);
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
             return View(tPet);
         }
 
@@ -93,6 +107,9 @@ namespace test.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strFirstName" + "strLastName", tPet.intOwnerID);
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
             return View(tPet);
         }
 

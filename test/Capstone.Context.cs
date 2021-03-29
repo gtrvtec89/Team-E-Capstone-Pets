@@ -532,7 +532,7 @@ namespace test
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddNoseThroatInfo", isNormalParameter, isLargeLymphNodesParameter, isInflamedThroatParameter, isNasalDishchargeParameter, isInflamedTonsilsParameter, intHealthExamIDParameter);
         }
     
-        public virtual int uspAddOwner(string strFirstName, string strLastName, Nullable<int> intGenderID, string strAddress, string strCity, Nullable<int> intStateID, string strZip, string strPhoneNumber, string strEmail, string strOwner2Name, string strOwner2PhoneNumber, string strOwner2Email, string strNotes, Nullable<int> intUserID)
+        public virtual int uspAddOwner(int intOwnerID, string strFirstName, string strLastName, Nullable<int> intGenderID, string strAddress, string strCity, Nullable<int> intStateID, string strZip, string strPhoneNumber, string strEmail, string strOwner2Name, string strOwner2PhoneNumber, string strOwner2Email, string strNotes, Nullable<int> intUserID)
         {
             var strFirstNameParameter = strFirstName != null ?
                 new ObjectParameter("strFirstName", strFirstName) :
