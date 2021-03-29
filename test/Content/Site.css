@@ -14,11 +14,14 @@
     padding-right: 15px;
     background-color: white;
     border: 23px solid #6495ed;
-    max-height: 575px;
     overflow-y: overlay;
     overflow-x: overlay;
-    max-width: 1400px;
+    /*dynamic width based on screensize*/
+    max-width: 95%;
     margin: auto;
+    overflow: auto;
+    /*dynamic height based on screensize*/
+    max-height: calc(100vh - 200px);
 }
 
 /*Health Exam Page CSS - start*/
@@ -37,6 +40,8 @@
     font-weight: 700;
     margin-left: 20px;
 }
+
+
 
 .flex-row {
     width: 50%;
