@@ -70,17 +70,26 @@
     margin: 3px;
 }
 
-.check-box {
-    margin-bottom: 15px;
-/*    display: contents;*/
+.check-box-health-exam {
+    display:flex;
+    flex-wrap: wrap;
 }
 
-.check-box > label {
-   margin-right: 10px;
+.check-box-health-exam > label {
+    margin-right: 10px;
 }
+
 
 /*Health Exam Page CSS - end*/
 
+.check-box {
+    margin-bottom: 15px;
+    /*    display: contents;*/
+}
+
+    .check-box > label {
+        margin-right: 10px;
+    }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */

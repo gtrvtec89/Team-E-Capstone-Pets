@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="body-content" style="max-height: 575px">
+    <div class="body-content">
         <div class="form-horizontal">
             @*<h2 style="text-decoration: none; text-align: center; font-weight: 900; ">Health Exam</h2>*@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -52,7 +52,7 @@
                     <div class="form-group" style="display:inline-grid; width: 60%; margin: 3px;">
                         @Html.LabelFor(model => model.strNotes, "Notes", new { htmlAttributes = new { @class = "control-label col-md-2" }, style = "font-size: 16px; font-weight: 700; padding-left:  15px;" })
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.strNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width: 910px; height: 170px;" })
+                            @Html.TextAreaFor(model => model.strNotes, new { htmlAttributes = new { @class = "form-control" }, style = "max-width:930px; width: 930px; height: 170px;" })
                             @Html.ValidationMessageFor(model => model.strNotes, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Eyes</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isEyeNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -98,8 +98,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="check-box" id="divAllOtherEyeStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherEyeStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isDischarge, "Discharge", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -109,7 +109,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isInfection, "Infection", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isSclerosisLeft, "Sclerosis Left", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -129,7 +129,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isSclerosisRight, "Sclerosis Right", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -139,7 +139,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isCataractLeft, "Cataract Left", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -149,7 +149,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isCataractRight, "Cataract Right", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -159,7 +159,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isEyeInflamed, "Inflamed", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -169,7 +169,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isEyelidTumor, "Eyelid Tumor", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -185,7 +185,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Ears</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isEarNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -195,8 +195,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherEarStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherEarStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isEarInflamed, "Inflamed", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -206,7 +206,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isEarTumor, "Tumor", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -216,7 +216,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isDirty, "Dirty", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isEarPainful, "Painful", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -236,7 +236,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isExcessiveHair, "Excessive Hair", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -251,7 +251,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Coat and Skin</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isSkinNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -261,8 +261,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherSkinStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherSkinStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isScaly, "Scaly", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -272,7 +272,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isInfected, "Infection", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -282,7 +282,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isMatted, "Matted", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -292,7 +292,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isSkinScrape, "Skin Scrape", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -302,7 +302,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isPruritus, "Pruritus", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -312,7 +312,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isHairLoss, "Hair Loss", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -322,7 +322,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isMass, "Mass", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -332,7 +332,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isSkinParasites, "Parasites", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -348,7 +348,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Mouth, Teeth, Gums</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isMouthNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -358,8 +358,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherMouthStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherMouthStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isMouthTumor, "Tumors", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -369,7 +369,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isGingivitis, "Gingivitis", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -379,7 +379,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isPeriodontitis, "Periodontitis", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -389,7 +389,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isTartarBuildup, "Tartar Buildup", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -399,7 +399,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isLooseTeeth, "Loose Teeth", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -409,7 +409,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isBiteOVerUnder, "Bite over/under", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -425,7 +425,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Nose and Throat</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isNoseThroatNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -435,8 +435,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherNoseStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherNoseStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isLargeLymphNodes, "LG Lymph Nodes", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -446,7 +446,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isInflamedThroat, "Inflamed Throat", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -456,7 +456,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isNasalDishcharge, "Nasal Discharge", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -466,7 +466,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isInflamedTonsils, "Inflamed Tonsils", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -482,7 +482,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>GastroIntestinal System</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isGINormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -492,8 +492,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherGIStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherGIStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isExcessiveGas, "Excessive Gas", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -503,7 +503,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isGIParasites, "Parasites", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -513,7 +513,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isAbnormalFeces, "Abnormal Feces", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -523,7 +523,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isAnorexia, "Anorexia", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -539,7 +539,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Neurological</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isNeurologicalNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -549,8 +549,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherNeurologicalStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherNeurologicalStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isPLRL, "PL Left", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -560,7 +560,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isPLRR, "PL Right", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -570,7 +570,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isCPLF, "CP LF", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -580,7 +580,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isCPRF, "CP RF", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -590,7 +590,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isCPLR, "CP LR", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -600,7 +600,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isCPRR, "CP RR", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -610,7 +610,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isPalpebralL, "Palpebral L", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -620,7 +620,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isPalpebralR, "Palberal R", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -636,7 +636,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Abdomen</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isAbdomenNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -646,8 +646,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherAbdomenStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherAbdomenStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isAbnormalMass, "Abnormal Mass", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -657,7 +657,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isAbdomenPainful, "Tense/Painful", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -667,7 +667,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isBloated, "Bloated", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -677,7 +677,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isEnlarged, "Enlarged Organs", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -687,7 +687,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isFluid, "Fluid", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -697,7 +697,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isHernia, "Hernia", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -712,7 +712,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Urogenital System</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isUrogenitalNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -722,8 +722,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherUrogenitalStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherUrogenitalStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isUrogenAbnormalUrination, "Abnormal Urination", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -733,7 +733,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isGenitalDischarge, "Genital Discharge", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -743,7 +743,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isAnalSacs, "Anal Sacs", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -753,7 +753,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isRectal, "Rectal", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -763,7 +763,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isMammaryTumors, "Mammary Tumors", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -773,7 +773,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isAbnormalTesticles, "Abnormal Testicle(s)", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -783,7 +783,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isBloodSeen, "Blood Seen", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -800,7 +800,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Musculoskeletal</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isMusculoskeletalNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -810,8 +810,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherMusculoskeletalStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherMusculoskeletalStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isJointProblems, "Joint Problems", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -821,7 +821,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isNailProblems, "Nail Problems", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -831,7 +831,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isLamenessLF, "Lameness LF", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -841,7 +841,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isLamenessRF, "Lameness RF", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -851,7 +851,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isLamenessLR, "Lameness LR", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -861,7 +861,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isLamenessRR, "Lameness RR", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -871,7 +871,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isLigaments, "Ligaments", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -887,7 +887,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Lungs</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isLungNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -897,8 +897,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherLungStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherLungStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isBreathingDifficulty, "Breathing Difficulty", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -908,7 +908,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isRapidRespiration, "Rapid Respiration", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -918,7 +918,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isTrachealPinchPositive, "Tracheal Pinch Positive", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -928,7 +928,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isTrachealPinchNegative, "Tracheal Pinch Negative", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -938,7 +938,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isCongestion, "Congestion", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -948,7 +948,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isAbnormalSound, "Abnormal Sound", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -963,7 +963,7 @@
                 <div class="checkbox-mainlabel">
                     <h4>Heart</h4>
                 </div>
-                <div class="check-box">
+                <div class="check-box-health-exam">
                     @Html.LabelFor(model => model.isHeartNormal, "Normal", htmlAttributes: new { @class = "control-label col-md-1" })
                     <div>
                         <div class="checkbox">
@@ -973,8 +973,8 @@
                     </div>
                 </div>
 
-                <div class="check-box" id="divAllOtherHeartStatusInformation">
-                    <div class="check-box">
+                <div class="check-box-health-exam" id="divAllOtherHeartStatusInformation">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isMurMur, "Murmur", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -984,7 +984,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isFast, "Fast", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -994,7 +994,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isSlow, "Slow", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -1004,7 +1004,7 @@
                         </div>
                     </div>
 
-                    <div class="check-box">
+                    <div class="check-box-health-exam">
                         @Html.LabelFor(model => model.isMuffled, "Muffled", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div>
                             <div class="checkbox">
@@ -1017,11 +1017,14 @@
             </div>
 
             <div class="flex-container" style="border: none; padding: 15px;">
-                <div style="margin-right: 20px;">
-                    <a class="btn btn-warning" id="btnCancel">Cancel</a>
+                <div class="col-md-offset-2" style="margin-left:inherit; margin-right:10px">
+                    <button class="btn-primary" id="btnCancel">
+                    <i class="fas fa-arrow-left"></i> Back </button>
                 </div>
-                <div>
-                    <input type="submit" value="Submit" class="btn btn-default" />
+                <div class="col-md-offset-2" style="margin-left:inherit">
+                    <button class="btn-success" type="submit">
+                        Save
+                    </button>
                 </div>
             </div>
         </div>
