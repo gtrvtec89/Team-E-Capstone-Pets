@@ -4,14 +4,22 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Medications</h2>
+<p style="margin-left: 25px; font-size:15px">
 
-<div>
-    <h4>TMedication</h4>
-    <hr />
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TMedications")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+</p>
+
+<div class="body-content">
+    <h4 style="text-decoration: none; padding-top: 10px; padding-left: 10px">
+        Medication Details
+        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TMedications", new { id = Model.intMedicationID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+
+    </h4>
+    <hr style="margin:5px; margin-bottom: 15px" />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.strMedicationName)
+            @Html.DisplayName("Medication Name")
         </dt>
 
         <dd>
@@ -19,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.strMedicationDesc)
+            @Html.DisplayName("Description")
         </dt>
 
         <dd>
@@ -27,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dblCost)
+            @Html.DisplayName("Cost")
         </dt>
 
         <dd>
@@ -35,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dblPrice)
+            @Html.DisplayName("Price")
         </dt>
 
         <dd>
@@ -43,15 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.strNotes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.strNotes)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.intQuantity)
+            @Html.DisplayName("Quantity")
         </dt>
 
         <dd>
@@ -59,16 +59,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.intMethodID)
+            @Html.DisplayName("Method")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.intMethodID)
+            @Html.DisplayFor(model => model.TMethod.strMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Notes")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strNotes)
         </dd>
 
     </dl>
+    <p>
+        <button class="btn-warning" onclick="location.href='@Url.Action("Edit", "TMedications", new { id = Model.intMedicationID })';return false;"><i class="fas fa-pencil-alt"></i> Edit</button>
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.intMedicationID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
