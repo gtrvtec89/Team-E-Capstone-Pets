@@ -45,8 +45,16 @@ namespace test.Controllers {
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes")] TOwner tOwner) {
+        public ActionResult Create([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes,intUserID")] TOwner tOwner) {
             if (ModelState.IsValid) {
+
+                SqlParameter[] userparam = new SqlParameter[] {
+                        new SqlParameter("@strUserName", tOwner.strEmail),
+                        new SqlParameter("@strPassword", tOwner.strZip),
+                        new SqlParameter("@intRoleID", 1)
+                };
+                db.Database.ExecuteSqlCommand("uspAddNewUser @strUserName, @strPassword, @intRoleID", userparam);
+				var userID = db.TUsers.Max(u => u.intUserID);
                 SqlParameter[] param = new SqlParameter[] {
                     new SqlParameter("@strFirstName", tOwner.strFirstName),
                     new SqlParameter("@strLastName", tOwner.strLastName),
@@ -60,11 +68,10 @@ namespace test.Controllers {
                     new SqlParameter("@strOwner2Name", tOwner.strOwner2Name),
                     new SqlParameter("@strOwner2PhoneNumber", tOwner.strOwner2PhoneNumber),
                     new SqlParameter("@strOwner2Email", tOwner.strOwner2Email),
-                    new SqlParameter("@strNotes", tOwner.strNotes)
+                    new SqlParameter("@strNotes", tOwner.strNotes),
+                    new SqlParameter("@intUserID", userID)
                 };
-                db.uspAddNewUser(tOwner.strEmail, tOwner.strZip, 1);
-                var userID = db.TUsers.Max(u => u.intUserID);
-                db.TOwners.Add(tOwner);
+                db.Database.ExecuteSqlCommand("uspAddOwner @strFirstName, @strLastName, @intGenderID, @strAddress, @strCity, @intStateID, @strZip, @strPhoneNumber, @strEmail, @strOwner2Name, @strOwner2PhoneNumber, @strOwner2Email, @strNotes, @intUserID", param);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -93,7 +100,7 @@ namespace test.Controllers {
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes,isActive,intUserID")] TOwner tOwner) {
+        public ActionResult Edit([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes,intUserID")] TOwner tOwner) {
             if (ModelState.IsValid) {
                 db.Entry(tOwner).State = EntityState.Modified;
                 db.SaveChanges();
@@ -102,6 +109,7 @@ namespace test.Controllers {
             ViewBag.intStateID = new SelectList(db.TStates, "intStateID", "strStateCode", tOwner.intStateID);
             ViewBag.intUserID = new SelectList(db.TUsers, "intUserID", "strUserName", tOwner.intUserID);
             ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tOwner.intGenderID);
+
 
             return View(tOwner);
         }
