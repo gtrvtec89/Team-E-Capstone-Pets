@@ -46,7 +46,7 @@ namespace test.Controllers
         {
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType");
             ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender");
-            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strFirstName + strLastName");
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
             ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName");
 
             return View();
@@ -68,7 +68,7 @@ namespace test.Controllers
 
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
             ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
-            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strFirstName + strLastName", tPet.intOwnerID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
             ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
 
             return View(tPet);
@@ -88,7 +88,7 @@ namespace test.Controllers
             }
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
             ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
-            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strFirstName + strLastName", tPet.intOwnerID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
             ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
             return View(tPet);
         }
@@ -106,9 +106,10 @@ namespace test.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
             ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
-            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strFirstName + strLastName", tPet.intOwnerID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
             ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
             return View(tPet);
         }

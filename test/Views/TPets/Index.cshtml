@@ -5,11 +5,21 @@
 }
 
 <h2>Pets</h2>
-<p style="margin-left: 25px">
+<p style="margin-left: 35px">
 	<button class="btn-success" onclick="location.href='@Url.Action("Create", "TPets")';return false;">
 		<i class="fas fa-plus"></i>  Create New
 	</button>
 </p>
+<style>
+	th {
+		white-space: nowrap;
+	}
+	td {
+		white-space: nowrap;
+	}
+</style>
+
+
 <div class="body-content">
 
 	<div class="form-horizontal">
@@ -37,7 +47,7 @@
 					@Html.DisplayName("Breed")
 				</th>
 				<th style="white-space:nowrap">
-					@Html.DisplayName("DateofBirth")
+					@Html.DisplayName("Birthdate")
 				</th>
 				<th style="white-space:nowrap">
 					@Html.DisplayName("Weight")
@@ -69,7 +79,9 @@
 				<th style="white-space:nowrap">
 					@Html.DisplayName("Owner")
 				</th>
-				<th></th>
+				<th>
+					@Html.DisplayName("View | Edit | Delete")
+				</th>
 			</tr>
 
 			@foreach (var item in Model) {
@@ -84,19 +96,21 @@
 						@Html.DisplayFor(modelItem => item.strPetName)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.intPetTypeID)
+						@Html.DisplayFor(modelItem => item.TPetType.strPetType)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.intGenderID)
+						@Html.DisplayFor(modelItem => item.TGender.strGender)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.intBreedID)
+						@Html.DisplayFor(modelItem => item.TBreed.strBreedName)
 					</td>
 					<td>
+
 						@Html.DisplayFor(modelItem => item.dtmDateofBirth)
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.dblWeight)
+						lbs
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.isBlind)
@@ -110,6 +124,7 @@
 					<td>
 						@Html.DisplayFor(modelItem => item.isDeceased)
 					</td>
+
 					<td>
 						@Html.DisplayFor(modelItem => item.isAllergic)
 					</td>
@@ -119,16 +134,16 @@
 					<td>
 						@Html.DisplayFor(modelItem => item.strNotes)
 					</td>
+
 					<td>
-						@Html.DisplayFor(modelItem => item.isDeceased)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.intOwnerID)
+						@Html.DisplayFor(modelItem => item.TOwner.strFirstName)
+						@Html.DisplayFor(modelItem => item.TOwner.strLastName)
+
 					</td>
 					<td style="white-space:nowrap">
-						<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TPets", new { id = item.intOwnerID })' ;return false;>  <i class="far fa-eye"></i></a>
-						<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TPets", new { id = item.intOwnerID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
-						<a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TPets", new { id = item.intOwnerID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+						<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TPets", new { id = item.intPetID })' ;return false;>  <i class="far fa-eye"></i></a>
+						<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TPets", new { id = item.intPetID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+						<a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TPets", new { id = item.intPetID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
 					</td>
 
 					@*<td>
