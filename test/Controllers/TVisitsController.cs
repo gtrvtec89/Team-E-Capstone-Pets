@@ -37,8 +37,33 @@ namespace test.Controllers
         }
 
         // GET: TVisits/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Session["intPetID"] = id;
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+            var petID = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetNumber).FirstOrDefault();
+            var ownerName = (from o in db.TOwners
+                             join p in db.TPets
+                             on o.intOwnerID equals p.intOwnerID
+                             where p.intPetID == id
+                             select new
+                             {
+                                 firstName = o.strFirstName,
+                                 lastName = o.strLastName
+                             }).FirstOrDefault();
+
+            if (petName == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.PetName = petName;
+            ViewBag.PetID = petID;
+            ViewBag.OwnerName = ownerName.firstName + " " + ownerName.lastName;
             ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason");
             return View();
         }
@@ -48,27 +73,34 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intVisitID,intPetID,intVisitReasonID,dtmDateOfVist")] TVisit tVisit)
+        public ActionResult Create([Bind(Include = "intVisitReasonID")] TVisit tVisit)
         {
+            int petID = (int)Session["intPetID"];
             if (ModelState.IsValid) {
-                db.TVisits.Add(tVisit);
+                TVisit newPetVisit = new TVisit()
+                {
+                    intPetID = petID,
+                    dtmDateOfVist = DateTime.Now,
+                    intVisitReasonID = tVisit.intVisitReasonID
+                };
+                db.TVisits.Add(newPetVisit);
                 db.SaveChanges();
 
-                int intVisitReasonID = Int16.Parse("intVisitReasonID");
+                //Remove existing data from session for pet id
+                Session.Remove("intPetID");
 
-                switch(intVisitReasonID) 
+                switch(newPetVisit.intVisitReasonID) 
                 {
                     case 1:
+                        return RedirectToAction("Index", "Home");
                         break;
                     case 2:
+                        return RedirectToAction("Create", "THealthExam", new { id = petID, dateOfVisit = newPetVisit.dtmDateOfVist});
                         break;
                     case 3:
+                        return RedirectToAction("Index", "Home");
                         break;
-
-
 				}
-
-                return RedirectToAction("Index");
             }
 
             ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason", tVisit.intVisitReasonID);
