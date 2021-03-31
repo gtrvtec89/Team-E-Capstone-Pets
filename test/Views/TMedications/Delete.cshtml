@@ -4,77 +4,90 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Medications</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TMedication</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.strMedicationName)
-        </dt>
+<p style="margin-left: 25px; font-size:15px">
 
-        <dd>
-            @Html.DisplayFor(model => model.strMedicationName)
-        </dd>
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TMedications")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.strMedicationDesc)
-        </dt>
+<div class="body-content">
+    <div class="form-horizontal" style="padding-bottom:50px">
+        <div>
+            <h3>Are you sure you want to delete this medication?</h3>
+            <hr style="margin:5px; margin-bottom: 15px" />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Medication Name")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.strMedicationDesc)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.strMedicationName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dblCost)
-        </dt>
+                <dt>
+                    @Html.DisplayName("Description")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dblCost)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.strMedicationDesc)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dblPrice)
-        </dt>
+                <dt>
+                    @Html.DisplayName("Cost")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dblPrice)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.dblCost)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.strNotes)
-        </dt>
+                <dt>
+                    @Html.DisplayName("Price")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.strNotes)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.dblPrice)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.intQuantity)
-        </dt>
+                <dt>
+                    @Html.DisplayName("Quantity")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.intQuantity)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.intQuantity)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.intMethodID)
-        </dt>
+                <dt>
+                    @Html.DisplayName("Method")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.intMethodID)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TMethod.strMethod)
+                </dd>
 
-    </dl>
+                <dt>
+                    @Html.DisplayName("Notes")
+                </dt>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+                <dd>
+                    @Html.DisplayFor(model => model.strNotes)
+                </dd>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn-danger" />
+                    <button class="btn-warning" onclick="location.href='@Url.Action("Index", "TMedications")';return false;">
+                        <i class="fas fa-times"></i>  Cancel
+                    </button>
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>
+
