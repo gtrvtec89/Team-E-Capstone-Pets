@@ -1,55 +1,60 @@
 ﻿@model IEnumerable<test.TService>
 
-
 @{
     ViewBag.Title = "Index";
 }
 
+<h2>Services</h2>
 
-
-<h2>Services Report</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p style="margin-left: 25px">
+    <button class="btn-success" onclick="location.href='@Url.Action("Create", "TServices")';return false;">
+        <i class="fas fa-plus"></i>  Create New
+    </button>
 </p>
 
 <div class="body-content">
+    <div class="form-horizontal">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Service Description")
+                </th>
+                <th>
+                    @Html.DisplayName("Service Type")
+                </th>
+                <th>
+                    @Html.DisplayName("Price")
+                </th>
+           
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("View | Edit | Delete")
+                </th>
+            </tr>
 
-	<table class="table">
-		<tr>
-			<th>
-				Description
-			</th>
-			<th>
-				Type
-			</th>
-			<th>
-				Price
-			</th>
-		</tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strServiceDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TServiceType.strServiceType)
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dblPrice)
+                    </td>
+                    
 
-		@foreach (var item in Model) {
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.strServiceDesc)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.TServiceType.strServiceType)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.dblPrice)
-				</td>
-				<td style="column-count:auto;">
-					@Html.ActionLink("Edit", "Edit", new { id = item.intServiceID }, new { @class = "link-icon-edit"  })
-				</td>
-				<td style="column-count:auto;">
-					@Html.ActionLink("Details", "Details", new { id = item.intServiceID }, new { @class = "link-icon-details" })
-				</td>
-				<td style="column-count:auto;">
-					@Html.ActionLink("Delete", "Delete", new { id = item.intServiceID }, new { @class = "link-icon-delete" })
-				</td>
-			</tr>
-		}
+                    <td style="white-space:nowrap">
+                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TServices", new { id = item.intServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TServices", new { id = item.intServiceID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                        <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TServices", new { id = item.intServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
 
-	</table>
-	</div>
+        </table>
+    </div>
+</div>
+
