@@ -3009,5 +3009,82 @@ namespace test
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewServices1_Result>("uspViewServices1");
         }
+    
+        public virtual int uspAddPetImages(ObjectParameter petImageID, Nullable<long> petid, string primary_img, byte[] img, string file_name, Nullable<long> image_size, Nullable<System.DateTime> date)
+        {
+            var petidParameter = petid.HasValue ?
+                new ObjectParameter("petid", petid) :
+                new ObjectParameter("petid", typeof(long));
+    
+            var primary_imgParameter = primary_img != null ?
+                new ObjectParameter("primary_img", primary_img) :
+                new ObjectParameter("primary_img", typeof(string));
+    
+            var imgParameter = img != null ?
+                new ObjectParameter("img", img) :
+                new ObjectParameter("img", typeof(byte[]));
+    
+            var file_nameParameter = file_name != null ?
+                new ObjectParameter("file_name", file_name) :
+                new ObjectParameter("file_name", typeof(string));
+    
+            var image_sizeParameter = image_size.HasValue ?
+                new ObjectParameter("image_size", image_size) :
+                new ObjectParameter("image_size", typeof(long));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddPetImages", petImageID, petidParameter, primary_imgParameter, imgParameter, file_nameParameter, image_sizeParameter, dateParameter);
+        }
+    
+        public virtual int uspDeletePetImages(Nullable<long> petImageID)
+        {
+            var petImageIDParameter = petImageID.HasValue ?
+                new ObjectParameter("petImageID", petImageID) :
+                new ObjectParameter("petImageID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspDeletePetImages", petImageIDParameter);
+        }
+    
+        public virtual ObjectResult<uspSelectLatestPetImages_Result> uspSelectLatestPetImages(Nullable<long> petid)
+        {
+            var petidParameter = petid.HasValue ?
+                new ObjectParameter("petid", petid) :
+                new ObjectParameter("petid", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspSelectLatestPetImages_Result>("uspSelectLatestPetImages", petidParameter);
+        }
+    
+        public virtual ObjectResult<uspSelectPetImages_Result> uspSelectPetImages(Nullable<long> petid)
+        {
+            var petidParameter = petid.HasValue ?
+                new ObjectParameter("petid", petid) :
+                new ObjectParameter("petid", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspSelectPetImages_Result>("uspSelectPetImages", petidParameter);
+        }
+    
+        public virtual int uspUpdatePetImages(ObjectParameter petImageID, string primary_img, byte[] img, string file_name, Nullable<long> image_size)
+        {
+            var primary_imgParameter = primary_img != null ?
+                new ObjectParameter("primary_img", primary_img) :
+                new ObjectParameter("primary_img", typeof(string));
+    
+            var imgParameter = img != null ?
+                new ObjectParameter("img", img) :
+                new ObjectParameter("img", typeof(byte[]));
+    
+            var file_nameParameter = file_name != null ?
+                new ObjectParameter("file_name", file_name) :
+                new ObjectParameter("file_name", typeof(string));
+    
+            var image_sizeParameter = image_size.HasValue ?
+                new ObjectParameter("image_size", image_size) :
+                new ObjectParameter("image_size", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspUpdatePetImages", petImageID, primary_imgParameter, imgParameter, file_nameParameter, image_sizeParameter);
+        }
     }
 }

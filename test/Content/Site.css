@@ -12,27 +12,50 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    padding-top:7px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
+    background-color: white;
     border: 23px solid #6495ed;
-    max-height: 525px;
     overflow-y: overlay;
     overflow-x: overlay;
-    max-width: 1400px;
+    /*dynamic width based on screensize*/
+    max-width: 95%;
     margin: auto;
+    overflow: auto;
+    /*dynamic height based on screensize*/
+    max-height: calc(100vh - 200px);
 }
 
+/*Health Exam Page CSS - start*/
 .flex-container {
     display: flex;
+    flex-wrap: wrap;
     border: ridge;
     padding: 25px;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 99%;
 }
+
+.flex-container > p {
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+
 
 .flex-row {
     width: 50%;
+}
+
+.checkbox-mainlabel 
+{
+    width: 100%
+}
+
+.checkbox-mainlabel > h4 
+{
+    font-weight: 900;
+    margin-left: 15px;
 }
 
 .form-group-inline {
@@ -47,8 +70,26 @@
     margin: 3px;
 }
 
+.check-box-health-exam {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.check-box-health-exam > label {
+    margin-right: 10px;
+}
 
 
+/*Health Exam Page CSS - end*/
+
+.check-box {
+    margin-bottom: 15px;
+    /*    display: contents;*/
+}
+
+    .check-box > label {
+        margin-right: 10px;
+    }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -60,7 +101,8 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 910px;
+    border: 1px solid #ccc;
 }
 
 #test {
@@ -77,11 +119,11 @@ textarea {
 }
 
 a.classname {
-    /*background: url(../Content/Images/icon3.png) no-repeat top left;*/
+    background: url(../Content/Images/icon3.png) no-repeat top left;
     display: block;
     width: 60px;
     height: 51px;
-    /*text-indent: -9999px;*/ /* hides the link text */
+    text-indent: -9999px; /* hides the link text */
 }
 
 .custom {
@@ -100,12 +142,15 @@ h4{
 
 /* Style buttons */
 .btn {
-    background-color: DodgerBlue; /* Blue background */
-    border: none; /* Remove borders */
-    color: white; /* White text */
-    padding: 12px 16px; /* Some padding */
-    font-size: 16px; /* Set a font size */
-    cursor: pointer; /* Mouse pointer on hover */
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 165px;
+    height: 80px;
+    display: inline-grid;
 }
 
 /* Darker background on mouse-over */
@@ -132,11 +177,18 @@ h4{
     color: white;
 }
 
+.btn-edit {
+    background-color: yellow;
+    color: black;
+    font-family: Calibri;
+    height: auto;
+    width: auto;
+}
+
 
 .container {
     width: 100%;
     padding-right: 60px;
-    /*border-color: midnightblue;*/
 }
 
 .invisible-box {
@@ -186,29 +238,14 @@ footer {
     color:white;
 }
 
-
-/* Style inputs with type="text", select elements and textareas */
-/*input[type=text], select, textarea {
-    width: 33%;
-    padding: 0px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    resize: vertical*/ /* Allow the user to vertically resize the textarea (not horizontally) *//*;
-    display: inherit;
-}*/
-
-/* Style the submit button with a specific background color etc */
-/*input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}*/
+.link-icon-edit:before {
+    display: inline-block;
+    height: 32px;
+    width: 20px;
+    font-family: "FontAwesome";
+    content: "\f044";
+    
+}
 
 .link-icon-details:before {
     display: inline-block;

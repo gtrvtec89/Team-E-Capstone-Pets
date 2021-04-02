@@ -1,13 +1,8 @@
-﻿<!DOCTYPE html>
-<html style="height:100%">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewBag.Title - My ASP.NET Application</title>
-	@Styles.Render("~/Content/css")
-	<script src="https://kit.fontawesome.com/a75ff89abd.js" crossorigin="anonymous"></script>
-	@Scripts.Render("~/bundles/modernizr")
-</head>
+﻿
+@{
+	ViewBag.Title = "About";
+
+}
 
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -29,9 +24,9 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					@*<li><a style="display:block; text-align:left; color:cornflowerblue; font-family:Calibri; font-size: 25px">Capstone Pets</a></li>*@
-					<li>@Html.ActionLink("Home", "Index", "Home")</li>
-					<li>@Html.ActionLink("Help", "Help", "Home")</li>
-					<li>@Html.ActionLink("About", "About", "Home")</li>
+					<li>@Html.ActionLink("Home", "Index", "OwnerHome")</li>
+					<li>@Html.ActionLink("Help", "Help", "OwnerHome")</li>
+					<li>@Html.ActionLink("About", "About", "OwnerHome")</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>@Html.ActionLink("Sign Out", "Login", "Home")</li>
@@ -39,27 +34,30 @@
 			</div>
 		</div>
 	</div>
-
-
-	@*<div class="container body-content">
-			@RenderBody()
-			<hr />
-			<footer>
-				<p>&copy; @DateTime.Now.Year - Capstone Pets</p>
-			</footer>
-		</div>*@
-
-	@RenderBody()
-
-	<footer>
-		<p>&copy; @DateTime.Now.Year - Capstone Pets</p>
-	</footer>
-
-
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/bootstrap")
-	@RenderSection("scripts", required: false)
 </body>
 
+<style>
+	.user-image-container {
+		height: unset;
+	}
+</style>
 
-</html>
+
+<h2>@ViewBag.Title</h2>
+
+<p>Thank you for using our web application. The contact information for the architects are below. </p>
+
+<div class="user-image-container">
+	<div class="section">
+			<div>Tabitha Godsey</div>
+			<a href="mailto:trgodsey@cincinnatistate.com?subject=Tri-State Music Events">Email the architect.</a>.<br>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		SetActiveMenus('about');
+	});
+</script>
+

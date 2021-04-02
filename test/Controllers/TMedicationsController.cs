@@ -38,6 +38,7 @@ namespace test.Controllers
         // GET: TMedications/Create
         public ActionResult Create()
         {
+            ViewBag.intMethodID = new SelectList(db.TMethods, "intMethodID", "strMethod");
             return View();
         }
 
@@ -70,6 +71,7 @@ namespace test.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.intMethodID = new SelectList(db.TMethods, "intMethodID", "strMethod");
             return View(tMedication);
         }
 

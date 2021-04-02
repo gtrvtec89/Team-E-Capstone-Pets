@@ -144,6 +144,7 @@
       <DependentUpon>Capstone.edmx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OwnerHomeController.cs" />
     <Compile Include="Controllers\TBreedsController.cs" />
     <Compile Include="Controllers\TEmployeesController.cs" />
     <Compile Include="Controllers\THealthExamController.cs" />
@@ -264,6 +265,12 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="TVisitService.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspSelectLatestPetImages_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspSelectPetImages_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewEmployees1_Result.cs">
@@ -461,7 +468,6 @@
     <Content Include="Views\TPetTypes\Edit.cshtml" />
     <Content Include="Views\TPetTypes\Index.cshtml" />
     <Content Include="Views\THealthExam\Create.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
