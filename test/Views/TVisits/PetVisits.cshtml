@@ -1,0 +1,111 @@
+﻿@model IEnumerable<test.TVisit>
+
+@{
+    ViewBag.Title = "PetVisits";
+}
+
+<h2>@ViewBag.PetName</h2>
+<div style="display:flex; flex-wrap:wrap;">
+    <p style="margin-left: 25px; font-size:15px">
+
+        <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TPets")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+    </p>
+    <p style="margin-left: 25px; font-size:15px">
+        <button class="btn-success" onclick="location.href='@Url.Action("Create", "TVisits", new { id = Session["intPetID"] })';return false;">
+            Create Visit
+        </button>
+    </p>
+</div>
+
+<style>
+    dt {
+        white-space: nowrap
+    }
+
+    dd {
+        white-space: nowrap
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+        height: 40px;
+        max-width: 95%;
+        margin: auto;
+    }
+
+        .topnav > ul {
+            list-style: none;
+            padding-inline-start: unset;
+        }
+
+            .topnav > ul > li {
+                float: left;
+                color: #9d9d9d;
+                text-align: center;
+                padding: 10px 60px;
+                text-decoration: none;
+                font-size: 15px;
+            }
+
+                .topnav > ul > li > a {
+                    color: whitesmoke;
+                    text-decoration: none;
+                }
+
+        .topnav ul li:hover {
+            background-color: grey;
+            color: black;
+        }
+
+        .topnav ul li.active {
+            background-color: #6495ed;
+            color: white;
+        }
+</style>
+
+<div class="form-horizontal">
+    <div class="topnav">
+        <ul>
+            <li>@Html.ActionLink("General", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
+            <li class="active">@Html.ActionLink("Visits", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Vaccinnations", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Medications", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
+        </ul>
+    </div>
+</div>
+<div class="body-content">
+    <div class="form-horizontal">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Date")
+                </th>
+                <th>
+                    @Html.DisplayName("Reason")
+                </th>
+                <th>
+                    @Html.DisplayName("View | Edit | Delete")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dtmDateOfVist)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TVisitReason.strVisitReason)
+                    </td>
+                    <td style="white-space:nowrap">
+                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                        <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

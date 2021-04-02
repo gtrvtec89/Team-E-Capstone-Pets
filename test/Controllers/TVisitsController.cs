@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using test;
+using test.Models;
 
 namespace test.Controllers
 {
@@ -164,6 +165,25 @@ namespace test.Controllers
             db.TVisits.Remove(tVisit);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult PetVisits(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Session["intPetID"] = id;
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+            var tVisits = db.TVisits.Where(x => x.intPetID == id);
+
+            if (petName == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.PetName = petName;
+            
+            return View(tVisits);
         }
 
         protected override void Dispose(bool disposing)
