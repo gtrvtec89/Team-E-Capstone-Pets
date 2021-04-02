@@ -269,6 +269,12 @@
     <Compile Include="TVisitService.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspSelectLatestPetImages_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspSelectPetImages_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewEmployees1_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
