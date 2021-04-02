@@ -1,0 +1,28 @@
+﻿@model test.TBreed
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Breed Details</h2>
+
+<div class="body-content">
+	<div>
+		<h4>Breeds</h4>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				Breed Name
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.strBreedName)
+			</dd>
+
+		</dl>
+	</div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intBreedID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

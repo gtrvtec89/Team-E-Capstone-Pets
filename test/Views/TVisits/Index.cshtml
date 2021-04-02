@@ -1,0 +1,45 @@
+﻿@model IEnumerable<test.TVisit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.intPetID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtmDateOfVist)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TVisitReason.strVisitReason)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.intPetID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtmDateOfVist)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TVisitReason.strVisitReason)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.intVisitID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.intVisitID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.intVisitID })
+        </td>
+    </tr>
+}
+
+</table>

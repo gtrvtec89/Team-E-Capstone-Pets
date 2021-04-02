@@ -1,0 +1,108 @@
+﻿@model test.TUser
+
+@{
+	Layout = null;
+}
+
+@{
+	ViewBag.Title = "Login";
+}
+
+<style type="text/css">
+
+	body {
+		padding-top: 50px;
+		padding-bottom: 20px;
+		background-image: url(../../Content/Images/wallpaper-1945409.jpg);
+		background-size: cover;
+		background-color: #fff;
+	}
+
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+        height: auto;
+        overflow-y: auto;
+        width: auto;
+        /*margin: 25px;*/
+        align-content: center;
+        vertical-align: middle;
+        margin: auto;
+        display: table;
+        border: outset;
+        border-width: thick;
+        box-sizing: unset;
+        padding-top: unset;
+        padding-bottom: 15px;
+        position: absolute;
+        top: 30%;
+        left: 43%;
+    }
+
+	.btn {
+		width: -webkit-fill-available;
+		background-color: royalblue;
+		border-radius: 25px;
+		height: 25px;
+		color: white;
+	}
+
+	input[type=text],[type=password] {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	.img {
+		height: 50px;
+		width: 75px;
+		margin-left: 69px;
+		margin-bottom: 15px;
+	}
+
+	h1 {
+		display: block;
+		font-size: 2em;
+		margin-block-start: 0.70em;
+		margin-block-end: 0.67em;
+		margin-inline-start: 8px;
+		margin-inline-end: 0px;
+		font-weight: bold;
+	}
+</style>
+
+
+
+
+@using (Html.BeginForm()) {
+
+	@Html.AntiForgeryToken()
+
+<div class="body-content">
+
+	<h1>Please Sign In</h1>
+	<div>
+		<img src="~/Content/Images/companylogo.jpg" class="img"/>
+	</div>
+	<div class="form-group">
+		@Html.TextBoxFor(m => m.strUserName, new { @class = "form-control", placeholder = "Username", autofocus = "true" })
+		@Html.ValidationMessageFor(m => m.strUserName)
+	</div>
+	<div class="form-group">
+		@Html.PasswordFor(m => m.strPassword, new { @class = "form-control", placeholder = "Password" })
+		@Html.ValidationMessageFor(m => m.strPassword)
+	</div>
+	<div class="btn">
+		<div class="form-group">
+			<button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
+		</div>
+	</div>
+</div>
+		}
+
+
+
+
+
+

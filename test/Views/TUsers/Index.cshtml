@@ -1,0 +1,54 @@
+﻿@model IEnumerable<test.TUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users Report</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="body-content">
+
+
+	<table class="table">
+		<tr>
+			<th>
+				UserName
+			</th>
+			<th>
+				Password
+			</th>
+			<th>
+				Role
+			</th>
+			<th></th>
+		</tr>
+
+		@foreach (var item in Model) {
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.strUserName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.strPassword)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.TRole.strRoleName)
+		</td>
+		<td>
+			@Html.ActionLink("Edit", "Edit", new { id = item.intUserID }, new { @class = "link-icon-edit" })
+		</td>
+		<td>
+			@Html.ActionLink("Details", "Details", new { id = item.intUserID }, new { @class = "link-icon-details" })
+		</td>
+		<td>
+			@Html.ActionLink("Delete", "Delete", new { id = item.intUserID }, new { @class = "link-icon-delete" })
+		</td>
+	</tr>
+		}
+
+	</table>
+</div>

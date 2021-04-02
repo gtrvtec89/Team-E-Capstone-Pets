@@ -1,0 +1,29 @@
+﻿@model test.TRole
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Role Details</h2>
+
+<div class="body-content">
+
+	<div>
+		<h4>Roles</h4>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				Role
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.strRoleName)
+			</dd>
+
+		</dl>
+	</div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intRoleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

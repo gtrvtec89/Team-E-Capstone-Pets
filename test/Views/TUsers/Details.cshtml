@@ -1,0 +1,42 @@
+﻿@model test.TUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>User Details</h2>
+
+<div class="body-content">
+			<h4>Users</h4>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				UserName
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.strUserName)
+			</dd>
+
+			<dt>
+				Password
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.strPassword)
+			</dd>
+
+			<dt>
+				Role
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.TRole.strRoleName)
+			</dd>
+
+		</dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intUserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

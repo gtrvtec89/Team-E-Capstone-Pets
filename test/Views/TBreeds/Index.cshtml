@@ -1,0 +1,41 @@
+﻿@model IEnumerable<test.TBreed>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Breed Report</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="body-content">
+
+	<table class="table">
+		<tr>
+			<th>
+				Breed
+			</th>
+			<th></th>
+		</tr>
+
+		@foreach (var item in Model) {
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.strBreedName)
+				</td>
+				<td>
+					@Html.ActionLink("Edit", "Edit", new { id = item.intBreedID }, new { @class = "link-icon-edit" }) 
+				</td>
+				<td>
+					@Html.ActionLink("Details", "Details", new { id = item.intBreedID }, new { @class = "link-icon-details" }) 
+				</td>
+				<td>
+					@Html.ActionLink("Delete", "Delete", new { id = item.intBreedID }, new { @class = "link-icon-delete" })
+				</td>
+			</tr>
+		}
+
+	</table>
+	</div>

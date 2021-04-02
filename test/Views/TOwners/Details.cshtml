@@ -1,0 +1,143 @@
+﻿@model test.TOwner
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<p style="margin-left: 25px; font-size:15px">
+
+	<button class="btn-primary" onclick="location.href='@Url.Action("Index", "TOwners")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+</p>
+<div class="body-content">
+
+	<div class="form-horizontal">
+		<div>
+			<h4 style="text-decoration: none; padding-top: 10px; padding-left: 10px">
+				Owner Details
+				<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TOwners", new { id = Model.intOwnerID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+
+			</h4>
+			<hr style="margin:5px; margin-bottom: 15px" />
+			<dl class="dl-horizontal">
+				<dt style="white-space:nowrap">
+					@Html.DisplayName("First Name")
+				</dt>
+
+				<dd style="white-space:nowrap">
+					@Html.DisplayFor(model => model.strFirstName)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Last Name")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strLastName)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Gender")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.TGender.strGender)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Address")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strAddress)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("City")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strCity)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("State")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.TState.strStateCode)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Zip")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strZip)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Phone #")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strPhoneNumber)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Email")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strEmail)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Owner 2 Name")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strOwner2Name)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Owner 2 Phone #")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strOwner2PhoneNumber)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Owner 2 Email")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strOwner2Email)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Notes")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strNotes)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Username")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.TUser.strUserName)
+				</dd>
+
+
+
+			</dl>
+			<p>
+				<button class="btn-warning" onclick="location.href='@Url.Action("Edit", "TOwners", new { id = Model.intOwnerID })';return false;"><i class="fas fa-pencil-alt"></i> Edit</button>
+			</p>
+		</div>
+	</div>
+</div>

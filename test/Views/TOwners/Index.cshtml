@@ -1,0 +1,117 @@
+﻿@model IEnumerable<test.TOwner>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p style="margin-left: 25px">
+	<button class="btn-success" onclick="location.href='@Url.Action("Create", "TOwners")';return false;">
+		<i class="fas fa-plus"></i>  Create New
+	</button>
+</p>
+
+<div class="body-content">
+
+	<div class="form-horizontal">
+		<table class="table">
+			<tr>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("First Name")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Last Name")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Gender")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Address")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("City")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("State")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Zip")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Phone #")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Email")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Owner 2 Name")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Owner 2 Phone #")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Owner 2 Email")
+				</th>
+
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Username")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("View | Edit | Delete")
+				</th>
+			</tr>
+
+			@foreach (var item in Model) {
+				<tr>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strFirstName)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strLastName)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.TGender.strGender)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strAddress)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strCity)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.TState.strStateCode)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strZip)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strPhoneNumber)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strEmail)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strOwner2Name)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strOwner2PhoneNumber)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.strOwner2Email)
+					</td>
+					<td style="white-space:nowrap">
+						@Html.DisplayFor(modelItem => item.TUser.strUserName)
+					</td>
+
+					<td style="white-space:nowrap">
+						<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TOwners", new { id = item.intOwnerID })' ;return false;>  <i class="far fa-eye"></i></a>
+						<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TOwners", new { id = item.intOwnerID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+						<a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TOwners", new { id = item.intOwnerID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+					</td>
+				</tr>
+			}
+
+			</table>
+	</div>
+</div>

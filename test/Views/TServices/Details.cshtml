@@ -1,0 +1,42 @@
+﻿@model test.TService
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Service Details</h2>
+
+<div class="body-content">
+    <h4>Services</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Description
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strServiceDesc)
+        </dd>
+
+        <dt>
+            Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TServiceType.strServiceType)
+        </dd>
+
+        <dt>
+            Price
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dblPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intServiceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
