@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -21,7 +22,8 @@ namespace test.Controllers
                 .Include(t => t.TPetType)
                 .Include(t => t.TOwner)
                 .Include(t => t.TBreed)
-                .Include(t => t.TGender);
+                .Include(t => t.TGender)
+                .Include(t => t.TPetImages);
                 
             return View(tPets.ToList());
         }
@@ -34,6 +36,7 @@ namespace test.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TPet tPet = db.TPets.Find(id);
+            //TPetImage tPetImage = db.TPetImages.Find(db.);
             if (tPet == null)
             {
                 return HttpNotFound();
@@ -61,8 +64,8 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TPets.Add(tPet);
-                db.SaveChanges();
+				db.TPets.Add(tPet);
+				db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

@@ -163,6 +163,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Pet.cs" />
+    <Compile Include="Models\PetImage.cs" />
     <Compile Include="Models\HealthExam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TAbdomenInfo.cs">
@@ -462,7 +464,6 @@
     <Content Include="Views\TPetTypes\Edit.cshtml" />
     <Content Include="Views\TPetTypes\Index.cshtml" />
     <Content Include="Views\THealthExam\Create.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
