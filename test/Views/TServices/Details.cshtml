@@ -4,14 +4,22 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Service Details</h2>
+<h2>Services</h2>
+<p style="margin-left: 25px; font-size:15px">
+
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TServices")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+</p>
 
 <div class="body-content">
-    <h4>Services</h4>
-    <hr />
+    <h4 style="text-decoration: none; padding-top: 10px; padding-left: 10px">
+        Service Details
+        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TServices", new { id = Model.intServiceID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+
+    </h4>
+    <hr style="margin:5px; margin-bottom: 15px" />
     <dl class="dl-horizontal">
         <dt>
-            Description
+            @Html.DisplayName("Description")
         </dt>
 
         <dd>
@@ -19,7 +27,7 @@
         </dd>
 
         <dt>
-            Type
+            @Html.DisplayName("Service Type")
         </dt>
 
         <dd>
@@ -27,7 +35,7 @@
         </dd>
 
         <dt>
-            Price
+            @Html.DisplayName("Price")
         </dt>
 
         <dd>
@@ -35,8 +43,7 @@
         </dd>
 
     </dl>
+    <p>
+        <button class="btn-warning" onclick="location.href='@Url.Action("Edit", "TServices", new { id = Model.intServiceID })';return false;"><i class="fas fa-pencil-alt"></i> Edit</button>
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.intServiceID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -38,7 +38,6 @@ namespace test.Controllers {
 
             return View();
 
-
         }
 
 
@@ -46,9 +45,15 @@ namespace test.Controllers {
 
             return View();
 
-
         }
 
+
+        public ActionResult PetMedication()
+        {
+
+            return View();
+
+        }
 
     }
 }
