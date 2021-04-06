@@ -158,12 +158,18 @@
     <Compile Include="Controllers\TServicesController.cs" />
     <Compile Include="Controllers\TServiceTypesController.cs" />
     <Compile Include="Controllers\TUsersController.cs" />
+    <Compile Include="Controllers\TVaccinationsController.cs" />
+    <Compile Include="Controllers\TVisitMedicationsController.cs" />
     <Compile Include="Controllers\TVisitReasonsController.cs" />
     <Compile Include="Controllers\TVisitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateVisit.cs" />
+    <Compile Include="Models\EmployeeInformation.cs" />
     <Compile Include="Models\HealthExam.cs" />
+    <Compile Include="Models\Medication.cs" />
+    <Compile Include="Models\Vaccination.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TAbdomenInfo.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
@@ -468,6 +474,19 @@
     <Content Include="Views\TPetTypes\Edit.cshtml" />
     <Content Include="Views\TPetTypes\Index.cshtml" />
     <Content Include="Views\THealthExam\Create.cshtml" />
+    <Content Include="Views\TVisits\PetVisits.cshtml" />
+    <Content Include="Views\TVaccinations\Create.cshtml" />
+    <Content Include="Views\TVaccinations\Delete.cshtml" />
+    <Content Include="Views\TVaccinations\Details.cshtml" />
+    <Content Include="Views\TVaccinations\Edit.cshtml" />
+    <Content Include="Views\TVaccinations\Index.cshtml" />
+    <Content Include="Views\TVaccinations\PetVaccinations.cshtml" />
+    <Content Include="Views\TVisitMedications\Create.cshtml" />
+    <Content Include="Views\TVisitMedications\Delete.cshtml" />
+    <Content Include="Views\TVisitMedications\Details.cshtml" />
+    <Content Include="Views\TVisitMedications\Edit.cshtml" />
+    <Content Include="Views\TVisitMedications\Index.cshtml" />
+    <Content Include="Views\TVisitMedications\PetMedications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

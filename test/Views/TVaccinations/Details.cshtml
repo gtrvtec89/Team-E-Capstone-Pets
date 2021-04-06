@@ -1,0 +1,58 @@
+﻿@model test.TVaccination
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TVaccination</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dtmDateOfVaccination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmDateOfVaccination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtmDateOfExpiration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmDateOfExpiration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strVaccineDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strVaccineDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strRabiesNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strRabiesNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TVisitService.intVisitServiceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TVisitService.intVisitServiceID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intVaccinationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

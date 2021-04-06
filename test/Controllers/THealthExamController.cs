@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using test.Models;
@@ -21,13 +22,34 @@ namespace test.Controllers
         }
 
         // GET: Create 
-        public ActionResult Create()
+        public ActionResult Create(int? id, DateTime dateOfVisit)
         {
-            //TO DO: Pass right data to the view using session
-            ViewBag.Date = DateTime.Now; 
-            ViewBag.Owner = "John Smith";
-            ViewBag.Patient = "Wishbone";
-            ViewBag.PatientID = "124";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Session["intPetID"] = id;
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+            var petID = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetNumber).FirstOrDefault();
+            var ownerName = (from o in db.TOwners
+                             join p in db.TPets
+                             on o.intOwnerID equals p.intOwnerID
+                             where p.intPetID == id
+                             select new
+                             {
+                                 firstName = o.strFirstName,
+                                 lastName = o.strLastName
+                             }).FirstOrDefault();
+
+            if (petName == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Date = dateOfVisit; 
+            ViewBag.Owner = ownerName.firstName + " " + ownerName.lastName;
+            ViewBag.Patient = petName;
+            ViewBag.PatientID = petID;
 
             return View();
         }

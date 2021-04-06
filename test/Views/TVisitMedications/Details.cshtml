@@ -1,0 +1,50 @@
+﻿@model test.TVisitMedication
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TVisitMedication</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dtmDatePrescribed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmDatePrescribed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TMedication.strMedicationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TMedication.strMedicationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TVisit.intVisitID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TVisit.intVisitID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intVisitMedicationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

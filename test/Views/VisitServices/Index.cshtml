@@ -1,0 +1,48 @@
+﻿@model IEnumerable<test.TService>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Add Service</h2>
+
+<div class="body-content">
+    <div class="form-horizontal">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.strServiceDesc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dblPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TServiceType.strServiceType)
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Add")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strServiceDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dblPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TServiceType.strServiceType)
+                    </td>
+                    <td>
+                        <a style="color:#5cb85c; padding-left: 15px" href='' ;return false;>  <i class="far fa-plus"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
