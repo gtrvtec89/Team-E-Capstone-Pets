@@ -99,6 +99,7 @@ namespace test.Controllers
                 db.TVisits.Add(newPetVisit);
 
                 int lastInsertedVisitID = db.TVisits.Max(v => v.intVisitID);
+                Session["intVisitId"] = lastInsertedVisitID;
                 db.SaveChanges();
 
                 TVisitEmployee newPetVisitEmployee = new TVisitEmployee()
@@ -112,19 +113,11 @@ namespace test.Controllers
 
                 switch(newPetVisit.intVisitReasonID) 
                 {
-                    //case 1:
-                    //    return RedirectToAction("Index", "Home");
-                    //    break;
                     case 1:
                         return RedirectToAction("Create", "THealthExam", new { id = petID, dateOfVisit = newPetVisit.dtmDateOfVist});
-                        break;
-                    case 3:
-                        return RedirectToAction("Index", "Home");
-                        break;
+                    default:
+                        return RedirectToAction("Index", "VisitServices");
 				}
-
-                return RedirectToAction("PetVisits", "TVisits", new { id = petID });
-
             }
 
             ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason", tVisit.intVisitReasonID);
