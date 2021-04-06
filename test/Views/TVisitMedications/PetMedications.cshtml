@@ -4,15 +4,29 @@
     ViewBag.Title = "PetMedications";
 }
 
-<h2>@ViewBag.PetName</h2>
+<h2><a href="@Url.Action("Details", "TPets", new {  id = Session["intPetID"]})">@ViewBag.PetName</h2>
 <div style="display:flex; flex-wrap:wrap;">
     <p style="margin-left: 25px; font-size:15px">
 
-        <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TPets")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+        <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TPets")';return false;"><i class="fas fa-arrow-left"></i> Pet List</button>
     </p>
 </div>
 
 <style>
+    h2 {
+        text-decoration:none;
+    }
+
+    h2 > a {
+        color:black;
+        text-decoration:none;
+    }
+
+    h2 > a:hover, a:focus {
+        color:cornflowerblue;
+        text-decoration: none;
+    }
+
     dt {
         white-space: nowrap
     }

@@ -36,10 +36,8 @@ namespace test.Controllers
         }
 
         // GET: TEmployees/Create
-        [Authorize]
         public ActionResult Create()
         {
-            
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intEmployeeID,strFirstName,strLastName,intJobTitleID,isActive,intUserID")] TEmployee tEmployee)
+        public ActionResult Create([Bind(Include = "intEmployeeID,strFirstName,strLastName,intJobTitleID,intUserID")] TEmployee tEmployee)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +78,7 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intEmployeeID,strFirstName,strLastName,intJobTitleID,isActive,intUserID")] TEmployee tEmployee)
+        public ActionResult Edit([Bind(Include = "intEmployeeID,strFirstName,strLastName,intJobTitleID,intUserID")] TEmployee tEmployee)
         {
             if (ModelState.IsValid)
             {

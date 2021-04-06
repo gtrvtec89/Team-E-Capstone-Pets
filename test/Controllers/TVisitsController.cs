@@ -56,6 +56,16 @@ namespace test.Controllers
                                  firstName = o.strFirstName,
                                  lastName = o.strLastName
                              }).FirstOrDefault();
+            List<EmployeeInformation> doctorList = (from e in db.TEmployees
+                                   join j in db.TJobTitles
+                                   on e.intJobTitleID equals j.intJobTitleID
+                                   where j.strJobTitleDesc == "Doctor"
+                                   select new EmployeeInformation
+                                   {
+                                       intEmployeeID = e.intEmployeeID,
+                                       intJobTitleID = j.intJobTitleID,
+                                       strEmployeeName = "Dr. " + e.strFirstName + " " + e.strLastName
+                                   }).ToList();
 
             if (petName == null)
             {
@@ -66,6 +76,8 @@ namespace test.Controllers
             ViewBag.PetID = petID;
             ViewBag.OwnerName = ownerName.firstName + " " + ownerName.lastName;
             ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason");
+            ViewBag.intEmployeeID = new SelectList(doctorList, "intEmployeeID", "strEmployeeName");
+
             return View();
         }
 
@@ -74,7 +86,7 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intVisitReasonID")] TVisit tVisit)
+        public ActionResult Create(CreateVisit tVisit)
         {
             int petID = (int)Session["intPetID"];
             if (ModelState.IsValid) {
@@ -85,23 +97,34 @@ namespace test.Controllers
                     intVisitReasonID = tVisit.intVisitReasonID
                 };
                 db.TVisits.Add(newPetVisit);
+
+                int lastInsertedVisitID = db.TVisits.Max(v => v.intVisitID);
                 db.SaveChanges();
+
+                TVisitEmployee newPetVisitEmployee = new TVisitEmployee()
+                {
+                    intVisitID = lastInsertedVisitID,
+                    intEmployeeID = tVisit.intEmployeeID
+                };
 
                 //Remove existing data from session for pet id
                 Session.Remove("intPetID");
 
                 switch(newPetVisit.intVisitReasonID) 
                 {
+                    //case 1:
+                    //    return RedirectToAction("Index", "Home");
+                    //    break;
                     case 1:
-                        return RedirectToAction("Index", "Home");
-                        break;
-                    case 2:
                         return RedirectToAction("Create", "THealthExam", new { id = petID, dateOfVisit = newPetVisit.dtmDateOfVist});
                         break;
                     case 3:
                         return RedirectToAction("Index", "Home");
                         break;
 				}
+
+                return RedirectToAction("PetVisits", "TVisits", new { id = petID });
+
             }
 
             ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason", tVisit.intVisitReasonID);

@@ -1,10 +1,10 @@
-﻿@model test.TVisit
+﻿@model test.Models.CreateVisit
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>@ViewBag.PetName</h2>
+<h2>@ViewBag.PetName</h2>>
 
 
 @using (Html.BeginForm()) 
@@ -14,9 +14,6 @@
     <div class="body-content">
         <div class="form-horizontal">
             <div class="form-horizontal">
-                <h4 style="text-decoration: none; padding-top: 10px; padding-left: 10px">
-                    Add a Visit
-                </h4>
                 <hr style="margin:5px; margin-bottom: 15px" />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="flex-container">
@@ -28,25 +25,26 @@
                         Owner: @ViewBag.OwnerName
                     </p>
                 </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.intVisitReasonID, "Reason for Visit", htmlAttributes: new { @class = "control-label col-md-1" })
+                    @Html.LabelFor(model => model.intVisitReasonID,"Visit Reason", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("intVisitReasonID", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.intVisitReasonID, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                @*<div class="form-group">
-                    @Html.LabelFor(model => model.dtmDateOfVist, "Date of Visit", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.intEmployeeID, "Doctor", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.dtmDateOfVist, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.dtmDateOfVist, "", new { @class = "text-danger" })
+                        @Html.DropDownList("intEmployeeID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.intEmployeeID, "", new { @class = "text-danger" })
                     </div>
-                </div>*@
+                </div>
 
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10" style="margin-left:10%;">
+                    <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Create" class="btn-success" />
                     </div>
                 </div>
