@@ -233,12 +233,11 @@
             <PropertyRef Name="intPetImageID" />
           </Key>
           <Property Name="intPetImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strFileName" Type="nvarchar" MaxLength="255" />
+          <Property Name="strContentType" Type="varchar" MaxLength="100" />
+          <Property Name="imgContent" Type="varbinary(max)" Nullable="false" />
+          <Property Name="intFileType" Type="int" Nullable="false" />
           <Property Name="intPetID" Type="int" Nullable="false" />
-          <Property Name="imgPrimaryImage" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="imgImage" Type="varbinary(max)" Nullable="false" />
-          <Property Name="strFileName" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="intImageSize" Type="int" Nullable="false" />
-          <Property Name="dtmDateAdded" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="TPets">
           <Key>
@@ -799,41 +798,6 @@
           <Parameter Name="isHernia" Type="bit" Mode="In" />
           <Parameter Name="intHealthExamID" Type="int" Mode="In" />
         </Function>
-        <Function Name="uspAddEarStatusInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="isNormal" Type="bit" Mode="In" />
-          <Parameter Name="isInflamed" Type="bit" Mode="In" />
-          <Parameter Name="isTumor" Type="bit" Mode="In" />
-          <Parameter Name="isDirty" Type="bit" Mode="In" />
-          <Parameter Name="isPainful" Type="bit" Mode="In" />
-          <Parameter Name="isExcessiveHair" Type="bit" Mode="In" />
-          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspAddEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="strFirstName" Type="varchar" Mode="In" />
-          <Parameter Name="strLastName" Type="varchar" Mode="In" />
-          <Parameter Name="intJobTitleID" Type="int" Mode="In" />
-          <Parameter Name="intUserID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspAddEyeStatusInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="isNormal" Type="bit" Mode="In" />
-          <Parameter Name="isDischarge" Type="bit" Mode="In" />
-          <Parameter Name="isInfection" Type="bit" Mode="In" />
-          <Parameter Name="isSclerosisLeft" Type="bit" Mode="In" />
-          <Parameter Name="isSclerosisRight" Type="bit" Mode="In" />
-          <Parameter Name="isCataractLeft" Type="bit" Mode="In" />
-          <Parameter Name="isCataractRight" Type="bit" Mode="In" />
-          <Parameter Name="isInflamed" Type="bit" Mode="In" />
-          <Parameter Name="isEyelidTumor" Type="bit" Mode="In" />
-          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspAddGIInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="isNormal" Type="bit" Mode="In" />
-          <Parameter Name="isExcessiveGas" Type="bit" Mode="In" />
-          <Parameter Name="isParasites" Type="bit" Mode="In" />
-          <Parameter Name="isAbnormalFeces" Type="bit" Mode="In" />
-          <Parameter Name="isAnorexia" Type="bit" Mode="In" />
-          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
-        </Function>
         <Function Name="uspAddHealthExam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="dblWeight" Type="float" Mode="In" />
           <Parameter Name="dblTemperature" Type="float" Mode="In" />
@@ -862,25 +826,6 @@
           <Parameter Name="isAbnormalSound" Type="bit" Mode="In" />
           <Parameter Name="intHealthExamID" Type="int" Mode="In" />
         </Function>
-        <Function Name="uspAddMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="strMedicationName" Type="varchar" Mode="In" />
-          <Parameter Name="strMedicationDesc" Type="varchar" Mode="In" />
-          <Parameter Name="dblCost" Type="money" Mode="In" />
-          <Parameter Name="dblPrice" Type="money" Mode="In" />
-          <Parameter Name="strNotes" Type="varchar" Mode="In" />
-          <Parameter Name="intQuantity" Type="int" Mode="In" />
-          <Parameter Name="intMethodID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspAddMouthInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="isNormal" Type="bit" Mode="In" />
-          <Parameter Name="isTumor" Type="bit" Mode="In" />
-          <Parameter Name="isGingivitis" Type="bit" Mode="In" />
-          <Parameter Name="isPeriodontitis" Type="bit" Mode="In" />
-          <Parameter Name="isTartarBuildup" Type="bit" Mode="In" />
-          <Parameter Name="isLooseTeeth" Type="bit" Mode="In" />
-          <Parameter Name="isBiteOVerUnder" Type="bit" Mode="In" />
-          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
-        </Function>
         <Function Name="uspAddMusculoskeletalInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="isNormal" Type="bit" Mode="In" />
           <Parameter Name="isJointProblems" Type="bit" Mode="In" />
@@ -891,23 +836,6 @@
           <Parameter Name="isLamenessRR" Type="bit" Mode="In" />
           <Parameter Name="isLigaments" Type="bit" Mode="In" />
           <Parameter Name="intHealthExamID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspAddNeurologicalInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="isNormal" Type="bit" Mode="In" />
-          <Parameter Name="isPLRL" Type="bit" Mode="In" />
-          <Parameter Name="isPLRR" Type="bit" Mode="In" />
-          <Parameter Name="isCPLF" Type="bit" Mode="In" />
-          <Parameter Name="isCPRF" Type="bit" Mode="In" />
-          <Parameter Name="isCPLR" Type="bit" Mode="In" />
-          <Parameter Name="isCPRR" Type="bit" Mode="In" />
-          <Parameter Name="isPalpebralL" Type="bit" Mode="In" />
-          <Parameter Name="isPalpebralR" Type="bit" Mode="In" />
-          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspAddNewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="strUserName" Type="varchar" Mode="In" />
-          <Parameter Name="strPassword" Type="varchar" Mode="In" />
-          <Parameter Name="intRoleID" Type="int" Mode="In" />
         </Function>
         <Function Name="uspAddNoseThroatInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="isNormal" Type="bit" Mode="In" />
@@ -932,33 +860,6 @@
           <Parameter Name="strOwner2Email" Type="varchar" Mode="In" />
           <Parameter Name="strNotes" Type="varchar" Mode="In" />
           <Parameter Name="intUserID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspAddPetImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="petImageID" Type="bigint" Mode="InOut" />
-          <Parameter Name="petid" Type="bigint" Mode="In" />
-          <Parameter Name="primary_img" Type="nchar" Mode="In" />
-          <Parameter Name="img" Type="varbinary(max)" Mode="In" />
-          <Parameter Name="file_name" Type="varchar" Mode="In" />
-          <Parameter Name="image_size" Type="bigint" Mode="In" />
-          <Parameter Name="date" Type="date" Mode="In" />
-        </Function>
-        <Function Name="uspAddPets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="strPetNumber" Type="varchar" Mode="In" />
-          <Parameter Name="strMicrochipID" Type="varchar" Mode="In" />
-          <Parameter Name="strPetName" Type="varchar" Mode="In" />
-          <Parameter Name="intPetTypeID" Type="int" Mode="In" />
-          <Parameter Name="intGenderID" Type="int" Mode="In" />
-          <Parameter Name="intBreedID" Type="int" Mode="In" />
-          <Parameter Name="dtmDateofBirth" Type="date" Mode="In" />
-          <Parameter Name="dblWeight" Type="float" Mode="In" />
-          <Parameter Name="isBlind" Type="bit" Mode="In" />
-          <Parameter Name="isDeaf" Type="bit" Mode="In" />
-          <Parameter Name="isAggressive" Type="bit" Mode="In" />
-          <Parameter Name="isDeceased" Type="bit" Mode="In" />
-          <Parameter Name="isAllergic" Type="bit" Mode="In" />
-          <Parameter Name="strColor" Type="varchar" Mode="In" />
-          <Parameter Name="strNotes" Type="varchar" Mode="In" />
-          <Parameter Name="intOwnerID" Type="int" Mode="In" />
         </Function>
         <Function Name="uspAddPetVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="dblWeight" Type="float" Mode="In" />
@@ -1060,18 +961,6 @@
           <Parameter Name="intServiceTypeID" Type="int" Mode="In" />
           <Parameter Name="dblPrice" Type="money" Mode="In" />
         </Function>
-        <Function Name="uspAddSkinInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="isNormal" Type="bit" Mode="In" />
-          <Parameter Name="isScaly" Type="bit" Mode="In" />
-          <Parameter Name="isInfected" Type="bit" Mode="In" />
-          <Parameter Name="isMatted" Type="bit" Mode="In" />
-          <Parameter Name="isSkinScrape" Type="bit" Mode="In" />
-          <Parameter Name="isPruritus" Type="bit" Mode="In" />
-          <Parameter Name="isHairLoss" Type="bit" Mode="In" />
-          <Parameter Name="isMass" Type="bit" Mode="In" />
-          <Parameter Name="isParasites" Type="bit" Mode="In" />
-          <Parameter Name="intHealthExamID" Type="int" Mode="In" />
-        </Function>
         <Function Name="uspAddUrogenitalInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="isNormal" Type="bit" Mode="In" />
           <Parameter Name="isAbnormalUrination" Type="bit" Mode="In" />
@@ -1109,46 +998,11 @@
           <Parameter Name="intVisitID" Type="int" Mode="In" />
           <Parameter Name="intServiceID" Type="int" Mode="In" />
         </Function>
-        <Function Name="uspCheckEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="intEmployeeID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspCheckMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="intMedicationID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspCheckServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="intServiceID" Type="int" Mode="In" />
-        </Function>
         <Function Name="uspCleanDatabase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspDeleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="intEmployeeID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspDeleteMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="intMedicationID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="uspDeletePetImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="petImageID" Type="bigint" Mode="In" />
-        </Function>
-        <Function Name="uspDeleteService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="intServiceID" Type="int" Mode="In" />
-        </Function>
         <Function Name="uspDropUserForeignKeys" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
         <Function Name="uspDropUserStoredProcedures" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
         <Function Name="uspDropUserTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
         <Function Name="uspDropUserViews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspGetUserOwnerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="strUserName" Type="varchar" Mode="In" />
-          <Parameter Name="strPassword" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="uspGetUserRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="strUserName" Type="varchar" Mode="In" />
-          <Parameter Name="strPassword" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="uspSelectLatestPetImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="petid" Type="bigint" Mode="In" />
-        </Function>
-        <Function Name="uspSelectPetImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="petid" Type="bigint" Mode="In" />
-        </Function>
         <Function Name="uspUpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="intEmployeeID" Type="int" Mode="In" />
           <Parameter Name="strFirstName" Type="varchar" Mode="In" />
@@ -1183,35 +1037,12 @@
           <Parameter Name="strNotes" Type="varchar" Mode="In" />
           <Parameter Name="intUserID" Type="int" Mode="In" />
         </Function>
-        <Function Name="uspUpdatePetImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="petImageID" Type="bigint" Mode="InOut" />
-          <Parameter Name="primary_img" Type="nchar" Mode="In" />
-          <Parameter Name="img" Type="varbinary(max)" Mode="In" />
-          <Parameter Name="file_name" Type="varchar" Mode="In" />
-          <Parameter Name="image_size" Type="bigint" Mode="In" />
-        </Function>
         <Function Name="uspUpdateService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="intServiceID" Type="int" Mode="In" />
           <Parameter Name="strServiceDesc" Type="varchar" Mode="In" />
           <Parameter Name="intServiceTypeID" Type="int" Mode="In" />
           <Parameter Name="dblPrice" Type="money" Mode="In" />
         </Function>
-        <Function Name="uspUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="strUserName" Type="varchar" Mode="In" />
-          <Parameter Name="strPassword" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="uspViewEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspViewMedications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspViewOwnerPets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="ownerid" Type="bigint" Mode="In" />
-        </Function>
-        <Function Name="uspViewOwners" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspViewPetGeneralInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspViewPetMedications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspViewPets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspViewPetVaccinations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspViewPetVisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
-        <Function Name="uspViewServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner" />
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="TAbdomenInfos" EntityType="Self.TAbdomenInfos" Schema="db_owner" store:Type="Tables" />
           <EntitySet Name="TBreeds" EntityType="Self.TBreeds" Schema="db_owner" store:Type="Tables" />
@@ -2350,13 +2181,13 @@
             <Parameter Name="date" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="uspDeletePetImages">
-            <Parameter Name="petImageID" Mode="In" Type="Int64" />
+          <Parameter Name="petImageID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="uspSelectLatestPetImages" ReturnType="Collection(Model.uspSelectLatestPetImages_Result)">
-            <Parameter Name="petid" Mode="In" Type="Int64" />
+          <Parameter Name="petid" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="uspSelectPetImages" ReturnType="Collection(Model.uspSelectPetImages_Result)">
-            <Parameter Name="petid" Mode="In" Type="Int64" />
+          <Parameter Name="petid" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="uspUpdatePetImages">
             <Parameter Name="petImageID" Mode="InOut" Type="Int64" />
@@ -2724,12 +2555,11 @@
           </Key>
           <Property Name="intPetImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="intPetID" Type="Int32" Nullable="false" />
-          <Property Name="imgPrimaryImage" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="imgImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="strFileName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="intImageSize" Type="Int32" Nullable="false" />
-          <Property Name="dtmDateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="strFileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TPet" Relationship="Model.TPetImages_TPets_FK1" FromRole="TPetImage" ToRole="TPet" />
+          <Property Name="strContentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="imgContent" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="intFileType" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TPet">
           <Key>
@@ -3756,11 +3586,10 @@
           <EntitySetMapping Name="TPetImages">
             <EntityTypeMapping TypeName="Model.TPetImage">
               <MappingFragment StoreEntitySet="TPetImages">
-                <ScalarProperty Name="dtmDateAdded" ColumnName="dtmDateAdded" />
-                <ScalarProperty Name="intImageSize" ColumnName="intImageSize" />
+                <ScalarProperty Name="intFileType" ColumnName="intFileType" />
+                <ScalarProperty Name="imgContent" ColumnName="imgContent" />
+                <ScalarProperty Name="strContentType" ColumnName="strContentType" />
                 <ScalarProperty Name="strFileName" ColumnName="strFileName" />
-                <ScalarProperty Name="imgImage" ColumnName="imgImage" />
-                <ScalarProperty Name="imgPrimaryImage" ColumnName="imgPrimaryImage" />
                 <ScalarProperty Name="intPetID" ColumnName="intPetID" />
                 <ScalarProperty Name="intPetImageID" ColumnName="intPetImageID" />
               </MappingFragment>
@@ -3934,247 +3763,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="uspAddEarStatusInfo1" FunctionName="Model.Store.uspAddEarStatusInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddEmployee1" FunctionName="Model.Store.uspAddEmployee" />
-          <FunctionImportMapping FunctionImportName="uspAddEyeStatusInfo1" FunctionName="Model.Store.uspAddEyeStatusInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddGIInfo1" FunctionName="Model.Store.uspAddGIInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddMedication1" FunctionName="Model.Store.uspAddMedication" />
-          <FunctionImportMapping FunctionImportName="uspAddMouthInfo1" FunctionName="Model.Store.uspAddMouthInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddNeurologicalInfo1" FunctionName="Model.Store.uspAddNeurologicalInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddNewUser1" FunctionName="Model.Store.uspAddNewUser" />
-          <FunctionImportMapping FunctionImportName="uspAddPets1" FunctionName="Model.Store.uspAddPets" />
-          <FunctionImportMapping FunctionImportName="uspAddSkinInfo1" FunctionName="Model.Store.uspAddSkinInfo" />
-          <FunctionImportMapping FunctionImportName="uspCheckEmployees1" FunctionName="Model.Store.uspCheckEmployees" />
-          <FunctionImportMapping FunctionImportName="uspCheckMedication1" FunctionName="Model.Store.uspCheckMedication" />
-          <FunctionImportMapping FunctionImportName="uspCheckServices1" FunctionName="Model.Store.uspCheckServices" />
-          <FunctionImportMapping FunctionImportName="uspDeleteEmployee1" FunctionName="Model.Store.uspDeleteEmployee" />
-          <FunctionImportMapping FunctionImportName="uspDeleteMedication1" FunctionName="Model.Store.uspDeleteMedication" />
-          <FunctionImportMapping FunctionImportName="uspDeleteService1" FunctionName="Model.Store.uspDeleteService" />
-          <FunctionImportMapping FunctionImportName="uspGetUserOwnerID1" FunctionName="Model.Store.uspGetUserOwnerID" />
-          <FunctionImportMapping FunctionImportName="uspGetUserRole1" FunctionName="Model.Store.uspGetUserRole" />
-          <FunctionImportMapping FunctionImportName="uspUserLogin1" FunctionName="Model.Store.uspUserLogin" />
-          <FunctionImportMapping FunctionImportName="uspViewEmployees1" FunctionName="Model.Store.uspViewEmployees">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewEmployees1_Result">
-                <ScalarProperty Name="intEmployeeID" ColumnName="intEmployeeID" />
-                <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
-                <ScalarProperty Name="strLastName" ColumnName="strLastName" />
-                <ScalarProperty Name="intJobTitleID" ColumnName="intJobTitleID" />
-                <ScalarProperty Name="intUserID" ColumnName="intUserID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewMedications1" FunctionName="Model.Store.uspViewMedications">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewMedications1_Result">
-                <ScalarProperty Name="intMedicationID" ColumnName="intMedicationID" />
-                <ScalarProperty Name="strMedicationName" ColumnName="strMedicationName" />
-                <ScalarProperty Name="strMedicationDesc" ColumnName="strMedicationDesc" />
-                <ScalarProperty Name="dblCost" ColumnName="dblCost" />
-                <ScalarProperty Name="dblPrice" ColumnName="dblPrice" />
-                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
-                <ScalarProperty Name="intQuantity" ColumnName="intQuantity" />
-                <ScalarProperty Name="intMethodID" ColumnName="intMethodID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewOwnerPets" FunctionName="Model.Store.uspViewOwnerPets">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewOwnerPets_Result">
-                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
-                <ScalarProperty Name="strPetNumber" ColumnName="strPetNumber" />
-                <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
-                <ScalarProperty Name="strPetName" ColumnName="strPetName" />
-                <ScalarProperty Name="intPetTypeID" ColumnName="intPetTypeID" />
-                <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
-                <ScalarProperty Name="intBreedID" ColumnName="intBreedID" />
-                <ScalarProperty Name="dtmDateofBirth" ColumnName="dtmDateofBirth" />
-                <ScalarProperty Name="dblWeight" ColumnName="dblWeight" />
-                <ScalarProperty Name="isBlind" ColumnName="isBlind" />
-                <ScalarProperty Name="isDeaf" ColumnName="isDeaf" />
-                <ScalarProperty Name="isAggressive" ColumnName="isAggressive" />
-                <ScalarProperty Name="isDeceased" ColumnName="isDeceased" />
-                <ScalarProperty Name="isAllergic" ColumnName="isAllergic" />
-                <ScalarProperty Name="strColor" ColumnName="strColor" />
-                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
-                <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
-                <ScalarProperty Name="intOwnerID1" ColumnName="intOwnerID1" />
-                <ScalarProperty Name="intOwnerID2" ColumnName="intOwnerID2" />
-                <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
-                <ScalarProperty Name="strLastName" ColumnName="strLastName" />
-                <ScalarProperty Name="strEmail" ColumnName="strEmail" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewOwners1" FunctionName="Model.Store.uspViewOwners">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewOwners1_Result">
-                <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
-                <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
-                <ScalarProperty Name="strLastName" ColumnName="strLastName" />
-                <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
-                <ScalarProperty Name="strAddress" ColumnName="strAddress" />
-                <ScalarProperty Name="strCity" ColumnName="strCity" />
-                <ScalarProperty Name="intStateID" ColumnName="intStateID" />
-                <ScalarProperty Name="strZip" ColumnName="strZip" />
-                <ScalarProperty Name="strPhoneNumber" ColumnName="strPhoneNumber" />
-                <ScalarProperty Name="strEmail" ColumnName="strEmail" />
-                <ScalarProperty Name="strOwner2Name" ColumnName="strOwner2Name" />
-                <ScalarProperty Name="strOwner2PhoneNumber" ColumnName="strOwner2PhoneNumber" />
-                <ScalarProperty Name="strOwner2Email" ColumnName="strOwner2Email" />
-                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
-                <ScalarProperty Name="intUserID" ColumnName="intUserID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPetGeneralInformation1" FunctionName="Model.Store.uspViewPetGeneralInformation">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPetGeneralInformation1_Result">
-                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
-                <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
-                <ScalarProperty Name="strPetName" ColumnName="strPetName" />
-                <ScalarProperty Name="strPetType" ColumnName="strPetType" />
-                <ScalarProperty Name="strGender" ColumnName="strGender" />
-                <ScalarProperty Name="strBreedName" ColumnName="strBreedName" />
-                <ScalarProperty Name="intAge" ColumnName="intAge" />
-                <ScalarProperty Name="dblWeight" ColumnName="dblWeight" />
-                <ScalarProperty Name="strColor" ColumnName="strColor" />
-                <ScalarProperty Name="strOwnerName" ColumnName="strOwnerName" />
-                <ScalarProperty Name="strPhoneNumber" ColumnName="strPhoneNumber" />
-                <ScalarProperty Name="strEmail" ColumnName="strEmail" />
-                <ScalarProperty Name="strOwnerAddress" ColumnName="strOwnerAddress" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPetMedications1" FunctionName="Model.Store.uspViewPetMedications">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPetMedications1_Result">
-                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
-                <ScalarProperty Name="dtmDatePrescribed" ColumnName="dtmDatePrescribed" />
-                <ScalarProperty Name="intMedicationID" ColumnName="intMedicationID" />
-                <ScalarProperty Name="intQuantity" ColumnName="intQuantity" />
-                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPets1" FunctionName="Model.Store.uspViewPets">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPets1_Result">
-                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
-                <ScalarProperty Name="strPetNumber" ColumnName="strPetNumber" />
-                <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
-                <ScalarProperty Name="strPetName" ColumnName="strPetName" />
-                <ScalarProperty Name="intPetTypeID" ColumnName="intPetTypeID" />
-                <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
-                <ScalarProperty Name="intBreedID" ColumnName="intBreedID" />
-                <ScalarProperty Name="dtmDateofBirth" ColumnName="dtmDateofBirth" />
-                <ScalarProperty Name="dblWeight" ColumnName="dblWeight" />
-                <ScalarProperty Name="isBlind" ColumnName="isBlind" />
-                <ScalarProperty Name="isDeaf" ColumnName="isDeaf" />
-                <ScalarProperty Name="isAggressive" ColumnName="isAggressive" />
-                <ScalarProperty Name="isDeceased" ColumnName="isDeceased" />
-                <ScalarProperty Name="isAllergic" ColumnName="isAllergic" />
-                <ScalarProperty Name="strColor" ColumnName="strColor" />
-                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
-                <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPetVaccinations1" FunctionName="Model.Store.uspViewPetVaccinations">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPetVaccinations1_Result">
-                <ScalarProperty Name="intVaccinationID" ColumnName="intVaccinationID" />
-                <ScalarProperty Name="intVisitServiceID" ColumnName="intVisitServiceID" />
-                <ScalarProperty Name="dtmDateOfVaccination" ColumnName="dtmDateOfVaccination" />
-                <ScalarProperty Name="dtmDateOfExpiration" ColumnName="dtmDateOfExpiration" />
-                <ScalarProperty Name="strVaccineDesc" ColumnName="strVaccineDesc" />
-                <ScalarProperty Name="strRabiesNumber" ColumnName="strRabiesNumber" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPetVisits1" FunctionName="Model.Store.uspViewPetVisits">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPetVisits1_Result">
-                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
-                <ScalarProperty Name="dtmDateOfVist" ColumnName="dtmDateOfVist" />
-                <ScalarProperty Name="strVisitReason" ColumnName="strVisitReason" />
-                <ScalarProperty Name="strDoctor" ColumnName="strDoctor" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewServices1" FunctionName="Model.Store.uspViewServices">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewServices1_Result">
-                <ScalarProperty Name="intServiceID" ColumnName="intServiceID" />
-                <ScalarProperty Name="strServiceDesc" ColumnName="strServiceDesc" />
-                <ScalarProperty Name="intServiceTypeID" ColumnName="intServiceTypeID" />
-                <ScalarProperty Name="dblPrice" ColumnName="dblPrice" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspAddPetImages" FunctionName="Model.Store.uspAddPetImages" />
-          <FunctionImportMapping FunctionImportName="uspDeletePetImages" FunctionName="Model.Store.uspDeletePetImages" />
-          <FunctionImportMapping FunctionImportName="uspSelectLatestPetImages" FunctionName="Model.Store.uspSelectLatestPetImages">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspSelectLatestPetImages_Result">
-                <ScalarProperty Name="intPetImageID" ColumnName="intPetImageID" />
-                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
-                <ScalarProperty Name="imgPrimaryImage" ColumnName="imgPrimaryImage" />
-                <ScalarProperty Name="imgImage" ColumnName="imgImage" />
-                <ScalarProperty Name="strFileName" ColumnName="strFileName" />
-                <ScalarProperty Name="intImageSize" ColumnName="intImageSize" />
-                <ScalarProperty Name="dtmDateAdded" ColumnName="dtmDateAdded" />
-                <ScalarProperty Name="intPetID1" ColumnName="intPetID1" />
-                <ScalarProperty Name="strPetNumber" ColumnName="strPetNumber" />
-                <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
-                <ScalarProperty Name="strPetName" ColumnName="strPetName" />
-                <ScalarProperty Name="intPetTypeID" ColumnName="intPetTypeID" />
-                <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
-                <ScalarProperty Name="intBreedID" ColumnName="intBreedID" />
-                <ScalarProperty Name="dtmDateofBirth" ColumnName="dtmDateofBirth" />
-                <ScalarProperty Name="dblWeight" ColumnName="dblWeight" />
-                <ScalarProperty Name="isBlind" ColumnName="isBlind" />
-                <ScalarProperty Name="isDeaf" ColumnName="isDeaf" />
-                <ScalarProperty Name="isAggressive" ColumnName="isAggressive" />
-                <ScalarProperty Name="isDeceased" ColumnName="isDeceased" />
-                <ScalarProperty Name="isAllergic" ColumnName="isAllergic" />
-                <ScalarProperty Name="strColor" ColumnName="strColor" />
-                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
-                <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspSelectPetImages" FunctionName="Model.Store.uspSelectPetImages">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspSelectPetImages_Result">
-                <ScalarProperty Name="intPetImageID" ColumnName="intPetImageID" />
-                <ScalarProperty Name="intPetID" ColumnName="intPetID" />
-                <ScalarProperty Name="imgPrimaryImage" ColumnName="imgPrimaryImage" />
-                <ScalarProperty Name="imgImage" ColumnName="imgImage" />
-                <ScalarProperty Name="strFileName" ColumnName="strFileName" />
-                <ScalarProperty Name="intImageSize" ColumnName="intImageSize" />
-                <ScalarProperty Name="dtmDateAdded" ColumnName="dtmDateAdded" />
-                <ScalarProperty Name="intPetID1" ColumnName="intPetID1" />
-                <ScalarProperty Name="strPetNumber" ColumnName="strPetNumber" />
-                <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
-                <ScalarProperty Name="strPetName" ColumnName="strPetName" />
-                <ScalarProperty Name="intPetTypeID" ColumnName="intPetTypeID" />
-                <ScalarProperty Name="intGenderID" ColumnName="intGenderID" />
-                <ScalarProperty Name="intBreedID" ColumnName="intBreedID" />
-                <ScalarProperty Name="dtmDateofBirth" ColumnName="dtmDateofBirth" />
-                <ScalarProperty Name="dblWeight" ColumnName="dblWeight" />
-                <ScalarProperty Name="isBlind" ColumnName="isBlind" />
-                <ScalarProperty Name="isDeaf" ColumnName="isDeaf" />
-                <ScalarProperty Name="isAggressive" ColumnName="isAggressive" />
-                <ScalarProperty Name="isDeceased" ColumnName="isDeceased" />
-                <ScalarProperty Name="isAllergic" ColumnName="isAllergic" />
-                <ScalarProperty Name="strColor" ColumnName="strColor" />
-                <ScalarProperty Name="strNotes" ColumnName="strNotes" />
-                <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspUpdatePetImages" FunctionName="Model.Store.uspUpdatePetImages" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
