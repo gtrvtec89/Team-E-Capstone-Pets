@@ -1,0 +1,51 @@
+﻿@model IEnumerable<test.TVisitMedication>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dtmDatePrescribed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TMedication.strMedicationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TVisit.intVisitID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtmDatePrescribed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TMedication.strMedicationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TVisit.intVisitID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.intVisitMedicationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.intVisitMedicationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.intVisitMedicationID })
+        </td>
+    </tr>
+}
+
+</table>
