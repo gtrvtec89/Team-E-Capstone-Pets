@@ -4,29 +4,44 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Services</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TServiceType</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.strServiceType)
-        </dt>
+<p style="margin-left: 25px; font-size:15px">
 
-        <dd>
-            @Html.DisplayFor(model => model.strServiceType)
-        </dd>
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TServiceTypes")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</p>
 
-    </dl>
+<div class="body-content">
+    <div class="form-horizontal" style="padding-bottom:50px">
+        <div>
+            <h3>Are you sure you want to delete this service type?</h3>
+            <hr style="margin:5px; margin-bottom: 15px" />
+            <dl class="dl-horizontal">
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+                <dt>
+                    @Html.DisplayName("Service Type")
+                </dt>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <dd>
+                    @Html.DisplayFor(model => model.strServiceType)
+                </dd>
+
+                <dt>
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn-danger" />
+                    <button class="btn-warning" onclick="location.href='@Url.Action("Index", "TServiceTypes")';return false;">
+                        <i class="fas fa-times"></i>  Cancel
+                    </button>
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>
+
