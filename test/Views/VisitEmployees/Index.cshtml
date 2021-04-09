@@ -1,6 +1,6 @@
-﻿@model test.Models.VisitServiceViewModel
+﻿@model test.Models.VisitEmployeeViewModel
 
-<h2>Add Services</h2>
+<h2>Add Employees</h2>
 <style>
     .topnav {
         overflow: hidden;
@@ -47,31 +47,31 @@
             {
                 <li>@Html.ActionLink("Health Exam", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
             }
-        <li class="active">@Html.ActionLink("Services", "Index", "VisitServices")</li>
+            <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
             <li>@Html.ActionLink("Medications", "Index", "VisitMedications")</li>
-            <li>@Html.ActionLink("Team", "Index", "VisitEmployees", new { id = Session["intPetID"] }, null)</li>
+            <li class="active">@Html.ActionLink("Team", "Index", "VisitEmployees", new { id = Session["intPetID"] }, null)</li>
             <li>@Html.ActionLink("Summary", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
         </ul>
     </div>
 </div>
-<div class="body-content" >
+<div class="body-content">
     <div class="form-horizontal" style="display: flex;">
         <div class="flex-container">
             <table class="table">
                 <tr>
                     <th>
-                        @Html.DisplayName("Service")
+                        @Html.DisplayName("Name")
                     </th>
                     <th style="white-space:nowrap">
                         @Html.DisplayName("Add")
                     </th>
                 </tr>
 
-                @foreach (TService service in Model.Services)
+                @foreach (TEmployee employee in Model.Employees)
                 {
                     <tr>
                         <td>
-                            @service.strServiceDesc
+                            @employee.strFirstName
                         </td>
                         <td style="white-space:nowrap">
                             <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetService", "VisitServices", new { serviceID = service.intServiceID })' ;return false;>  <i class="far fa-plus"></i></a>
@@ -85,18 +85,18 @@
             <table class="table">
                 <tr>
                     <th>
-                        @Html.DisplayName("Service")
+                        @Html.DisplayName("Name")
                     </th>
                     <th style="white-space:nowrap">
                         @Html.DisplayName("Delete")
                     </th>
                 </tr>
 
-                @foreach (TVisitService petService in Model.PetVisitServices)
+                @foreach (TVisitEmployee petEmployee in Model.PetVisitEmployees)
                 {
                     <tr>
                         <td>
-                            @petService.TService.strServiceDesc
+                            @petEmployee.TEmployee.strFirstName
                         </td>
                         <td style="white-space:nowrap">
                             <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices", new { id = petService.intServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
@@ -108,3 +108,4 @@
         </div>
     </div>
 </div>
+

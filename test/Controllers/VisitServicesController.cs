@@ -31,7 +31,17 @@ namespace test.Controllers
 
             db.TVisitServices.Add(visitService);
             db.SaveChanges();
-    
+
+            int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
+            int service = db.TVisitServices.Where(x => x.intVisitServiceID == lastInsertedVisitServiceID).Select(x => x.intServiceID).FirstOrDefault();
+            //If it's a health exam
+            if(service == 8)
+            {
+                DateTime dateOfHealthExam = DateTime.Now;
+                int intPetId = (int)Session["intPetID"];
+                return RedirectToAction("Create", "THealthExam", new { id = intPetId , dateOfVisit = dateOfHealthExam });
+            }
+
             return RedirectToAction("Index");
         }
 

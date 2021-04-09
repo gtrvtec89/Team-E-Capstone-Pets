@@ -109,11 +109,23 @@ namespace test.Controllers
                 };
 
                 //Remove existing data from session for pet id
-                Session.Remove("intPetID");
 
-                switch(newPetVisit.intVisitReasonID) 
+                Session["isHealthExam"] = null;
+                switch (newPetVisit.intVisitReasonID) 
                 {
                     case 1:
+                        TVisitService visitService = new TVisitService()
+                        {
+                            intVisitID = lastInsertedVisitID,
+                            intServiceID = 8
+                        };
+
+                        db.TVisitServices.Add(visitService);
+                        db.SaveChanges();
+                        int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
+
+                        Session["isHealthExam"] = true;
+                        Session["intVisitServiceID"] = lastInsertedVisitServiceID;
                         return RedirectToAction("Create", "THealthExam", new { id = petID, dateOfVisit = newPetVisit.dtmDateOfVist});
                     default:
                         return RedirectToAction("Index", "VisitServices");
