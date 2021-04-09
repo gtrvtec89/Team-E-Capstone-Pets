@@ -4,30 +4,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>ServiceTypes</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p style="margin-left: 25px">
+    <button class="btn-success" onclick="location.href='@Url.Action("Create", "TServiceTypes")';return false;">
+        <i class="fas fa-plus"></i>  Create New
+    </button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.strServiceType)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.strServiceType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.intServiceTypeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.intServiceTypeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.intServiceTypeID })
-        </td>
-    </tr>
-}
+<div class="body-content">
+    <div class="form-horizontal">
+        <table class="table">
+            <tr>
+               
+                <th>
+                    @Html.DisplayName("Service Type")
+                </th>
+                
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("View | Edit | Delete")
+                </th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strServiceType)
+                    </td>
+                   
+
+                    
+
+
+                    <td style="white-space:nowrap">
+                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TServiceTypes", new { id = item.intServiceTypeID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TServiceTypes", new { id = item.intServiceTypeID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                        <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TServiceTypes", new { id = item.intServiceTypeID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
