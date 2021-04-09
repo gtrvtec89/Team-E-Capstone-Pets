@@ -23,9 +23,6 @@ namespace test.Controllers {
 		}
 
 
-
-
-
 		public ActionResult Login() {
 
 			return View();
@@ -53,11 +50,6 @@ namespace test.Controllers {
             ViewBag.PromptMessage = "Invalid Credentials Supplied";
             return View();
         }
-
-
-
-
-
 
 
 
