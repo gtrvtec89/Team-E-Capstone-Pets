@@ -38,6 +38,7 @@ namespace test.Controllers
         // GET: TEmployees/Create
         public ActionResult Create()
         {
+            ViewBag.intJobTitleID = new SelectList(db.TJobTitles, "intJobTitleID", "strJobTitleDesc");
             return View();
         }
 

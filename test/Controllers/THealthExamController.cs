@@ -67,7 +67,7 @@ namespace test.Controllers
                 new SqlParameter("@intRespRate", healthExam.intRespRate),
                 new SqlParameter("@intCapillaryRefillTime", healthExam.intCapillaryRefillTime),
                 new SqlParameter("@strMucousMembrane", healthExam.strMucousMembrane),
-                new SqlParameter("@intVisitServiceID", "1"),
+                new SqlParameter("@intVisitServiceID", Session["intVisitServiceID"]),
                 new SqlParameter("@strNotes", healthExam.strNotes),
 
                 //Eye status parameters 
@@ -183,7 +183,7 @@ namespace test.Controllers
             db.Database.ExecuteSqlCommand("uspAddPetVisit @dblWeight, @dblTemperature,@intHeartRate,@intRespRate,@intCapillaryRefillTime,@strMucousMembrane,@intVisitServiceID,@strNotes,@isEyeNormal, @isDischarge, @isInfection,@isSclerosisLeft, @isSclerosisRight, @isCataractLeft, @isCataractRight, @isEyeInflamed, @isEyelidTumor,@isEarNormal,@isEarInflamed,@isEarTumor,@isDirty,@isEarPainful,@isExcessiveHair,@isSkinNormal,@isScaly,@isInfected,@isMatted,@isSkinScrape,@isPruritus,@isHairLoss,@isMass,@isSkinParasites,@isMouthNormal,@isMouthTumor,@isGingivitis,@isPeriodontitis,@isTartarBuildup,@isLooseTeeth,@isBiteOVerUnder,@isNoseThroatNormal,@isLargeLymphNodes,@isInflamedThroat,@isNasalDishcharge,@isInflamedTonsils,@isGINormal,@isExcessiveGas,@isGIParasites,@isAbnormalFeces,@isAnorexia,@isNeurologicalNormal,@isPLRL,@isPLRR,@isCPLF,@isCPRF,@isCPLR,@isCPRR,@isPalpebralL,@isPalpebralR,@isAbdomenNormal, @isAbnormalMass,@isAbdomenPainful,@isBloated, @isEnlarged,@isFluid,@isHernia,@isUrogenitalNormal, @isUrogenAbnormalUrination, @isGenitalDischarge, @isAnalSacs, @isRectal, @isMammaryTumors, @isAbnormalTesticles, @isBloodSeen,@isMusculoskeletalNormal,@isJointProblems,@isNailProblems,@isLamenessLF,@isLamenessRF,@isLamenessLR,@isLamenessRR,@isLigaments,@isLungNormal, @isBreathingDifficulty, @isRapidRespiration,@isTrachealPinchPositive,@isTrachealPinchNegative,@isCongestion,@isAbnormalSound,@isHeartNormal,@isMurMur,@isFast,@isSlow,@isMuffled"
                 , param
                 );
-            return View();
+            return RedirectToAction("Index", "VisitServices");
         }
     }
 }
