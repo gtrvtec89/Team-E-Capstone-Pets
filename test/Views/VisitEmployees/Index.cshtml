@@ -74,7 +74,7 @@
                             @employee.strFirstName
                         </td>
                         <td style="white-space:nowrap">
-                            <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetService", "VisitServices", new { serviceID = service.intServiceID })' ;return false;>  <i class="far fa-plus"></i></a>
+                            <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetEmployee", "VisitEmployees", new { employeeID = employee.intEmployeeID })' ;return false;>  <i class="far fa-plus"></i></a>
                         </td>
                     </tr>
                 }
@@ -99,7 +99,7 @@
                             @petEmployee.TEmployee.strFirstName
                         </td>
                         <td style="white-space:nowrap">
-                            <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices", new { id = petService.intServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                            <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices")' ;return false;>  <i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 }

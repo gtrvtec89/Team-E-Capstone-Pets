@@ -97,10 +97,11 @@ namespace test.Controllers
                     intVisitReasonID = tVisit.intVisitReasonID
                 };
                 db.TVisits.Add(newPetVisit);
+                db.SaveChanges();
+
 
                 int lastInsertedVisitID = db.TVisits.Max(v => v.intVisitID);
                 Session["intVisitId"] = lastInsertedVisitID;
-                db.SaveChanges();
 
                 TVisitEmployee newPetVisitEmployee = new TVisitEmployee()
                 {
@@ -108,12 +109,15 @@ namespace test.Controllers
                     intEmployeeID = tVisit.intEmployeeID
                 };
 
+                db.TVisitEmployees.Add(newPetVisitEmployee);
+                db.SaveChanges();
+
                 //Remove existing data from session for pet id
 
                 Session["isHealthExam"] = null;
                 switch (newPetVisit.intVisitReasonID) 
                 {
-                    case 1:
+                    case 2: 
                         TVisitService visitService = new TVisitService()
                         {
                             intVisitID = lastInsertedVisitID,
