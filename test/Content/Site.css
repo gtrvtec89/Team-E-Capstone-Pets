@@ -35,6 +35,15 @@
     width: 99%;
 }
 
+.flex-container-no-border {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 99%;
+}
+
 .flex-container > p {
     font-size: 16px;
     font-weight: 700;

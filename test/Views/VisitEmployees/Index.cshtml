@@ -49,8 +49,8 @@
             }
             <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
             <li>@Html.ActionLink("Medications", "Index", "VisitMedications")</li>
-            <li class="active">@Html.ActionLink("Team", "Index", "VisitEmployees", new { id = Session["intPetID"] }, null)</li>
-            <li>@Html.ActionLink("Summary", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
+            <li class="active">@Html.ActionLink("Team", "Index", "VisitEmployees")</li>
+            <li>@Html.ActionLink("Summary", "Index", "VisitSummary")</li>
         </ul>
     </div>
 </div>

@@ -61,6 +61,12 @@ namespace test.Controllers
             myModel.PetVisitServices = db.TVisitServices.Where(x => x.intVisitID == intVisitId).ToList();
             myModel.PetVisitMedications = db.TVisitMedications.Where(x => x.intVisitID == intVisitId).ToList();
 
+            ViewBag.Total = db.TVisitServices
+                            .Where(x => x.intVisitID == intVisitId)
+                            .Select(z => z.TService.dblPrice)
+                            .DefaultIfEmpty()
+                            .Sum();
+
             return View(myModel);
         }
     }
