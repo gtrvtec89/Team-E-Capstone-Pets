@@ -30,6 +30,31 @@
 			<hr style="margin:5px; margin-bottom: 15px" />
 			<dl class="dl-horizontal">
 				<dt>
+					Image
+				</dt>
+				<dd>
+					<img src="/TPetImages/getimg?intPetImageID=@Model.TPetImages.First(f => f.strFileType == ".jpg").intPetImageID" alt="avatar" style="max-height:200px; max-width:200px" />
+				</dd>
+
+
+				<dt>
+					@Html.DisplayName("Pet Name")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strPetName)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Owner")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.TOwner.strFirstName) 
+					@Html.DisplayFor(model => model.TOwner.strLastName)
+				</dd>
+
+				<dt>
 					@Html.DisplayName("Tag #")
 				</dt>
 
@@ -45,13 +70,6 @@
 					@Html.DisplayFor(model => model.strMicrochipID)
 				</dd>
 
-				<dt>
-					@Html.DisplayName("Pet Name")
-				</dt>
-
-				<dd>
-					@Html.DisplayFor(model => model.strPetName)
-				</dd>
 
 				<dt>
 					@Html.DisplayName("Pet Type")
@@ -150,14 +168,7 @@
 					@Html.DisplayFor(model => model.strNotes)
 				</dd>
 
-				<dt>
-					@Html.DisplayName("Owner")
-				</dt>
 
-				<dd>
-					@Html.DisplayFor(model => model.TOwner.strFirstName)
-					@Html.DisplayFor(model => model.TOwner.strLastName)
-				</dd>
 
 			</dl>
 			<p>

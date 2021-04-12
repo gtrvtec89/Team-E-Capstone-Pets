@@ -1,160 +1,181 @@
 ﻿@model test.TPet
 
 @{
-    ViewBag.Title = "Delete";
+	ViewBag.Title = "Delete";
 }
 
 <h2>Delete</h2>
+<p style="margin-left: 25px; font-size:15px">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TPet</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.strPetNumber)
-        </dt>
+	<button class="btn-primary" onclick="location.href='@Url.Action("Index", "TPets")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.strPetNumber)
-        </dd>
+<div class="body-content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.strMicrochipID)
-        </dt>
+	<div class="form-horizontal" style="padding-bottom:50px">
+		<div>
 
-        <dd>
-            @Html.DisplayFor(model => model.strMicrochipID)
-        </dd>
+			<h3>Are you sure you want to delete this?</h3>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.strPetName)
-        </dt>
+			<hr style="margin:5px; margin-bottom: 15px" />
 
-        <dd>
-            @Html.DisplayFor(model => model.strPetName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.intPetTypeID)
-        </dt>
+			<dl style="" class="dl-horizontal">
+				<dt>
+					Image
+				</dt>
+				<dd>
+					<img src="/TPetImages/getimg?intPetImageID=@Model.TPetImages.First(f => f.strFileType == ".jpg").intPetImageID" alt="avatar" style="max-height:200px; max-width:200px" />
+				</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.intPetTypeID)
-        </dd>
+				<dt>
+					@Html.DisplayName("Pet Name")
+				</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.intGenderID)
-        </dt>
+				<dd>
+					@Html.DisplayFor(model => model.strPetName)
+				</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.intGenderID)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.intBreedID)
-        </dt>
+				<dt>
+					@Html.DisplayName("Owner")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.intBreedID)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.TOwner.strFirstName)
+					@Html.DisplayFor(model => model.TOwner.strLastName)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dtmDateofBirth)
-        </dt>
+				<dt>
+					@Html.DisplayName("Tag #")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dtmDateofBirth)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.strPetNumber)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dblWeight)
-        </dt>
+				<dt>
+					@Html.DisplayName("Microchip ID#")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dblWeight)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.strMicrochipID)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isBlind)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.isBlind)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeaf)
-        </dt>
+				<dt>
+					@Html.DisplayName("Pet Type")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.isDeaf)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.TPetType.strPetType)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isAggressive)
-        </dt>
+				<dt>
+					@Html.DisplayName("Gender")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.isAggressive)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.TGender.strGender)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeceased)
-        </dt>
+				<dt>
+					@Html.DisplayName("Breed")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.isDeceased)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.TBreed.strBreedName)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isAllergic)
-        </dt>
+				<dt>
+					@Html.DisplayName("Birthdate")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.isAllergic)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.dtmDateofBirth)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.strColor)
-        </dt>
+				<dt>
+					@Html.DisplayName("Weight")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.strColor)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.dblWeight)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.strNotes)
-        </dt>
+				<dt>
+					@Html.DisplayName("Blind?")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.strNotes)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.isBlind)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeceased)
-        </dt>
+				<dt>
+					@Html.DisplayName("Deaf?")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.isDeceased)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.isDeaf)
+				</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.intOwnerID)
-        </dt>
+				<dt>
+					@Html.DisplayName("Aggressive?")
+				</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.intOwnerID)
-        </dd>
+				<dd>
+					@Html.DisplayFor(model => model.isAggressive)
+				</dd>
 
-    </dl>
+				<dt>
+					@Html.DisplayName("Deceased?")
+				</dt>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+				<dd>
+					@Html.DisplayFor(model => model.isDeceased)
+				</dd>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+				<dt>
+					@Html.DisplayName("Allergies?")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.isAllergic)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Color")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strColor)
+				</dd>
+
+				<dt>
+					@Html.DisplayName("Notes")
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.strNotes)
+				</dd>
+
+
+			</dl>
+
+			@using (Html.BeginForm()) {
+				@Html.AntiForgeryToken()
+
+				<div class="form-actions no-color">
+					<input type="submit" value="Delete" class="btn-danger" /> 
+					<button class="btn-warning" onclick="location.href='@Url.Action("Index", "TPets")';return false;">
+						<i class="fas fa-times"></i>  Cancel
+					</button>
+				</div>			
+				}
+
+		</div>
+	</div>
+
+
 </div>

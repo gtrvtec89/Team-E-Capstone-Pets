@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace test.Models
 {
-	public class PetImage {
+	public class Image {
 		public long PetImageID { get; set; }
 		public byte[] ImageData;
 		public bool Primary = false;
