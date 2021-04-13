@@ -97,9 +97,11 @@ namespace test.Controllers
                     intVisitReasonID = tVisit.intVisitReasonID
                 };
                 db.TVisits.Add(newPetVisit);
+                db.SaveChanges();
+
 
                 int lastInsertedVisitID = db.TVisits.Max(v => v.intVisitID);
-                db.SaveChanges();
+                Session["intVisitId"] = lastInsertedVisitID;
 
                 TVisitEmployee newPetVisitEmployee = new TVisitEmployee()
                 {
@@ -107,24 +109,31 @@ namespace test.Controllers
                     intEmployeeID = tVisit.intEmployeeID
                 };
 
+                db.TVisitEmployees.Add(newPetVisitEmployee);
+                db.SaveChanges();
+
                 //Remove existing data from session for pet id
-                Session.Remove("intPetID");
 
-                switch(newPetVisit.intVisitReasonID) 
+                Session["isHealthExam"] = null;
+                switch (newPetVisit.intVisitReasonID) 
                 {
-                    //case 1:
-                    //    return RedirectToAction("Index", "Home");
-                    //    break;
-                    case 1:
+                    case 2: 
+                        TVisitService visitService = new TVisitService()
+                        {
+                            intVisitID = lastInsertedVisitID,
+                            intServiceID = 8
+                        };
+
+                        db.TVisitServices.Add(visitService);
+                        db.SaveChanges();
+                        int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
+
+                        Session["isHealthExam"] = true;
+                        Session["intVisitServiceID"] = lastInsertedVisitServiceID;
                         return RedirectToAction("Create", "THealthExam", new { id = petID, dateOfVisit = newPetVisit.dtmDateOfVist});
-                        break;
-                    case 3:
-                        return RedirectToAction("Index", "Home");
-                        break;
+                    default:
+                        return RedirectToAction("Index", "VisitServices");
 				}
-
-                return RedirectToAction("PetVisits", "TVisits", new { id = petID });
-
             }
 
             ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason", tVisit.intVisitReasonID);

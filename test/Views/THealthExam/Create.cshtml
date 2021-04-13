@@ -3,10 +3,60 @@
 @{
     ViewBag.Title = "Create";
 }
+<style>
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+        height: 40px;
+        max-width: 95%;
+        margin: auto;
+    }
+
+        .topnav > ul {
+            list-style: none;
+            padding-inline-start: unset;
+        }
+
+            .topnav > ul > li {
+                float: left;
+                color: #9d9d9d;
+                text-align: center;
+                padding: 10px 60px;
+                text-decoration: none;
+                font-size: 15px;
+            }
+
+                .topnav > ul > li > a {
+                    color: whitesmoke;
+                    text-decoration: none;
+                }
+
+        .topnav ul li:hover {
+            background-color: grey;
+            color: black;
+        }
+
+        .topnav ul li.active {
+            background-color: #6495ed;
+            color: white;
+        }
+</style>
+
 
 <h2 style="text-decoration: none; text-align: center;">Health Exam</h2>
 <link rel="stylesheet" href="~/Content/Site.css" type="text/css" />
 
+<div class="form-horizontal">
+    <div class="topnav">
+        <ul>
+            <li class="active">@Html.ActionLink("Health Exam", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
+            <li>@Html.ActionLink("Medications", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Team", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Summary", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
+        </ul>
+    </div>
+</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -20,9 +70,9 @@
                     Date: @ViewBag.Date
                     <br />
                     Owner: @ViewBag.Owner
-                <br />
+                    <br />
                     Patient: @ViewBag.Patient
-                <br />
+                    <br />
                     Patient ID: @ViewBag.PatientID
                 </p>
             </div>
@@ -341,7 +391,7 @@
                             </div>
                         </div>
                     </div>
-                </div>     
+                </div>
             </div>
 
             <div class="flex-container">
@@ -418,7 +468,7 @@
                             </div>
                         </div>
                     </div>
-                </div>          
+                </div>
             </div>
 
             <div class="flex-container">
@@ -532,7 +582,7 @@
                             </div>
                         </div>
                     </div>
-                </div>         
+                </div>
             </div>
 
             <div class="flex-container">
@@ -629,7 +679,7 @@
                             </div>
                         </div>
                     </div>
-                </div>               
+                </div>
             </div>
 
             <div class="flex-container">
@@ -1019,7 +1069,8 @@
             <div class="flex-container" style="border: none; padding: 15px;">
                 <div class="col-md-offset-2" style="margin-left:inherit; margin-right:10px">
                     <button class="btn-primary" id="btnCancel">
-                    <i class="fas fa-arrow-left"></i> Back </button>
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
                 </div>
                 <div class="col-md-offset-2" style="margin-left:inherit">
                     <button class="btn-success" type="submit">
