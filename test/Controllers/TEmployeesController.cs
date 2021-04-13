@@ -73,6 +73,7 @@ namespace test.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.intJobTitleID = new SelectList(db.TJobTitles, "intJobTitleID ", "strJobTitleDesc", tEmployee.intJobTitleID);
             return View(tEmployee);
         }
 
