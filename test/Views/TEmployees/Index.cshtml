@@ -4,48 +4,62 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Employees</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p style="margin-left: 25px">
+    <button class="btn-success" onclick="location.href='@Url.Action("Create", "TEmployees")';return false;">
+        <i class="fas fa-plus"></i>  Create New
+    </button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.strFirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.strLastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.intJobTitleID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.intUserID)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.strFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.strLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.intJobTitleID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.intUserID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.intEmployeeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.intEmployeeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.intEmployeeID })
-        </td>
-    </tr>
-}
+<div class="body-content">
+    <div class="form-horizontal">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("First Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Last Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Job Title")
+                </th>
+                <th>
+                    @Html.DisplayName("User ID")
+                </th>
+              
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("View | Edit | Delete")
+                </th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TJobTitle.strJobTitleDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.intUserID)
+                    </td>
+                    
+
+                    <td style="white-space:nowrap">
+                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TEmployees", new { id = item.intEmployeeID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TEmployees", new { id = item.intEmployeeID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                        <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TEmployees", new { id = item.intEmployeeID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

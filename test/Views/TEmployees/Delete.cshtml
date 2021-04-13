@@ -4,53 +4,67 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Employees</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TEmployee</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.strFirstName)
-        </dt>
+<p style="margin-left: 25px; font-size:15px">
 
-        <dd>
-            @Html.DisplayFor(model => model.strFirstName)
-        </dd>
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TEmployeess")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.strLastName)
-        </dt>
+<div class="body-content">
+    <div class="form-horizontal" style="padding-bottom:50px">
+        <div>
+            <h3>Are you sure you want to delete this?</h3>
+            <hr style="margin:5px; margin-bottom: 15px" />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("First Name")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.strLastName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.strFirstName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.intJobTitleID)
-        </dt>
+                <dt>
+                    @Html.DisplayName("Last Name")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.intJobTitleID)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.strLastName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.intUserID)
-        </dt>
+                <dt>
+                    @Html.DisplayName("Job Title")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.intUserID)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TJobTitle.strJobTitleDesc)
+                </dd>
 
-    </dl>
+                <dt>
+                    @Html.DisplayName("User iD")
+                </dt>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+                <dd>
+                    @Html.DisplayFor(model => model.intUserID)
+                </dd>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+               
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn-danger" />
+                    <button class="btn-warning" onclick="location.href='@Url.Action("Index", "TEmployees")';return false;">
+                        <i class="fas fa-times"></i>  Cancel
+                    </button>
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>
+
