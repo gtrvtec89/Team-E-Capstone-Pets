@@ -17,7 +17,8 @@ namespace test.Controllers
         // GET: TEmployees
         public ActionResult Index()
         {
-            return View(db.TEmployees.ToList());
+            var tEmployee = db.TEmployees.Include(t => t.TJobTitle);
+            return View(tEmployee.ToList());
         }
 
         // GET: TEmployees/Details/5
@@ -56,6 +57,7 @@ namespace test.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.intJobTitleID = new SelectList(db.TJobTitles, "intJobTitleID ", "strJobTitleDesc", tEmployee.intJobTitleID);
             return View(tEmployee);
         }
 
@@ -86,8 +88,12 @@ namespace test.Controllers
                 db.Entry(tEmployee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
             }
+            ViewBag.intJobTitleID = new SelectList(db.TJobTitles, "intJobTitleID ", "strJobTitleDesc", tEmployee.intJobTitleID);
             return View(tEmployee);
+
+
         }
 
         // GET: TEmployees/Delete/5
