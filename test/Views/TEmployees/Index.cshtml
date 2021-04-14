@@ -25,9 +25,6 @@
                 <th>
                     @Html.DisplayName("Job Title")
                 </th>
-                <th>
-                    @Html.DisplayName("User ID")
-                </th>
               
                 <th style="white-space:nowrap">
                     @Html.DisplayName("View | Edit | Delete")
@@ -46,10 +43,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.TJobTitle.strJobTitleDesc)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.intUserID)
-                    </td>
-                    
 
                     <td style="white-space:nowrap">
                         <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TEmployees", new { id = item.intEmployeeID })' ;return false;>  <i class="far fa-eye"></i></a>
