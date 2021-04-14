@@ -58,9 +58,11 @@ namespace test.Controllers
             myModel.strPetNumber = informationPacket.petNumber;
             myModel.dtmOfVisit = informationPacket.dateOfVisit;
             myModel.strDoctor = doctor.doctorName;
+            myModel.intPetID = intPetId;
             myModel.PetVisitServices = db.TVisitServices.Where(x => x.intVisitID == intVisitId).ToList();
             myModel.PetVisitMedications = db.TVisitMedications.Where(x => x.intVisitID == intVisitId).ToList();
 
+            ViewBag.Name = informationPacket.petName;
             ViewBag.Total = db.TVisitServices
                             .Where(x => x.intVisitID == intVisitId)
                             .Select(z => z.TService.dblPrice)

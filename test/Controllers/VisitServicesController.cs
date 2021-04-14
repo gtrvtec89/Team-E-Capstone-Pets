@@ -29,18 +29,21 @@ namespace test.Controllers
                               doctorName = "Dr. " + e.strFirstName + " " + e.strLastName
                           }).FirstOrDefault();
 
-            var petName = (from p in db.TPets
+            var petData = (from p in db.TPets
                            join v in db.TVisits
                            on p.intPetID equals v.intPetID
                            where v.intVisitID == intVisitId
                            select new
                            {
+                               dtmDateOfVisit = v.dtmDateOfVist,
                                name = p.strPetName
                            }).FirstOrDefault();
-            myModel.strPetName = petName.name;
+            myModel.strPetName = petData.name;
             myModel.strDoctor = doctor.doctorName;
+            myModel.dtmDateOfVisit = petData.dtmDateOfVisit;
             myModel.Services = db.TServices;
             myModel.PetVisitServices = db.TVisitServices.Where(x => x.intVisitID == intVisitId).ToList();
+            ViewBag.Name = petData.name;
             return View(myModel);
         }
 

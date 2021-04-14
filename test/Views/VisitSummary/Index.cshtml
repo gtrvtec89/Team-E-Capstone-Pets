@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Summary</h2>
+<h2>@ViewBag.Name</h2>
 <style>
     .topnav {
         overflow: hidden;
@@ -67,6 +67,10 @@
 </div>
 <div class="body-content">
     <div class="form-horizontal">
+        <h4 style="text-decoration: none; padding-top: 10px; padding-left: 37px">
+            Summary
+        </h4>
+        <hr style="margin:5px; margin-bottom: 15px" />
         <div class="flex-container" style="border: none;">
             <div class="flex-row">
                 <div class="form-group-inline">
@@ -128,7 +132,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="flex-container">
             <table class="table">
                 <tr>
@@ -182,6 +186,18 @@
             </table>
         </div>
 
+    </div>
+    <div class="flex-container" style="margin: 0px; border:none; padding: 0px 0px 20px 22px">
+        <div class="col-md-offset-2" style="margin-left:inherit; margin-right:10px">
+            <button class="btn-primary" onclick='window.location.href = "@Url.Action("Index", "VisitEmployees", routeValues: null)"'>
+                Previous
+            </button>
+        </div>
+        <div class="col-md-offset-2" style="margin-left:inherit">
+            <button class="btn-success" onclick="location.href='@Url.Action("PetVisits", "TVisits", new { id = Model.intPetID})'" >
+                Save
+            </button>
+        </div>
     </div>
 </div>
 
