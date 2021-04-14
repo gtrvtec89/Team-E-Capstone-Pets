@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using test;
+using test.Models;
 
 namespace test.Controllers
 {
@@ -37,9 +38,46 @@ namespace test.Controllers
         }
 
         // GET: TVisits/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Session["intPetID"] = id;
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+            var petID = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetNumber).FirstOrDefault();
+            var ownerName = (from o in db.TOwners
+                             join p in db.TPets
+                             on o.intOwnerID equals p.intOwnerID
+                             where p.intPetID == id
+                             select new
+                             {
+                                 firstName = o.strFirstName,
+                                 lastName = o.strLastName
+                             }).FirstOrDefault();
+            List<EmployeeInformation> doctorList = (from e in db.TEmployees
+                                   join j in db.TJobTitles
+                                   on e.intJobTitleID equals j.intJobTitleID
+                                   where j.strJobTitleDesc == "Doctor"
+                                   select new EmployeeInformation
+                                   {
+                                       intEmployeeID = e.intEmployeeID,
+                                       intJobTitleID = j.intJobTitleID,
+                                       strEmployeeName = "Dr. " + e.strFirstName + " " + e.strLastName
+                                   }).ToList();
+
+            if (petName == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.PetName = petName;
+            ViewBag.PetID = petID;
+            ViewBag.OwnerName = ownerName.firstName + " " + ownerName.lastName;
             ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason");
+            ViewBag.intEmployeeID = new SelectList(doctorList, "intEmployeeID", "strEmployeeName");
+
             return View();
         }
 
@@ -48,27 +86,54 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intVisitID,intPetID,intVisitReasonID,dtmDateOfVist")] TVisit tVisit)
+        public ActionResult Create(CreateVisit tVisit)
         {
+            int petID = (int)Session["intPetID"];
             if (ModelState.IsValid) {
-                db.TVisits.Add(tVisit);
+                TVisit newPetVisit = new TVisit()
+                {
+                    intPetID = petID,
+                    dtmDateOfVist = DateTime.Now,
+                    intVisitReasonID = tVisit.intVisitReasonID
+                };
+                db.TVisits.Add(newPetVisit);
                 db.SaveChanges();
 
-                int intVisitReasonID = Int16.Parse("intVisitReasonID");
 
-                switch(intVisitReasonID) 
+                int lastInsertedVisitID = db.TVisits.Max(v => v.intVisitID);
+                Session["intVisitId"] = lastInsertedVisitID;
+
+                TVisitEmployee newPetVisitEmployee = new TVisitEmployee()
                 {
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
+                    intVisitID = lastInsertedVisitID,
+                    intEmployeeID = tVisit.intEmployeeID
+                };
 
+                db.TVisitEmployees.Add(newPetVisitEmployee);
+                db.SaveChanges();
 
+                //Remove existing data from session for pet id
+
+                Session["isHealthExam"] = null;
+                switch (newPetVisit.intVisitReasonID) 
+                {
+                    case 2: 
+                        TVisitService visitService = new TVisitService()
+                        {
+                            intVisitID = lastInsertedVisitID,
+                            intServiceID = 8
+                        };
+
+                        db.TVisitServices.Add(visitService);
+                        db.SaveChanges();
+                        int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
+
+                        Session["isHealthExam"] = true;
+                        Session["intVisitServiceID"] = lastInsertedVisitServiceID;
+                        return RedirectToAction("Create", "THealthExam", new { id = petID, dateOfVisit = newPetVisit.dtmDateOfVist});
+                    default:
+                        return RedirectToAction("Index", "VisitServices");
 				}
-
-                return RedirectToAction("Index");
             }
 
             ViewBag.intVisitReasonID = new SelectList(db.TVisitReasons, "intVisitReasonID", "strVisitReason", tVisit.intVisitReasonID);
@@ -132,6 +197,25 @@ namespace test.Controllers
             db.TVisits.Remove(tVisit);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult PetVisits(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Session["intPetID"] = id;
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+            var tVisits = db.TVisits.Where(x => x.intPetID == id);
+
+            if (petName == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.PetName = petName;
+            
+            return View(tVisits);
         }
 
         protected override void Dispose(bool disposing)

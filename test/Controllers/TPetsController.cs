@@ -34,10 +34,14 @@ namespace test.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TPet tPet = db.TPets.Find(id);
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+            Session["intPetID"] = id;
             if (tPet == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.PetName = petName;
+
             return View(tPet);
         }
 

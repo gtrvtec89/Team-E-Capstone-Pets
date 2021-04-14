@@ -1,41 +1,51 @@
 ﻿@model test.TServiceType
-
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Services</h2>
 
-
+<p style="margin-left: 25px">
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TServiceTypes")';return false;">
+        <i class="fas fa-arrow-left"></i>  Back to List
+    </button>
+</p>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TServiceType</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.intServiceTypeID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.strServiceType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.strServiceType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.strServiceType, "", new { @class = "text-danger" })
+    <div class="body-content">
+        <div class="form-horizontal">
+            <h4 style="text-decoration: none; padding-top: 10px; padding-left: 10px">
+                Edit Services
+
+                <button class="btn-success" type="submit" style="margin-left: 15px; font-size:smaller">
+                    <i class="far fa-save"></i> Save
+                </button>
+            </h4>
+            <hr style="margin:5px; margin-bottom: 15px" />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.intServiceTypeID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.strServiceType, "Service Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.strServiceType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.strServiceType, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+          
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn-success" type="submit">
+                        <i class="far fa-save"></i> Save
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
