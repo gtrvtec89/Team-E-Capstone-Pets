@@ -39,6 +39,8 @@ namespace test.Controllers {
             if (id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
+  
+            Session["intPetID"] = id;
             // TPet tPet = db.TPets.Find(id);
             //TPetImage tPetImage = db.TPetImages.Find(db.);
             //

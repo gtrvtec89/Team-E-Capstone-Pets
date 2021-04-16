@@ -1,57 +1,3 @@
-﻿@*@model IEnumerable<test.TServiceType>
-
-
-	@{
-		ViewBag.Title = "Index";
-	}
-
-	<h2>Index</h2>
-
-	<p>
-			<button class="modal-btn">Add New</button>
-
-			<div class="modal-bg">
-				<div class="modal">
-					<h2>Add a New Visit Type</h2>
-					<label for="type"> Type: </label>
-					<input class="text" name="text">
-					<button>Add</button>
-					<span class="modal-close">X</span>
-				</div>
-			</div>
-
-	</p>
-	<table class="table">
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.strServiceType)
-			</th>
-			<th></th>
-		</tr>
-
-		@foreach (var item in Model) {
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.strServiceType)
-				</td>
-				<td>
-					@Html.ActionLink("Edit", "Edit", new { id = item.intServiceTypeID }) |
-					@Html.ActionLink("Details", "Details", new { id = item.intServiceTypeID }) |
-					@Html.ActionLink("Delete", "Delete", new { id = item.intServiceTypeID })
-				</td>
-			</tr>
-		}
-
-	</table>
-
-	<script src="~/Content/modal.js"></script>*@
-
-
-@{
-	ViewBag.Title = "List Of Services Provided";
-}
-
-<div class="body-content">
 
 
 	<h2 style="background-color: white;color: black; text-align: center; font-style: oblique">Report Of Service Types Offered</h2>
@@ -130,3 +76,4 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="~/Scripts/ServiceType.js"></script>
 	}
+

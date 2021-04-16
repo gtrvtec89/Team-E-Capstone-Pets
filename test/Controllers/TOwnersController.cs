@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -45,34 +46,54 @@ namespace test.Controllers {
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes,intUserID")] TOwner tOwner) {
+        public ActionResult Create([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes")] TOwner tOwner) {
             if (ModelState.IsValid) {
 
-                SqlParameter[] userparam = new SqlParameter[] {
-                        new SqlParameter("@strUserName", tOwner.strEmail),
-                        new SqlParameter("@strPassword", tOwner.strZip),
-                        new SqlParameter("@intRoleID", 1)
-                };
-                db.Database.ExecuteSqlCommand("uspAddNewUser @strUserName, @strPassword, @intRoleID", userparam);
-				var userID = db.TUsers.Max(u => u.intUserID);
-                SqlParameter[] param = new SqlParameter[] {
-                    new SqlParameter("@strFirstName", tOwner.strFirstName),
-                    new SqlParameter("@strLastName", tOwner.strLastName),
-                    new SqlParameter("@intGenderID", tOwner.intGenderID),
-                    new SqlParameter("@strAddress", tOwner.strAddress),
-                    new SqlParameter("@strCity", tOwner.strCity),
-                    new SqlParameter("@intStateID", tOwner.intStateID),
-                    new SqlParameter("@strZip", tOwner.strZip),
-                    new SqlParameter("@strPhoneNumber", tOwner.strPhoneNumber),
-                    new SqlParameter("@strEmail", tOwner.strEmail),
-                    new SqlParameter("@strOwner2Name", tOwner.strOwner2Name),
-                    new SqlParameter("@strOwner2PhoneNumber", tOwner.strOwner2PhoneNumber),
-                    new SqlParameter("@strOwner2Email", tOwner.strOwner2Email),
-                    new SqlParameter("@strNotes", tOwner.strNotes),
-                    new SqlParameter("@intUserID", userID)
-                };
-                db.Database.ExecuteSqlCommand("uspAddOwner @strFirstName, @strLastName, @intGenderID, @strAddress, @strCity, @intStateID, @strZip, @strPhoneNumber, @strEmail, @strOwner2Name, @strOwner2PhoneNumber, @strOwner2Email, @strNotes, @intUserID", param);
-                db.SaveChanges();
+                //            SqlParameter[] userparam = new SqlParameter[] {
+                //                    new SqlParameter("@strUserName", tOwner.strEmail),
+                //                    new SqlParameter("@strPassword", tOwner.strZip),
+                //                    new SqlParameter("@intRoleID", 1)
+                //            };
+                //            db.Database.ExecuteSqlCommand("uspAddNewUser @strUserName, @strPassword, @intRoleID", userparam);
+                //var userID = db.TUsers.Max(u => u.intUserID);
+
+                //string userName = "";
+                //string password = "";
+                //int roleId = 0;
+                //int ownerId = 0;
+
+                //SqlParameter[] param = new SqlParameter[] {
+                //    //new ObjectParameter(SqlDbType.VarChar, 50 ) { Value = userNam, Name = "},
+                //    //new ObjectParameter("@strPassword", SqlDbType.VarChar, 50) { Value = password },
+                //    //new ObjectParameter("@intRoleID", SqlDbType.Int ) { Value = roleId },
+                //    //new ObjectParameter("@intOwnerID", SqlDbType.Int ) { Value = ownerId },
+                //    new SqlParameter("@strFirstName", SqlDbType.VarChar, 50 ) { Value = tOwner.strFirstName },
+                //    new SqlParameter("@strLastName", SqlDbType.VarChar, 50 ) { Value = tOwner.strLastName },
+                //    new SqlParameter("@intGenderID", SqlDbType.Int) { Value = tOwner.intGenderID },
+                //    new SqlParameter("@strAddress", SqlDbType.VarChar, 50 ) { Value = tOwner.strAddress },
+                //    new SqlParameter("@strCity", SqlDbType.VarChar, 50 ) { Value = tOwner.strCity },
+                //    new SqlParameter("@intStateID", SqlDbType.Int) { Value = tOwner.intStateID }, 
+                //    new SqlParameter("@strZip", SqlDbType.VarChar, 50 ) { Value = tOwner.strZip },
+                //    new SqlParameter("@strPhoneNumber", SqlDbType.VarChar, 50 ) { Value = tOwner.strPhoneNumber },
+                //    new SqlParameter("@strEmail", SqlDbType.VarChar, 50 ) { Value = tOwner.strEmail },
+                //    new SqlParameter("@strOwner2Name", SqlDbType.VarChar, 50 ) { Value = tOwner.strOwner2Name },
+                //    new SqlParameter("@strOwner2PhoneNumber", SqlDbType.VarChar, 50 ) { Value = tOwner.strOwner2PhoneNumber },
+                //    new SqlParameter("@strOwner2Email", SqlDbType.VarChar, 50 ) { Value = tOwner.strOwner2Email },
+                //    new SqlParameter("@strNotes", SqlDbType.VarChar, 200 ) { Value = tOwner.strNotes },
+                //};
+
+                ObjectParameter strUserName = new ObjectParameter("strUserName", typeof(string));
+                ObjectParameter strPassword = new ObjectParameter("strPassword", typeof(string));
+                ObjectParameter intRoleID = new ObjectParameter("intRoleID", typeof(Int32));
+                ObjectParameter intOwnerID = new ObjectParameter("intOwnerID", typeof(Int32));
+                
+
+                //var data = db.Database.ExecuteSqlCommand("uspAddUserOwner @strUserName, @strPassword, @intRoleID, @intOwnerID, @strFirstName, @strLastName, @intGenderID, @strAddress, @strCity, @intStateID, @strZip, @strPhoneNumber, @strEmail, @strOwner2Name, @strOwner2PhoneNumber, @strOwner2Email, @strNotes", strUserName, strPassword, intRoleID, intOwnerID, param);
+                var data = db.uspAddUserOwner(strUserName, strPassword, intRoleID, intOwnerID, tOwner.strFirstName, tOwner.strLastName, tOwner.intGenderID, tOwner.strAddress, tOwner.strCity, tOwner.intStateID, tOwner.strZip, tOwner.strPhoneNumber,tOwner.strEmail, tOwner.strOwner2Name, tOwner.strOwner2PhoneNumber, tOwner.strOwner2Email, tOwner.strNotes);
+
+                string UserName = Convert.ToString(strUserName.Value);
+                ViewBag.username = UserName;
+
                 return RedirectToAction("Index");
             }
 
