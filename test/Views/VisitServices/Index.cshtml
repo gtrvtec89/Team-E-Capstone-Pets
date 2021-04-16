@@ -1,0 +1,157 @@
+﻿@model test.Models.VisitServiceViewModel
+
+<h2>@ViewBag.Name</h2>
+
+<style>
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+        height: 40px;
+        max-width: 95%;
+        margin: auto;
+    }
+
+        .topnav > ul {
+            list-style: none;
+            padding-inline-start: unset;
+        }
+
+            .topnav > ul > li {
+                float: left;
+                color: #9d9d9d;
+                text-align: center;
+                padding: 10px 60px;
+                text-decoration: none;
+                font-size: 15px;
+            }
+
+                .topnav > ul > li > a {
+                    color: whitesmoke;
+                    text-decoration: none;
+                }
+
+        .topnav ul li:hover {
+            background-color: grey;
+            color: black;
+        }
+
+        .topnav ul li.active {
+            background-color: #6495ed;
+            color: white;
+        }
+
+        .flex-row
+        {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .flex-container
+        {
+            display: flex;
+            flex-wrap: wrap;
+            border:ridge;
+            margin:20px;
+            width: 99%;
+        }
+</style>
+
+<div class="form-horizontal">
+    <div class="topnav">
+        <ul>
+            @if (Session["isHealthExam"] != null)
+            {
+                <li>@Html.ActionLink("Health Exam", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
+            }
+            <li class="active">@Html.ActionLink("Services", "Index", "VisitServices")</li>
+            <li>@Html.ActionLink("Medications", "Index", "VisitMedications")</li>
+            <li>@Html.ActionLink("Team", "Index", "VisitEmployees")</li>
+            <li>@Html.ActionLink("Summary", "Index", "VisitSummary")</li>
+        </ul>
+    </div>
+</div>
+
+<div class="body-content">
+    @*<h4 style="text-decoration: none; padding-top: 10px; padding-left: 32px">
+            @ViewBag.Name
+        </h4>
+        <hr style="margin:5px; margin-bottom: 15px" />*@
+    <div class="flex-container" style="border: none; padding: 0px;">
+        <div class="flex-row" style="margin: 0px">
+            <div class="form-group-inline">
+                @Html.LabelFor(model => model.dtmDateOfVisit, "Date", new { htmlAttributes = new { @class = "control-label col-md-2" }, style = "font-size: 16px; font-weight: 700; padding-left:  15px;" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dtmDateOfVisit, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "width:300px" } })
+                </div>
+            </div>
+        </div>
+        <div class="flex-row" style="margin: 0px">
+            <div class="form-group-inline">
+                @Html.LabelFor(model => model.strDoctor, "Doctor", new { htmlAttributes = new { @class = "control-label col-md-2" }, style = "font-size: 16px; font-weight: 700; padding-left:  15px;" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.strDoctor, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "width:300px" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-horizontal" style="display: flex;">
+        <div class="flex-container">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Service")
+                    </th>
+                    <th style="white-space:nowrap">
+                        @Html.DisplayName("Add")
+                    </th>
+                </tr>
+
+                @foreach (TService service in Model.Services)
+                {
+                    <tr>
+                        <td>
+                            @service.strServiceDesc
+                        </td>
+                        <td style="white-space:nowrap">
+                            <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetService", "VisitServices", new { serviceID = service.intServiceID })' ;return false;>  <i class="far fa-plus"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div class="flex-container">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Service")
+                    </th>
+                    <th style="white-space:nowrap">
+                        @Html.DisplayName("Delete")
+                    </th>
+                </tr>
+
+                @foreach (TVisitService petService in Model.PetVisitServices)
+                {
+                    <tr>
+                        <td>
+                            @petService.TService.strServiceDesc
+                        </td>
+                        <td style="white-space:nowrap">
+                            <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices", new { id = petService.intServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <div class="flex-container" style="margin: 0px; border:none; padding: 0px 0px 20px 22px">
+        <div class="col-md-offset-2" style="margin-left:inherit">
+            <button class="btn-success" onclick='window.location.href = "@Url.Action("Index", "VisitMedications", routeValues: null)"'>
+                Next
+            </button>
+        </div>
+    </div>
+</div>

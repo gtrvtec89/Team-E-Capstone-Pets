@@ -21,7 +21,10 @@ namespace test.Controllers {
 			return View();
 
 
+
+
 		}
+
 
 
 		public ActionResult Login() {
@@ -139,14 +142,17 @@ namespace test.Controllers {
 
 		}
 
+        public ActionResult Logout() {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Home");
+        }
 
 
 
 
-		public ActionResult Logout() {
-			FormsAuthentication.SignOut();
-			return RedirectToAction("Login", "Home");
-		}
+
+
+
 
 
 

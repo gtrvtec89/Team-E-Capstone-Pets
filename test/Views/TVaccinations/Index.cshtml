@@ -1,0 +1,56 @@
+﻿@model IEnumerable<test.TVaccination>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dtmDateOfVaccination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtmDateOfExpiration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strVaccineDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strRabiesNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TVisitService.intVisitServiceID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtmDateOfVaccination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtmDateOfExpiration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strVaccineDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strRabiesNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TVisitService.intVisitServiceID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.intVaccinationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.intVaccinationID })
+        </td>
+    </tr>
+}
+
+</table>
