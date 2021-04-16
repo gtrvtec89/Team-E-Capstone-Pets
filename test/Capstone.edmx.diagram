@@ -72,6 +72,7 @@
         <AssociationConnector Association="Model.TVisitMedications_TVisits_FK1" />
         <AssociationConnector Association="Model.TVisits_TVisitReasons_FK1" />
         <AssociationConnector Association="Model.TVisitServices_TVisits_FK1" />
+        <AssociationConnector Association="Model.Employees_TJobtitles_FK1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

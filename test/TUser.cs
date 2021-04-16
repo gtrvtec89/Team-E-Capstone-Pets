@@ -28,5 +28,6 @@ namespace test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOwner> TOwners { get; set; }
         public virtual TRole TRole { get; set; }
-    }
+		public bool RememberMe { get; internal set; }
+	}
 }

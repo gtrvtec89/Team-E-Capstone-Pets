@@ -27,6 +27,8 @@ namespace test.Controllers
                 .Include(t => t.TPet.TOwner)
                 .Include(t => t.TPet.TBreed)
                 .Include(t => t.TPet.TGender);
+                //.Include(t => t.imgContent);
+
             return View(tPetImages.ToList());
         }
 
@@ -251,6 +253,20 @@ namespace test.Controllers
             return byteArray != null
                 ? new FileContentResult(byteArray, "image/jpeg")
                 : null;
+        }
+
+
+        // GET: TPetImages
+        public ActionResult PetOwnerHome() {
+            var tPetImages = db.TPetImages
+                .Include(t => t.TPet)
+                .Include(t => t.TPet.TPetType)
+                .Include(t => t.TPet.TOwner)
+                .Include(t => t.TPet.TBreed)
+                .Include(t => t.TPet.TGender);
+            //.Include(t => t.imgContent);
+
+            return View(tPetImages.ToList());
         }
 
         //public byte[] ImageToByteArray(System.Drawing.Image imageIn) {

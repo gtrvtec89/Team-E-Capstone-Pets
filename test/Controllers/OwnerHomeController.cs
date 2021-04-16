@@ -14,11 +14,23 @@ namespace test.Controllers {
         private CapstoneEntities db = new CapstoneEntities();
 
 
-        public ActionResult Index() {
+        public ActionResult OwnerHome() {
+            var tPetImages = db.TPetImages
+               .Include(t => t.TPet)
+               .Include(t => t.TPet.TPetType)
+               .Include(t => t.TPet.TOwner)
+               .Include(t => t.TPet.TBreed)
+               .Include(t => t.TPet.TGender);
+            //.Include(t => t.imgContent);
 
-            return View();
+            return View(tPetImages.ToList());
 
 
+        }
+
+        public FileContentResult DisplayImagePage(int id) {
+            TPetImage document = db.TPetImages.Find(id);
+            return new FileContentResult(document.imgContent, document.strContentType);
         }
 
         public ActionResult Logout() {

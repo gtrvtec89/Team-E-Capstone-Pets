@@ -279,7 +279,13 @@
     <Compile Include="TVisitService.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspSelectLatestPetImages1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspSelectLatestPetImages_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspSelectPetImages1_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspSelectPetImages_Result.cs">
@@ -585,9 +591,13 @@
     <Content Include="Views\TUsers\Save.cshtml" />
     <Content Include="Views\TUsers\Update.cshtml" />
     <Content Include="Views\TUsers\Delete.cshtml" />
+    <Content Include="Views\Home\OwnerHome.cshtml" />
+    <Content Include="Views\TPetImages\PetOwnerHome.cshtml" />
+    <Content Include="Views\TPets\PetProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\OwnerHome\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

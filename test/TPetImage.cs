@@ -12,7 +12,7 @@ namespace test
     using System;
     using System.Collections.Generic;
     
-    public class TPetImage
+    public partial class TPetImage
     {
         public int intPetImageID { get; set; }
         public string strFileName { get; set; }
@@ -22,21 +22,5 @@ namespace test
         public int intPetID { get; set; }
     
         public virtual TPet TPet { get; set; }
-        public List<TPetImage> PetImages { get; internal set; }
-        //      public virtual ICollection<TP> Files { get; set; }
-
-
-        public string BytesBase64 {
-            get {
-                try {
-                    if (imgContent.Length > 0) { return Convert.ToBase64String(imgContent); }
-                    return string.Empty;
-                }
-                catch (Exception ex) {
-                    throw new Exception(ex.Message);
-                }
-            }
-        }
-
     }
 }

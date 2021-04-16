@@ -18,26 +18,26 @@
 		background-color: #fff;
 	}
 
-    .body-content {
-        padding-left: 15px;
-        padding-right: 15px;
-        height: auto;
-        overflow-y: auto;
-        width: auto;
-        /*margin: 25px;*/
-        align-content: center;
-        vertical-align: middle;
-        margin: auto;
-        display: table;
-        border: outset;
-        border-width: thick;
-        box-sizing: unset;
-        padding-top: unset;
-        padding-bottom: 15px;
-        position: absolute;
-        top: 30%;
-        left: 43%;
-    }
+	.body-content {
+		padding-left: 15px;
+		padding-right: 15px;
+		height: auto;
+		overflow-y: auto;
+		width: auto;
+		/*margin: 25px;*/
+		align-content: center;
+		vertical-align: middle;
+		margin: auto;
+		display: table;
+		border: outset;
+		border-width: thick;
+		box-sizing: unset;
+		padding-top: unset;
+		padding-bottom: 15px;
+		position: absolute;
+		top: 30%;
+		left: 43%;
+	}
 
 	.btn {
 		width: -webkit-fill-available;
@@ -47,7 +47,7 @@
 		color: white;
 	}
 
-	input[type=text],[type=password] {
+	input[type=text], [type=password] {
 		width: 100%;
 		padding: 12px 20px;
 		margin: 8px 0;
@@ -72,34 +72,92 @@
 	}
 </style>
 
-
-
-
-@using (Html.BeginForm()) {
-
+@using (Html.BeginForm("Login", "Home", FormMethod.Post)) {
 	@Html.AntiForgeryToken()
+	<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<th colspan="3">
+				Login
+			</th>
+		</tr>
+		<tr>
+			<td>
+				Username
+			</td>
+			<td>
+				@Html.TextBoxFor(m => m.strUserName)
+			</td>
+			<td>
+				@Html.ValidationMessageFor(m => m.strUserName, "", new { @class = "error" })
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Password
+			</td>
+			<td>
+				@Html.PasswordFor(m => m.strPassword)
+			</td>
+			<td>
+				@Html.ValidationMessageFor(m => m.strPassword, "", new { @class = "error" })
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Remember Me
+			</td>
+			<td>
+				@Html.CheckBoxFor(m => m.RememberMe)
+			</td>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<input type="submit" value="Submit" />
+			</td>
+			<td></td>
+		</tr>
+	</table>
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@if (@ViewBag.Message != null) {
+	<script type="text/javascript">
+            $(function () {
+                alert("@ViewBag.Message")
+            });
+	</script>
+}
+</body>
 
-<div class="body-content">
 
-	<h1>Please Sign In</h1>
-	<div>
-		<img src="~/Content/Images/companylogo.jpg" class="img"/>
-	</div>
-	<div class="form-group">
-		@Html.TextBoxFor(m => m.strUserName, new { @class = "form-control", placeholder = "Username", autofocus = "true" })
-		@Html.ValidationMessageFor(m => m.strUserName)
-	</div>
-	<div class="form-group">
-		@Html.PasswordFor(m => m.strPassword, new { @class = "form-control", placeholder = "Password" })
-		@Html.ValidationMessageFor(m => m.strPassword)
-	</div>
-	<div class="btn">
+@*@using (Html.BeginForm()) {
+
+		@Html.AntiForgeryToken()
+
+	<div class="body-content">
+
+		<h1>Please Sign In</h1>
+		<div>
+			<img src="~/Content/Images/companylogo.jpg" class="img"/>
+		</div>
 		<div class="form-group">
-			<button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
+			@Html.TextBoxFor(m => m.strUserName, new { @class = "form-control", placeholder = "Username", autofocus = "true" })
+			@Html.ValidationMessageFor(m => m.strUserName)
+		</div>
+		<div class="form-group">
+			@Html.PasswordFor(m => m.strPassword, new { @class = "form-control", placeholder = "Password" })
+			@Html.ValidationMessageFor(m => m.strPassword)
+		</div>
+		<div class="btn">
+			<div class="form-group">
+				<button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
+			</div>
 		</div>
 	</div>
-</div>
-		}
+			}*@
 
 
 

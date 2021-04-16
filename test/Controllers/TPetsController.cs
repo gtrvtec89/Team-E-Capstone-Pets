@@ -39,16 +39,13 @@ namespace test.Controllers {
             if (id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-            // TPet tPet = db.TPets.Find(id);
-            //TPetImage tPetImage = db.TPetImages.Find(db.);
-            //
+
             TPet tPet = db.TPets.Include(s => s.TPetImages).SingleOrDefault(s => s.intPetID == id);
 
             if (tPet == null) {
 				return HttpNotFound();
 			}
 			return View(tPet);
-			//return View();
         }
 
         // GET: TPets/Create
@@ -186,6 +183,50 @@ namespace test.Controllers {
             }
             base.Dispose(disposing);
         }
+
+        // GET: TPets/OwnerHome/5
+        public ActionResult OwnerHome(int? id) {
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
+            ViewBag.intPetImageID = new SelectList(db.TPetImages, "intPetImageID", "imgContent");
+
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            TPet tPet = db.TPets.Include(s => s.TPetImages).SingleOrDefault(s => s.intPetID == id);
+
+            if (tPet == null) {
+                return HttpNotFound();
+            }
+            return View(tPet);
+            //return View();
+        }
+
+        // GET: TPets/Details/5
+        public ActionResult PetProfile(int? id) {
+            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType");
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender");
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName");
+            ViewBag.intPetImageID = new SelectList(db.TPetImages, "intPetImageID", "imgContent");
+            ViewBag.intVisitID = new SelectList(db.TVisits, "intVisitID", "dtmDateOfVist");
+
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+  
+            TPet tPet = db.TPets.Include(s => s.TPetImages).SingleOrDefault(s => s.intPetID == id);
+
+            //Get List of Visits and put in PetProfile View
+
+
+            if (tPet == null) {
+                return HttpNotFound();
+            }
+            return View(tPet);
+        }
+
+
 
         // To convert the Byte Array to the author Image
         public FileContentResult getImg(int intPetID) {
