@@ -21,6 +21,7 @@ namespace test.Controllers {
             var tPets = db.TPets
                 .Include(t => t.TPetType)
                 .Include(t => t.TOwner)
+                .Include(t => t.TOwner.TState)
                 .Include(t => t.TBreed)
                 .Include(t => t.TGender)
                 .Include(t => t.TPetImages);
@@ -227,9 +228,90 @@ namespace test.Controllers {
             if (tPet == null) {
                 return HttpNotFound();
             }
+
+            return View(tPet);
+        }
+        // GET: TPets/Edit/5
+        public ActionResult PetProfileEdit(int? id) {
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TPet tPet = db.TPets.Find(id);
+            if (tPet == null) {
+                return HttpNotFound();
+            }
+            ViewBag.intStateID = new SelectList(db.TStates, "intStateID", "strStateName", tPet.TOwner.TState.intStateID);
+            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
             return View(tPet);
         }
 
+
+        //// POST: TPets/Edit/5
+        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        [HttpPost, ActionName("PetProfileEdit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult PetProfileEditPost(TPet tPet, int? id, HttpPostedFileBase upload) {
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var petToUpdate = db.TPets.Find(id);
+            var ownerToUpdate = db.TOwners.Find(petToUpdate.intOwnerID);
+            if (TryUpdateModel(petToUpdate, "",
+               new string[] { "intPetID", "strPetNumber", "strMicrochipID", "strPetName", "intPetTypeID", "intGenderID", "intBreedID", "dtmDateofBirth", "dblWeight", "isBlind", "isDeaf", "isAggressive", "isDeceased", "isAllergic", "strColor", "strNotes", "isDeceased", "intOwnerID" })) {
+                try {
+                    if (upload != null && upload.ContentLength > 0) {
+                        if (petToUpdate.TPetImages.Any(f => f.strFileType == ".jpg")) {
+                            db.TPetImages.Remove(petToUpdate.TPetImages.First(f => f.strFileType == ".jpg"));
+                        }
+                        var avatar = new TPetImage {
+                            strFileName = System.IO.Path.GetFileName(upload.FileName),
+                            strFileType = System.IO.Path.GetExtension(upload.FileName),
+                            strContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream)) {
+                            avatar.imgContent = reader.ReadBytes(upload.ContentLength);
+                        }
+                        petToUpdate.TPetImages = new List<TPetImage> { avatar };
+                    }
+                    db.Entry(petToUpdate).State = EntityState.Modified;
+                    // db.Entry(ownerToUpdate).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    // return RedirectToAction("PetProfile", new { id = tPet.intPetID });
+                }
+                catch (RetryLimitExceededException /* dex */) {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+
+                if (TryUpdateModel(ownerToUpdate, "",
+              new string[] { "intOwnerID", "strFirstName", "strLastName", "intGenderID", "intPetTypeID", "intGenderID", "strAddress", "strCity", "intStateID", "strZip", "isDeaf", "strPhoneNumber", "strEmail", "strOwner2Name", "strOwner2PhoneNumber", "strOwner2Email", "strNotes", "intUserID" })) {
+                    ownerToUpdate.strAddress = tPet.TOwner.strAddress;
+                    ownerToUpdate.strCity = tPet.TOwner.strCity;
+                    ownerToUpdate.intStateID = petToUpdate.TOwner.intStateID;
+                    ownerToUpdate.strZip = tPet.TOwner.strZip;
+                    ownerToUpdate.strPhoneNumber = tPet.TOwner.strPhoneNumber;
+                    
+                    if (ModelState.IsValid) {
+                        db.Entry(ownerToUpdate).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+
+                    ViewBag.intStateID = new SelectList(db.TStates, "intStateID", "strStateCode", ownerToUpdate.intStateID);
+                    ViewBag.intUserID = new SelectList(db.TUsers, "intUserID", "strUserName", ownerToUpdate.intUserID);
+                    ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", ownerToUpdate.intGenderID);
+                }
+                return RedirectToAction("PetProfile", new { id = tPet.intPetID });
+            }
+                return View(petToUpdate);
+
+        }
 
 
         // To convert the Byte Array to the author Image

@@ -123,10 +123,14 @@ namespace test.Controllers
             ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
                 return View(tPet.TPetImage);
             }
-            
 
-        // GET: TPetImages/Edit/5
-        public ActionResult Edit(int? id)
+		private ActionResult View(object petImage) {
+			throw new NotImplementedException();
+		}
+
+
+		// GET: TPetImages/Edit/5
+		public ActionResult Edit(int? id)
         {
 
             if (id == null)

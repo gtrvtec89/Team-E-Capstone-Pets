@@ -9,6 +9,7 @@ using System.Web.Security;
 using System.Data.Entity;
 using System.Net;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace test.Controllers {
 	public class HomeController : Controller {
@@ -16,11 +17,45 @@ namespace test.Controllers {
 		private readonly CapstoneEntities db = new CapstoneEntities();
 
 
-		public ActionResult Index() {
+		public ActionResult Index(int? id) {
+			var owner = db.TOwners
+				.Include(t => t.TPets)
+				.Include(t => t.TGender)
+				.Include(t => t.TState);
 
+			//if (id == null){ Logout(); return RedirectToAction("Login", "Home"); }
+			//TUser user = new TUser();
+			//user.intUserID = (int)id;
+			//var intRoleID = user.intRoleID;
+
+			//if (intRoleID == 1) {
+			//	return RedirectToAction("OwnerHome", new { @id = id });
+			//	//	return RedirectToAction("OwnerHome", "Home");
+			//}
+			//else if (intRoleID == 1) {
+			//	return RedirectToAction("Index", "Home", new { @id = id });
+			//}
+			//else {
+			//	ViewBag.ErrorMessage = "Unauthorized Role Assignment. Please contact the Help Desk.";
+			//}
+			return View();
+		}
+
+		public ActionResult Home(int? id) {
+			var owner = db.TOwners
+				.Include(t => t.TPets)
+				.Include(t => t.TGender)
+				.Include(t => t.TState);
 			return View();
 
+			TUser user = new TUser();
+			user.intUserID = (int)id;
+			var roleID = user.intRoleID;
 
+			if (roleID != 2) {
+				ViewBag.ErrorMessage = "Authorized Users Only";
+				Logout();
+			}
 
 
 		}
@@ -63,13 +98,65 @@ namespace test.Controllers {
 						return RedirectToAction("OwnerHome", new { @id = intOwnerID });
 						//	return RedirectToAction("OwnerHome", "Home");
 					}
-					else { return RedirectToAction("Index", "Home"); }
-					return RedirectToAction("Index", "Home");
+					else if (intRoleID == 1) {
+						return RedirectToAction("Index", "Home", new { @id = intUserID });
+					}
+					else {
+						ViewBag.ErrorMessage = "Unauthorized Role Assignment. Please contact the Help Desk.";
+					}
+					return RedirectToAction("Login", "Home");
 			}
 
 			ViewBag.Message = message;
 			return View(user);
 		}
+
+
+
+
+		//public ActionResult Login() {
+
+		//	return View();
+
+
+		//}
+
+
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult Login(TUser user) {
+
+
+		//	CapstoneEntities db = new CapstoneEntities();
+		//	int? intUserID = db.Validate_User6(user.strUserName, user.strPassword).FirstOrDefault();
+
+		//	string message = string.Empty;
+		//	switch (intUserID.Value) {
+		//		case -1:
+		//			message = "Username and/or password is incorrect.";
+		//			break;
+		//		case -2:
+		//			message = "Account has not been activated.";
+		//			break;
+		//		default:
+		//			FormsAuthentication.SetAuthCookie(user.strUserName, user.RememberMe);
+
+		//			int? intOwnerID = db.uspGetOwnerID(intUserID).FirstOrDefault();
+		//			int? intRoleID = db.uspGetRole(intUserID).FirstOrDefault();
+
+
+
+		//			if (intRoleID == 1) {
+		//				return RedirectToAction("OwnerHome", new { @id = intOwnerID });
+		//				//	return RedirectToAction("OwnerHome", "Home");
+		//			}
+		//			else { return RedirectToAction("Index", "Home"); }
+		//			return RedirectToAction("Index", "Home");
+		//	}
+
+		//	ViewBag.Message = message;
+		//	return View(user);
+		//}
 
 
 
@@ -123,32 +210,43 @@ namespace test.Controllers {
 
 
 		public ActionResult OwnerHome(int? id) {
+
 			if (id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
+			int? intOwnerID = db.uspGetOwnerID(id).FirstOrDefault();
 
-			var tPetImages = db.TPetImages
-			   .Include(t => t.TPet)
-			   .Include(t => t.TPet.TPetType)
-			   .Include(t => t.TPet.TOwner)
-			   .Include(t => t.TPet.TBreed)
-			   .Include(t => t.TPet.TGender);
-			   
-				
-			//.Include(t => t.imgContent);
+			TOwner owner = db.TOwners.Include(s => s.TPets).SingleOrDefault(s => s.intOwnerID == id);
+
+			if (owner.TUser.intRoleID != 1) {
+				ViewBag.ErrorMessage = "Authorized Users Only";
+				Logout();
+			}
 			
-			return View(tPetImages.ToList());
-
+			return View(owner);
 
 		}
 
-        public ActionResult Logout() {
+		public ActionResult Logout() {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Home");
         }
 
 
+		// To convert the Byte Array to the author Image
+		public FileContentResult getImg(int intPetID) {
 
+			byte[] byteArray = db.TPetImages.Find(intPetID).imgContent;
+			return byteArray != null
+				? new FileContentResult(byteArray, "image/jpeg")
+				: null;
+		}
+
+		public Image byteArrayToImage(byte[] byteArrayIn) {
+			MemoryStream ms = new MemoryStream(byteArrayIn);
+			Image returnImage = Image.FromStream(ms);
+			return returnImage;
+		}
 
 
 

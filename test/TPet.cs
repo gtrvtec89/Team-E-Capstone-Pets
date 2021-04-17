@@ -11,8 +11,9 @@ namespace test
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class TPet
+	using System.ComponentModel.DataAnnotations;
+
+	public partial class TPet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TPet()
@@ -28,7 +29,8 @@ namespace test
         public int intPetTypeID { get; set; }
         public int intGenderID { get; set; }
         public int intBreedID { get; set; }
-        public System.DateTime dtmDateofBirth { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime dtmDateofBirth { get; set; }
         public double dblWeight { get; set; }
         public bool isBlind { get; set; }
         public bool isDeaf { get; set; }

@@ -1026,10 +1026,6 @@
         <Function Name="uspGetRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="intUserID" Type="int" Mode="In" />
         </Function>
-        <Function Name="uspGetUserID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
-          <Parameter Name="un" Type="varchar" Mode="In" />
-          <Parameter Name="pw" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="uspUpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="intEmployeeID" Type="int" Mode="In" />
           <Parameter Name="strFirstName" Type="varchar" Mode="In" />
@@ -4284,7 +4280,6 @@
           <FunctionImportMapping FunctionImportName="uspAddUserEmployee" FunctionName="Model.Store.uspAddUserEmployee" />
           <FunctionImportMapping FunctionImportName="uspAddUserOwner" FunctionName="Model.Store.uspAddUserOwner" />
           <FunctionImportMapping FunctionImportName="uspGetOwnerID" FunctionName="Model.Store.uspGetOwnerID" />
-          <FunctionImportMapping FunctionImportName="uspGetUserID5" FunctionName="Model.Store.uspGetUserID" />
           <FunctionImportMapping FunctionImportName="Validate_User6" FunctionName="Model.Store.Validate_User" />
           <FunctionImportMapping FunctionImportName="uspGetRole" FunctionName="Model.Store.uspGetRole" />
           </EntityContainerMapping>
