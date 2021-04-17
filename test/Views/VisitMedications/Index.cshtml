@@ -44,20 +44,17 @@
             color: white;
         }
 
-        .flex-row
-        {
-            width: 50%;
-            display: flex;
-            flex-wrap: wrap;
-        }
+    .flex-row {
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+    }
 
-        .flex-container
-        {
-            display: flex;
-            flex-wrap: wrap;
-            border:ridge;
-            margin:20px;
-            
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        border: ridge;
+        margin: 20px;
 </style>
 
 <div class="form-horizontal">
@@ -112,7 +109,7 @@
                             @medication.strMedicationName
                         </td>
                         <td style="white-space:nowrap">
-                            <a style="color:#5cb85c; padding-left: 10px" href='' ;return false;>  <i class="far fa-plus"></i></a>
+                            <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetMedication", "VisitMedications", new { medicationId = medication.intMedicationID })' ;return false;>  <i class="far fa-plus"></i></a>
                         </td>
                     </tr>
                 }
@@ -130,7 +127,7 @@
                         @Html.DisplayName("Quantity")
                     </th>
                     <th style="white-space:nowrap">
-                        @Html.DisplayName("Delete")
+                        @Html.DisplayName("Edit | Delete")
                     </th>
                 </tr>
 
@@ -138,13 +135,14 @@
                 {
                     <tr>
                         <td>
-                            @visitMedication.TMedication.strMedicationDesc
+                            @visitMedication.TMedication.strMedicationName
                         </td>
                         <td>
                             @visitMedication.intQuantity
                         </td>
                         <td style="white-space:nowrap">
-                            <a style="color:red; padding-left: 10px" href='' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                            <a style="color:#f0ad4e; padding-left: 15px" class="editMedication" href='#' data-visitMedicationId="@visitMedication.intVisitMedicationID">  <i class="fas fa-pencil-alt"></i></a>
+                            <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetMedication", "VisitMedications", new { medicationId = visitMedication.intMedicationID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 }
@@ -165,4 +163,36 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="ModalUpdateMedication">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Edit</h3>
+            </div>
+            <div class="modal-body" id="ModalBodyDiv">
+
+                <!-- Here's where i want to show the partial view-->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(.editMedication).on('click', function() {
+    var medicationId = $(this).data('MedicationID');
+
+        var url = "/VisitMedications/UpdateMedication?visitMedicationId=" + visitMedicationId;
+
+    $("#ModalBodyDiv").load(url, function () {
+
+        $("#ModalUpdateMedication").modal("show");
+
+    })
+
+    });
+</script>
+
 

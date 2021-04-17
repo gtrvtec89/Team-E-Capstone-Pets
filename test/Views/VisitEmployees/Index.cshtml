@@ -53,7 +53,7 @@
             flex-wrap: wrap;
             border:ridge;
             margin:20px;
-            
+          }  
 </style>
 
 <div class="form-horizontal">
@@ -105,7 +105,7 @@
                 {
                     <tr>
                         <td>
-                            @employee.strFirstName
+                            @(employee.strFirstName + " " + employee.strLastName)
                         </td>
                         <td style="white-space:nowrap">
                             <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetEmployee", "VisitEmployees", new { employeeID = employee.intEmployeeID })' ;return false;>  <i class="far fa-plus"></i></a>
@@ -130,10 +130,10 @@
                 {
                     <tr>
                         <td>
-                            @petEmployee.TEmployee.strFirstName
+                            @(petEmployee.TEmployee.strFirstName + " " + petEmployee.TEmployee.strLastName)
                         </td>
                         <td style="white-space:nowrap">
-                            <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices")' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                            <a style="color:red; padding-left: 10px" href='@Url.Action("DeleteVisitEmployee", "VisitEmployees", new { employeeID = petEmployee.intEmployeeID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 }

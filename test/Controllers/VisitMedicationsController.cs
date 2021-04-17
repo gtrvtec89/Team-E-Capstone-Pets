@@ -23,7 +23,7 @@ namespace test.Controllers
                           join j in db.TJobTitles
                           on e.intJobTitleID equals j.intJobTitleID
                           where ve.intVisitID == intVisitId
-                          where j.intJobTitleID == 4
+                          where j.strJobTitleDesc == "Doctor"
                           select new
                           {
                               doctorName = "Dr. " + e.strFirstName + " " + e.strLastName
@@ -45,6 +45,47 @@ namespace test.Controllers
             myModel.PetVisitMedications = db.TVisitMedications.Where(x => x.intVisitID == intVisitId).ToList();
             ViewBag.Name = petData.name;
             return View(myModel);
+        }
+        public ActionResult AddPetMedication(int medicationId)
+        {
+            int intVisitId = (int)Session["intVisitId"];
+            TVisitMedication visitMedication = new TVisitMedication()
+            {
+                intVisitID = intVisitId,
+                intMedicationID = medicationId,
+                dtmDatePrescribed = DateTime.Now,
+                intQuantity = 0
+            };
+
+            db.TVisitMedications.Add(visitMedication);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeletePetMedication(int medicationId)
+        {
+            int intVisitId = (int)Session["intVisitId"];
+            TVisitMedication visitMedication = db.TVisitMedications.Where(x => x.intVisitID == intVisitId && x.intMedicationID == medicationId).FirstOrDefault();
+            db.TVisitMedications.Remove(visitMedication);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult UpdateMedication(int visitMedicationId)
+        {
+            TVisitMedication visitMedication = db.TVisitMedications.Where(x => x.intVisitMedicationID == visitMedicationId).FirstOrDefault();
+
+            TVisitMedication model = new TVisitMedication
+            {
+                intVisitMedicationID = visitMedication.intVisitMedicationID,
+                intVisitID = visitMedication.intVisitID,
+                intMedicationID =visitMedication.intMedicationID,
+                dtmDatePrescribed = visitMedication.dtmDatePrescribed,
+                intQuantity = visitMedication.intQuantity
+            };
+
+            return PartialView("UpdateMedication", model);
         }
     }
 }

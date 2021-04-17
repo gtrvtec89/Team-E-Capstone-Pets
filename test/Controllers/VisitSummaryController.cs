@@ -44,7 +44,7 @@ namespace test.Controllers
                           join j in db.TJobTitles
                           on e.intJobTitleID equals j.intJobTitleID
                           where ve.intVisitID == intVisitId
-                          where j.intJobTitleID == 4
+                          where j.strJobTitleDesc == "Doctor"
                           select new {
                               doctorName = "Dr. " + e.strFirstName + " " + e.strLastName
                           }).FirstOrDefault();

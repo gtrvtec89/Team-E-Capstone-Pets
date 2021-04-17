@@ -23,7 +23,7 @@ namespace test.Controllers
                           join j in db.TJobTitles
                           on e.intJobTitleID equals j.intJobTitleID
                           where ve.intVisitID == intVisitId
-                          where j.intJobTitleID == 4
+                          where j.strJobTitleDesc == "Doctor"
                           select new
                           {
                               doctorName = "Dr. " + e.strFirstName + " " + e.strLastName
@@ -62,13 +62,18 @@ namespace test.Controllers
             int service = db.TVisitServices.Where(x => x.intVisitServiceID == lastInsertedVisitServiceID).Select(x => x.intServiceID).FirstOrDefault();
             //If it's a health exam
             int healthExamService = db.TServices.Where(x => x.strServiceDesc == "Health Exam").Select(z => z.intServiceID).FirstOrDefault();
+            int vaccinationServiceType = db.TServiceTypes.Where(x => x.strServiceType == "Vaccination").Select(s => s.intServiceTypeID).FirstOrDefault();
+            int visitVaccinationServiceType = db.TVisitServices.Select(v => v.TService.intServiceTypeID).FirstOrDefault();
             if (service == healthExamService)
             {
                 DateTime dateOfHealthExam = DateTime.Now;
                 int intPetId = (int)Session["intPetID"];
                 return RedirectToAction("Create", "THealthExam", new { id = intPetId , dateOfVisit = dateOfHealthExam });
             }
+            else if(visitVaccinationServiceType == vaccinationServiceType)
+            {
 
+            }
             return RedirectToAction("Index");
         }
 
