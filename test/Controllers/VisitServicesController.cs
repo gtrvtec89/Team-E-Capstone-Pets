@@ -41,7 +41,14 @@ namespace test.Controllers
             myModel.strPetName = petData.name;
             myModel.strDoctor = doctor.doctorName;
             myModel.dtmDateOfVisit = petData.dtmDateOfVisit;
-            myModel.Services = db.TServices;
+            List<TService> availableServices = (from s in db.TServices
+                                                  where !(from tvs in db.TVisitServices
+                                                          where tvs.intVisitID == intVisitId
+                                                          select tvs.intServiceID).DefaultIfEmpty().Contains(s.intServiceID)
+                                                  select s).ToList();
+
+
+            myModel.Services = availableServices;
             myModel.PetVisitServices = db.TVisitServices.Where(x => x.intVisitID == intVisitId).ToList();
             ViewBag.Name = petData.name;
             return View(myModel);
@@ -74,6 +81,15 @@ namespace test.Controllers
             {
 
             }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeletePetService(int serviceID)
+        {
+            int intVisitId = (int)Session["intVisitId"];
+            TVisitService visitService = db.TVisitServices.Where(x => x.intServiceID == serviceID).FirstOrDefault();
+            db.TVisitServices.Remove(visitService);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

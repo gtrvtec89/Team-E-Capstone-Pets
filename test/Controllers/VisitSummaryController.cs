@@ -63,11 +63,12 @@ namespace test.Controllers
             myModel.PetVisitMedications = db.TVisitMedications.Where(x => x.intVisitID == intVisitId).ToList();
 
             ViewBag.Name = informationPacket.petName;
-            ViewBag.Total = db.TVisitServices
+            decimal rawData = db.TVisitServices
                             .Where(x => x.intVisitID == intVisitId)
                             .Select(z => z.TService.dblPrice)
                             .DefaultIfEmpty()
                             .Sum();
+            ViewBag.Total = "$ " + Math.Round(rawData, 2);
 
             return View(myModel);
         }

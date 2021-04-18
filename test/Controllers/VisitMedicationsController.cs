@@ -41,7 +41,13 @@ namespace test.Controllers
             myModel.strPetName = petData.name;
             myModel.strDoctor = doctor.doctorName;
             myModel.dtmDateOfVisit = petData.dtmDateOfVisit;
-            myModel.Medications = db.TMedications;
+            List<TMedication> availableMedication = (from m in db.TMedications
+                                                     where !(from tvm in db.TVisitMedications
+                                                          where tvm.intVisitID == intVisitId
+                                                          select tvm.intMedicationID).Contains(m.intMedicationID)
+                                                  select m).Distinct().ToList();
+
+            myModel.Medications = availableMedication;
             myModel.PetVisitMedications = db.TVisitMedications.Where(x => x.intVisitID == intVisitId).ToList();
             ViewBag.Name = petData.name;
             return View(myModel);
