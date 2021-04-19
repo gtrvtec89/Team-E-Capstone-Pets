@@ -312,6 +312,9 @@
     <Compile Include="uspViewEmployees2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewEmployees3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewEmployees_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -321,10 +324,16 @@
     <Compile Include="uspViewMedications2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewMedications3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewOwnerPets1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewOwnerPets2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewOwnerPets_Result.cs">
@@ -336,6 +345,9 @@
     <Compile Include="uspViewOwners2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewOwners3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewOwners_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -343,6 +355,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetGeneralInformation2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetGeneralInformation3_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetGeneralInformation_Result.cs">
@@ -354,6 +369,9 @@
     <Compile Include="uspViewPetMedications2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetMedications3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -361,6 +379,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPets2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPets3_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPets_Result.cs">
@@ -372,6 +393,9 @@
     <Compile Include="uspViewPetVaccinations2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetVaccinations3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetVaccinations_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -379,6 +403,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetVisits2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetVisits3_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetVisitsByPet_Result.cs">
@@ -391,6 +418,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewServices2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewServices3_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewServices_Result.cs">
@@ -418,6 +448,7 @@
     <Content Include="Content\Images\icon.PNG" />
     <Content Include="Content\Images\icon2.PNG" />
     <Content Include="Content\Images\icon3.PNG" />
+    <Content Include="Content\Images\LogoBanner.JPG" />
     <Content Include="Content\Images\medications.JPG" />
     <Content Include="Content\Images\pets.JPG" />
     <Content Include="Content\Images\reports.JPG" />

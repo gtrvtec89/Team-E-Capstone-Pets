@@ -4058,5 +4058,548 @@ namespace test
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetRole", intUserIDParameter);
         }
+    
+        public virtual int uspAddEarStatusInfo3(Nullable<bool> isNormal, Nullable<bool> isInflamed, Nullable<bool> isTumor, Nullable<bool> isDirty, Nullable<bool> isPainful, Nullable<bool> isExcessiveHair, Nullable<int> intHealthExamID)
+        {
+            var isNormalParameter = isNormal.HasValue ?
+                new ObjectParameter("isNormal", isNormal) :
+                new ObjectParameter("isNormal", typeof(bool));
+    
+            var isInflamedParameter = isInflamed.HasValue ?
+                new ObjectParameter("isInflamed", isInflamed) :
+                new ObjectParameter("isInflamed", typeof(bool));
+    
+            var isTumorParameter = isTumor.HasValue ?
+                new ObjectParameter("isTumor", isTumor) :
+                new ObjectParameter("isTumor", typeof(bool));
+    
+            var isDirtyParameter = isDirty.HasValue ?
+                new ObjectParameter("isDirty", isDirty) :
+                new ObjectParameter("isDirty", typeof(bool));
+    
+            var isPainfulParameter = isPainful.HasValue ?
+                new ObjectParameter("isPainful", isPainful) :
+                new ObjectParameter("isPainful", typeof(bool));
+    
+            var isExcessiveHairParameter = isExcessiveHair.HasValue ?
+                new ObjectParameter("isExcessiveHair", isExcessiveHair) :
+                new ObjectParameter("isExcessiveHair", typeof(bool));
+    
+            var intHealthExamIDParameter = intHealthExamID.HasValue ?
+                new ObjectParameter("intHealthExamID", intHealthExamID) :
+                new ObjectParameter("intHealthExamID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddEarStatusInfo3", isNormalParameter, isInflamedParameter, isTumorParameter, isDirtyParameter, isPainfulParameter, isExcessiveHairParameter, intHealthExamIDParameter);
+        }
+    
+        public virtual int uspAddEmployee3(string strFirstName, string strLastName, Nullable<int> intJobTitleID, Nullable<int> intUserID)
+        {
+            var strFirstNameParameter = strFirstName != null ?
+                new ObjectParameter("strFirstName", strFirstName) :
+                new ObjectParameter("strFirstName", typeof(string));
+    
+            var strLastNameParameter = strLastName != null ?
+                new ObjectParameter("strLastName", strLastName) :
+                new ObjectParameter("strLastName", typeof(string));
+    
+            var intJobTitleIDParameter = intJobTitleID.HasValue ?
+                new ObjectParameter("intJobTitleID", intJobTitleID) :
+                new ObjectParameter("intJobTitleID", typeof(int));
+    
+            var intUserIDParameter = intUserID.HasValue ?
+                new ObjectParameter("intUserID", intUserID) :
+                new ObjectParameter("intUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddEmployee3", strFirstNameParameter, strLastNameParameter, intJobTitleIDParameter, intUserIDParameter);
+        }
+    
+        public virtual int uspAddEyeStatusInfo3(Nullable<bool> isNormal, Nullable<bool> isDischarge, Nullable<bool> isInfection, Nullable<bool> isSclerosisLeft, Nullable<bool> isSclerosisRight, Nullable<bool> isCataractLeft, Nullable<bool> isCataractRight, Nullable<bool> isInflamed, Nullable<bool> isEyelidTumor, Nullable<int> intHealthExamID)
+        {
+            var isNormalParameter = isNormal.HasValue ?
+                new ObjectParameter("isNormal", isNormal) :
+                new ObjectParameter("isNormal", typeof(bool));
+    
+            var isDischargeParameter = isDischarge.HasValue ?
+                new ObjectParameter("isDischarge", isDischarge) :
+                new ObjectParameter("isDischarge", typeof(bool));
+    
+            var isInfectionParameter = isInfection.HasValue ?
+                new ObjectParameter("isInfection", isInfection) :
+                new ObjectParameter("isInfection", typeof(bool));
+    
+            var isSclerosisLeftParameter = isSclerosisLeft.HasValue ?
+                new ObjectParameter("isSclerosisLeft", isSclerosisLeft) :
+                new ObjectParameter("isSclerosisLeft", typeof(bool));
+    
+            var isSclerosisRightParameter = isSclerosisRight.HasValue ?
+                new ObjectParameter("isSclerosisRight", isSclerosisRight) :
+                new ObjectParameter("isSclerosisRight", typeof(bool));
+    
+            var isCataractLeftParameter = isCataractLeft.HasValue ?
+                new ObjectParameter("isCataractLeft", isCataractLeft) :
+                new ObjectParameter("isCataractLeft", typeof(bool));
+    
+            var isCataractRightParameter = isCataractRight.HasValue ?
+                new ObjectParameter("isCataractRight", isCataractRight) :
+                new ObjectParameter("isCataractRight", typeof(bool));
+    
+            var isInflamedParameter = isInflamed.HasValue ?
+                new ObjectParameter("isInflamed", isInflamed) :
+                new ObjectParameter("isInflamed", typeof(bool));
+    
+            var isEyelidTumorParameter = isEyelidTumor.HasValue ?
+                new ObjectParameter("isEyelidTumor", isEyelidTumor) :
+                new ObjectParameter("isEyelidTumor", typeof(bool));
+    
+            var intHealthExamIDParameter = intHealthExamID.HasValue ?
+                new ObjectParameter("intHealthExamID", intHealthExamID) :
+                new ObjectParameter("intHealthExamID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddEyeStatusInfo3", isNormalParameter, isDischargeParameter, isInfectionParameter, isSclerosisLeftParameter, isSclerosisRightParameter, isCataractLeftParameter, isCataractRightParameter, isInflamedParameter, isEyelidTumorParameter, intHealthExamIDParameter);
+        }
+    
+        public virtual int uspAddGIInfo3(Nullable<bool> isNormal, Nullable<bool> isExcessiveGas, Nullable<bool> isParasites, Nullable<bool> isAbnormalFeces, Nullable<bool> isAnorexia, Nullable<int> intHealthExamID)
+        {
+            var isNormalParameter = isNormal.HasValue ?
+                new ObjectParameter("isNormal", isNormal) :
+                new ObjectParameter("isNormal", typeof(bool));
+    
+            var isExcessiveGasParameter = isExcessiveGas.HasValue ?
+                new ObjectParameter("isExcessiveGas", isExcessiveGas) :
+                new ObjectParameter("isExcessiveGas", typeof(bool));
+    
+            var isParasitesParameter = isParasites.HasValue ?
+                new ObjectParameter("isParasites", isParasites) :
+                new ObjectParameter("isParasites", typeof(bool));
+    
+            var isAbnormalFecesParameter = isAbnormalFeces.HasValue ?
+                new ObjectParameter("isAbnormalFeces", isAbnormalFeces) :
+                new ObjectParameter("isAbnormalFeces", typeof(bool));
+    
+            var isAnorexiaParameter = isAnorexia.HasValue ?
+                new ObjectParameter("isAnorexia", isAnorexia) :
+                new ObjectParameter("isAnorexia", typeof(bool));
+    
+            var intHealthExamIDParameter = intHealthExamID.HasValue ?
+                new ObjectParameter("intHealthExamID", intHealthExamID) :
+                new ObjectParameter("intHealthExamID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddGIInfo3", isNormalParameter, isExcessiveGasParameter, isParasitesParameter, isAbnormalFecesParameter, isAnorexiaParameter, intHealthExamIDParameter);
+        }
+    
+        public virtual int uspAddMedication3(string strMedicationName, string strMedicationDesc, Nullable<decimal> dblCost, Nullable<decimal> dblPrice, string strNotes, Nullable<int> intQuantity, Nullable<int> intMethodID)
+        {
+            var strMedicationNameParameter = strMedicationName != null ?
+                new ObjectParameter("strMedicationName", strMedicationName) :
+                new ObjectParameter("strMedicationName", typeof(string));
+    
+            var strMedicationDescParameter = strMedicationDesc != null ?
+                new ObjectParameter("strMedicationDesc", strMedicationDesc) :
+                new ObjectParameter("strMedicationDesc", typeof(string));
+    
+            var dblCostParameter = dblCost.HasValue ?
+                new ObjectParameter("dblCost", dblCost) :
+                new ObjectParameter("dblCost", typeof(decimal));
+    
+            var dblPriceParameter = dblPrice.HasValue ?
+                new ObjectParameter("dblPrice", dblPrice) :
+                new ObjectParameter("dblPrice", typeof(decimal));
+    
+            var strNotesParameter = strNotes != null ?
+                new ObjectParameter("strNotes", strNotes) :
+                new ObjectParameter("strNotes", typeof(string));
+    
+            var intQuantityParameter = intQuantity.HasValue ?
+                new ObjectParameter("intQuantity", intQuantity) :
+                new ObjectParameter("intQuantity", typeof(int));
+    
+            var intMethodIDParameter = intMethodID.HasValue ?
+                new ObjectParameter("intMethodID", intMethodID) :
+                new ObjectParameter("intMethodID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddMedication3", strMedicationNameParameter, strMedicationDescParameter, dblCostParameter, dblPriceParameter, strNotesParameter, intQuantityParameter, intMethodIDParameter);
+        }
+    
+        public virtual int uspAddMouthInfo3(Nullable<bool> isNormal, Nullable<bool> isTumor, Nullable<bool> isGingivitis, Nullable<bool> isPeriodontitis, Nullable<bool> isTartarBuildup, Nullable<bool> isLooseTeeth, Nullable<bool> isBiteOVerUnder, Nullable<int> intHealthExamID)
+        {
+            var isNormalParameter = isNormal.HasValue ?
+                new ObjectParameter("isNormal", isNormal) :
+                new ObjectParameter("isNormal", typeof(bool));
+    
+            var isTumorParameter = isTumor.HasValue ?
+                new ObjectParameter("isTumor", isTumor) :
+                new ObjectParameter("isTumor", typeof(bool));
+    
+            var isGingivitisParameter = isGingivitis.HasValue ?
+                new ObjectParameter("isGingivitis", isGingivitis) :
+                new ObjectParameter("isGingivitis", typeof(bool));
+    
+            var isPeriodontitisParameter = isPeriodontitis.HasValue ?
+                new ObjectParameter("isPeriodontitis", isPeriodontitis) :
+                new ObjectParameter("isPeriodontitis", typeof(bool));
+    
+            var isTartarBuildupParameter = isTartarBuildup.HasValue ?
+                new ObjectParameter("isTartarBuildup", isTartarBuildup) :
+                new ObjectParameter("isTartarBuildup", typeof(bool));
+    
+            var isLooseTeethParameter = isLooseTeeth.HasValue ?
+                new ObjectParameter("isLooseTeeth", isLooseTeeth) :
+                new ObjectParameter("isLooseTeeth", typeof(bool));
+    
+            var isBiteOVerUnderParameter = isBiteOVerUnder.HasValue ?
+                new ObjectParameter("isBiteOVerUnder", isBiteOVerUnder) :
+                new ObjectParameter("isBiteOVerUnder", typeof(bool));
+    
+            var intHealthExamIDParameter = intHealthExamID.HasValue ?
+                new ObjectParameter("intHealthExamID", intHealthExamID) :
+                new ObjectParameter("intHealthExamID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddMouthInfo3", isNormalParameter, isTumorParameter, isGingivitisParameter, isPeriodontitisParameter, isTartarBuildupParameter, isLooseTeethParameter, isBiteOVerUnderParameter, intHealthExamIDParameter);
+        }
+    
+        public virtual int uspAddNeurologicalInfo3(Nullable<bool> isNormal, Nullable<bool> isPLRL, Nullable<bool> isPLRR, Nullable<bool> isCPLF, Nullable<bool> isCPRF, Nullable<bool> isCPLR, Nullable<bool> isCPRR, Nullable<bool> isPalpebralL, Nullable<bool> isPalpebralR, Nullable<int> intHealthExamID)
+        {
+            var isNormalParameter = isNormal.HasValue ?
+                new ObjectParameter("isNormal", isNormal) :
+                new ObjectParameter("isNormal", typeof(bool));
+    
+            var isPLRLParameter = isPLRL.HasValue ?
+                new ObjectParameter("isPLRL", isPLRL) :
+                new ObjectParameter("isPLRL", typeof(bool));
+    
+            var isPLRRParameter = isPLRR.HasValue ?
+                new ObjectParameter("isPLRR", isPLRR) :
+                new ObjectParameter("isPLRR", typeof(bool));
+    
+            var isCPLFParameter = isCPLF.HasValue ?
+                new ObjectParameter("isCPLF", isCPLF) :
+                new ObjectParameter("isCPLF", typeof(bool));
+    
+            var isCPRFParameter = isCPRF.HasValue ?
+                new ObjectParameter("isCPRF", isCPRF) :
+                new ObjectParameter("isCPRF", typeof(bool));
+    
+            var isCPLRParameter = isCPLR.HasValue ?
+                new ObjectParameter("isCPLR", isCPLR) :
+                new ObjectParameter("isCPLR", typeof(bool));
+    
+            var isCPRRParameter = isCPRR.HasValue ?
+                new ObjectParameter("isCPRR", isCPRR) :
+                new ObjectParameter("isCPRR", typeof(bool));
+    
+            var isPalpebralLParameter = isPalpebralL.HasValue ?
+                new ObjectParameter("isPalpebralL", isPalpebralL) :
+                new ObjectParameter("isPalpebralL", typeof(bool));
+    
+            var isPalpebralRParameter = isPalpebralR.HasValue ?
+                new ObjectParameter("isPalpebralR", isPalpebralR) :
+                new ObjectParameter("isPalpebralR", typeof(bool));
+    
+            var intHealthExamIDParameter = intHealthExamID.HasValue ?
+                new ObjectParameter("intHealthExamID", intHealthExamID) :
+                new ObjectParameter("intHealthExamID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddNeurologicalInfo3", isNormalParameter, isPLRLParameter, isPLRRParameter, isCPLFParameter, isCPRFParameter, isCPLRParameter, isCPRRParameter, isPalpebralLParameter, isPalpebralRParameter, intHealthExamIDParameter);
+        }
+    
+        public virtual int uspAddNewUser3(string strUserName, string strPassword, Nullable<int> intRoleID)
+        {
+            var strUserNameParameter = strUserName != null ?
+                new ObjectParameter("strUserName", strUserName) :
+                new ObjectParameter("strUserName", typeof(string));
+    
+            var strPasswordParameter = strPassword != null ?
+                new ObjectParameter("strPassword", strPassword) :
+                new ObjectParameter("strPassword", typeof(string));
+    
+            var intRoleIDParameter = intRoleID.HasValue ?
+                new ObjectParameter("intRoleID", intRoleID) :
+                new ObjectParameter("intRoleID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddNewUser3", strUserNameParameter, strPasswordParameter, intRoleIDParameter);
+        }
+    
+        public virtual int uspAddPets3(string strPetNumber, string strMicrochipID, string strPetName, Nullable<int> intPetTypeID, Nullable<int> intGenderID, Nullable<int> intBreedID, Nullable<System.DateTime> dtmDateofBirth, Nullable<double> dblWeight, Nullable<bool> isBlind, Nullable<bool> isDeaf, Nullable<bool> isAggressive, Nullable<bool> isDeceased, Nullable<bool> isAllergic, string strColor, string strNotes, Nullable<int> intOwnerID)
+        {
+            var strPetNumberParameter = strPetNumber != null ?
+                new ObjectParameter("strPetNumber", strPetNumber) :
+                new ObjectParameter("strPetNumber", typeof(string));
+    
+            var strMicrochipIDParameter = strMicrochipID != null ?
+                new ObjectParameter("strMicrochipID", strMicrochipID) :
+                new ObjectParameter("strMicrochipID", typeof(string));
+    
+            var strPetNameParameter = strPetName != null ?
+                new ObjectParameter("strPetName", strPetName) :
+                new ObjectParameter("strPetName", typeof(string));
+    
+            var intPetTypeIDParameter = intPetTypeID.HasValue ?
+                new ObjectParameter("intPetTypeID", intPetTypeID) :
+                new ObjectParameter("intPetTypeID", typeof(int));
+    
+            var intGenderIDParameter = intGenderID.HasValue ?
+                new ObjectParameter("intGenderID", intGenderID) :
+                new ObjectParameter("intGenderID", typeof(int));
+    
+            var intBreedIDParameter = intBreedID.HasValue ?
+                new ObjectParameter("intBreedID", intBreedID) :
+                new ObjectParameter("intBreedID", typeof(int));
+    
+            var dtmDateofBirthParameter = dtmDateofBirth.HasValue ?
+                new ObjectParameter("dtmDateofBirth", dtmDateofBirth) :
+                new ObjectParameter("dtmDateofBirth", typeof(System.DateTime));
+    
+            var dblWeightParameter = dblWeight.HasValue ?
+                new ObjectParameter("dblWeight", dblWeight) :
+                new ObjectParameter("dblWeight", typeof(double));
+    
+            var isBlindParameter = isBlind.HasValue ?
+                new ObjectParameter("isBlind", isBlind) :
+                new ObjectParameter("isBlind", typeof(bool));
+    
+            var isDeafParameter = isDeaf.HasValue ?
+                new ObjectParameter("isDeaf", isDeaf) :
+                new ObjectParameter("isDeaf", typeof(bool));
+    
+            var isAggressiveParameter = isAggressive.HasValue ?
+                new ObjectParameter("isAggressive", isAggressive) :
+                new ObjectParameter("isAggressive", typeof(bool));
+    
+            var isDeceasedParameter = isDeceased.HasValue ?
+                new ObjectParameter("isDeceased", isDeceased) :
+                new ObjectParameter("isDeceased", typeof(bool));
+    
+            var isAllergicParameter = isAllergic.HasValue ?
+                new ObjectParameter("isAllergic", isAllergic) :
+                new ObjectParameter("isAllergic", typeof(bool));
+    
+            var strColorParameter = strColor != null ?
+                new ObjectParameter("strColor", strColor) :
+                new ObjectParameter("strColor", typeof(string));
+    
+            var strNotesParameter = strNotes != null ?
+                new ObjectParameter("strNotes", strNotes) :
+                new ObjectParameter("strNotes", typeof(string));
+    
+            var intOwnerIDParameter = intOwnerID.HasValue ?
+                new ObjectParameter("intOwnerID", intOwnerID) :
+                new ObjectParameter("intOwnerID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddPets3", strPetNumberParameter, strMicrochipIDParameter, strPetNameParameter, intPetTypeIDParameter, intGenderIDParameter, intBreedIDParameter, dtmDateofBirthParameter, dblWeightParameter, isBlindParameter, isDeafParameter, isAggressiveParameter, isDeceasedParameter, isAllergicParameter, strColorParameter, strNotesParameter, intOwnerIDParameter);
+        }
+    
+        public virtual int uspAddSkinInfo3(Nullable<bool> isNormal, Nullable<bool> isScaly, Nullable<bool> isInfected, Nullable<bool> isMatted, Nullable<bool> isSkinScrape, Nullable<bool> isPruritus, Nullable<bool> isHairLoss, Nullable<bool> isMass, Nullable<bool> isParasites, Nullable<int> intHealthExamID)
+        {
+            var isNormalParameter = isNormal.HasValue ?
+                new ObjectParameter("isNormal", isNormal) :
+                new ObjectParameter("isNormal", typeof(bool));
+    
+            var isScalyParameter = isScaly.HasValue ?
+                new ObjectParameter("isScaly", isScaly) :
+                new ObjectParameter("isScaly", typeof(bool));
+    
+            var isInfectedParameter = isInfected.HasValue ?
+                new ObjectParameter("isInfected", isInfected) :
+                new ObjectParameter("isInfected", typeof(bool));
+    
+            var isMattedParameter = isMatted.HasValue ?
+                new ObjectParameter("isMatted", isMatted) :
+                new ObjectParameter("isMatted", typeof(bool));
+    
+            var isSkinScrapeParameter = isSkinScrape.HasValue ?
+                new ObjectParameter("isSkinScrape", isSkinScrape) :
+                new ObjectParameter("isSkinScrape", typeof(bool));
+    
+            var isPruritusParameter = isPruritus.HasValue ?
+                new ObjectParameter("isPruritus", isPruritus) :
+                new ObjectParameter("isPruritus", typeof(bool));
+    
+            var isHairLossParameter = isHairLoss.HasValue ?
+                new ObjectParameter("isHairLoss", isHairLoss) :
+                new ObjectParameter("isHairLoss", typeof(bool));
+    
+            var isMassParameter = isMass.HasValue ?
+                new ObjectParameter("isMass", isMass) :
+                new ObjectParameter("isMass", typeof(bool));
+    
+            var isParasitesParameter = isParasites.HasValue ?
+                new ObjectParameter("isParasites", isParasites) :
+                new ObjectParameter("isParasites", typeof(bool));
+    
+            var intHealthExamIDParameter = intHealthExamID.HasValue ?
+                new ObjectParameter("intHealthExamID", intHealthExamID) :
+                new ObjectParameter("intHealthExamID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddSkinInfo3", isNormalParameter, isScalyParameter, isInfectedParameter, isMattedParameter, isSkinScrapeParameter, isPruritusParameter, isHairLossParameter, isMassParameter, isParasitesParameter, intHealthExamIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspCheckEmployees3(Nullable<int> intEmployeeID)
+        {
+            var intEmployeeIDParameter = intEmployeeID.HasValue ?
+                new ObjectParameter("intEmployeeID", intEmployeeID) :
+                new ObjectParameter("intEmployeeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspCheckEmployees3", intEmployeeIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspCheckMedication3(Nullable<int> intMedicationID)
+        {
+            var intMedicationIDParameter = intMedicationID.HasValue ?
+                new ObjectParameter("intMedicationID", intMedicationID) :
+                new ObjectParameter("intMedicationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspCheckMedication3", intMedicationIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspCheckServices3(Nullable<int> intServiceID)
+        {
+            var intServiceIDParameter = intServiceID.HasValue ?
+                new ObjectParameter("intServiceID", intServiceID) :
+                new ObjectParameter("intServiceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspCheckServices3", intServiceIDParameter);
+        }
+    
+        public virtual int uspDeleteEmployee3(Nullable<int> intEmployeeID)
+        {
+            var intEmployeeIDParameter = intEmployeeID.HasValue ?
+                new ObjectParameter("intEmployeeID", intEmployeeID) :
+                new ObjectParameter("intEmployeeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspDeleteEmployee3", intEmployeeIDParameter);
+        }
+    
+        public virtual int uspDeleteMedication3(Nullable<int> intMedicationID)
+        {
+            var intMedicationIDParameter = intMedicationID.HasValue ?
+                new ObjectParameter("intMedicationID", intMedicationID) :
+                new ObjectParameter("intMedicationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspDeleteMedication3", intMedicationIDParameter);
+        }
+    
+        public virtual int uspDeleteService3(Nullable<int> intServiceID)
+        {
+            var intServiceIDParameter = intServiceID.HasValue ?
+                new ObjectParameter("intServiceID", intServiceID) :
+                new ObjectParameter("intServiceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspDeleteService3", intServiceIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetOwnerIDFromUser3(Nullable<int> intUserID)
+        {
+            var intUserIDParameter = intUserID.HasValue ?
+                new ObjectParameter("intUserID", intUserID) :
+                new ObjectParameter("intUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetOwnerIDFromUser3", intUserIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetUserID6(string un, string pw)
+        {
+            var unParameter = un != null ?
+                new ObjectParameter("un", un) :
+                new ObjectParameter("un", typeof(string));
+    
+            var pwParameter = pw != null ?
+                new ObjectParameter("pw", pw) :
+                new ObjectParameter("pw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetUserID6", unParameter, pwParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetUserOwnerID3(string strUserName, string strPassword)
+        {
+            var strUserNameParameter = strUserName != null ?
+                new ObjectParameter("strUserName", strUserName) :
+                new ObjectParameter("strUserName", typeof(string));
+    
+            var strPasswordParameter = strPassword != null ?
+                new ObjectParameter("strPassword", strPassword) :
+                new ObjectParameter("strPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetUserOwnerID3", strUserNameParameter, strPasswordParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetUserRole3(string strUserName, string strPassword)
+        {
+            var strUserNameParameter = strUserName != null ?
+                new ObjectParameter("strUserName", strUserName) :
+                new ObjectParameter("strUserName", typeof(string));
+    
+            var strPasswordParameter = strPassword != null ?
+                new ObjectParameter("strPassword", strPassword) :
+                new ObjectParameter("strPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetUserRole3", strUserNameParameter, strPasswordParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspUserLogin3(string strUserName, string strPassword)
+        {
+            var strUserNameParameter = strUserName != null ?
+                new ObjectParameter("strUserName", strUserName) :
+                new ObjectParameter("strUserName", typeof(string));
+    
+            var strPasswordParameter = strPassword != null ?
+                new ObjectParameter("strPassword", strPassword) :
+                new ObjectParameter("strPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspUserLogin3", strUserNameParameter, strPasswordParameter);
+        }
+    
+        public virtual ObjectResult<uspViewEmployees3_Result> uspViewEmployees3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewEmployees3_Result>("uspViewEmployees3");
+        }
+    
+        public virtual ObjectResult<uspViewMedications3_Result> uspViewMedications3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewMedications3_Result>("uspViewMedications3");
+        }
+    
+        public virtual ObjectResult<uspViewOwnerPets2_Result> uspViewOwnerPets2(Nullable<long> ownerid)
+        {
+            var owneridParameter = ownerid.HasValue ?
+                new ObjectParameter("ownerid", ownerid) :
+                new ObjectParameter("ownerid", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewOwnerPets2_Result>("uspViewOwnerPets2", owneridParameter);
+        }
+    
+        public virtual ObjectResult<uspViewOwners3_Result> uspViewOwners3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewOwners3_Result>("uspViewOwners3");
+        }
+    
+        public virtual ObjectResult<uspViewPetGeneralInformation3_Result> uspViewPetGeneralInformation3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewPetGeneralInformation3_Result>("uspViewPetGeneralInformation3");
+        }
+    
+        public virtual ObjectResult<uspViewPetMedications3_Result> uspViewPetMedications3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewPetMedications3_Result>("uspViewPetMedications3");
+        }
+    
+        public virtual ObjectResult<uspViewPets3_Result> uspViewPets3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewPets3_Result>("uspViewPets3");
+        }
+    
+        public virtual ObjectResult<uspViewPetVaccinations3_Result> uspViewPetVaccinations3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewPetVaccinations3_Result>("uspViewPetVaccinations3");
+        }
+    
+        public virtual ObjectResult<uspViewPetVisits3_Result> uspViewPetVisits3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewPetVisits3_Result>("uspViewPetVisits3");
+        }
+    
+        public virtual ObjectResult<uspViewServices3_Result> uspViewServices3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspViewServices3_Result>("uspViewServices3");
+        }
     }
 }

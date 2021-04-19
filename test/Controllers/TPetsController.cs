@@ -11,6 +11,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using test;
+using test.Models;
 
 namespace test.Controllers {
     public class TPetsController : Controller {
@@ -191,8 +192,10 @@ namespace test.Controllers {
 
         // GET: TPets/OwnerHome/5
         public ActionResult OwnerHome(int? id) {
+            OwnerHome myModel = new OwnerHome();
             ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
             ViewBag.intPetImageID = new SelectList(db.TPetImages, "intPetImageID", "imgContent");
+
 
             if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -206,6 +209,26 @@ namespace test.Controllers {
             return View(tPet);
             //return View();
         }
+
+
+
+        //// GET: TPets/OwnerHome/5
+        //public ActionResult OwnerHome(int? id) {
+        //    ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
+        //    ViewBag.intPetImageID = new SelectList(db.TPetImages, "intPetImageID", "imgContent");
+
+        //    if (id == null) {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    TPet tPet = db.TPets.Include(s => s.TPetImages).SingleOrDefault(s => s.intPetID == id);
+
+        //    if (tPet == null) {
+        //        return HttpNotFound();
+        //    }
+        //    return View(tPet);
+        //    //return View();
+        //}
 
         // GET: TPets/Details/5
         public ActionResult PetProfile(int? id) {

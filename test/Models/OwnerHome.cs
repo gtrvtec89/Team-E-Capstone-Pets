@@ -8,6 +8,7 @@ namespace test.Models
     public class OwnerHome
     {
         //Owner Information
+        public string intOwnerID { get; set; }
         public string strOwnerName { get; set; }
         public string strAddress { get; set; }
         public string strPhoneNumber { get; set; }
