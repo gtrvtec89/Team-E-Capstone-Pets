@@ -14,6 +14,7 @@
 	th {
 		white-space: nowrap;
 	}
+
 	td {
 		white-space: nowrap;
 	}
@@ -38,6 +39,9 @@
 					@Html.DisplayName("Pet Name")
 				</th>
 				<th style="white-space:nowrap">
+					@Html.DisplayName("Owner")
+				</th>
+				<th style="white-space:nowrap">
 					@Html.DisplayName("Pet Type")
 				</th>
 				<th style="white-space:nowrap">
@@ -51,6 +55,9 @@
 				</th>
 				<th style="white-space:nowrap">
 					@Html.DisplayName("Weight")
+				</th>
+				<th style="white-space:nowrap">
+					@Html.DisplayName("Color")
 				</th>
 				<th style="white-space:nowrap">
 					@Html.DisplayName("Blind")
@@ -67,18 +74,18 @@
 				<th style="white-space:nowrap">
 					@Html.DisplayName("Allergies")
 				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Color")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Notes")
-				</th>
 				@*<th style="white-space:nowrap">
-					@Html.DisplayName(model => model.isDeceased)
-				</th>*@
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Owner")
-				</th>
+						@Html.DisplayName("Color")
+					</th>*@
+				@*<th style="white-space:nowrap">
+						@Html.DisplayName("Notes")
+					</th>*@
+				@*<th style="white-space:nowrap">
+						@Html.DisplayName(model => model.isDeceased)
+					</th>*@
+				@*<th style="white-space:nowrap">
+						@Html.DisplayName("Owner")
+					</th>*@
 				<th>
 					@Html.DisplayName("View | Edit | Delete")
 				</th>
@@ -94,6 +101,11 @@
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.strPetName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.TOwner.strFirstName)
+						@Html.DisplayFor(modelItem => item.TOwner.strLastName)
+
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.TPetType.strPetType)
@@ -113,6 +125,9 @@
 						lbs
 					</td>
 					<td>
+						@Html.DisplayFor(modelItem => item.strColor)
+					</td>
+					<td>
 						@Html.DisplayFor(modelItem => item.isBlind)
 					</td>
 					<td>
@@ -128,18 +143,18 @@
 					<td>
 						@Html.DisplayFor(modelItem => item.isAllergic)
 					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.strColor)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.strNotes)
-					</td>
+					@*<td>
+							@Html.DisplayFor(modelItem => item.strColor)
+						</td>*@
+					@*<td>
+							@Html.DisplayFor(modelItem => item.strNotes)
+						</td>*@
 
-					<td>
-						@Html.DisplayFor(modelItem => item.TOwner.strFirstName)
-						@Html.DisplayFor(modelItem => item.TOwner.strLastName)
+					@*<td>
+							@Html.DisplayFor(modelItem => item.TOwner.strFirstName)
+							@Html.DisplayFor(modelItem => item.TOwner.strLastName)
 
-					</td>
+						</td>*@
 					<td style="white-space:nowrap">
 						<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TPets", new { id = item.intPetID })' ;return false;>  <i class="far fa-eye"></i></a>
 						<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TPets", new { id = item.intPetID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>

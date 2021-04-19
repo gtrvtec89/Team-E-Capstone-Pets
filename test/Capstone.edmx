@@ -222,10 +222,10 @@
           <Property Name="strZip" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="strPhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="strEmail" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="strOwner2Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="strOwner2PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="strOwner2Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="strNotes" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="strOwner2Name" Type="varchar" MaxLength="50" />
+          <Property Name="strOwner2PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="strOwner2Email" Type="varchar" MaxLength="50" />
+          <Property Name="strNotes" Type="varchar" MaxLength="200" />
           <Property Name="intUserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TPetImages">
@@ -258,7 +258,7 @@
           <Property Name="isDeceased" Type="bit" Nullable="false" />
           <Property Name="isAllergic" Type="bit" Nullable="false" />
           <Property Name="strColor" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="strNotes" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="strNotes" Type="varchar" MaxLength="1000" />
           <Property Name="intOwnerID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TPetTypes">
@@ -2825,6 +2825,166 @@
           <FunctionImport Name="uspViewPetVaccinations3" ReturnType="Collection(Model.uspViewPetVaccinations3_Result)" />
           <FunctionImport Name="uspViewPetVisits3" ReturnType="Collection(Model.uspViewPetVisits3_Result)" />
           <FunctionImport Name="uspViewServices3" ReturnType="Collection(Model.uspViewServices3_Result)" />
+          <FunctionImport Name="uspAddEarStatusInfo4">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isDirty" Mode="In" Type="Boolean" />
+            <Parameter Name="isPainful" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveHair" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddEmployee4">
+            <Parameter Name="strFirstName" Mode="In" Type="String" />
+            <Parameter Name="strLastName" Mode="In" Type="String" />
+            <Parameter Name="intJobTitleID" Mode="In" Type="Int32" />
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddEyeStatusInfo4">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isDischarge" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfection" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isSclerosisRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractLeft" Mode="In" Type="Boolean" />
+            <Parameter Name="isCataractRight" Mode="In" Type="Boolean" />
+            <Parameter Name="isInflamed" Mode="In" Type="Boolean" />
+            <Parameter Name="isEyelidTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddGIInfo4">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isExcessiveGas" Mode="In" Type="Boolean" />
+            <Parameter Name="isParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="isAbnormalFeces" Mode="In" Type="Boolean" />
+            <Parameter Name="isAnorexia" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMedication4">
+            <Parameter Name="strMedicationName" Mode="In" Type="String" />
+            <Parameter Name="strMedicationDesc" Mode="In" Type="String" />
+            <Parameter Name="dblCost" Mode="In" Type="Decimal" />
+            <Parameter Name="dblPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="intMethodID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddMouthInfo4">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isTumor" Mode="In" Type="Boolean" />
+            <Parameter Name="isGingivitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isPeriodontitis" Mode="In" Type="Boolean" />
+            <Parameter Name="isTartarBuildup" Mode="In" Type="Boolean" />
+            <Parameter Name="isLooseTeeth" Mode="In" Type="Boolean" />
+            <Parameter Name="isBiteOVerUnder" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNeurologicalInfo4">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPLRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRF" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPLR" Mode="In" Type="Boolean" />
+            <Parameter Name="isCPRR" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralL" Mode="In" Type="Boolean" />
+            <Parameter Name="isPalpebralR" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddNewUser4">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+            <Parameter Name="intRoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddPets4">
+            <Parameter Name="strPetNumber" Mode="In" Type="String" />
+            <Parameter Name="strMicrochipID" Mode="In" Type="String" />
+            <Parameter Name="strPetName" Mode="In" Type="String" />
+            <Parameter Name="intPetTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="intGenderID" Mode="In" Type="Int32" />
+            <Parameter Name="intBreedID" Mode="In" Type="Int32" />
+            <Parameter Name="dtmDateofBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="dblWeight" Mode="In" Type="Double" />
+            <Parameter Name="isBlind" Mode="In" Type="Boolean" />
+            <Parameter Name="isDeaf" Mode="In" Type="Boolean" />
+            <Parameter Name="isAggressive" Mode="In" Type="Boolean" />
+            <Parameter Name="isDeceased" Mode="In" Type="Boolean" />
+            <Parameter Name="isAllergic" Mode="In" Type="Boolean" />
+            <Parameter Name="strColor" Mode="In" Type="String" />
+            <Parameter Name="strNotes" Mode="In" Type="String" />
+            <Parameter Name="intOwnerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspAddSkinInfo4">
+            <Parameter Name="isNormal" Mode="In" Type="Boolean" />
+            <Parameter Name="isScaly" Mode="In" Type="Boolean" />
+            <Parameter Name="isInfected" Mode="In" Type="Boolean" />
+            <Parameter Name="isMatted" Mode="In" Type="Boolean" />
+            <Parameter Name="isSkinScrape" Mode="In" Type="Boolean" />
+            <Parameter Name="isPruritus" Mode="In" Type="Boolean" />
+            <Parameter Name="isHairLoss" Mode="In" Type="Boolean" />
+            <Parameter Name="isMass" Mode="In" Type="Boolean" />
+            <Parameter Name="isParasites" Mode="In" Type="Boolean" />
+            <Parameter Name="intHealthExamID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckEmployees4" ReturnType="Collection(Int32)">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckMedication4" ReturnType="Collection(Int32)">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspCheckServices4" ReturnType="Collection(Int32)">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDeleteEmployee4">
+            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDeleteMedication4">
+            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspDeleteService4">
+            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetOwnerID1" ReturnType="Collection(Int32)">
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetOwnerIDFromUser4" ReturnType="Collection(Int32)">
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetRole1" ReturnType="Collection(Int32)">
+            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetUserID7" ReturnType="Collection(Int32)">
+            <Parameter Name="un" Mode="In" Type="String" />
+            <Parameter Name="pw" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetUserOwnerID4" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetUserRole4" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspUserLogin4" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspViewEmployees4" ReturnType="Collection(Model.uspViewEmployees4_Result)" />
+          <FunctionImport Name="uspViewMedications4" ReturnType="Collection(Model.uspViewMedications4_Result)" />
+          <FunctionImport Name="uspViewOwnerPets3" ReturnType="Collection(Model.uspViewOwnerPets3_Result)">
+            <Parameter Name="ownerid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="uspViewOwners4" ReturnType="Collection(Model.uspViewOwners4_Result)" />
+          <FunctionImport Name="uspViewPetGeneralInformation4" ReturnType="Collection(Model.uspViewPetGeneralInformation4_Result)" />
+          <FunctionImport Name="uspViewPetMedications4" ReturnType="Collection(Model.uspViewPetMedications4_Result)" />
+          <FunctionImport Name="uspViewPets4" ReturnType="Collection(Model.uspViewPets4_Result)" />
+          <FunctionImport Name="uspViewPetVaccinations4" ReturnType="Collection(Model.uspViewPetVaccinations4_Result)" />
+          <FunctionImport Name="uspViewPetVisits4" ReturnType="Collection(Model.uspViewPetVisits4_Result)" />
+          <FunctionImport Name="uspViewServices4" ReturnType="Collection(Model.uspViewServices4_Result)" />
+          <FunctionImport Name="Validate_User7" ReturnType="Collection(Int32)">
+            <Parameter Name="strUserName" Mode="In" Type="String" />
+            <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="uspViewEmployees_Result">
           <Property Type="Int32" Name="intEmployeeID" Nullable="false" />
@@ -3341,10 +3501,10 @@
           <Property Name="strZip" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strPhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="strEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="strOwner2Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="strOwner2PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="strOwner2Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="strNotes" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="strOwner2Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strOwner2PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strOwner2Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strNotes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="intUserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TGender" Relationship="Model.TOwners_TGenders_FK1" FromRole="TOwner" ToRole="TGender" />
           <NavigationProperty Name="TState" Relationship="Model.TOwners_TStates_FK1" FromRole="TOwner" ToRole="TState" />
@@ -3382,7 +3542,7 @@
           <Property Name="isDeceased" Type="Boolean" Nullable="false" />
           <Property Name="isAllergic" Type="Boolean" Nullable="false" />
           <Property Name="strColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="strNotes" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="strNotes" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="intOwnerID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TBreed" Relationship="Model.TPets_TBreeds_FK1" FromRole="TPet" ToRole="TBreed" />
           <NavigationProperty Name="TGender" Relationship="Model.TPets_TGenders_FK1" FromRole="TPet" ToRole="TGender" />
@@ -4249,6 +4409,125 @@
           <Property Type="Int32" Name="intServiceTypeID" Nullable="false" />
           <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
         </ComplexType>
+        <ComplexType Name="uspViewEmployees4_Result">
+          <Property Type="Int32" Name="intEmployeeID" Nullable="false" />
+          <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intJobTitleID" Nullable="false" />
+          <Property Type="Int32" Name="intUserID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewMedications4_Result">
+          <Property Type="Int32" Name="intMedicationID" Nullable="false" />
+          <Property Type="String" Name="strMedicationName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strMedicationDesc" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="dblCost" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intQuantity" Nullable="false" />
+          <Property Type="Int32" Name="intMethodID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewOwnerPets3_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intPetTypeID" Nullable="false" />
+          <Property Type="Int32" Name="intGenderID" Nullable="false" />
+          <Property Type="Int32" Name="intBreedID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateofBirth" Nullable="false" />
+          <Property Type="Double" Name="dblWeight" Nullable="false" />
+          <Property Type="Boolean" Name="isBlind" Nullable="false" />
+          <Property Type="Boolean" Name="isDeaf" Nullable="false" />
+          <Property Type="Boolean" Name="isAggressive" Nullable="false" />
+          <Property Type="Boolean" Name="isDeceased" Nullable="false" />
+          <Property Type="Boolean" Name="isAllergic" Nullable="false" />
+          <Property Type="String" Name="strColor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strNotes" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="intOwnerID" Nullable="false" />
+          <Property Type="Int32" Name="intOwnerID1" Nullable="false" />
+          <Property Type="Int32" Name="intOwnerID2" Nullable="false" />
+          <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="uspViewOwners4_Result">
+          <Property Type="Int32" Name="intOwnerID" Nullable="false" />
+          <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intGenderID" Nullable="false" />
+          <Property Type="String" Name="strAddress" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strCity" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intStateID" Nullable="false" />
+          <Property Type="String" Name="strZip" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwner2Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="strOwner2PhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="strOwner2Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="strNotes" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="intUserID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetGeneralInformation4_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetType" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strGender" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strBreedName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intAge" Nullable="true" />
+          <Property Type="Double" Name="dblWeight" Nullable="false" />
+          <Property Type="String" Name="strColor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwnerName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="strPhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strOwnerAddress" Nullable="false" MaxLength="203" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetMedications4_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDatePrescribed" Nullable="false" />
+          <Property Type="Int32" Name="intMedicationID" Nullable="false" />
+          <Property Type="Int32" Name="intQuantity" Nullable="false" />
+          <Property Type="String" Name="strNotes" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="uspViewPets4_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intPetTypeID" Nullable="false" />
+          <Property Type="Int32" Name="intGenderID" Nullable="false" />
+          <Property Type="Int32" Name="intBreedID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateofBirth" Nullable="false" />
+          <Property Type="Double" Name="dblWeight" Nullable="false" />
+          <Property Type="Boolean" Name="isBlind" Nullable="false" />
+          <Property Type="Boolean" Name="isDeaf" Nullable="false" />
+          <Property Type="Boolean" Name="isAggressive" Nullable="false" />
+          <Property Type="Boolean" Name="isDeceased" Nullable="false" />
+          <Property Type="Boolean" Name="isAllergic" Nullable="false" />
+          <Property Type="String" Name="strColor" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strNotes" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="intOwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetVaccinations4_Result">
+          <Property Type="Int32" Name="intVaccinationID" Nullable="false" />
+          <Property Type="Int32" Name="intVisitServiceID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfVaccination" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfExpiration" Nullable="false" />
+          <Property Type="String" Name="strVaccineDesc" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strRabiesNumber" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="uspViewPetVisits4_Result">
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateOfVist" Nullable="false" />
+          <Property Type="String" Name="strVisitReason" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="strDoctor" Nullable="false" MaxLength="105" />
+        </ComplexType>
+        <ComplexType Name="uspViewServices4_Result">
+          <Property Type="Int32" Name="intServiceID" Nullable="false" />
+          <Property Type="String" Name="strServiceDesc" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="intServiceTypeID" Nullable="false" />
+          <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4698,33 +4977,32 @@
           <FunctionImportMapping FunctionImportName="uspUpdatePets" FunctionName="Model.Store.uspUpdatePets" />
           <FunctionImportMapping FunctionImportName="uspAddUserEmployee" FunctionName="Model.Store.uspAddUserEmployee" />
           <FunctionImportMapping FunctionImportName="uspAddUserOwner" FunctionName="Model.Store.uspAddUserOwner" />
-          <FunctionImportMapping FunctionImportName="uspGetOwnerID" FunctionName="Model.Store.uspGetOwnerID" />
-          <FunctionImportMapping FunctionImportName="Validate_User6" FunctionName="Model.Store.Validate_User" />
-          <FunctionImportMapping FunctionImportName="uspGetRole" FunctionName="Model.Store.uspGetRole" />
-          <FunctionImportMapping FunctionImportName="uspAddEarStatusInfo3" FunctionName="Model.Store.uspAddEarStatusInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddEmployee3" FunctionName="Model.Store.uspAddEmployee" />
-          <FunctionImportMapping FunctionImportName="uspAddEyeStatusInfo3" FunctionName="Model.Store.uspAddEyeStatusInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddGIInfo3" FunctionName="Model.Store.uspAddGIInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddMedication3" FunctionName="Model.Store.uspAddMedication" />
-          <FunctionImportMapping FunctionImportName="uspAddMouthInfo3" FunctionName="Model.Store.uspAddMouthInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddNeurologicalInfo3" FunctionName="Model.Store.uspAddNeurologicalInfo" />
-          <FunctionImportMapping FunctionImportName="uspAddNewUser3" FunctionName="Model.Store.uspAddNewUser" />
-          <FunctionImportMapping FunctionImportName="uspAddPets3" FunctionName="Model.Store.uspAddPets" />
-          <FunctionImportMapping FunctionImportName="uspAddSkinInfo3" FunctionName="Model.Store.uspAddSkinInfo" />
-          <FunctionImportMapping FunctionImportName="uspCheckEmployees3" FunctionName="Model.Store.uspCheckEmployees" />
-          <FunctionImportMapping FunctionImportName="uspCheckMedication3" FunctionName="Model.Store.uspCheckMedication" />
-          <FunctionImportMapping FunctionImportName="uspCheckServices3" FunctionName="Model.Store.uspCheckServices" />
-          <FunctionImportMapping FunctionImportName="uspDeleteEmployee3" FunctionName="Model.Store.uspDeleteEmployee" />
-          <FunctionImportMapping FunctionImportName="uspDeleteMedication3" FunctionName="Model.Store.uspDeleteMedication" />
-          <FunctionImportMapping FunctionImportName="uspDeleteService3" FunctionName="Model.Store.uspDeleteService" />
-          <FunctionImportMapping FunctionImportName="uspGetOwnerIDFromUser3" FunctionName="Model.Store.uspGetOwnerIDFromUser" />
-          <FunctionImportMapping FunctionImportName="uspGetUserID6" FunctionName="Model.Store.uspGetUserID" />
-          <FunctionImportMapping FunctionImportName="uspGetUserOwnerID3" FunctionName="Model.Store.uspGetUserOwnerID" />
-          <FunctionImportMapping FunctionImportName="uspGetUserRole3" FunctionName="Model.Store.uspGetUserRole" />
-          <FunctionImportMapping FunctionImportName="uspUserLogin3" FunctionName="Model.Store.uspUserLogin" />
-          <FunctionImportMapping FunctionImportName="uspViewEmployees3" FunctionName="Model.Store.uspViewEmployees">
+          <FunctionImportMapping FunctionImportName="uspAddEarStatusInfo4" FunctionName="Model.Store.uspAddEarStatusInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddEmployee4" FunctionName="Model.Store.uspAddEmployee" />
+          <FunctionImportMapping FunctionImportName="uspAddEyeStatusInfo4" FunctionName="Model.Store.uspAddEyeStatusInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddGIInfo4" FunctionName="Model.Store.uspAddGIInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddMedication4" FunctionName="Model.Store.uspAddMedication" />
+          <FunctionImportMapping FunctionImportName="uspAddMouthInfo4" FunctionName="Model.Store.uspAddMouthInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddNeurologicalInfo4" FunctionName="Model.Store.uspAddNeurologicalInfo" />
+          <FunctionImportMapping FunctionImportName="uspAddNewUser4" FunctionName="Model.Store.uspAddNewUser" />
+          <FunctionImportMapping FunctionImportName="uspAddPets4" FunctionName="Model.Store.uspAddPets" />
+          <FunctionImportMapping FunctionImportName="uspAddSkinInfo4" FunctionName="Model.Store.uspAddSkinInfo" />
+          <FunctionImportMapping FunctionImportName="uspCheckEmployees4" FunctionName="Model.Store.uspCheckEmployees" />
+          <FunctionImportMapping FunctionImportName="uspCheckMedication4" FunctionName="Model.Store.uspCheckMedication" />
+          <FunctionImportMapping FunctionImportName="uspCheckServices4" FunctionName="Model.Store.uspCheckServices" />
+          <FunctionImportMapping FunctionImportName="uspDeleteEmployee4" FunctionName="Model.Store.uspDeleteEmployee" />
+          <FunctionImportMapping FunctionImportName="uspDeleteMedication4" FunctionName="Model.Store.uspDeleteMedication" />
+          <FunctionImportMapping FunctionImportName="uspDeleteService4" FunctionName="Model.Store.uspDeleteService" />
+          <FunctionImportMapping FunctionImportName="uspGetOwnerID1" FunctionName="Model.Store.uspGetOwnerID" />
+          <FunctionImportMapping FunctionImportName="uspGetOwnerIDFromUser4" FunctionName="Model.Store.uspGetOwnerIDFromUser" />
+          <FunctionImportMapping FunctionImportName="uspGetRole1" FunctionName="Model.Store.uspGetRole" />
+          <FunctionImportMapping FunctionImportName="uspGetUserID7" FunctionName="Model.Store.uspGetUserID" />
+          <FunctionImportMapping FunctionImportName="uspGetUserOwnerID4" FunctionName="Model.Store.uspGetUserOwnerID" />
+          <FunctionImportMapping FunctionImportName="uspGetUserRole4" FunctionName="Model.Store.uspGetUserRole" />
+          <FunctionImportMapping FunctionImportName="uspUserLogin4" FunctionName="Model.Store.uspUserLogin" />
+          <FunctionImportMapping FunctionImportName="uspViewEmployees4" FunctionName="Model.Store.uspViewEmployees">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewEmployees3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewEmployees4_Result">
                 <ScalarProperty Name="intEmployeeID" ColumnName="intEmployeeID" />
                 <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
                 <ScalarProperty Name="strLastName" ColumnName="strLastName" />
@@ -4733,9 +5011,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewMedications3" FunctionName="Model.Store.uspViewMedications">
+          <FunctionImportMapping FunctionImportName="uspViewMedications4" FunctionName="Model.Store.uspViewMedications">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewMedications3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewMedications4_Result">
                 <ScalarProperty Name="intMedicationID" ColumnName="intMedicationID" />
                 <ScalarProperty Name="strMedicationName" ColumnName="strMedicationName" />
                 <ScalarProperty Name="strMedicationDesc" ColumnName="strMedicationDesc" />
@@ -4747,9 +5025,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewOwnerPets2" FunctionName="Model.Store.uspViewOwnerPets">
+          <FunctionImportMapping FunctionImportName="uspViewOwnerPets3" FunctionName="Model.Store.uspViewOwnerPets">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewOwnerPets2_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewOwnerPets3_Result">
                 <ScalarProperty Name="intPetID" ColumnName="intPetID" />
                 <ScalarProperty Name="strPetNumber" ColumnName="strPetNumber" />
                 <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
@@ -4775,9 +5053,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewOwners3" FunctionName="Model.Store.uspViewOwners">
+          <FunctionImportMapping FunctionImportName="uspViewOwners4" FunctionName="Model.Store.uspViewOwners">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewOwners3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewOwners4_Result">
                 <ScalarProperty Name="intOwnerID" ColumnName="intOwnerID" />
                 <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
                 <ScalarProperty Name="strLastName" ColumnName="strLastName" />
@@ -4796,9 +5074,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPetGeneralInformation3" FunctionName="Model.Store.uspViewPetGeneralInformation">
+          <FunctionImportMapping FunctionImportName="uspViewPetGeneralInformation4" FunctionName="Model.Store.uspViewPetGeneralInformation">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPetGeneralInformation3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewPetGeneralInformation4_Result">
                 <ScalarProperty Name="intPetID" ColumnName="intPetID" />
                 <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
                 <ScalarProperty Name="strPetName" ColumnName="strPetName" />
@@ -4815,9 +5093,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPetMedications3" FunctionName="Model.Store.uspViewPetMedications">
+          <FunctionImportMapping FunctionImportName="uspViewPetMedications4" FunctionName="Model.Store.uspViewPetMedications">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPetMedications3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewPetMedications4_Result">
                 <ScalarProperty Name="intPetID" ColumnName="intPetID" />
                 <ScalarProperty Name="dtmDatePrescribed" ColumnName="dtmDatePrescribed" />
                 <ScalarProperty Name="intMedicationID" ColumnName="intMedicationID" />
@@ -4826,9 +5104,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPets3" FunctionName="Model.Store.uspViewPets">
+          <FunctionImportMapping FunctionImportName="uspViewPets4" FunctionName="Model.Store.uspViewPets">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPets3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewPets4_Result">
                 <ScalarProperty Name="intPetID" ColumnName="intPetID" />
                 <ScalarProperty Name="strPetNumber" ColumnName="strPetNumber" />
                 <ScalarProperty Name="strMicrochipID" ColumnName="strMicrochipID" />
@@ -4849,9 +5127,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPetVaccinations3" FunctionName="Model.Store.uspViewPetVaccinations">
+          <FunctionImportMapping FunctionImportName="uspViewPetVaccinations4" FunctionName="Model.Store.uspViewPetVaccinations">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPetVaccinations3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewPetVaccinations4_Result">
                 <ScalarProperty Name="intVaccinationID" ColumnName="intVaccinationID" />
                 <ScalarProperty Name="intVisitServiceID" ColumnName="intVisitServiceID" />
                 <ScalarProperty Name="dtmDateOfVaccination" ColumnName="dtmDateOfVaccination" />
@@ -4861,9 +5139,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewPetVisits3" FunctionName="Model.Store.uspViewPetVisits">
+          <FunctionImportMapping FunctionImportName="uspViewPetVisits4" FunctionName="Model.Store.uspViewPetVisits">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewPetVisits3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewPetVisits4_Result">
                 <ScalarProperty Name="intPetID" ColumnName="intPetID" />
                 <ScalarProperty Name="dtmDateOfVist" ColumnName="dtmDateOfVist" />
                 <ScalarProperty Name="strVisitReason" ColumnName="strVisitReason" />
@@ -4871,9 +5149,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspViewServices3" FunctionName="Model.Store.uspViewServices">
+          <FunctionImportMapping FunctionImportName="uspViewServices4" FunctionName="Model.Store.uspViewServices">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.uspViewServices3_Result">
+              <ComplexTypeMapping TypeName="Model.uspViewServices4_Result">
                 <ScalarProperty Name="intServiceID" ColumnName="intServiceID" />
                 <ScalarProperty Name="strServiceDesc" ColumnName="strServiceDesc" />
                 <ScalarProperty Name="intServiceTypeID" ColumnName="intServiceTypeID" />
@@ -4881,6 +5159,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Validate_User7" FunctionName="Model.Store.Validate_User" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

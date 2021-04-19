@@ -30,7 +30,6 @@ namespace test
         public virtual ICollection<TOwner> TOwners { get; set; }
         public virtual TRole TRole { get; set; }
 
-
 		public bool RemoveUserSession() {
 			try {
 				HttpContext.Current.Session["CurrentUser"] = null;
@@ -50,11 +49,6 @@ namespace test
 			}
 			catch (Exception ex) { throw new Exception(ex.Message); }
 		}
-
-
-
-
-
 		public bool SaveUserSession() {
 			try {
 				HttpContext.Current.Session["CurrentUser"] = this;

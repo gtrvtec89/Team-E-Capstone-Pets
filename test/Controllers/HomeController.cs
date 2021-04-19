@@ -95,7 +95,7 @@ namespace test.Controllers {
 					if (col["btnSubmit"] == "signin") {
 						//u.UserID = col["UserID"];
 						//u.Password = col["Password"];
-						int? intUserID = db.Validate_User6(u.strUserName, u.strPassword).FirstOrDefault();
+						int? intUserID = db.Validate_User7(u.strUserName, u.strPassword).FirstOrDefault();
 						//var uinfo = db.Database.ExecuteSqlCommand("SELECT * FROM TUsers WHERE intUserID = @intUserID", intUserID);
 						var uInfo = (from us in db.TUsers
 										where us.intUserID == intUserID
@@ -110,12 +110,7 @@ namespace test.Controllers {
 						u.strPassword = uInfo.strPassword;
 						u.intRoleID = uInfo.intRoleID;
 
-						var ownerinfo = (from o in db.TOwners
-										 where o.intUserID == u.intUserID
-										 select new {
-											 intOwnerID = o.intOwnerID
-										 }).FirstOrDefault();
-						var intOwnerID = ownerinfo.intOwnerID;
+
 
 
 						if (u != null && u.intUserID > 0) {
@@ -123,7 +118,12 @@ namespace test.Controllers {
 
 							if (u.intRoleID == 1) {
 								//int? intOwnerID = db.uspGetOwnerID(intUserID).FirstOrDefault();
-
+								var ownerinfo = (from o in db.TOwners
+												 where o.intUserID == u.intUserID
+												 select new {
+													 intOwnerID = o.intOwnerID
+												 }).FirstOrDefault();
+								var intOwnerID = ownerinfo.intOwnerID;
 								return RedirectToAction("OwnerHome", new { @id = intOwnerID });
 								//	return RedirectToAction("OwnerHome", "Home");
 							}

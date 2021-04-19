@@ -10,18 +10,9 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
-	using System.ComponentModel.DataAnnotations;
-
-	public partial class TPet
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TPet()
-        {
-            this.TPetImages = new HashSet<TPetImage>();
-            this.TVisits = new HashSet<TVisit>();
-        }
     
+    public partial class uspViewPets4_Result
+    {
         public int intPetID { get; set; }
         public string strPetNumber { get; set; }
         public string strMicrochipID { get; set; }
@@ -29,7 +20,6 @@ namespace test
         public int intPetTypeID { get; set; }
         public int intGenderID { get; set; }
         public int intBreedID { get; set; }
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode=true)]
         public System.DateTime dtmDateofBirth { get; set; }
         public double dblWeight { get; set; }
         public bool isBlind { get; set; }
@@ -40,18 +30,5 @@ namespace test
         public string strColor { get; set; }
         public string strNotes { get; set; }
         public int intOwnerID { get; set; }
-    
-        public virtual TBreed TBreed { get; set; }
-        public virtual TGender TGender { get; set; }
-        public virtual TOwner TOwner { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TPetImage> TPetImages { get; set; }
-        public virtual TPetType TPetType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TVisit> TVisits { get; set; }
-		public TPetImage TPetImage { get; internal set; }
-
-
-	}
-
+    }
 }
