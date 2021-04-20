@@ -54,6 +54,10 @@
             border:ridge;
             margin:20px;
           }  
+        h4 {
+        margin-left: 250px;
+        text-decoration: none;
+        }
 </style>
 
 <div class="form-horizontal">
@@ -91,54 +95,79 @@
     </div>
     <div class="form-horizontal" style="display: flex;">
         <div class="flex-container">
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayName("Name")
-                    </th>
-                    <th style="white-space:nowrap">
-                        @Html.DisplayName("Add")
-                    </th>
-                </tr>
-
-                @foreach (TEmployee employee in Model.Employees)
-                {
+            @if (Model.Employees.Count() > 0)
+            {
+                <h4>Employees</h4>
+                <table class="table">
                     <tr>
-                        <td>
-                            @(employee.strFirstName + " " + employee.strLastName)
-                        </td>
-                        <td style="white-space:nowrap">
-                            <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetEmployee", "VisitEmployees", new { employeeID = employee.intEmployeeID })' ;return false;>  <i class="far fa-plus"></i></a>
-                        </td>
+                        <th>
+                            @Html.DisplayName("Name")
+                        </th>
+                        <th style="white-space:nowrap">
+                            @Html.DisplayName("Add")
+                        </th>
                     </tr>
-                }
 
-            </table>
+                    @foreach (TEmployee employee in Model.Employees)
+                    {
+                        <tr>
+                            <td>
+                                @(employee.strFirstName + " " + employee.strLastName)
+                            </td>
+                            <td style="white-space:nowrap">
+                                <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetEmployee", "VisitEmployees", new { employeeID = employee.intEmployeeID })' ;return false;>  <i class="far fa-plus"></i></a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
+            }
+            else
+            {
+                <h4 style="margin:auto; color: dimgray;">No available employees</h4>
+            }
         </div>
         <div class="flex-container">
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayName("Name")
-                    </th>
-                    <th style="white-space:nowrap">
-                        @Html.DisplayName("Delete")
-                    </th>
-                </tr>
 
-                @foreach (TVisitEmployee petEmployee in Model.PetVisitEmployees)
-                {
+            @if (Model.PetVisitEmployees.Count() > 0)
+            {
+                <h4>Team</h4>
+                <table class="table">
                     <tr>
-                        <td>
-                            @(petEmployee.TEmployee.strFirstName + " " + petEmployee.TEmployee.strLastName)
-                        </td>
-                        <td style="white-space:nowrap">
-                            <a style="color:red; padding-left: 10px" href='@Url.Action("DeleteVisitEmployee", "VisitEmployees", new { employeeID = petEmployee.intEmployeeID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
-                        </td>
+                        <th>
+                            @Html.DisplayName("Name")
+                        </th>
+                        <th style="white-space:nowrap">
+                            @Html.DisplayName("Delete")
+                        </th>
                     </tr>
-                }
 
-            </table>
+                    @foreach (TVisitEmployee petEmployee in Model.PetVisitEmployees)
+                    {
+                        <tr>
+                            <td>
+                                @(petEmployee.TEmployee.strFirstName + " " + petEmployee.TEmployee.strLastName)
+                            </td>
+                            <td style="white-space:nowrap">
+                                <a style="color:red; padding-left: 10px" href='@Url.Action("DeleteVisitEmployee", "VisitEmployees", new { employeeID = petEmployee.intEmployeeID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
+            }
+            else
+            {
+                <h4 style="margin: auto; color: dimgray;">None</h4>
+            }
         </div>
     </div>
     <div class="flex-container" style="margin: 0px; border:none; padding: 0px 0px 20px 22px">

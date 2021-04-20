@@ -87,7 +87,7 @@ namespace test.Controllers
         public ActionResult DeletePetService(int serviceID)
         {
             int intVisitId = (int)Session["intVisitId"];
-            TVisitService visitService = db.TVisitServices.Where(x => x.intServiceID == serviceID).FirstOrDefault();
+            TVisitService visitService = db.TVisitServices.Where(x => x.intVisitServiceID == serviceID).FirstOrDefault();
             db.TVisitServices.Remove(visitService);
             db.SaveChanges();
             return RedirectToAction("Index");

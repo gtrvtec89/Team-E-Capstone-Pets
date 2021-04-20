@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using test.Models;
@@ -55,43 +57,87 @@ namespace test.Controllers
         public ActionResult AddPetMedication(int medicationId)
         {
             int intVisitId = (int)Session["intVisitId"];
+            int intPetId = (int)Session["intPetID"];
+
+            Session["intMedicationID"] = medicationId;
             TVisitMedication visitMedication = new TVisitMedication()
             {
+                intVisitMedicationID = 4,
                 intVisitID = intVisitId,
                 intMedicationID = medicationId,
                 dtmDatePrescribed = DateTime.Now,
                 intQuantity = 0
             };
 
-            db.TVisitMedications.Add(visitMedication);
-            db.SaveChanges();
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            ViewBag.intMedicationID = new SelectList(db.TMedications, "intMedicationID", "strMedicationName", visitMedication.intMedicationID);
+            return View(visitMedication);
+        }
 
-            return RedirectToAction("Index");
+        [HttpPost]
+        public ActionResult AddPetMedication([Bind(Include = "intVisitMedicationID, intVisitID, intMedicationID, dtmDatePrescribed, intQuantity")]TVisitMedication visitMedication)
+        {
+            int intMedicationId = (int)Session["intMedicationID"];
+            int intPetId = (int)Session["intPetID"];
+
+            if (ModelState.IsValid)
+            {
+                TVisitMedication newVisitMedication = new TVisitMedication()
+                {
+                    intVisitID = visitMedication.intVisitID,
+                    intMedicationID = intMedicationId,
+                    dtmDatePrescribed = visitMedication.dtmDatePrescribed,
+                    intQuantity = visitMedication.intQuantity
+                };
+                db.TVisitMedications.Add(newVisitMedication);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            ViewBag.intMedicationID = new SelectList(db.TMedications, "intMedicationID", "strMedicationName", visitMedication.intMedicationID);
+            return View(visitMedication);
         }
 
         public ActionResult DeletePetMedication(int medicationId)
         {
-            int intVisitId = (int)Session["intVisitId"];
-            TVisitMedication visitMedication = db.TVisitMedications.Where(x => x.intVisitID == intVisitId && x.intMedicationID == medicationId).FirstOrDefault();
+            TVisitMedication visitMedication = db.TVisitMedications.Where(x => x.intVisitMedicationID == medicationId).FirstOrDefault();
             db.TVisitMedications.Remove(visitMedication);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult UpdateMedication(int visitMedicationId)
+
+        public ActionResult EditMedication(int medicationId)
         {
-            TVisitMedication visitMedication = db.TVisitMedications.Where(x => x.intVisitMedicationID == visitMedicationId).FirstOrDefault();
-
-            TVisitMedication model = new TVisitMedication
+            int intPetId = (int)Session["intPetID"];
+            TVisitMedication visitMedication = db.TVisitMedications.Find(medicationId);
+            if (visitMedication == null)
             {
-                intVisitMedicationID = visitMedication.intVisitMedicationID,
-                intVisitID = visitMedication.intVisitID,
-                intMedicationID =visitMedication.intMedicationID,
-                dtmDatePrescribed = visitMedication.dtmDatePrescribed,
-                intQuantity = visitMedication.intQuantity
-            };
+                return HttpNotFound();
+            }
 
-            return PartialView("UpdateMedication", model);
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            ViewBag.intMedicationID = new SelectList(db.TMedications, "intMedicationID", "strMedicationName", visitMedication.intMedicationID);
+            
+            return View(visitMedication);
+        }
+
+        [HttpPost]
+        public ActionResult EditMedication(TVisitMedication visitMedication)
+
+        {
+            int intPetId = (int)Session["intPetID"];
+            if (ModelState.IsValid)
+            {
+                db.Entry(visitMedication).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            ViewBag.intMedicationID = new SelectList(db.TMedications, "intMedicationID", "strMedicationName", visitMedication.intMedicationID);
+            return View(visitMedication);
         }
     }
 }

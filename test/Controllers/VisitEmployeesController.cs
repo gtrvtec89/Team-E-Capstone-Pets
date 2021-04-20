@@ -43,8 +43,6 @@ namespace test.Controllers
 
             int doctorJobTitleId = db.TJobTitles.Where(t => t.strJobTitleDesc == "Doctor").Select(z => z.intJobTitleID).FirstOrDefault();
             List<TEmployee> availableEmployees = (from e in db.TEmployees
-                                        join ve in db.TVisitEmployees
-                                        on e.intEmployeeID equals ve.intEmployeeID
                                         where e.intJobTitleID != doctorJobTitleId
                                         where !(from tve in db.TVisitEmployees
                                                 where tve.intVisitID == intVisitId

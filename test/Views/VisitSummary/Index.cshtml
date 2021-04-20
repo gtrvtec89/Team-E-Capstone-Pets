@@ -49,6 +49,18 @@
             flex-wrap: wrap;
         }
 
+        .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        border: ridge;
+        margin: 20px;
+        }
+
+        h4 {
+        margin-left: 250px;
+        text-decoration: none;
+        }
+
         
 </style>
 <div class="form-horizontal">
@@ -67,10 +79,6 @@
 </div>
 <div class="body-content">
     <div class="form-horizontal">
-        <h4 style="text-decoration: none; padding-top: 10px; padding-left: 37px">
-            Summary
-        </h4>
-        <hr style="margin:5px; margin-bottom: 15px" />
         <div class="flex-container" style="border: none;">
             <div class="flex-row">
                 <div class="form-group-inline">
@@ -133,59 +141,83 @@
             </div>
         </div>
 
-        <div class="flex-container">
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayName("Service")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Price")
-                    </th>
-                </tr>
-
-                @foreach (TVisitService service in Model.PetVisitServices)
-                {
+        
+        <div class="form-horizontal" style="display: flex;">
+            <div class="flex-container">
+                <h4>Services</h4>
+                <table class="table">
                     <tr>
-                        <td>
-                            @service.TService.strServiceDesc
+                        <th>
+                            @Html.DisplayName("Service")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Price")
+                        </th>
+                    </tr>
+
+                    @foreach (TVisitService service in Model.PetVisitServices)
+                    {
+                        <tr>
+                            <td>
+                                @service.TService.strServiceDesc
+                            </td>
+                            <td>
+                                $ @Math.Round(service.TService.dblPrice, 2)
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td style="font-weight: 800">
+                            Total
                         </td>
-                        <td>
-                            $ @Math.Round(service.TService.dblPrice, 2)
+                        <td style="font-weight: 800">
+                            @ViewBag.ServicesTotal
                         </td>
                     </tr>
-                }
-                <tr>
-                    <td style="font-weight: 800">
-                        Total
-                    </td>
-                    <td style="font-weight: 800">
-                        @ViewBag.Total
-                    </td>
-                </tr>
 
-            </table>
-        </div>
-
-        <div class="flex-container">
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayName("Medication")
-                    </th>
-                </tr>
-
-                @foreach (TVisitMedication medication in Model.PetVisitMedications)
-                {
+                </table>
+            </div>
+            <div class="flex-container">
+                <h4>Medications</h4>
+                <table class="table">
                     <tr>
-                        <td>
-                            @medication.TMedication.strMedicationName
+                        <th>
+                            @Html.DisplayName("Medication")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Quantity")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Price")
+                        </th>
+                    </tr>
+
+                    @foreach (TVisitMedication medication in Model.PetVisitMedications)
+                    {
+                        <tr>
+                            <td>
+                                @medication.TMedication.strMedicationName
+                            </td>
+                            <td>
+                                @medication.intQuantity
+                            </td>
+                            <td>
+                                $ @Math.Round(medication.TMedication.dblPrice * medication.intQuantity, 2)
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td style="font-weight: 800">
+                            Total
+                        </td>
+                        <td></td>
+                        <td style="font-weight: 800">
+                            @ViewBag.MedicationsTotal
                         </td>
                     </tr>
-                }
-            </table>
+                </table>
+            </div>
         </div>
-
     </div>
     <div class="flex-container" style="margin: 0px; border:none; padding: 0px 0px 20px 22px">
         <div class="col-md-offset-2" style="margin-left:inherit; margin-right:10px">
