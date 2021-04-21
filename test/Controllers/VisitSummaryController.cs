@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using test.Models;
 
@@ -20,23 +17,23 @@ namespace test.Controllers
 
             //General Information
             var informationPacket = (from o in db.TOwners
-                                    join p in db.TPets
-                                    on o.intOwnerID equals p.intOwnerID
-                                    join s in db.TStates
-                                    on o.intStateID equals s.intStateID
-                                    join v in db.TVisits
-                                    on p.intPetID equals v.intPetID
-                                    where p.intPetID == intPetId
-                                    select new
-                                    {
-                                        ownerName = o.strFirstName + " " + o.strLastName,
-                                        address = o.strAddress + ", " + o.strCity + ", " + s.strStateName + " " + o.strZip,
-                                        phoneNumber = o.strPhoneNumber,
-                                        petName = p.strPetName,
-                                        petNumber = p.strPetNumber,
-                                        clientNumber = o.intOwnerID,
-                                        dateOfVisit = v.dtmDateOfVist
-                                    }).FirstOrDefault();
+                                     join p in db.TPets
+                                     on o.intOwnerID equals p.intOwnerID
+                                     join s in db.TStates
+                                     on o.intStateID equals s.intStateID
+                                     join v in db.TVisits
+                                     on p.intPetID equals v.intPetID
+                                     where p.intPetID == intPetId
+                                     select new
+                                     {
+                                         ownerName = o.strFirstName + " " + o.strLastName,
+                                         address = o.strAddress + ", " + o.strCity + ", " + s.strStateName + " " + o.strZip,
+                                         phoneNumber = o.strPhoneNumber,
+                                         petName = p.strPetName,
+                                         petNumber = p.strPetNumber,
+                                         clientNumber = o.intOwnerID,
+                                         dateOfVisit = v.dtmDateOfVist
+                                     }).FirstOrDefault();
 
             var doctor = (from e in db.TEmployees
                           join ve in db.TVisitEmployees
@@ -45,7 +42,8 @@ namespace test.Controllers
                           on e.intJobTitleID equals j.intJobTitleID
                           where ve.intVisitID == intVisitId
                           where j.intJobTitleID == 4
-                          select new {
+                          select new
+                          {
                               doctorName = "Dr. " + e.strFirstName + " " + e.strLastName
                           }).FirstOrDefault();
 

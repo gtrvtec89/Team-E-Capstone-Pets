@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using test;
 
 namespace test.Controllers
 {
@@ -23,23 +18,28 @@ namespace test.Controllers
         }
 
         // Get JSON 
-        public JsonResult GetBreeds() {
+        public JsonResult GetBreeds()
+        {
             List<TBreed> all = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (CapstoneEntities dc = new CapstoneEntities())
+            {
 
-				dc.Configuration.ProxyCreationEnabled = false;
+                dc.Configuration.ProxyCreationEnabled = false;
 
-				var breeds = from a in dc.TBreeds
-                             select new {
-                                       a
-                                   };
+                var breeds = from a in dc.TBreeds
+                             select new
+                             {
+                                 a
+                             };
 
-                if (breeds != null) {
+                if (breeds != null)
+                {
 
                     all = new List<TBreed>();
 
-                    foreach (var i in breeds) {
+                    foreach (var i in breeds)
+                    {
 
                         TBreed con = i.a;
 
@@ -54,19 +54,23 @@ namespace test.Controllers
 
 
         //Get Breed by ID  
-        public TBreed GetBreed(int intBreedID) {
+        public TBreed GetBreed(int intBreedID)
+        {
 
             TBreed breeds = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (CapstoneEntities dc = new CapstoneEntities())
+            {
 
                 var v = (from a in dc.TBreeds
                          where a.intBreedID.Equals(intBreedID)
-                         select new {
+                         select new
+                         {
                              a
                          }).FirstOrDefault();
 
-                if (v != null) {
+                if (v != null)
+                {
                     breeds = v.a;
                 }
                 return breeds;
@@ -77,12 +81,15 @@ namespace test.Controllers
 
 
         // Get partial view for Save Breed  
-        public ActionResult Save(int id = 0) {
+        public ActionResult Save(int id = 0)
+        {
 
-            if (id > 0) {
+            if (id > 0)
+            {
                 var c = GetBreed(id);
 
-                if (c == null) {
+                if (c == null)
+                {
 
                     return HttpNotFound();
                 }
@@ -90,7 +97,8 @@ namespace test.Controllers
 
                     return PartialView("Save", c);
             }
-            else {
+            else
+            {
                 return PartialView("Save");
             }
         }
@@ -99,25 +107,32 @@ namespace test.Controllers
         // POST method for Save records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(TBreed c) {
+        public ActionResult Save(TBreed c)
+        {
 
             string message = "";
             bool status = false;
 
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
 
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (CapstoneEntities dc = new CapstoneEntities())
+                {
 
-                    if (c.intBreedID > 0) {
+                    if (c.intBreedID > 0)
+                    {
                         var v = dc.TBreeds.Where(a => a.intBreedID.Equals(c.intBreedID)).FirstOrDefault();
-                        if (v != null) {
+                        if (v != null)
+                        {
                             v.strBreedName = c.strBreedName;
                         }
-                        else {
+                        else
+                        {
                             return HttpNotFound();
                         }
                     }
-                    else {
+                    else
+                    {
                         dc.TBreeds.Add(c);
                     }
                     dc.SaveChanges();
@@ -125,7 +140,8 @@ namespace test.Controllers
                     message = "Data Is Successfully Saved.";
                 }
             }
-            else {
+            else
+            {
                 message = "Error! Please try again.";
             }
 
@@ -134,17 +150,21 @@ namespace test.Controllers
 
 
         // Get partial view for update breed
-        public ActionResult Update(int id = 0) {
+        public ActionResult Update(int id = 0)
+        {
 
-            if (id > 0) {
+            if (id > 0)
+            {
                 var c = GetBreed(id);
-                if (c == null) {
+                if (c == null)
+                {
                     return HttpNotFound();
                 }
                 else
                     return PartialView("Update", c);
             }
-            else {
+            else
+            {
                 return PartialView("Update");
             }
         }
@@ -154,21 +174,28 @@ namespace test.Controllers
         // POST method for update records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(TBreed c) {
+        public ActionResult Update(TBreed c)
+        {
             string message = "";
             bool status = false;
-            if (ModelState.IsValid) {
-                using (CapstoneEntities dc = new CapstoneEntities()) {
-                    if (c.intBreedID > 0) {
+            if (ModelState.IsValid)
+            {
+                using (CapstoneEntities dc = new CapstoneEntities())
+                {
+                    if (c.intBreedID > 0)
+                    {
                         var v = dc.TBreeds.Where(a => a.intBreedID.Equals(c.intBreedID)).FirstOrDefault();
-                        if (v != null) {
+                        if (v != null)
+                        {
                             v.strBreedName = c.strBreedName;
                         }
-                        else {
+                        else
+                        {
                             return HttpNotFound();
                         }
                     }
-                    else {
+                    else
+                    {
                         dc.TBreeds.Add(c);
                     }
                     dc.SaveChanges();
@@ -176,7 +203,8 @@ namespace test.Controllers
                     message = "Data Is Successfully Updated.";
                 }
             }
-            else {
+            else
+            {
                 message = "Error! Please try again.";
             }
 
@@ -186,10 +214,12 @@ namespace test.Controllers
 
 
         // Get partial view for delete 
-        public ActionResult Delete(int id) {
+        public ActionResult Delete(int id)
+        {
 
             var c = GetBreed(id);
-            if (c == null) {
+            if (c == null)
+            {
                 return HttpNotFound();
             }
             return PartialView(c);
@@ -199,18 +229,22 @@ namespace test.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult DeleteBreed(int id) {
+        public ActionResult DeleteBreed(int id)
+        {
             bool status = false;
             string message = "";
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (CapstoneEntities dc = new CapstoneEntities())
+            {
                 var v = dc.TBreeds.Where(a => a.intBreedID.Equals(id)).FirstOrDefault();
-                if (v != null) {
+                if (v != null)
+                {
                     dc.TBreeds.Remove(v);
                     dc.SaveChanges();
                     status = true;
                     message = "Data Is Successfully Deleted!";
                 }
-                else {
+                else
+                {
                     return HttpNotFound();
                 }
             }

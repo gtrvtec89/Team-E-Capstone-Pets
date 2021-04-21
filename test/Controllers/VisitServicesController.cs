@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using test.Models;
 
@@ -66,7 +64,7 @@ namespace test.Controllers
             {
                 DateTime dateOfHealthExam = DateTime.Now;
                 int intPetId = (int)Session["intPetID"];
-                return RedirectToAction("Create", "THealthExam", new { id = intPetId , dateOfVisit = dateOfHealthExam });
+                return RedirectToAction("Create", "THealthExam", new { id = intPetId, dateOfVisit = dateOfHealthExam });
             }
 
             return RedirectToAction("Index");

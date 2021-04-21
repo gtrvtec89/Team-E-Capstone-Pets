@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.IO;
 
 using System.Web.Security;
+
 using System.Data.Entity;
 using System.Net;
 using System.Data.SqlClient;
 using System.Drawing;
 using test.Models;
 
-namespace test.Controllers {
-	public class HomeController : Controller {
 
-		private readonly CapstoneEntities db = new CapstoneEntities();
+
+namespace test.Controllers
+{
+    public class HomeController : Controller
+    {
 
 
 		public ActionResult Index(int? id) {
@@ -60,7 +59,10 @@ namespace test.Controllers {
 			}
 
 
-		}
+
+
+
+        }
 
 
 
@@ -69,7 +71,11 @@ namespace test.Controllers {
 			return View();
 
 
-		}
+            return View();
+
+
+        }
+
 
 
 		[HttpPost]
@@ -148,7 +154,10 @@ namespace test.Controllers {
 
 
 
+
+
 		public ActionResult OwnerHome(int? id) {
+
 
 			if (id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -215,27 +224,32 @@ namespace test.Controllers {
 			return returnImage;
 		}
 
-		public ActionResult Settings() {
+        public ActionResult Settings()
+        {
 
 
-			return View();
+            return View();
 
 
-		}
+        }
 
-		public ActionResult About() {
+        public ActionResult About()
+        {
 
-			return View();
+            return View();
 
 
-		}
+        }
+
 
 		public ActionResult Help() {
 
-			return View();
+            return View();
 
 
-		}
+        }
+
 
 	}
+
 }

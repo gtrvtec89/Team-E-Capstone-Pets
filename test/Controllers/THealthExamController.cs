@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using test.Models;
 
@@ -49,7 +46,9 @@ namespace test.Controllers {
 
         // GET: Create 
         [HttpPost]
+
         public ActionResult Create(HealthExam healthExam) {
+
             SqlParameter[] param = new SqlParameter[]
             {
                 //Health exam parameters 

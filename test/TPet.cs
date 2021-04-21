@@ -49,4 +49,4 @@ namespace test
         public virtual ICollection<TVisit> TVisits { get; set; }
 		public TPetImage TPetImage { get; internal set; }
 	}
-}
+

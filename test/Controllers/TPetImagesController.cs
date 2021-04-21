@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using test;
 
 namespace test.Controllers
 {
@@ -40,7 +36,7 @@ namespace test.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TPetImage tPetImage = db.TPetImages.Find(id);
-             
+
             if (tPetImage == null)
             {
                 return HttpNotFound();
@@ -66,9 +62,12 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isDeceased,intOwnerID")] TPet tPet, HttpPostedFileBase upload) {
-            try {
-                if (ModelState.IsValid) {
+        public ActionResult Create([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isDeceased,intOwnerID")] TPet tPet, HttpPostedFileBase upload)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
                     //Other Pet Profile info
                     SqlParameter[] param = new SqlParameter[] {
                     new SqlParameter("@strPetName", tPet.strPetName),
@@ -90,28 +89,32 @@ namespace test.Controllers
                     new SqlParameter("@intOwnerID",  tPet.intOwnerID)
                 };
                     db.Database.ExecuteSqlCommand("uspAddPets @strPetName, @strPetNumber, @strMicrochipID, @intPetTypeID, @intGenderID, @intBreedID, @dtmDateofBirth, @dblWeight, @isBlind, @isDeaf, @isAggressive, @isDeceased, @isAllergic, @strColor, @strNotes, @intOwnerID", param);
-                    
-                    //PetImage
-                    if (upload != null && upload.ContentLength > 0) {
 
-                        var image = new TPetImage {
+                    //PetImage
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+
+                        var image = new TPetImage
+                        {
                             strFileName = Path.GetFileName(upload.FileName),
                             strFileType = Path.GetExtension(upload.FileName),
                             strContentType = upload.ContentType,
                             intPetID = tPet.intPetID
                         };
-                        using (var reader = new System.IO.BinaryReader(upload.InputStream)) {
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
                             image.imgContent = reader.ReadBytes(upload.ContentLength);
                         }
                         tPet.TPetImages = new List<TPetImage> { image };
-                        
+
                     }
                     db.TPetImages.Add(tPet.TPetImage);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
-            catch (RetryLimitExceededException /* dex */) {
+            catch (RetryLimitExceededException /* dex */)
+            {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
@@ -121,8 +124,10 @@ namespace test.Controllers
             ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
 
             ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
+
                 return View(tPet.TPetImage);
             }
+
 
 		private ActionResult View(object petImage) {
 			throw new NotImplementedException();
@@ -156,11 +161,13 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isDeceased,intOwnerID")] TPet tPet, HttpPostedFileBase upload) 
+        public ActionResult Edit([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isDeceased,intOwnerID")] TPet tPet, HttpPostedFileBase upload)
         {
-            try {
+            try
+            {
 
-                if (ModelState.IsValid) {
+                if (ModelState.IsValid)
+                {
                     SqlParameter[] param = new SqlParameter[] {
                         new SqlParameter("@intPetID", tPet.intPetID),
                         new SqlParameter("@strPetName", tPet.strPetName),
@@ -184,15 +191,18 @@ namespace test.Controllers
                     db.Database.ExecuteSqlCommand("uspUpdatePets @strPetName, @strPetNumber, @strMicrochipID, @intPetTypeID, @intGenderID, @intBreedID, @dtmDateofBirth, @dblWeight, @isBlind, @isDeaf, @isAggressive, @isDeceased, @isAllergic, @strColor, @strNotes, @intOwnerID", param);
 
                     //PetImage
-                    if (upload != null && upload.ContentLength > 0) {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
 
-                        var image = new TPetImage {
+                        var image = new TPetImage
+                        {
                             strFileName = Path.GetFileName(upload.FileName),
                             strFileType = Path.GetExtension(upload.FileName),
                             strContentType = upload.ContentType,
                             intPetID = tPet.intPetID
                         };
-                        using (var reader = new System.IO.BinaryReader(upload.InputStream)) {
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
                             image.imgContent = reader.ReadBytes(upload.ContentLength);
                         }
                         tPet.TPetImages = new List<TPetImage> { image };
@@ -204,19 +214,20 @@ namespace test.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (RetryLimitExceededException /* dex */) {
+            catch (RetryLimitExceededException /* dex */)
+            {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
-                ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
-                ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
-                ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
 
-                ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
-                return View(tPet.TPetImage);
-            }
-        
+            ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
+            return View(tPet.TPetImage);
+        }
+
         // GET: TPetImages/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -252,7 +263,8 @@ namespace test.Controllers
             base.Dispose(disposing);
         }
         // To convert the Byte Array to the author Image
-        public FileContentResult getImg(int intPetImageID) {
+        public FileContentResult getImg(int intPetImageID)
+        {
             byte[] byteArray = db.TPetImages.Find(intPetImageID).imgContent;
             return byteArray != null
                 ? new FileContentResult(byteArray, "image/jpeg")

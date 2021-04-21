@@ -4,9 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using test;
 using test.Models;
 
 namespace test.Controllers
@@ -57,15 +55,15 @@ namespace test.Controllers
                                  lastName = o.strLastName
                              }).FirstOrDefault();
             List<EmployeeInformation> doctorList = (from e in db.TEmployees
-                                   join j in db.TJobTitles
-                                   on e.intJobTitleID equals j.intJobTitleID
-                                   where j.strJobTitleDesc == "Doctor"
-                                   select new EmployeeInformation
-                                   {
-                                       intEmployeeID = e.intEmployeeID,
-                                       intJobTitleID = j.intJobTitleID,
-                                       strEmployeeName = "Dr. " + e.strFirstName + " " + e.strLastName
-                                   }).ToList();
+                                                    join j in db.TJobTitles
+                                                    on e.intJobTitleID equals j.intJobTitleID
+                                                    where j.strJobTitleDesc == "Doctor"
+                                                    select new EmployeeInformation
+                                                    {
+                                                        intEmployeeID = e.intEmployeeID,
+                                                        intJobTitleID = j.intJobTitleID,
+                                                        strEmployeeName = "Dr. " + e.strFirstName + " " + e.strLastName
+                                                    }).ToList();
 
             if (petName == null)
             {
@@ -89,7 +87,8 @@ namespace test.Controllers
         public ActionResult Create(CreateVisit tVisit)
         {
             int petID = (int)Session["intPetID"];
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 TVisit newPetVisit = new TVisit()
                 {
                     intPetID = petID,
@@ -116,8 +115,8 @@ namespace test.Controllers
 
                 Session["isHealthExam"] = null;
                 int healthExam = db.TVisitReasons.Where(x => x.strVisitReason == "Health Exam").Select(z => z.intVisitReasonID).FirstOrDefault();
-                
-                if(newPetVisit.intVisitReasonID == healthExam)
+
+                if (newPetVisit.intVisitReasonID == healthExam)
                 {
                     int healthExamService = db.TServices.Where(x => x.strServiceDesc == "Health Exam").Select(z => z.intServiceID).FirstOrDefault();
                     TVisitService visitService = new TVisitService()
@@ -219,7 +218,7 @@ namespace test.Controllers
                 return HttpNotFound();
             }
             ViewBag.PetName = petName;
-            
+
             return View(tVisits);
         }
 
