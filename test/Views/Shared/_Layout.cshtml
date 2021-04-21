@@ -13,11 +13,14 @@
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container" style="margin: 0px">
 			<div class="navbar-header">
+				<a style="display:inline-block; text-align:left; vertical-align:middle; color:cornflowerblue; text-decoration:none; font-family:Calibri; font-size: 25px;  padding-top: 5px; padding-left: 7px; padding-right:15px">
 
-				<a href="@Url.Action("Index", "Home")" style="display:inline-block; text-align:left; vertical-align:middle; color:cornflowerblue; text-decoration:none; font-family:Calibri; font-size: 25px;  padding-top: 5px; padding-left: 7px; padding-right:15px">
 					Capstone Pets
 				</a>
-
+				@{
+					test.TUser uCurrent = new test.TUser();
+					uCurrent = uCurrent.GetUserSession();
+				}
 
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="icon-bar"></span>
@@ -25,17 +28,23 @@
 					<span class="icon-bar"></span>
 				</button>
 
-				@*@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "classname" })*@
 			</div>
 
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					@*<li><a style="display:block; text-align:left; color:cornflowerblue; font-family:Calibri; font-size: 25px">Capstone Pets</a></li>*@
-					<li>@Html.ActionLink("Home", "Index", "Home")</li>
-					<li>@Html.ActionLink("Help", "Help", "Home")</li>
-					<li>@Html.ActionLink("About", "About", "Home")</li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
+					@if (uCurrent.intRoleID == 2) 
+					{
+						@*<li><a style="display:block; text-align:left; color:cornflowerblue; font-family:Calibri; font-size: 25px">Capstone Pets</a></li>*@
+						<li>@Html.ActionLink("Home", "Index", "Home", new { id = uCurrent.intUserID }, null)</li>
+					}
+					else 
+					{ 
+						<li>@Html.ActionLink("Home", "OwnerHome", "Home", new { id = uCurrent.intUserID }, null)</li>}
+					}
+						<li>@Html.ActionLink("Help", "Help", "Home")</li>
+						<li>@Html.ActionLink("About", "About", "Home")</li>
+					</ul>
+				<ul class="nav navbar-nav navbar-right" style="padding-right:15px" >
 					<li>@Html.ActionLink("Sign Out", "Login", "Home")</li>
 				</ul>
 			</div>

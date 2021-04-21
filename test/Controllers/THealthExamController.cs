@@ -9,23 +9,18 @@ using System.Web;
 using System.Web.Mvc;
 using test.Models;
 
-namespace test.Controllers
-{
-    public class THealthExamController : Controller
-    {
+namespace test.Controllers {
+    public class THealthExamController : Controller {
         private CapstoneEntities db = new CapstoneEntities();
 
         // GET: THealthExam
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View();
         }
 
         // GET: Create 
-        public ActionResult Create(int? id, DateTime dateOfVisit)
-        {
-            if (id == null)
-            {
+        public ActionResult Create(int? id, DateTime dateOfVisit) {
+            if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Session["intPetID"] = id;
@@ -35,18 +30,16 @@ namespace test.Controllers
                              join p in db.TPets
                              on o.intOwnerID equals p.intOwnerID
                              where p.intPetID == id
-                             select new
-                             {
+                             select new {
                                  firstName = o.strFirstName,
                                  lastName = o.strLastName
                              }).FirstOrDefault();
 
-            if (petName == null)
-            {
+            if (petName == null) {
                 return HttpNotFound();
             }
 
-            ViewBag.Date = dateOfVisit; 
+            ViewBag.Date = dateOfVisit;
             ViewBag.Owner = ownerName.firstName + " " + ownerName.lastName;
             ViewBag.Patient = petName;
             ViewBag.PatientID = petID;
@@ -56,8 +49,7 @@ namespace test.Controllers
 
         // GET: Create 
         [HttpPost]
-        public ActionResult Create(HealthExam healthExam )
-        {
+        public ActionResult Create(HealthExam healthExam) {
             SqlParameter[] param = new SqlParameter[]
             {
                 //Health exam parameters 
@@ -179,7 +171,7 @@ namespace test.Controllers
                 new SqlParameter("@isSlow", SqlDbType.Bit) { Value = healthExam.isSlow },
                 new SqlParameter("@isMuffled", SqlDbType.Bit) { Value = healthExam.isMuffled }
             };
-            
+
             db.Database.ExecuteSqlCommand("uspAddPetVisit @dblWeight, @dblTemperature,@intHeartRate,@intRespRate,@intCapillaryRefillTime,@strMucousMembrane,@intVisitServiceID,@strNotes,@isEyeNormal, @isDischarge, @isInfection,@isSclerosisLeft, @isSclerosisRight, @isCataractLeft, @isCataractRight, @isEyeInflamed, @isEyelidTumor,@isEarNormal,@isEarInflamed,@isEarTumor,@isDirty,@isEarPainful,@isExcessiveHair,@isSkinNormal,@isScaly,@isInfected,@isMatted,@isSkinScrape,@isPruritus,@isHairLoss,@isMass,@isSkinParasites,@isMouthNormal,@isMouthTumor,@isGingivitis,@isPeriodontitis,@isTartarBuildup,@isLooseTeeth,@isBiteOVerUnder,@isNoseThroatNormal,@isLargeLymphNodes,@isInflamedThroat,@isNasalDishcharge,@isInflamedTonsils,@isGINormal,@isExcessiveGas,@isGIParasites,@isAbnormalFeces,@isAnorexia,@isNeurologicalNormal,@isPLRL,@isPLRR,@isCPLF,@isCPRF,@isCPLR,@isCPRR,@isPalpebralL,@isPalpebralR,@isAbdomenNormal, @isAbnormalMass,@isAbdomenPainful,@isBloated, @isEnlarged,@isFluid,@isHernia,@isUrogenitalNormal, @isUrogenAbnormalUrination, @isGenitalDischarge, @isAnalSacs, @isRectal, @isMammaryTumors, @isAbnormalTesticles, @isBloodSeen,@isMusculoskeletalNormal,@isJointProblems,@isNailProblems,@isLamenessLF,@isLamenessRF,@isLamenessLR,@isLamenessRR,@isLigaments,@isLungNormal, @isBreathingDifficulty, @isRapidRespiration,@isTrachealPinchPositive,@isTrachealPinchNegative,@isCongestion,@isAbnormalSound,@isHeartNormal,@isMurMur,@isFast,@isSlow,@isMuffled"
                 , param
                 );

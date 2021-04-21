@@ -27,6 +27,8 @@ namespace test.Controllers
                 .Include(t => t.TPet.TOwner)
                 .Include(t => t.TPet.TBreed)
                 .Include(t => t.TPet.TGender);
+                //.Include(t => t.imgContent);
+
             return View(tPetImages.ToList());
         }
 
@@ -121,10 +123,14 @@ namespace test.Controllers
             ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
                 return View(tPet.TPetImage);
             }
-            
 
-        // GET: TPetImages/Edit/5
-        public ActionResult Edit(int? id)
+		private ActionResult View(object petImage) {
+			throw new NotImplementedException();
+		}
+
+
+		// GET: TPetImages/Edit/5
+		public ActionResult Edit(int? id)
         {
 
             if (id == null)
@@ -251,6 +257,20 @@ namespace test.Controllers
             return byteArray != null
                 ? new FileContentResult(byteArray, "image/jpeg")
                 : null;
+        }
+
+
+        // GET: TPetImages
+        public ActionResult PetOwnerHome() {
+            var tPetImages = db.TPetImages
+                .Include(t => t.TPet)
+                .Include(t => t.TPet.TPetType)
+                .Include(t => t.TPet.TOwner)
+                .Include(t => t.TPet.TBreed)
+                .Include(t => t.TPet.TGender);
+            //.Include(t => t.imgContent);
+
+            return View(tPetImages.ToList());
         }
 
         //public byte[] ImageToByteArray(System.Drawing.Image imageIn) {

@@ -8,6 +8,9 @@ using System.IO;
 using System.Web.Security;
 using System.Data.Entity;
 using System.Net;
+using System.Data.SqlClient;
+using System.Drawing;
+using test.Models;
 
 namespace test.Controllers {
 	public class HomeController : Controller {
@@ -15,11 +18,46 @@ namespace test.Controllers {
 		private readonly CapstoneEntities db = new CapstoneEntities();
 
 
-		public ActionResult Index() {
+		public ActionResult Index(int? id) {
+			var owner = db.TOwners
+				.Include(t => t.TPets)
+				.Include(t => t.TGender)
+				.Include(t => t.TState);
 
+			if (id == null) { Logout(); return RedirectToAction("Login", "Home"); }
+			TUser user = new TUser();
+			user.intUserID = (int)id;
+			var intRoleID = user.intRoleID;
+
+
+			if (intRoleID == 1) {
+				return RedirectToAction("OwnerHome", new { @id = id });
+				//	return RedirectToAction("OwnerHome", "Home");
+			}
+			else if (intRoleID == 1) {
+				return RedirectToAction("Index", "Home", new { @id = id });
+			}
+			else {
+				ViewBag.ErrorMessage = "Unauthorized Role Assignment. Please contact the Help Desk.";
+			}
+			return View();
+		}
+
+		public ActionResult Home(int? id) {
+			var owner = db.TOwners
+				.Include(t => t.TPets)
+				.Include(t => t.TGender)
+				.Include(t => t.TState);
 			return View();
 
+			TUser user = new TUser();
+			user.intUserID = (int)id;
+			var roleID = user.intRoleID;
 
+			if (roleID != 2) {
+				ViewBag.ErrorMessage = "Authorized Users Only";
+				Logout();
+			}
 
 
 		}
@@ -27,7 +65,7 @@ namespace test.Controllers {
 
 
 		public ActionResult Login() {
-
+			TUser u = new TUser();
 			return View();
 
 
@@ -36,40 +74,146 @@ namespace test.Controllers {
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Login(TUser user) {
-			if (ModelState.IsValid) {
-				bool IsValidUser = db.TUsers
-			   .Any(u => u.strUserName.ToLower() == user
-			   .strUserName.ToLower() && user
-			   .strPassword == user.strPassword);
+		public ActionResult Login(FormCollection col) {
+			CapstoneEntities db = new CapstoneEntities();
+			try {
+				TUser u = new TUser();
+				u.strUserName = col["strUserName"];
+				u.strPassword = col["strPassword"];
 
-				if (IsValidUser) {
-					FormsAuthentication.SetAuthCookie(user.strUserName, false);
-					return RedirectToAction("Index", "Home");
+				if (u.strUserName.Length == 0 || u.strPassword.Length == 0) {
+					ViewBag.ErrorMessage = "Missing Required Fields";
+					return View(u);
 				}
+				else {
+					if (col["btnSubmit"] == "signin") {
+						//u.UserID = col["UserID"];
+						//u.Password = col["Password"];
+						int? intUserID = db.Validate_User8(u.strUserName, u.strPassword).FirstOrDefault();
+						//var uinfo = db.Database.ExecuteSqlCommand("SELECT * FROM TUsers WHERE intUserID = @intUserID", intUserID);
+						var uInfo = (from us in db.TUsers
+										where us.intUserID == intUserID
+										select new {
+
+													 strUserName = us.strUserName,
+													 strPassword = us.strPassword,
+													 intRoleID = us.intRoleID,
+												 }).FirstOrDefault();
+						u.intUserID = (int)intUserID;
+						u.strUserName = uInfo.strUserName;
+						u.strPassword = uInfo.strPassword;
+						u.intRoleID = uInfo.intRoleID;
 
 
+
+
+						if (u != null && u.intUserID > 0) {
+							u.SaveUserSession();
+
+							if (u.intRoleID == 1) {
+								//int? intOwnerID = db.uspGetOwnerID(intUserID).FirstOrDefault();
+								var ownerinfo = (from o in db.TOwners
+												 where o.intUserID == u.intUserID
+												 select new {
+													 intOwnerID = o.intOwnerID
+												 }).FirstOrDefault();
+								var intOwnerID = ownerinfo.intOwnerID;
+								return RedirectToAction("OwnerHome", new { @id = intOwnerID });
+								//	return RedirectToAction("OwnerHome", "Home");
+							}
+							else if (u.intRoleID == 2) {
+								return RedirectToAction("Index", "Home", new { @id = intUserID });
+							}
+							else {
+								ViewBag.ErrorMessage = "Unauthorized Role Assignment. Please contact the Help Desk.";
+							}
+							return RedirectToAction("Index");
+						}
+						else {
+							u = new TUser();
+							u.strUserName = col["strUserName"];
+							ViewBag.ErrorMessage = "Login Failed. Please try again.";
+							Logout();
+						}
+					}
+					return View(u);
+				}
 			}
-			ViewBag.PromptMessage = "Invalid Credentials Supplied";
-			return View();
+			catch (Exception) {
+				TUser u = new TUser();
+				return View(u);
+			}
 		}
 
 
 
 
-        public ActionResult Logout() {
+		public ActionResult OwnerHome(int? id) {
+
+			if (id == null) {
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			int? intOwnerID = db.uspGetOwnerID2(id).FirstOrDefault();
+			OwnerHome ownerHome = new OwnerHome();
+			TOwner owner = db.TOwners.Include(s => s.TPets).SingleOrDefault(s => s.intOwnerID == id);
+
+			if (owner.TUser.intRoleID != 1) {
+				ViewBag.ErrorMessage = "Authorized Users Only";
+				Logout();
+			}
+			
+
+			List<PetOwnerImage> list = (from o in db.TOwners
+									 join p in db.TPets
+									  on o.intOwnerID equals p.intOwnerID
+									 join i in db.TPetImages
+									  on p.intPetID equals i.intPetID
+									 join s in db.TStates
+									  on o.intStateID equals s.intStateID
+									 where o.intOwnerID == owner.intOwnerID
+									 select new PetOwnerImage{
+										 intOwnerID = owner.intOwnerID,
+										 strFirstName = o.strFirstName,
+										 strLastName = o.strLastName,
+										 intPetID = p.intPetID,
+										 strPetName = p.strPetName,
+										 intPetImageID = i.intPetImageID,
+									 }).ToList();
+
+			ownerHome.PetImageData = list;
+
+			ownerHome.strFirstName = owner.strFirstName;
+			ownerHome.strLastName = owner.strLastName;
+
+			return View(ownerHome);
+
+		}	
+
+		private IDisposable petContext() {
+			throw new NotImplementedException();
+		}
+
+
+		public ActionResult Logout() {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Home");
         }
 
 
+		// To convert the Byte Array to the author Image
+		public FileContentResult getImg(int intPetID) {
 
+			byte[] byteArray = db.TPetImages.Find(intPetID).imgContent;
+			return byteArray != null
+				? new FileContentResult(byteArray, "image/jpeg")
+				: null;
+		}
 
-
-
-
-
-
+		public Image byteArrayToImage(byte[] byteArrayIn) {
+			MemoryStream ms = new MemoryStream(byteArrayIn);
+			Image returnImage = Image.FromStream(ms);
+			return returnImage;
+		}
 
 		public ActionResult Settings() {
 
@@ -86,15 +230,12 @@ namespace test.Controllers {
 
 		}
 
-
 		public ActionResult Help() {
 
 			return View();
 
 
 		}
-
-
 
 	}
 }
