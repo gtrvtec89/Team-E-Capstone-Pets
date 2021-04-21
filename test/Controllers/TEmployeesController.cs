@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,12 +49,19 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intEmployeeID,strFirstName,strLastName,intJobTitleID,intUserID")] TEmployee tEmployee)
+        public ActionResult Create([Bind(Include = "intEmployeeID,strFirstName,strLastName,intJobTitleID")] TEmployee tEmployee)
         {
             if (ModelState.IsValid)
             {
-                db.TEmployees.Add(tEmployee);
-                db.SaveChanges();
+                //db.TEmployees.Add(tEmployee);
+                //db.SaveChanges();
+                SqlParameter[] param = new SqlParameter[]
+                {
+                    new SqlParameter ("@strFirstName", tEmployee.strFirstName),
+                    new SqlParameter ("@strLastName", tEmployee.strLastName),
+                    new SqlParameter ("@intJobTitleID", tEmployee.intJobTitleID)
+                };
+                db.Database.ExecuteSqlCommand("uspAddUserEmployee @strFirstName, @strLastName, @intJobTitleID", param);
                 return RedirectToAction("Index");
             }
 
@@ -73,6 +81,7 @@ namespace test.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.intJobTitleID = new SelectList(db.TJobTitles, "intJobTitleID ", "strJobTitleDesc", tEmployee.intJobTitleID);
             return View(tEmployee);
         }
 

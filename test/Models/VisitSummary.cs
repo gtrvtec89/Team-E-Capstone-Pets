@@ -14,6 +14,7 @@ namespace test.Models
         public int intOwnerNumber { get; set; }
 
         //Pet Information
+        public int intPetID { get; set; }
         public string strPetName { get; set; }
         public string strPetNumber { get; set; }
 
