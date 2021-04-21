@@ -22,12 +22,6 @@
 		@Html.TextBoxFor(model => model.strPassword, new { @class = "form-control" })
 	</div>
 
-	<div class="form-group">
-		@Html.HiddenFor(model => model.intRoleID)
-		@Html.LabelFor(model => model.intRoleID, "Role:")
-		@Html.DropDownListFor(model=> model.intRoleID, ViewBag.Roles as SelectList, "Select TRoles", new { @class = "form-control" })
-	</div>
-
 	<button type="submit" class="btn-primary">Save</button>
 
 	@Html.ActionLink("Back To List", "Index", null, new { @style = "margin-left:50px; font-weight:bold;" })

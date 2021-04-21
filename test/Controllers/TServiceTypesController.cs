@@ -18,7 +18,6 @@ namespace test.Controllers {
         // GET: TServiceTypes
         public ActionResult Index() {
 
-            //return View(db.TServiceTypes.ToList());
             return View();
         }
 
@@ -45,8 +44,6 @@ namespace test.Controllers {
 					}
 				}
 			}
-
-			//return Json(serviceTypes.ToList(), JsonRequestBehavior.AllowGet);
 
 			return new JsonResult { Data = all, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 		}
