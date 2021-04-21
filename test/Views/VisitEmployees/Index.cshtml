@@ -93,11 +93,20 @@
             </div>
         </div>
     </div>
+
+    <div class="flex-container" style="border: none; padding: 0px; margin: 0px;">
+        <div style="text-align: center; width: 50%;">
+            <h4 style="margin:auto;">Employees</h4>
+        </div>
+        <div style="text-align: center;  width: 50%;">
+            <h4 style="margin:auto;">Team</h4>
+        </div>
+    </div>
+
     <div class="form-horizontal" style="display: flex;">
         <div class="flex-container">
             @if (Model.Employees.Count() > 0)
             {
-                <h4>Employees</h4>
                 <table class="table">
                     <tr>
                         <th>
@@ -135,7 +144,6 @@
 
             @if (Model.PetVisitEmployees.Count() > 0)
             {
-                <h4>Team</h4>
                 <table class="table">
                     <tr>
                         <th>
@@ -166,7 +174,7 @@
             }
             else
             {
-                <h4 style="margin: auto; color: dimgray;">None</h4>
+                <h4 style="margin: auto; color: dimgray;">No added employee</h4>
             }
         </div>
     </div>

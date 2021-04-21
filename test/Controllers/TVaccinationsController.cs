@@ -38,10 +38,34 @@ namespace test.Controllers
         }
 
         // GET: TVaccinations/Create
-        public ActionResult Create()
+        public ActionResult Create(int serviceID)
         {
-            ViewBag.intVisitServiceID = new SelectList(db.TVisitServices, "intVisitServiceID", "intVisitServiceID");
-            return View();
+            int intVisitId = (int)Session["intVisitId"];
+            int intPetId = (int)Session["intPetID"];
+            Session["intServiceId"] = serviceID;
+
+            int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
+            string strServiceDesc = db.TServices.Where(x => x.intServiceID == serviceID).Select(z => z.strServiceDesc).FirstOrDefault();
+            Session["isRabiesVaccine"] = null;
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+
+            if (serviceID == rabiesVaccineServiceId)
+            {
+                Session["isRabiesVaccine"] = true;
+            }
+
+            DateTime today = DateTime.Now;
+            VisitVaccination visitVaccination = new VisitVaccination()
+            {
+                intServiceId = serviceID,
+                strServiceName = strServiceDesc,
+                dtmDateofVaccination = today.Month + "/" + today.Day + "/" + today.Year,
+                dtmDateOfExpiration = today.Month + "/" + today.Day + "/" + (today.Year + 1),
+                strVaccineNotes = " ",
+                strRabiesNumber = " "
+            };
+
+            return View(visitVaccination);
         }
 
         // POST: TVaccinations/Create
@@ -49,17 +73,44 @@ namespace test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "intVaccinationID,intVisitServiceID,dtmDateOfVaccination,dtmDateOfExpiration,strVaccineDesc,strRabiesNumber")] TVaccination tVaccination)
+        public ActionResult Create(VisitVaccination vaccination)
         {
+            int intVisitId = (int)Session["intVisitId"];
+            int intPetId = (int)Session["intPetID"];
+            int serviceID = (int)Session["intServiceId"];
+
             if (ModelState.IsValid)
             {
-                db.TVaccinations.Add(tVaccination);
+                TVisitService newVisitService = new TVisitService()
+                {
+                    intVisitID = intVisitId,
+                    intServiceID = serviceID
+                };
+
+                db.TVisitServices.Add(newVisitService);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
+                if (vaccination.strRabiesNumber == null)
+                {
+                    vaccination.strRabiesNumber = string.Empty;
+                }
+                TVaccination newVisitVaccination = new TVaccination()
+                {
+                    intVisitServiceID = lastInsertedVisitServiceID,
+                    dtmDateOfVaccination = Convert.ToDateTime(vaccination.dtmDateofVaccination),
+                    dtmDateOfExpiration = Convert.ToDateTime(vaccination.dtmDateOfExpiration),
+                    strVaccineDesc = vaccination.strVaccineNotes,
+                    strRabiesNumber = vaccination.strRabiesNumber
+                };
+
+                db.TVaccinations.Add(newVisitVaccination);
+                db.SaveChanges();
+
+                return RedirectToAction("Index", "VisitServices");
             }
 
-            ViewBag.intVisitServiceID = new SelectList(db.TVisitServices, "intVisitServiceID", "intVisitServiceID", tVaccination.intVisitServiceID);
-            return View(tVaccination);
+            return View(vaccination);
         }
 
         // GET: TVaccinations/Edit/5
