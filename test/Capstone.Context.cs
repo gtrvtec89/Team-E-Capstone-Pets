@@ -5175,5 +5175,58 @@ namespace test
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Validate_User7", strUserNameParameter, strPasswordParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetOwnerIDFromUser5(Nullable<int> intUserID)
+        {
+            var intUserIDParameter = intUserID.HasValue ?
+                new ObjectParameter("intUserID", intUserID) :
+                new ObjectParameter("intUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetOwnerIDFromUser5", intUserIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetRole2(Nullable<int> intUserID)
+        {
+            var intUserIDParameter = intUserID.HasValue ?
+                new ObjectParameter("intUserID", intUserID) :
+                new ObjectParameter("intUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetRole2", intUserIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetUserID8(string un, string pw)
+        {
+            var unParameter = un != null ?
+                new ObjectParameter("un", un) :
+                new ObjectParameter("un", typeof(string));
+    
+            var pwParameter = pw != null ?
+                new ObjectParameter("pw", pw) :
+                new ObjectParameter("pw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetUserID8", unParameter, pwParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Validate_User8(string strUserName, string strPassword)
+        {
+            var strUserNameParameter = strUserName != null ?
+                new ObjectParameter("strUserName", strUserName) :
+                new ObjectParameter("strUserName", typeof(string));
+    
+            var strPasswordParameter = strPassword != null ?
+                new ObjectParameter("strPassword", strPassword) :
+                new ObjectParameter("strPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Validate_User8", strUserNameParameter, strPasswordParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetOwnerID2(Nullable<int> intUserID)
+        {
+            var intUserIDParameter = intUserID.HasValue ?
+                new ObjectParameter("intUserID", intUserID) :
+                new ObjectParameter("intUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetOwnerID2", intUserIDParameter);
+        }
     }
 }

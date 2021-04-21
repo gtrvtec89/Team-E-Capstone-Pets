@@ -58,17 +58,17 @@ namespace test.Controllers {
 				//			  }).FirstOrDefault();
 
 				//Save to model
-				myModel.strOwnerName = ownerPetImage.ownerName;
-				myModel.strPhoneNumber = ownerPetImage.phoneNumber;
-				//myModel.intOwnerNumber = ownerPetImage.clientNumber;
-				myModel.strPetName = ownerPetImage.petName;
-				myModel.intPetID = ownerPetImage.intPetID;
+				//myModel.strOwnerName = ownerPetImage.ownerName;
+				//myModel.strPhoneNumber = ownerPetImage.phoneNumber;
+				////myModel.intOwnerNumber = ownerPetImage.clientNumber;
+				//myModel.strPetName = ownerPetImage.petName;
+				//myModel.intPetID = ownerPetImage.intPetID;
 
-				myModel.intPetImageID = ownerPetImage.intPetImageID;
-				myModel.strFileName = ownerPetImage.strFileName;
-				myModel.imgContent = ownerPetImage.imgContent;
-				myModel.strContentType = ownerPetImage.strContentType;
-				myModel.strFileType = ownerPetImage.strFileType;
+				//myModel.intPetImageID = ownerPetImage.intPetImageID;
+				//myModel.strFileName = ownerPetImage.strFileName;
+				//myModel.imgContent = ownerPetImage.imgContent;
+				//myModel.strContentType = ownerPetImage.strContentType;
+				//myModel.strFileType = ownerPetImage.strFileType;
 				//myModel.PetVisitServices = db.TVisitServices.Where(x => x.intVisitID == intVisitId).ToList();
 				//myModel.PetVisitMedications = db.TVisitMedications.Where(x => x.intVisitID == intVisitId).ToList();
 

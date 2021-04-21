@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Data.SqlClient;
 using System.Drawing;
+using test.Models;
 
 namespace test.Controllers {
 	public class HomeController : Controller {
@@ -27,13 +28,6 @@ namespace test.Controllers {
 			TUser user = new TUser();
 			user.intUserID = (int)id;
 			var intRoleID = user.intRoleID;
-
-			//var ownerinfo = (from o in db.TOwners
-			//				 where o.intUserID == user.intUserID
-			//				 select new {
-			//					 intOwnerID = o.intOwnerID
-			//				 }).FirstOrDefault();
-			//var intOwnerID = ownerinfo.intOwnerID;
 
 
 			if (intRoleID == 1) {
@@ -95,7 +89,7 @@ namespace test.Controllers {
 					if (col["btnSubmit"] == "signin") {
 						//u.UserID = col["UserID"];
 						//u.Password = col["Password"];
-						int? intUserID = db.Validate_User7(u.strUserName, u.strPassword).FirstOrDefault();
+						int? intUserID = db.Validate_User8(u.strUserName, u.strPassword).FirstOrDefault();
 						//var uinfo = db.Database.ExecuteSqlCommand("SELECT * FROM TUsers WHERE intUserID = @intUserID", intUserID);
 						var uInfo = (from us in db.TUsers
 										where us.intUserID == intUserID
@@ -149,41 +143,8 @@ namespace test.Controllers {
 				TUser u = new TUser();
 				return View(u);
 			}
-
-			
-
-			//string message = string.Empty;
-			//switch (intUserID.Value) {
-			//	case -1:
-			//		message = "Username and/or password is incorrect.";
-			//		break;
-			//	case -2:
-			//		message = "Account has not been activated.";
-			//		break;
-			//	default:
-			//		FormsAuthentication.SetAuthCookie(user.strUserName, user.RememberMe);
-
-			//		int? intOwnerID = db.uspGetOwnerID(intUserID).FirstOrDefault();
-			//		int? intRoleID = db.uspGetRole(intUserID).FirstOrDefault();
-
-
-
-			//		if (intRoleID == 1) {
-			//			return RedirectToAction("OwnerHome", new { @id = intOwnerID });
-			//			//	return RedirectToAction("OwnerHome", "Home");
-			//		}
-			//		else if (intRoleID == 1) {
-			//			return RedirectToAction("Index", "Home", new { @id = intUserID });
-			//		}
-			//		else {
-			//			ViewBag.ErrorMessage = "Unauthorized Role Assignment. Please contact the Help Desk.";
-			//		}
-			//		return RedirectToAction("Login", "Home");
-			//}
-
-			//ViewBag.Message = message;
-			//return View(user);
 		}
+
 
 
 
@@ -192,8 +153,8 @@ namespace test.Controllers {
 			if (id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			int? intOwnerID = db.uspGetOwnerID(id).FirstOrDefault();
-
+			int? intOwnerID = db.uspGetOwnerID2(id).FirstOrDefault();
+			OwnerHome ownerHome = new OwnerHome();
 			TOwner owner = db.TOwners.Include(s => s.TPets).SingleOrDefault(s => s.intOwnerID == id);
 
 			if (owner.TUser.intRoleID != 1) {
@@ -201,9 +162,37 @@ namespace test.Controllers {
 				Logout();
 			}
 			
-			return View(owner);
 
+			List<PetOwnerImage> list = (from o in db.TOwners
+									 join p in db.TPets
+									  on o.intOwnerID equals p.intOwnerID
+									 join i in db.TPetImages
+									  on p.intPetID equals i.intPetID
+									 join s in db.TStates
+									  on o.intStateID equals s.intStateID
+									 where o.intOwnerID == owner.intOwnerID
+									 select new PetOwnerImage{
+										 intOwnerID = owner.intOwnerID,
+										 strFirstName = o.strFirstName,
+										 strLastName = o.strLastName,
+										 intPetID = p.intPetID,
+										 strPetName = p.strPetName,
+										 intPetImageID = i.intPetImageID,
+									 }).ToList();
+
+			ownerHome.PetImageData = list;
+
+			ownerHome.strFirstName = owner.strFirstName;
+			ownerHome.strLastName = owner.strLastName;
+
+			return View(ownerHome);
+
+		}	
+
+		private IDisposable petContext() {
+			throw new NotImplementedException();
 		}
+
 
 		public ActionResult Logout() {
             FormsAuthentication.SignOut();
@@ -226,12 +215,6 @@ namespace test.Controllers {
 			return returnImage;
 		}
 
-
-
-
-
-
-
 		public ActionResult Settings() {
 
 
@@ -247,15 +230,12 @@ namespace test.Controllers {
 
 		}
 
-
 		public ActionResult Help() {
 
 			return View();
 
 
 		}
-
-
 
 	}
 }

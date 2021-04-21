@@ -185,6 +185,7 @@
     <Compile Include="Models\EmployeeInformation.cs" />
     <Compile Include="Models\HealthExam.cs" />
     <Compile Include="Models\Medication.cs" />
+    <Compile Include="Models\PetOwnerImage.cs" />
     <Compile Include="Models\Vaccination.cs" />
     <Compile Include="Models\VisitEmployeeViewModel.cs" />
     <Compile Include="Models\VisitMedicationViewModel.cs" />

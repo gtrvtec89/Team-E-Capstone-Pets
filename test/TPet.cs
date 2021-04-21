@@ -11,9 +11,8 @@ namespace test
 {
     using System;
     using System.Collections.Generic;
-	using System.ComponentModel.DataAnnotations;
-
-	public partial class TPet
+    
+    public partial class TPet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TPet()
@@ -29,7 +28,6 @@ namespace test
         public int intPetTypeID { get; set; }
         public int intGenderID { get; set; }
         public int intBreedID { get; set; }
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode=true)]
         public System.DateTime dtmDateofBirth { get; set; }
         public double dblWeight { get; set; }
         public bool isBlind { get; set; }
@@ -50,8 +48,5 @@ namespace test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TVisit> TVisits { get; set; }
 		public TPetImage TPetImage { get; internal set; }
-
-
 	}
-
 }
