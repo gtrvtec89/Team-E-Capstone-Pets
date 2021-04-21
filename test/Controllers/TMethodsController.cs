@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using test;
 
 namespace test.Controllers
 {
@@ -16,29 +11,35 @@ namespace test.Controllers
         //private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TMethods
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             //return View(db.TMethods.ToList());
             return View();
 
         }
 
 
-        public JsonResult GetMethods() {
+        public JsonResult GetMethods()
+        {
             List<TMethod> all = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (CapstoneEntities dc = new CapstoneEntities())
+            {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
                 var method = from a in dc.TMethods
-                             select new {
+                             select new
+                             {
                                  a
                              };
 
-                if (method != null) {
+                if (method != null)
+                {
 
                     all = new List<TMethod>();
-                    foreach (var i in method) {
+                    foreach (var i in method)
+                    {
 
                         TMethod con = i.a;
 
@@ -52,19 +53,23 @@ namespace test.Controllers
 
 
         //Get Service Type by ID  
-        public TMethod GetMethod(int intMethodID) {
+        public TMethod GetMethod(int intMethodID)
+        {
 
             TMethod method = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (CapstoneEntities dc = new CapstoneEntities())
+            {
 
                 var v = (from a in dc.TMethods
                          where a.intMethodID.Equals(intMethodID)
-                         select new {
+                         select new
+                         {
                              a
                          }).FirstOrDefault();
 
-                if (v != null) {
+                if (v != null)
+                {
                     method = v.a;
                 }
                 return method;
@@ -72,12 +77,15 @@ namespace test.Controllers
         }
 
         //for get view for Save service type  
-        public ActionResult Save(int id = 0) {
+        public ActionResult Save(int id = 0)
+        {
 
-            if (id > 0) {
+            if (id > 0)
+            {
                 var c = GetMethod(id);
 
-                if (c == null) {
+                if (c == null)
+                {
 
                     return HttpNotFound();
                 }
@@ -85,7 +93,8 @@ namespace test.Controllers
 
                     return PartialView("Save", c);
             }
-            else {
+            else
+            {
                 return PartialView("Save");
             }
         }
@@ -93,25 +102,32 @@ namespace test.Controllers
         //for POST method for Save records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(TMethod c) {
+        public ActionResult Save(TMethod c)
+        {
 
             string message = "";
             bool status = false;
 
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
 
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (CapstoneEntities dc = new CapstoneEntities())
+                {
 
-                    if (c.intMethodID > 0) {
+                    if (c.intMethodID > 0)
+                    {
                         var v = dc.TMethods.Where(a => a.intMethodID.Equals(c.intMethodID)).FirstOrDefault();
-                        if (v != null) {
+                        if (v != null)
+                        {
                             v.strMethod = c.strMethod;
                         }
-                        else {
+                        else
+                        {
                             return HttpNotFound();
                         }
                     }
-                    else {
+                    else
+                    {
                         dc.TMethods.Add(c);
                     }
                     dc.SaveChanges();
@@ -119,7 +135,8 @@ namespace test.Controllers
                     message = "Data Is Successfully Saved.";
                 }
             }
-            else {
+            else
+            {
                 message = "Error! Please try again.";
             }
 
@@ -129,17 +146,21 @@ namespace test.Controllers
 
 
         //for get view for update service type
-        public ActionResult Update(int id = 0) {
+        public ActionResult Update(int id = 0)
+        {
 
-            if (id > 0) {
+            if (id > 0)
+            {
                 var c = GetMethod(id);
-                if (c == null) {
+                if (c == null)
+                {
                     return HttpNotFound();
                 }
                 else
                     return PartialView("Update", c);
             }
-            else {
+            else
+            {
                 return PartialView("Update");
             }
         }
@@ -147,21 +168,28 @@ namespace test.Controllers
         //for POST method for update records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(TMethod c) {
+        public ActionResult Update(TMethod c)
+        {
             string message = "";
             bool status = false;
-            if (ModelState.IsValid) {
-                using (CapstoneEntities dc = new CapstoneEntities()) {
-                    if (c.intMethodID > 0) {
+            if (ModelState.IsValid)
+            {
+                using (CapstoneEntities dc = new CapstoneEntities())
+                {
+                    if (c.intMethodID > 0)
+                    {
                         var v = dc.TMethods.Where(a => a.intMethodID.Equals(c.intMethodID)).FirstOrDefault();
-                        if (v != null) {
+                        if (v != null)
+                        {
                             v.strMethod = c.strMethod;
                         }
-                        else {
+                        else
+                        {
                             return HttpNotFound();
                         }
                     }
-                    else {
+                    else
+                    {
                         dc.TMethods.Add(c);
                     }
                     dc.SaveChanges();
@@ -169,7 +197,8 @@ namespace test.Controllers
                     message = "Data Is Successfully Updated.";
                 }
             }
-            else {
+            else
+            {
                 message = "Error! Please try again.";
             }
 
@@ -177,10 +206,12 @@ namespace test.Controllers
         }
 
         //For delete records view
-        public ActionResult Delete(int id) {
+        public ActionResult Delete(int id)
+        {
 
             var c = GetMethod(id);
-            if (c == null) {
+            if (c == null)
+            {
                 return HttpNotFound();
             }
             return PartialView(c);
@@ -190,18 +221,22 @@ namespace test.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult DeleteMethod(int id) {
+        public ActionResult DeleteMethod(int id)
+        {
             bool status = false;
             string message = "";
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (CapstoneEntities dc = new CapstoneEntities())
+            {
                 var v = dc.TMethods.Where(a => a.intMethodID.Equals(id)).FirstOrDefault();
-                if (v != null) {
+                if (v != null)
+                {
                     dc.TMethods.Remove(v);
                     dc.SaveChanges();
                     status = true;
                     message = "Data Is Successfully Deleted!";
                 }
-                else {
+                else
+                {
                     return HttpNotFound();
                 }
             }

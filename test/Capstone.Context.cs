@@ -1817,7 +1817,7 @@ namespace test
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddOwner1", strFirstNameParameter, strLastNameParameter, intGenderIDParameter, strAddressParameter, strCityParameter, intStateIDParameter, strZipParameter, strPhoneNumberParameter, strEmailParameter, strOwner2NameParameter, strOwner2PhoneNumberParameter, strOwner2EmailParameter, strNotesParameter, intUserIDParameter);
         }
     
-        public virtual int uspAddPetVisit1(Nullable<double> dblWeight, Nullable<double> dblTemperature, Nullable<int> intHeartRate, Nullable<int> intRespRate, Nullable<int> intCapillaryRefillTime, string strMucousMembrane, Nullable<int> intVisitServiceID, string strNotes, Nullable<bool> isEyeNormal, Nullable<bool> isDischarge, Nullable<bool> isInfection, Nullable<bool> isSclerosisLeft, Nullable<bool> isSclerosisRight, Nullable<bool> isCataractLeft, Nullable<bool> isCataractRight, Nullable<bool> isEyeInflamed, Nullable<bool> isEyelidTumor, Nullable<bool> isEarNormal, Nullable<bool> isEarInflamed, Nullable<bool> isEarTumor, Nullable<bool> isDirty, Nullable<bool> isEarPainful, Nullable<bool> isExcessiveHair, Nullable<bool> isSkinNormal, Nullable<bool> isScaly, Nullable<bool> isInfected, Nullable<bool> isMatted, Nullable<bool> isSkinScrape, Nullable<bool> isPruritus, Nullable<bool> isHairLoss, Nullable<bool> isMass, Nullable<bool> isSkinParasites, Nullable<bool> isMouthNormal, Nullable<bool> isMouthTumor, Nullable<bool> isGingivitis, Nullable<bool> isPeriodontitis, Nullable<bool> isTartarBuildup, Nullable<bool> isLooseTeeth, Nullable<bool> isBiteOVerUnder, Nullable<bool> isNoseThroatNormal, Nullable<bool> isLargeLymphNodes, Nullable<bool> isInflamedThroat, Nullable<bool> isNasalDishcharge, Nullable<bool> isInflamedTonsils, Nullable<bool> isGINormal, Nullable<bool> isExcessiveGas, Nullable<bool> isGIParasites, Nullable<bool> isAbnormalFeces, Nullable<bool> isAnorexia, Nullable<int> intHealthExamID, Nullable<bool> isNeurologicalNormal, Nullable<bool> isPLRL, Nullable<bool> isPLRR, Nullable<bool> isCPLF, Nullable<bool> isCPRF, Nullable<bool> isCPLR, Nullable<bool> isCPRR, Nullable<bool> isPalpebralL, Nullable<bool> isPalpebralR, Nullable<bool> isAbdomenNormal, Nullable<bool> isAbnormalMass, Nullable<bool> isAbdomenPainful, Nullable<bool> isBloated, Nullable<bool> isEnlarged, Nullable<bool> isFluid, Nullable<bool> isHernia, Nullable<bool> isUrogenitalNormal, Nullable<bool> isUrogenAbnormalUrination, Nullable<bool> isGenitalDischarge, Nullable<bool> isAnalSacs, Nullable<bool> isRectal, Nullable<bool> isMammaryTumors, Nullable<bool> isAbnormalTesticles, Nullable<bool> isBloodSeen, Nullable<bool> isMusculoskeletalNormal, Nullable<bool> isJointProblems, Nullable<bool> isNailProblems, Nullable<bool> isLamenessLF, Nullable<bool> isLamenessRF, Nullable<bool> isLamenessLR, Nullable<bool> isLamenessRR, Nullable<bool> isLigaments, Nullable<bool> isLungNormal, Nullable<bool> isBreathingDifficulty, Nullable<bool> isRapidRespiration, Nullable<bool> isTrachealPinchPositive, Nullable<bool> isTrachealPinchNegative, Nullable<bool> isCongestion, Nullable<bool> isAbnormalSound, Nullable<bool> isHeartNormal, Nullable<bool> isMurMur, Nullable<bool> isFast, Nullable<bool> isSlow, Nullable<bool> isMuffled)
+        public virtual int uspAddPetVisit1(Nullable<double> dblWeight, Nullable<double> dblTemperature, Nullable<int> intHeartRate, Nullable<int> intRespRate, Nullable<int> intCapillaryRefillTime, string strMucousMembrane, Nullable<int> intVisitServiceID, string strNotes, Nullable<bool> isEyeNormal, Nullable<bool> isDischarge, Nullable<bool> isInfection, Nullable<bool> isSclerosisLeft, Nullable<bool> isSclerosisRight, Nullable<bool> isCataractLeft, Nullable<bool> isCataractRight, Nullable<bool> isEyeInflamed, Nullable<bool> isEyelidTumor, Nullable<bool> isEarNormal, Nullable<bool> isEarInflamed, Nullable<bool> isEarTumor, Nullable<bool> isDirty, Nullable<bool> isEarPainful, Nullable<bool> isExcessiveHair, Nullable<bool> isSkinNormal, Nullable<bool> isScaly, Nullable<bool> isInfected, Nullable<bool> isMatted, Nullable<bool> isSkinScrape, Nullable<bool> isPruritus, Nullable<bool> isHairLoss, Nullable<bool> isMass, Nullable<bool> isSkinParasites, Nullable<bool> isMouthNormal, Nullable<bool> isMouthTumor, Nullable<bool> isGingivitis, Nullable<bool> isPeriodontitis, Nullable<bool> isTartarBuildup, Nullable<bool> isLooseTeeth, Nullable<bool> isBiteOVerUnder, Nullable<bool> isNoseThroatNormal, Nullable<bool> isLargeLymphNodes, Nullable<bool> isInflamedThroat, Nullable<bool> isNasalDishcharge, Nullable<bool> isInflamedTonsils, Nullable<bool> isGINormal, Nullable<bool> isExcessiveGas, Nullable<bool> isGIParasites, Nullable<bool> isAbnormalFeces, Nullable<bool> isAnorexia, Nullable<bool> isNeurologicalNormal, Nullable<bool> isPLRL, Nullable<bool> isPLRR, Nullable<bool> isCPLF, Nullable<bool> isCPRF, Nullable<bool> isCPLR, Nullable<bool> isCPRR, Nullable<bool> isPalpebralL, Nullable<bool> isPalpebralR, Nullable<bool> isAbdomenNormal, Nullable<bool> isAbnormalMass, Nullable<bool> isAbdomenPainful, Nullable<bool> isBloated, Nullable<bool> isEnlarged, Nullable<bool> isFluid, Nullable<bool> isHernia, Nullable<bool> isUrogenitalNormal, Nullable<bool> isUrogenAbnormalUrination, Nullable<bool> isGenitalDischarge, Nullable<bool> isAnalSacs, Nullable<bool> isRectal, Nullable<bool> isMammaryTumors, Nullable<bool> isAbnormalTesticles, Nullable<bool> isBloodSeen, Nullable<bool> isMusculoskeletalNormal, Nullable<bool> isJointProblems, Nullable<bool> isNailProblems, Nullable<bool> isLamenessLF, Nullable<bool> isLamenessRF, Nullable<bool> isLamenessLR, Nullable<bool> isLamenessRR, Nullable<bool> isLigaments, Nullable<bool> isLungNormal, Nullable<bool> isBreathingDifficulty, Nullable<bool> isRapidRespiration, Nullable<bool> isTrachealPinchPositive, Nullable<bool> isTrachealPinchNegative, Nullable<bool> isCongestion, Nullable<bool> isAbnormalSound, Nullable<bool> isHeartNormal, Nullable<bool> isMurMur, Nullable<bool> isFast, Nullable<bool> isSlow, Nullable<bool> isMuffled)
         {
             var dblWeightParameter = dblWeight.HasValue ?
                 new ObjectParameter("dblWeight", dblWeight) :
@@ -2015,10 +2015,6 @@ namespace test
                 new ObjectParameter("isAnorexia", isAnorexia) :
                 new ObjectParameter("isAnorexia", typeof(bool));
     
-            var intHealthExamIDParameter = intHealthExamID.HasValue ?
-                new ObjectParameter("intHealthExamID", intHealthExamID) :
-                new ObjectParameter("intHealthExamID", typeof(int));
-    
             var isNeurologicalNormalParameter = isNeurologicalNormal.HasValue ?
                 new ObjectParameter("isNeurologicalNormal", isNeurologicalNormal) :
                 new ObjectParameter("isNeurologicalNormal", typeof(bool));
@@ -2195,7 +2191,7 @@ namespace test
                 new ObjectParameter("isMuffled", isMuffled) :
                 new ObjectParameter("isMuffled", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddPetVisit1", dblWeightParameter, dblTemperatureParameter, intHeartRateParameter, intRespRateParameter, intCapillaryRefillTimeParameter, strMucousMembraneParameter, intVisitServiceIDParameter, strNotesParameter, isEyeNormalParameter, isDischargeParameter, isInfectionParameter, isSclerosisLeftParameter, isSclerosisRightParameter, isCataractLeftParameter, isCataractRightParameter, isEyeInflamedParameter, isEyelidTumorParameter, isEarNormalParameter, isEarInflamedParameter, isEarTumorParameter, isDirtyParameter, isEarPainfulParameter, isExcessiveHairParameter, isSkinNormalParameter, isScalyParameter, isInfectedParameter, isMattedParameter, isSkinScrapeParameter, isPruritusParameter, isHairLossParameter, isMassParameter, isSkinParasitesParameter, isMouthNormalParameter, isMouthTumorParameter, isGingivitisParameter, isPeriodontitisParameter, isTartarBuildupParameter, isLooseTeethParameter, isBiteOVerUnderParameter, isNoseThroatNormalParameter, isLargeLymphNodesParameter, isInflamedThroatParameter, isNasalDishchargeParameter, isInflamedTonsilsParameter, isGINormalParameter, isExcessiveGasParameter, isGIParasitesParameter, isAbnormalFecesParameter, isAnorexiaParameter, intHealthExamIDParameter, isNeurologicalNormalParameter, isPLRLParameter, isPLRRParameter, isCPLFParameter, isCPRFParameter, isCPLRParameter, isCPRRParameter, isPalpebralLParameter, isPalpebralRParameter, isAbdomenNormalParameter, isAbnormalMassParameter, isAbdomenPainfulParameter, isBloatedParameter, isEnlargedParameter, isFluidParameter, isHerniaParameter, isUrogenitalNormalParameter, isUrogenAbnormalUrinationParameter, isGenitalDischargeParameter, isAnalSacsParameter, isRectalParameter, isMammaryTumorsParameter, isAbnormalTesticlesParameter, isBloodSeenParameter, isMusculoskeletalNormalParameter, isJointProblemsParameter, isNailProblemsParameter, isLamenessLFParameter, isLamenessRFParameter, isLamenessLRParameter, isLamenessRRParameter, isLigamentsParameter, isLungNormalParameter, isBreathingDifficultyParameter, isRapidRespirationParameter, isTrachealPinchPositiveParameter, isTrachealPinchNegativeParameter, isCongestionParameter, isAbnormalSoundParameter, isHeartNormalParameter, isMurMurParameter, isFastParameter, isSlowParameter, isMuffledParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddPetVisit1", dblWeightParameter, dblTemperatureParameter, intHeartRateParameter, intRespRateParameter, intCapillaryRefillTimeParameter, strMucousMembraneParameter, intVisitServiceIDParameter, strNotesParameter, isEyeNormalParameter, isDischargeParameter, isInfectionParameter, isSclerosisLeftParameter, isSclerosisRightParameter, isCataractLeftParameter, isCataractRightParameter, isEyeInflamedParameter, isEyelidTumorParameter, isEarNormalParameter, isEarInflamedParameter, isEarTumorParameter, isDirtyParameter, isEarPainfulParameter, isExcessiveHairParameter, isSkinNormalParameter, isScalyParameter, isInfectedParameter, isMattedParameter, isSkinScrapeParameter, isPruritusParameter, isHairLossParameter, isMassParameter, isSkinParasitesParameter, isMouthNormalParameter, isMouthTumorParameter, isGingivitisParameter, isPeriodontitisParameter, isTartarBuildupParameter, isLooseTeethParameter, isBiteOVerUnderParameter, isNoseThroatNormalParameter, isLargeLymphNodesParameter, isInflamedThroatParameter, isNasalDishchargeParameter, isInflamedTonsilsParameter, isGINormalParameter, isExcessiveGasParameter, isGIParasitesParameter, isAbnormalFecesParameter, isAnorexiaParameter, isNeurologicalNormalParameter, isPLRLParameter, isPLRRParameter, isCPLFParameter, isCPRFParameter, isCPLRParameter, isCPRRParameter, isPalpebralLParameter, isPalpebralRParameter, isAbdomenNormalParameter, isAbnormalMassParameter, isAbdomenPainfulParameter, isBloatedParameter, isEnlargedParameter, isFluidParameter, isHerniaParameter, isUrogenitalNormalParameter, isUrogenAbnormalUrinationParameter, isGenitalDischargeParameter, isAnalSacsParameter, isRectalParameter, isMammaryTumorsParameter, isAbnormalTesticlesParameter, isBloodSeenParameter, isMusculoskeletalNormalParameter, isJointProblemsParameter, isNailProblemsParameter, isLamenessLFParameter, isLamenessRFParameter, isLamenessLRParameter, isLamenessRRParameter, isLigamentsParameter, isLungNormalParameter, isBreathingDifficultyParameter, isRapidRespirationParameter, isTrachealPinchPositiveParameter, isTrachealPinchNegativeParameter, isCongestionParameter, isAbnormalSoundParameter, isHeartNormalParameter, isMurMurParameter, isFastParameter, isSlowParameter, isMuffledParameter);
         }
     
         public virtual int uspAddService1(string strServiceDesc, Nullable<int> intServiceTypeID, Nullable<decimal> dblPrice)
@@ -3646,14 +3642,14 @@ namespace test
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddPetImages1", intPetImageID, strFileNameParameter, strContentTypeParameter, imgContentParameter, strFileTypeParameter, intPetIDParameter);
         }
     
-        //public virtual ObjectResult<uspSelectPetImages1_Result> uspSelectPetImages1(Nullable<long> petid)
-        //{
-        //    var petidParameter = petid.HasValue ?
-        //        new ObjectParameter("petid", petid) :
-        //        new ObjectParameter("petid", typeof(long));
+        public virtual ObjectResult<uspSelectPetImages1_Result> uspSelectPetImages1(Nullable<long> petid)
+        {
+            var petidParameter = petid.HasValue ?
+                new ObjectParameter("petid", petid) :
+                new ObjectParameter("petid", typeof(long));
     
-        //    return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspSelectPetImages1_Result>("uspSelectPetImages1", petidParameter);
-        //}
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspSelectPetImages1_Result>("uspSelectPetImages1", petidParameter);
+        }
     
         public virtual int uspUpdatePetImages1(Nullable<int> intPetImageID, string strFileName, string strContentType, byte[] imgContent, string strFileType, Nullable<int> intPetID)
         {
@@ -3755,6 +3751,133 @@ namespace test
                 new ObjectParameter("intOwnerID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspUpdatePets", intPetIDParameter, strPetNumberParameter, strMicrochipIDParameter, strPetNameParameter, intPetTypeIDParameter, intGenderIDParameter, intBreedIDParameter, dtmDateofBirthParameter, dblWeightParameter, isBlindParameter, isDeafParameter, isAggressiveParameter, isDeceasedParameter, isAllergicParameter, strColorParameter, strNotesParameter, intOwnerIDParameter);
+        }
+    
+        public virtual int uspAddUserEmployee(string strFirstName, string strLastName, Nullable<int> intJobTitleID)
+        {
+            var strFirstNameParameter = strFirstName != null ?
+                new ObjectParameter("strFirstName", strFirstName) :
+                new ObjectParameter("strFirstName", typeof(string));
+    
+            var strLastNameParameter = strLastName != null ?
+                new ObjectParameter("strLastName", strLastName) :
+                new ObjectParameter("strLastName", typeof(string));
+    
+            var intJobTitleIDParameter = intJobTitleID.HasValue ?
+                new ObjectParameter("intJobTitleID", intJobTitleID) :
+                new ObjectParameter("intJobTitleID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddUserEmployee", strFirstNameParameter, strLastNameParameter, intJobTitleIDParameter);
+        }
+    
+        public virtual int uspAddUserOwner(ObjectParameter strUserName, ObjectParameter strPassword, string strFirstName, string strLastName, Nullable<int> intGenderID, string strAddress, string strCity, Nullable<int> intStateID, string strZip, string strPhoneNumber, string strEmail, string strOwner2Name, string strOwner2PhoneNumber, string strOwner2Email, string strNotes)
+        {
+            var strFirstNameParameter = strFirstName != null ?
+                new ObjectParameter("strFirstName", strFirstName) :
+                new ObjectParameter("strFirstName", typeof(string));
+    
+            var strLastNameParameter = strLastName != null ?
+                new ObjectParameter("strLastName", strLastName) :
+                new ObjectParameter("strLastName", typeof(string));
+    
+            var intGenderIDParameter = intGenderID.HasValue ?
+                new ObjectParameter("intGenderID", intGenderID) :
+                new ObjectParameter("intGenderID", typeof(int));
+    
+            var strAddressParameter = strAddress != null ?
+                new ObjectParameter("strAddress", strAddress) :
+                new ObjectParameter("strAddress", typeof(string));
+    
+            var strCityParameter = strCity != null ?
+                new ObjectParameter("strCity", strCity) :
+                new ObjectParameter("strCity", typeof(string));
+    
+            var intStateIDParameter = intStateID.HasValue ?
+                new ObjectParameter("intStateID", intStateID) :
+                new ObjectParameter("intStateID", typeof(int));
+    
+            var strZipParameter = strZip != null ?
+                new ObjectParameter("strZip", strZip) :
+                new ObjectParameter("strZip", typeof(string));
+    
+            var strPhoneNumberParameter = strPhoneNumber != null ?
+                new ObjectParameter("strPhoneNumber", strPhoneNumber) :
+                new ObjectParameter("strPhoneNumber", typeof(string));
+    
+            var strEmailParameter = strEmail != null ?
+                new ObjectParameter("strEmail", strEmail) :
+                new ObjectParameter("strEmail", typeof(string));
+    
+            var strOwner2NameParameter = strOwner2Name != null ?
+                new ObjectParameter("strOwner2Name", strOwner2Name) :
+                new ObjectParameter("strOwner2Name", typeof(string));
+    
+            var strOwner2PhoneNumberParameter = strOwner2PhoneNumber != null ?
+                new ObjectParameter("strOwner2PhoneNumber", strOwner2PhoneNumber) :
+                new ObjectParameter("strOwner2PhoneNumber", typeof(string));
+    
+            var strOwner2EmailParameter = strOwner2Email != null ?
+                new ObjectParameter("strOwner2Email", strOwner2Email) :
+                new ObjectParameter("strOwner2Email", typeof(string));
+    
+            var strNotesParameter = strNotes != null ?
+                new ObjectParameter("strNotes", strNotes) :
+                new ObjectParameter("strNotes", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddUserOwner", strUserName, strPassword, strFirstNameParameter, strLastNameParameter, intGenderIDParameter, strAddressParameter, strCityParameter, intStateIDParameter, strZipParameter, strPhoneNumberParameter, strEmailParameter, strOwner2NameParameter, strOwner2PhoneNumberParameter, strOwner2EmailParameter, strNotesParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetOwnerID(Nullable<int> intUserID)
+        {
+            var intUserIDParameter = intUserID.HasValue ?
+                new ObjectParameter("intUserID", intUserID) :
+                new ObjectParameter("intUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetOwnerID", intUserIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetOwnerIDFromUser(Nullable<int> intUserID)
+        {
+            var intUserIDParameter = intUserID.HasValue ?
+                new ObjectParameter("intUserID", intUserID) :
+                new ObjectParameter("intUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetOwnerIDFromUser", intUserIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetRole(Nullable<int> intUserID)
+        {
+            var intUserIDParameter = intUserID.HasValue ?
+                new ObjectParameter("intUserID", intUserID) :
+                new ObjectParameter("intUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetRole", intUserIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> uspGetUserID(string un, string pw)
+        {
+            var unParameter = un != null ?
+                new ObjectParameter("un", un) :
+                new ObjectParameter("un", typeof(string));
+    
+            var pwParameter = pw != null ?
+                new ObjectParameter("pw", pw) :
+                new ObjectParameter("pw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("uspGetUserID", unParameter, pwParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Validate_User(string strUserName, string strPassword)
+        {
+            var strUserNameParameter = strUserName != null ?
+                new ObjectParameter("strUserName", strUserName) :
+                new ObjectParameter("strUserName", typeof(string));
+    
+            var strPasswordParameter = strPassword != null ?
+                new ObjectParameter("strPassword", strPassword) :
+                new ObjectParameter("strPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Validate_User", strUserNameParameter, strPasswordParameter);
         }
     }
 }
