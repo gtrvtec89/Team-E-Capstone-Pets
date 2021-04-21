@@ -2,8 +2,8 @@
 
 $(document).ready(function () {
 
-    // populate Users
-    LoadUsers();
+    // populate VisitReasons
+    LoadVisitReasons();
 
     // Open Pop Up
     $('body').on("click", "a.popup", function (e) {
@@ -12,46 +12,46 @@ $(document).ready(function () {
         OpenPopup(page);
     });
 
-    //Save Users
+    //Save VisitReasons
     $("body").on('submit', '#saveForm', function (e) {
         e.preventDefault();
-        SaveUser();
+        SaveVisitReason();
     });
 
-    //Update Users
+    //Update VisitReasons
     $("body").on('submit', '#updateForm', function (e) {
         e.preventDefault();
-        UpdateUser();
+        UpdateVisitReason();
     });
 
-    //Delete Users
+    //Delete VisitReasons
     $('body').on('submit', '#deleteForm', function (e) {
         e.preventDefault();
-        DeleteUser();
+        DeleteVisitReason();
     });
 });
 
 
 
 
-// populate Users
-function LoadUsers() {
+// populate VisitReasons
+function LoadVisitReasons() {
     $('#update_panel').html('Loading Data...');
 
     $.ajax({
         type: 'GET',
-        url: '/TUsers/GetUsers',
+        url: '/TVisitReasons/GetVisitReasons',
         dataType: 'json',
         success: function (d) {
             if (d.length > 0) {
 
                 var $data = $('<table></table>').addClass('table table-responsive table-striped');
-                var header = "<thead><tr><th style='background-color: darkgray; color: black; font: bold; font - size: large; font - weight: bold;'>User</th><th style='background-color: darkgray; color: black; font: bold; font - size: large; font - weight: bold;'>Action</th></tr></thead>";
+                var header = "<thead><tr><th style='background-color: darkgray; color: black; font: bold; font - size: large; font - weight: bold;'>Visit Reason</th><th style='background-color: darkgray; color: black; font: bold; font - size: large; font - weight: bold;'>Action</th></tr></thead>";
                 $data.append(header);
                 $.each(d, function (i, row) {
                     var $row = $('<tr/>');
-                    $row.append($('<td/>').html(row.strUserName));
-                    $row.append($('<td/>').html("<a href='/TUsers/Update/" + row.intUserID + "' class='popup'><i class='fas fa-pencil-alt'></i></a> | <a style='color: red;' href='/TUsers/Delete/" + row.intUserID + "' class='popup'><i class='fas fa-trash-alt'></i></a>"));
+                    $row.append($('<td/>').html(row.strVisitReason));
+                    $row.append($('<td/>').html("<a href='/TVisitReasons/Update/" + row.intVisitReasonID + "' class='popup'><i class='fas fa-pencil-alt'></i></a> | <a style='color: red;' href='/TVisitReasons/Delete/" + row.intVisitReasonID + "' class='popup'><i class='fas fa-trash-alt'></i></a>"));
                     $data.append($row);
                 });
 
@@ -93,44 +93,37 @@ function OpenPopup(Page) {
 }
 
 
-
-
-
-
-//Save Users
-function SaveUser() {
+//Save VisitReasons
+function SaveVisitReason() {
     //Validation  
-    if ($('#strUserName').val().trim() == '' ||
-        $('#strPassword').val().trim() == '') 
-    {
+    if ($('#strVisitReason').val().trim() == '') {
         $('#msg').html('<div class="failed">All fields are required.</div>');
         return false;
     }
 
-    var user = {
-        intUserID: $('#intUserID').val() == '' ? '0' : $('#intUserID').val(),
-        strUserName: $('#strUserName').val().trim(),
-        strPassword: $('#strPassword').val().trim(),
+    var visitReason = {
+        intVisitReasonID: $('#intVisitReasonID').val() == '' ? '0' : $('#intVisitReasonID').val(),
+        strVisitReason: $('#strVisitReason').val().trim()
     };
 
 
     //Add validation token  
-    user.__RequestVerificationToken = $('input[name=__RequestVerificationToken]').val();
+    visitReason.__RequestVerificationToken = $('input[name=__RequestVerificationToken]').val();
 
 
-    //Save Users
+    //Save VisitReasons
     $.ajax({
-        url: '/TUsers/Save',
+        url: '/TVisitReasons/Save',
         type: 'POST',
-        data: user,
+        data: visitReason,
         dataType: 'json',
         success: function (data) {
             alert(data.message);
             if (data.status) {
-                $('#intUserID').val('');
-                $('#strUserName').val('');
-                $('#strPassword').val('');
-                LoadUsers();
+                $('#intVisitReasonID').val('');
+                $('#strVisitReason').val('');
+
+                LoadVisitReasons();
                 $dialog.dialog('close');
             }
         },
@@ -140,40 +133,37 @@ function SaveUser() {
     });
 }
 
-//Update Users
-function UpdateUser() {
+//Update VisitReasons
+function UpdateVisitReason() {
     //Validation  
-    if ($('#strPassword').val().trim() == '') {
+    if ($('#strVisitReason').val().trim() == '') {
         $('#msg').html('<div class="failed">All fields are required.</div>');
         return false;
     }
 
-    var user = {
+    var visitReason = {
 
-        intUserID: $('#intUserID').val() == '' ? '0' : $('#intUserID').val(),
-        strUserName: $('#strUserName').val().trim(),
-		strPassword: $('#strPassword').val().trim(),
+        intVisitReasonID: $('#intVisitReasonID').val() == '' ? '0' : $('#intVisitReasonID').val(),
+        strVisitReason: $('#strVisitReason').val().trim()
     };
 
 
     //Add validation token  
-    user.__RequestVerificationToken = $('input[name=__RequestVerificationToken]').val();
+    visitReason.__RequestVerificationToken = $('input[name=__RequestVerificationToken]').val();
 
 
-    //Update Users
+    //Update VisitReasons
     $.ajax({
-        url: '/TUsers/Update',
+        url: '/TVisitReasons/Update',
         type: 'POST',
-        data: user,
+        data: visitReason,
         dataType: 'json',
         success: function (data) {
             alert(data.message);
             if (data.status) {
-                $('#intUserID').val('');
-                $('#strUserName').val('');
-                $('#strPassword').val('');
-
-                LoadUsers();
+                $('#intVisitReasonID').val('');
+                $('#strVisitReason').val('');
+                LoadVisitReasons();
                 $dialog.dialog('close');
             }
         },
@@ -183,21 +173,21 @@ function UpdateUser() {
     });
 }
 
-//Delete Users  
-function DeleteUser() {
+//Delete VisitReasons  
+function DeleteVisitReason() {
     $.ajax({
-        url: '/TUsers/Delete',
+        url: '/TVisitReasons/Delete',
         type: 'POST',
         dataType: 'json',
         data: {
-            'id': $('#intUserID').val(),
+            'id': $('#intVisitReasonID').val(),
             '__RequestVerificationToken': $('input[name=__RequestVerificationToken]').val()
         },
         success: function (data) {
             alert(data.message);
             if (data.status) {
                 $dialog.dialog('close');
-                LoadUsers();
+                LoadVisitReasons();
             }
         },
         error: function () {
