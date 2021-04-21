@@ -169,7 +169,7 @@
                     @if (petService.TService.intServiceTypeID == 1)
                     {
                         <td style="white-space:nowrap">
-                            <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("EditVisitVaccination", "Vaccination", new { visitServiceId = petService.intVisitServiceID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                            <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TVaccinations", new { visitServiceId = petService.intVisitServiceID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
                             <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices", new { serviceID = petService.intVisitServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
                         </td>
                     }
