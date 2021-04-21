@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using test;
 using test.Models;
 
 namespace test.Controllers
@@ -122,20 +125,20 @@ namespace test.Controllers
 
             // Get data from database with LINQ
             List<Medication> data = (from m in db.TMedications
-                                     join vm in db.TVisitMedications
-                                     on m.intMedicationID equals vm.intMedicationID
-                                     join v in db.TVisits
-                                     on vm.intVisitID equals v.intVisitID
-                                     where v.intPetID == id
-                                     select new Medication
-                                     {
-                                         intVisitMedicationID = vm.intMedicationID,
-                                         intVisitID = vm.intVisitID,
-                                         intMedicationID = vm.intMedicationID,
-                                         dtmDatePrescribed = vm.dtmDatePrescribed,
-                                         intQuantity = vm.intQuantity
-                                     }).ToList();
-
+                                             join vm in db.TVisitMedications
+                                             on m.intMedicationID equals vm.intMedicationID
+                                             join v in db.TVisits
+                                             on vm.intVisitID equals v.intVisitID
+                                             where v.intPetID == id
+                                             select new Medication
+                                             {
+                                                 intVisitMedicationID = vm.intMedicationID,
+                                                 intVisitID = vm.intVisitID,
+                                                 intMedicationID = vm.intMedicationID,
+                                                 dtmDatePrescribed = vm.dtmDatePrescribed,
+                                                 intQuantity = vm.intQuantity
+                                             }).ToList();
+           
             // Convert raw data
             List<TVisitMedication> tPetMedications = data.Select(a => new TVisitMedication
             {

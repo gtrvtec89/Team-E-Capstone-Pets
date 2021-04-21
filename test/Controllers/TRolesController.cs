@@ -1,44 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using test;
 
-namespace test.Controllers
-{
-    public class TRolesController : Controller
-    {
+namespace test.Controllers {
+    public class TRolesController : Controller {
         //private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TRoles
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             //return View(db.TRoles.ToList());
             return View();
 
         }
 
 
-        public JsonResult GetRoles()
-        {
+        public JsonResult GetRoles() {
             List<TRole> all = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
                 var role = from a in dc.TRoles
-                           select new
-                           {
+                           select new {
                                a
                            };
 
-                if (role != null)
-                {
+                if (role != null) {
 
                     all = new List<TRole>();
-                    foreach (var i in role)
-                    {
+                    foreach (var i in role) {
 
                         TRole con = i.a;
 
@@ -52,23 +49,19 @@ namespace test.Controllers
 
 
         //Get Role by ID  
-        public TRole GetRole(int intRoleID)
-        {
+        public TRole GetRole(int intRoleID) {
 
             TRole role = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 var v = (from a in dc.TRoles
                          where a.intRoleID.Equals(intRoleID)
-                         select new
-                         {
+                         select new {
                              a
                          }).FirstOrDefault();
 
-                if (v != null)
-                {
+                if (v != null) {
                     role = v.a;
                 }
                 return role;
@@ -76,15 +69,12 @@ namespace test.Controllers
         }
 
         //for get view for Save role  
-        public ActionResult Save(int id = 0)
-        {
+        public ActionResult Save(int id = 0) {
 
-            if (id > 0)
-            {
+            if (id > 0) {
                 var c = GetRole(id);
 
-                if (c == null)
-                {
+                if (c == null) {
 
                     return HttpNotFound();
                 }
@@ -92,8 +82,7 @@ namespace test.Controllers
 
                     return PartialView("Save", c);
             }
-            else
-            {
+            else {
                 return PartialView("Save");
             }
         }
@@ -101,32 +90,25 @@ namespace test.Controllers
         //for POST Role for Save records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(TRole c)
-        {
+        public ActionResult Save(TRole c) {
 
             string message = "";
             bool status = false;
 
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
 
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
-                    if (c.intRoleID > 0)
-                    {
+                    if (c.intRoleID > 0) {
                         var v = dc.TRoles.Where(a => a.intRoleID.Equals(c.intRoleID)).FirstOrDefault();
-                        if (v != null)
-                        {
+                        if (v != null) {
                             v.strRoleName = c.strRoleName;
                         }
-                        else
-                        {
+                        else {
                             return HttpNotFound();
                         }
                     }
-                    else
-                    {
+                    else {
                         dc.TRoles.Add(c);
                     }
                     dc.SaveChanges();
@@ -134,8 +116,7 @@ namespace test.Controllers
                     message = "Data Is Successfully Saved.";
                 }
             }
-            else
-            {
+            else {
                 message = "Error! Please try again.";
             }
 
@@ -145,21 +126,17 @@ namespace test.Controllers
 
 
         //for get view for update role
-        public ActionResult Update(int id = 0)
-        {
+        public ActionResult Update(int id = 0) {
 
-            if (id > 0)
-            {
+            if (id > 0) {
                 var c = GetRole(id);
-                if (c == null)
-                {
+                if (c == null) {
                     return HttpNotFound();
                 }
                 else
                     return PartialView("Update", c);
             }
-            else
-            {
+            else {
                 return PartialView("Update");
             }
         }
@@ -167,28 +144,21 @@ namespace test.Controllers
         //for POST Role for update records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(TRole c)
-        {
+        public ActionResult Update(TRole c) {
             string message = "";
             bool status = false;
-            if (ModelState.IsValid)
-            {
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
-                    if (c.intRoleID > 0)
-                    {
+            if (ModelState.IsValid) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
+                    if (c.intRoleID > 0) {
                         var v = dc.TRoles.Where(a => a.intRoleID.Equals(c.intRoleID)).FirstOrDefault();
-                        if (v != null)
-                        {
+                        if (v != null) {
                             v.strRoleName = c.strRoleName;
                         }
-                        else
-                        {
+                        else {
                             return HttpNotFound();
                         }
                     }
-                    else
-                    {
+                    else {
                         dc.TRoles.Add(c);
                     }
                     dc.SaveChanges();
@@ -196,8 +166,7 @@ namespace test.Controllers
                     message = "Data Is Successfully Updated.";
                 }
             }
-            else
-            {
+            else {
                 message = "Error! Please try again.";
             }
 
@@ -205,12 +174,10 @@ namespace test.Controllers
         }
 
         //For delete records view
-        public ActionResult Delete(int id)
-        {
+        public ActionResult Delete(int id) {
 
             var c = GetRole(id);
-            if (c == null)
-            {
+            if (c == null) {
                 return HttpNotFound();
             }
             return PartialView(c);
@@ -220,22 +187,18 @@ namespace test.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult DeleteRole(int id)
-        {
+        public ActionResult DeleteRole(int id) {
             bool status = false;
             string message = "";
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
                 var v = dc.TRoles.Where(a => a.intRoleID.Equals(id)).FirstOrDefault();
-                if (v != null)
-                {
+                if (v != null) {
                     dc.TRoles.Remove(v);
                     dc.SaveChanges();
                     status = true;
                     message = "Data Is Successfully Deleted!";
                 }
-                else
-                {
+                else {
                     return HttpNotFound();
                 }
             }

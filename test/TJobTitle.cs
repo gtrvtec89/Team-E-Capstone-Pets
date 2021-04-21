@@ -14,7 +14,16 @@ namespace test
     
     public partial class TJobTitle
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TJobTitle()
+        {
+            this.TEmployees = new HashSet<TEmployee>();
+        }
+    
         public int intJobTitleID { get; set; }
         public string strJobTitleDesc { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TEmployee> TEmployees { get; set; }
     }
 }

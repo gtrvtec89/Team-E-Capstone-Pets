@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace test.Models
 {
@@ -9,4 +12,4 @@ namespace test.Models
         public int intVisitReasonID { get; set; }
         public int intEmployeeID { get; set; }
     }
-}
+} 

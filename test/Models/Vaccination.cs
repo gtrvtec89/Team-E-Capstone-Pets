@@ -1,8 +1,13 @@
-﻿namespace test.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace test.Models
 {
     public class Vaccination
-    {
-
+    { 
+    
         public int intVaccinationID { get; set; }
         public int intVisitServiceID { get; set; }
         public System.DateTime dtmDateOfVaccination { get; set; }

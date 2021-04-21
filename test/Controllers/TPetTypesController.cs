@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using test;
 
 namespace test.Controllers
 {
@@ -11,35 +16,29 @@ namespace test.Controllers
         //private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TPetTypes
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             //return View(db.TPetTypes.ToList());
             return View();
 
         }
 
 
-        public JsonResult GetPetTypes()
-        {
+        public JsonResult GetPetTypes() {
             List<TPetType> all = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
                 var petType = from a in dc.TPetTypes
-                              select new
-                              {
+                              select new {
                                   a
                               };
 
-                if (petType != null)
-                {
+                if (petType != null) {
 
                     all = new List<TPetType>();
-                    foreach (var i in petType)
-                    {
+                    foreach (var i in petType) {
 
                         TPetType con = i.a;
 
@@ -53,23 +52,19 @@ namespace test.Controllers
 
 
         //Get Service Type by ID  
-        public TPetType GetPetType(int intPetTypeID)
-        {
+        public TPetType GetPetType(int intPetTypeID) {
 
             TPetType petType = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 var v = (from a in dc.TPetTypes
                          where a.intPetTypeID.Equals(intPetTypeID)
-                         select new
-                         {
+                         select new {
                              a
                          }).FirstOrDefault();
 
-                if (v != null)
-                {
+                if (v != null) {
                     petType = v.a;
                 }
                 return petType;
@@ -77,15 +72,12 @@ namespace test.Controllers
         }
 
         //for get view for Save service type  
-        public ActionResult Save(int id = 0)
-        {
+        public ActionResult Save(int id = 0) {
 
-            if (id > 0)
-            {
+            if (id > 0) {
                 var c = GetPetType(id);
 
-                if (c == null)
-                {
+                if (c == null) {
 
                     return HttpNotFound();
                 }
@@ -93,8 +85,7 @@ namespace test.Controllers
 
                     return PartialView("Save", c);
             }
-            else
-            {
+            else {
                 return PartialView("Save");
             }
         }
@@ -102,32 +93,25 @@ namespace test.Controllers
         //for POST method for Save records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(TPetType c)
-        {
+        public ActionResult Save(TPetType c) {
 
             string message = "";
             bool status = false;
 
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
 
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
-                    if (c.intPetTypeID > 0)
-                    {
+                    if (c.intPetTypeID > 0) {
                         var v = dc.TPetTypes.Where(a => a.intPetTypeID.Equals(c.intPetTypeID)).FirstOrDefault();
-                        if (v != null)
-                        {
+                        if (v != null) {
                             v.strPetType = c.strPetType;
                         }
-                        else
-                        {
+                        else {
                             return HttpNotFound();
                         }
                     }
-                    else
-                    {
+                    else {
                         dc.TPetTypes.Add(c);
                     }
                     dc.SaveChanges();
@@ -135,8 +119,7 @@ namespace test.Controllers
                     message = "Data Is Successfully Saved.";
                 }
             }
-            else
-            {
+            else {
                 message = "Error! Please try again.";
             }
 
@@ -146,21 +129,17 @@ namespace test.Controllers
 
 
         //for get view for update service type
-        public ActionResult Update(int id = 0)
-        {
+        public ActionResult Update(int id = 0) {
 
-            if (id > 0)
-            {
+            if (id > 0) {
                 var c = GetPetType(id);
-                if (c == null)
-                {
+                if (c == null) {
                     return HttpNotFound();
                 }
                 else
                     return PartialView("Update", c);
             }
-            else
-            {
+            else {
                 return PartialView("Update");
             }
         }
@@ -168,28 +147,21 @@ namespace test.Controllers
         //for POST method for update records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(TPetType c)
-        {
+        public ActionResult Update(TPetType c) {
             string message = "";
             bool status = false;
-            if (ModelState.IsValid)
-            {
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
-                    if (c.intPetTypeID > 0)
-                    {
+            if (ModelState.IsValid) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
+                    if (c.intPetTypeID > 0) {
                         var v = dc.TPetTypes.Where(a => a.intPetTypeID.Equals(c.intPetTypeID)).FirstOrDefault();
-                        if (v != null)
-                        {
+                        if (v != null) {
                             v.strPetType = c.strPetType;
                         }
-                        else
-                        {
+                        else {
                             return HttpNotFound();
                         }
                     }
-                    else
-                    {
+                    else {
                         dc.TPetTypes.Add(c);
                     }
                     dc.SaveChanges();
@@ -197,8 +169,7 @@ namespace test.Controllers
                     message = "Data Is Successfully Updated.";
                 }
             }
-            else
-            {
+            else {
                 message = "Error! Please try again.";
             }
 
@@ -206,12 +177,10 @@ namespace test.Controllers
         }
 
         //For delete records view
-        public ActionResult Delete(int id)
-        {
+        public ActionResult Delete(int id) {
 
             var c = GetPetType(id);
-            if (c == null)
-            {
+            if (c == null) {
                 return HttpNotFound();
             }
             return PartialView(c);
@@ -221,22 +190,18 @@ namespace test.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult DeletePetType(int id)
-        {
+        public ActionResult DeletePetType(int id) {
             bool status = false;
             string message = "";
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
                 var v = dc.TPetTypes.Where(a => a.intPetTypeID.Equals(id)).FirstOrDefault();
-                if (v != null)
-                {
+                if (v != null) {
                     dc.TPetTypes.Remove(v);
                     dc.SaveChanges();
                     status = true;
                     message = "Data Is Successfully Deleted!";
                 }
-                else
-                {
+                else {
                     return HttpNotFound();
                 }
             }

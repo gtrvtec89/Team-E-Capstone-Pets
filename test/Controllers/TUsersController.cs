@@ -1,46 +1,53 @@
-﻿namespace test.Controllers
-{
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using test;
+
+namespace test.Controllers {
+
+    using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.Entity;
     using System.Linq;
+    using System.Net;
+    using System.Web;
     using System.Web.Mvc;
+    using test;
 
-    namespace test.Controllers
-    {
-        public class TUsersController : Controller
-        {
+    namespace test.Controllers {
+        public class TUsersController : Controller {
             //private CapstoneEntities db = new CapstoneEntities();
 
             // GET: TUsers
-            public ActionResult Index()
-            {
+            public ActionResult Index() {
                 //return View(db.TUsers.ToList());
                 return View();
 
             }
 
 
-            public JsonResult GetUsers()
-            {
+            public JsonResult GetUsers() {
                 List<TUser> all = null;
 
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     dc.Configuration.ProxyCreationEnabled = false;
 
                     var User = from a in dc.TUsers
-                               select new
-                               {
+                               select new {
                                    a,
                                };
 
-                    if (User != null)
-                    {
+                    if (User != null) {
 
                         all = new List<TUser>();
-                        foreach (var i in User)
-                        {
+                        foreach (var i in User) {
 
                             TUser con = i.a;
 
@@ -55,23 +62,19 @@
 
 
             //Get User by ID  
-            public TUser GetUser(int intUserID)
-            {
+            public TUser GetUser(int intUserID) {
 
                 TUser user = null;
 
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     var v = (from a in dc.TUsers
                              where a.intUserID.Equals(intUserID)
-                             select new
-                             {
+                             select new {
                                  a,
                              }).FirstOrDefault();
 
-                    if (v != null)
-                    {
+                    if (v != null) {
                         user = v.a;
                     }
                     return user;
@@ -140,61 +143,51 @@
 
 
             // Get view for Save User
-            public ActionResult Update(int id = 0)
-            {
+            public ActionResult Update(int id = 0) {
 
 
-                if (id > 0)
-                {
+                if (id > 0) {
 
                     var c = GetUser(id);
 
-                    if (c == null)
+                    if (c == null) 
                     {
                         return HttpNotFound();
                     }
-                    else
+                    else 
                         return PartialView("Update", c);
-                }
-                else
-                {
+                    }                    
+                else {
                     return PartialView("Update");
                 }
             }
 
-            //for POST User for update records to the database.  
+                //for POST User for update records to the database.  
             [HttpPost]
             [ValidateAntiForgeryToken]
-            public ActionResult Update(TUser c)
-            {
+            public ActionResult Update(TUser c) {
 
                 string message = "";
                 bool status = false;
 
-                if (ModelState.IsValid)
-                {
+                if (ModelState.IsValid) {
 
-                    using (CapstoneEntities dc = new CapstoneEntities())
-                    {
+                    using (CapstoneEntities dc = new CapstoneEntities()) {
 
-                        if (c.intUserID > 0)
-                        {
+                        if (c.intUserID > 0) {
 
                             var v = dc.TUsers.Where(a => a.intUserID.Equals(c.intUserID)).FirstOrDefault();
-
-                            if (v != null)
-                            {
+                            
+                            if (v != null) {
 
                                 v.strUserName = c.strUserName;
                                 v.strPassword = c.strPassword;
                             }
-                            else
-                            {
+                            else {
                                 return HttpNotFound();
                             }
                         }
-                        else
-                        {
+                        else {
                             dc.TUsers.Add(c);
                         }
 
@@ -203,8 +196,7 @@
                         message = "Data Is Successfully Updated.";
                     }
                 }
-                else
-                {
+                else {
                     message = "Error! Please try again.";
                 }
 
@@ -212,12 +204,10 @@
             }
 
             //For delete records view
-            public ActionResult Delete(int id)
-            {
+            public ActionResult Delete(int id) {
 
                 var c = GetUser(id);
-                if (c == null)
-                {
+                if (c == null) {
                     return HttpNotFound();
                 }
                 return PartialView(c);
@@ -227,22 +217,18 @@
             [HttpPost]
             [ValidateAntiForgeryToken]
             [ActionName("Delete")]
-            public ActionResult DeleteUser(int id)
-            {
+            public ActionResult DeleteUser(int id) {
                 bool status = false;
                 string message = "";
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
                     var v = dc.TUsers.Where(a => a.intUserID.Equals(id)).FirstOrDefault();
-                    if (v != null)
-                    {
+                    if (v != null) {
                         dc.TUsers.Remove(v);
                         dc.SaveChanges();
                         status = true;
                         message = "Data Is Successfully Deleted!";
                     }
-                    else
-                    {
+                    else {
                         return HttpNotFound();
                     }
                 }

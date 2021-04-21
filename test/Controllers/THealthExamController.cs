@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using test.Models;
 
@@ -43,7 +46,7 @@ namespace test.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Date = dateOfVisit;
+            ViewBag.Date = dateOfVisit; 
             ViewBag.Owner = ownerName.firstName + " " + ownerName.lastName;
             ViewBag.Patient = petName;
             ViewBag.PatientID = petID;
@@ -53,7 +56,7 @@ namespace test.Controllers
 
         // GET: Create 
         [HttpPost]
-        public ActionResult Create(HealthExam healthExam)
+        public ActionResult Create(HealthExam healthExam )
         {
             SqlParameter[] param = new SqlParameter[]
             {
@@ -176,7 +179,7 @@ namespace test.Controllers
                 new SqlParameter("@isSlow", SqlDbType.Bit) { Value = healthExam.isSlow },
                 new SqlParameter("@isMuffled", SqlDbType.Bit) { Value = healthExam.isMuffled }
             };
-
+            
             db.Database.ExecuteSqlCommand("uspAddPetVisit @dblWeight, @dblTemperature,@intHeartRate,@intRespRate,@intCapillaryRefillTime,@strMucousMembrane,@intVisitServiceID,@strNotes,@isEyeNormal, @isDischarge, @isInfection,@isSclerosisLeft, @isSclerosisRight, @isCataractLeft, @isCataractRight, @isEyeInflamed, @isEyelidTumor,@isEarNormal,@isEarInflamed,@isEarTumor,@isDirty,@isEarPainful,@isExcessiveHair,@isSkinNormal,@isScaly,@isInfected,@isMatted,@isSkinScrape,@isPruritus,@isHairLoss,@isMass,@isSkinParasites,@isMouthNormal,@isMouthTumor,@isGingivitis,@isPeriodontitis,@isTartarBuildup,@isLooseTeeth,@isBiteOVerUnder,@isNoseThroatNormal,@isLargeLymphNodes,@isInflamedThroat,@isNasalDishcharge,@isInflamedTonsils,@isGINormal,@isExcessiveGas,@isGIParasites,@isAbnormalFeces,@isAnorexia,@isNeurologicalNormal,@isPLRL,@isPLRR,@isCPLF,@isCPRF,@isCPLR,@isCPRR,@isPalpebralL,@isPalpebralR,@isAbdomenNormal, @isAbnormalMass,@isAbdomenPainful,@isBloated, @isEnlarged,@isFluid,@isHernia,@isUrogenitalNormal, @isUrogenAbnormalUrination, @isGenitalDischarge, @isAnalSacs, @isRectal, @isMammaryTumors, @isAbnormalTesticles, @isBloodSeen,@isMusculoskeletalNormal,@isJointProblems,@isNailProblems,@isLamenessLF,@isLamenessRF,@isLamenessLR,@isLamenessRR,@isLigaments,@isLungNormal, @isBreathingDifficulty, @isRapidRespiration,@isTrachealPinchPositive,@isTrachealPinchNegative,@isCongestion,@isAbnormalSound,@isHeartNormal,@isMurMur,@isFast,@isSlow,@isMuffled"
                 , param
                 );

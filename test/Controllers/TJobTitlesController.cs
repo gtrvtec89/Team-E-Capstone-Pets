@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using test;
 
 namespace test.Controllers
 {
@@ -18,27 +23,22 @@ namespace test.Controllers
         }
 
 
-        public JsonResult GetJobTitles()
-        {
+        public JsonResult GetJobTitles() {
             List<TJobTitle> all = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
                 var jobTitle = from a in dc.TJobTitles
-                               select new
-                               {
-                                   a
-                               };
+                                   select new {
+                                       a
+                                   };
 
-                if (jobTitle != null)
-                {
+                if (jobTitle != null) {
 
                     all = new List<TJobTitle>();
-                    foreach (var i in jobTitle)
-                    {
+                    foreach (var i in jobTitle) {
 
                         TJobTitle con = i.a;
 
@@ -52,23 +52,19 @@ namespace test.Controllers
 
 
         //Get Service Type by ID  
-        public TJobTitle GetJobTitle(int intJobTitleID)
-        {
+        public TJobTitle GetJobTitle(int intJobTitleID) {
 
             TJobTitle jobTitle = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 var v = (from a in dc.TJobTitles
                          where a.intJobTitleID.Equals(intJobTitleID)
-                         select new
-                         {
+                         select new {
                              a
                          }).FirstOrDefault();
 
-                if (v != null)
-                {
+                if (v != null) {
                     jobTitle = v.a;
                 }
                 return jobTitle;
@@ -76,15 +72,12 @@ namespace test.Controllers
         }
 
         //for get view for Save service type  
-        public ActionResult Save(int id = 0)
-        {
+        public ActionResult Save(int id = 0) {
 
-            if (id > 0)
-            {
+            if (id > 0) {
                 var c = GetJobTitle(id);
 
-                if (c == null)
-                {
+                if (c == null) {
 
                     return HttpNotFound();
                 }
@@ -92,8 +85,7 @@ namespace test.Controllers
 
                     return PartialView("Save", c);
             }
-            else
-            {
+            else {
                 return PartialView("Save");
             }
         }
@@ -101,32 +93,25 @@ namespace test.Controllers
         //for POST method for Save records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(TJobTitle c)
-        {
+        public ActionResult Save(TJobTitle c) {
 
             string message = "";
             bool status = false;
 
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
 
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
-                    if (c.intJobTitleID > 0)
-                    {
+                    if (c.intJobTitleID > 0) {
                         var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(c.intJobTitleID)).FirstOrDefault();
-                        if (v != null)
-                        {
+                        if (v != null) {
                             v.strJobTitleDesc = c.strJobTitleDesc;
                         }
-                        else
-                        {
+                        else {
                             return HttpNotFound();
                         }
                     }
-                    else
-                    {
+                    else {
                         dc.TJobTitles.Add(c);
                     }
                     dc.SaveChanges();
@@ -134,8 +119,7 @@ namespace test.Controllers
                     message = "Data Is Successfully Saved.";
                 }
             }
-            else
-            {
+            else {
                 message = "Error! Please try again.";
             }
 
@@ -145,21 +129,17 @@ namespace test.Controllers
 
 
         //for get view for update service type
-        public ActionResult Update(int id = 0)
-        {
+        public ActionResult Update(int id = 0) {
 
-            if (id > 0)
-            {
+            if (id > 0) {
                 var c = GetJobTitle(id);
-                if (c == null)
-                {
+                if (c == null) {
                     return HttpNotFound();
                 }
                 else
                     return PartialView("Update", c);
             }
-            else
-            {
+            else {
                 return PartialView("Update");
             }
         }
@@ -167,28 +147,21 @@ namespace test.Controllers
         //for POST method for update records to the database.  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(TJobTitle c)
-        {
+        public ActionResult Update(TJobTitle c) {
             string message = "";
             bool status = false;
-            if (ModelState.IsValid)
-            {
-                using (CapstoneEntities dc = new CapstoneEntities())
-                {
-                    if (c.intJobTitleID > 0)
-                    {
+            if (ModelState.IsValid) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
+                    if (c.intJobTitleID > 0) {
                         var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(c.intJobTitleID)).FirstOrDefault();
-                        if (v != null)
-                        {
+                        if (v != null) {
                             v.strJobTitleDesc = c.strJobTitleDesc;
                         }
-                        else
-                        {
+                        else {
                             return HttpNotFound();
                         }
                     }
-                    else
-                    {
+                    else {
                         dc.TJobTitles.Add(c);
                     }
                     dc.SaveChanges();
@@ -196,8 +169,7 @@ namespace test.Controllers
                     message = "Data Is Successfully Updated.";
                 }
             }
-            else
-            {
+            else {
                 message = "Error! Please try again.";
             }
 
@@ -205,12 +177,10 @@ namespace test.Controllers
         }
 
         //For delete records view
-        public ActionResult Delete(int id)
-        {
+        public ActionResult Delete(int id) {
 
             var c = GetJobTitle(id);
-            if (c == null)
-            {
+            if (c == null) {
                 return HttpNotFound();
             }
             return PartialView(c);
@@ -220,22 +190,18 @@ namespace test.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult DeleteJobTitle(int id)
-        {
+        public ActionResult DeleteJobTitle(int id) {
             bool status = false;
             string message = "";
-            using (CapstoneEntities dc = new CapstoneEntities())
-            {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
                 var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(id)).FirstOrDefault();
-                if (v != null)
-                {
+                if (v != null) {
                     dc.TJobTitles.Remove(v);
                     dc.SaveChanges();
                     status = true;
                     message = "Data Is Successfully Deleted!";
                 }
-                else
-                {
+                else {
                     return HttpNotFound();
                 }
             }
