@@ -51,7 +51,7 @@ function LoadUsers() {
                 $.each(d, function (i, row) {
                     var $row = $('<tr/>');
                     $row.append($('<td/>').html(row.strUserName));
-                    $row.append($('<td/>').html("<a href='/TUsers/Update/" + row.intUsertID + "' class='popup'><i class='fas fa-pencil-alt'></i></a> | <a style='color: red;' href='/TUsers/Delete/" + row.intUserID + "' class='popup'><i class='fas fa-trash-alt'></i></a>"));
+                    $row.append($('<td/>').html("<a href='/TUsers/Update/" + row.intUserID + "' class='popup'><i class='fas fa-pencil-alt'></i></a> | <a style='color: red;' href='/TUsers/Delete/" + row.intUserID + "' class='popup'><i class='fas fa-trash-alt'></i></a>"));
                     $data.append($row);
                 });
 
@@ -101,8 +101,7 @@ function OpenPopup(Page) {
 function SaveUser() {
     //Validation  
     if ($('#strUserName').val().trim() == '' ||
-        $('#strPassword').val().trim() == '') //||
-        //$('#intRoleID').val().trim() == '') 
+        $('#strPassword').val().trim() == '') 
     {
         $('#msg').html('<div class="failed">All fields are required.</div>');
         return false;
@@ -112,7 +111,6 @@ function SaveUser() {
         intUserID: $('#intUserID').val() == '' ? '0' : $('#intUserID').val(),
         strUserName: $('#strUserName').val().trim(),
         strPassword: $('#strPassword').val().trim(),
-        intRoleID: $('#intRoleID').val().trim()
     };
 
 
@@ -132,7 +130,6 @@ function SaveUser() {
                 $('#intUserID').val('');
                 $('#strUserName').val('');
                 $('#strPassword').val('');
-                $('#intRoleID').val('');
                 LoadUsers();
                 $dialog.dialog('close');
             }
@@ -146,7 +143,7 @@ function SaveUser() {
 //Update Users
 function UpdateUser() {
     //Validation  
-    if ($('#strUserName').val().trim() == '') {
+    if ($('#strPassword').val().trim() == '') {
         $('#msg').html('<div class="failed">All fields are required.</div>');
         return false;
     }
@@ -156,8 +153,6 @@ function UpdateUser() {
         intUserID: $('#intUserID').val() == '' ? '0' : $('#intUserID').val(),
         strUserName: $('#strUserName').val().trim(),
 		strPassword: $('#strPassword').val().trim(),
-        intRoleID: $('#intRoleID').val() == '' ? '0' : $('#intRoleID').val()
-
     };
 
 
@@ -177,8 +172,6 @@ function UpdateUser() {
                 $('#intUserID').val('');
                 $('#strUserName').val('');
                 $('#strPassword').val('');
-                $('#intRoleID').val('');
-
 
                 LoadUsers();
                 $dialog.dialog('close');

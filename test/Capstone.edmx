@@ -416,6 +416,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TEmployees_TJobTitles_FK1">
+          <End Role="TJobTitles" Type="Self.TJobTitles" Multiplicity="1" />
+          <End Role="TEmployees" Type="Self.TEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TJobTitles">
+              <PropertyRef Name="intJobTitleID" />
+            </Principal>
+            <Dependent Role="TEmployees">
+              <PropertyRef Name="intJobTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TEyeStatusInfos_THealthExams_FK1">
           <End Role="THealthExams" Type="Self.THealthExams" Multiplicity="1" />
           <End Role="TEyeStatusInfos" Type="Self.TEyeStatusInfos" Multiplicity="*" />
@@ -1083,6 +1095,8 @@
         <Function Name="uspAddUserOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="strUserName" Type="varchar" Mode="InOut" />
           <Parameter Name="strPassword" Type="varchar" Mode="InOut" />
+
+
           <Parameter Name="strFirstName" Type="varchar" Mode="In" />
           <Parameter Name="strLastName" Type="varchar" Mode="In" />
           <Parameter Name="intGenderID" Type="int" Mode="In" />
@@ -1264,6 +1278,10 @@
           <AssociationSet Name="TEarStatusInfos_THealthExams_FK1" Association="Self.TEarStatusInfos_THealthExams_FK1">
             <End Role="THealthExams" EntitySet="THealthExams" />
             <End Role="TEarStatusInfos" EntitySet="TEarStatusInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TEmployees_TJobTitles_FK1" Association="Self.TEmployees_TJobTitles_FK1">
+            <End Role="TJobTitles" EntitySet="TJobTitles" />
+            <End Role="TEmployees" EntitySet="TEmployees" />
           </AssociationSet>
           <AssociationSet Name="TEyeStatusInfos_THealthExams_FK1" Association="Self.TEyeStatusInfos_THealthExams_FK1">
             <End Role="THealthExams" EntitySet="THealthExams" />
@@ -2209,6 +2227,178 @@
             <Parameter Name="file_name" Mode="In" Type="String" />
             <Parameter Name="image_size" Mode="In" Type="Int64" />
           </FunctionImport>
+
+          <EntitySet Name="TAbdomenInfos" EntityType="Model.TAbdomenInfo" />
+          <EntitySet Name="TBreeds" EntityType="Model.TBreed" />
+          <EntitySet Name="TEarStatusInfos" EntityType="Model.TEarStatusInfo" />
+          <EntitySet Name="TEmployees" EntityType="Model.TEmployee" />
+          <EntitySet Name="TEyeStatusInfos" EntityType="Model.TEyeStatusInfo" />
+          <EntitySet Name="TGenders" EntityType="Model.TGender" />
+          <EntitySet Name="TGIInfos" EntityType="Model.TGIInfo" />
+          <EntitySet Name="THealthExams" EntityType="Model.THealthExam" />
+          <EntitySet Name="THeartInfos" EntityType="Model.THeartInfo" />
+          <EntitySet Name="TJobTitles" EntityType="Model.TJobTitle" />
+          <EntitySet Name="TLungInfos" EntityType="Model.TLungInfo" />
+          <EntitySet Name="TMedications" EntityType="Model.TMedication" />
+          <EntitySet Name="TMethods" EntityType="Model.TMethod" />
+          <EntitySet Name="TMouthInfos" EntityType="Model.TMouthInfo" />
+          <EntitySet Name="TMusculoskeletalInfos" EntityType="Model.TMusculoskeletalInfo" />
+          <EntitySet Name="TNeurologicalInfos" EntityType="Model.TNeurologicalInfo" />
+          <EntitySet Name="TNoseThroatInfos" EntityType="Model.TNoseThroatInfo" />
+          <EntitySet Name="TOwners" EntityType="Model.TOwner" />
+          <EntitySet Name="TPetImages" EntityType="Model.TPetImage" />
+          <EntitySet Name="TPets" EntityType="Model.TPet" />
+          <EntitySet Name="TPetTypes" EntityType="Model.TPetType" />
+          <EntitySet Name="TRoles" EntityType="Model.TRole" />
+          <EntitySet Name="TServices" EntityType="Model.TService" />
+          <EntitySet Name="TServiceTypes" EntityType="Model.TServiceType" />
+          <EntitySet Name="TSkinInfos" EntityType="Model.TSkinInfo" />
+          <EntitySet Name="TStates" EntityType="Model.TState" />
+          <EntitySet Name="TUrogenitalInfos" EntityType="Model.TUrogenitalInfo" />
+          <EntitySet Name="TUsers" EntityType="Model.TUser" />
+          <EntitySet Name="TVaccinations" EntityType="Model.TVaccination" />
+          <EntitySet Name="TVisitEmployees" EntityType="Model.TVisitEmployee" />
+          <EntitySet Name="TVisitMedications" EntityType="Model.TVisitMedication" />
+          <EntitySet Name="TVisitReasons" EntityType="Model.TVisitReason" />
+          <EntitySet Name="TVisits" EntityType="Model.TVisit" />
+          <EntitySet Name="TVisitServices" EntityType="Model.TVisitService" />
+          <AssociationSet Name="TAbdomenInfos_THealthExams_FK1" Association="Model.TAbdomenInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TAbdomenInfo" EntitySet="TAbdomenInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TBreeds_FK1" Association="Model.TPets_TBreeds_FK1">
+            <End Role="TBreed" EntitySet="TBreeds" />
+            <End Role="TPet" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TEarStatusInfos_THealthExams_FK1" Association="Model.TEarStatusInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TEarStatusInfo" EntitySet="TEarStatusInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TEmployees_TJobTitles_FK1" Association="Model.TEmployees_TJobTitles_FK1">
+            <End Role="TJobTitle" EntitySet="TJobTitles" />
+            <End Role="TEmployee" EntitySet="TEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitEmployees_TEmployees_FK1" Association="Model.TVisitEmployees_TEmployees_FK1">
+            <End Role="TEmployee" EntitySet="TEmployees" />
+            <End Role="TVisitEmployee" EntitySet="TVisitEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="TEyeStatusInfos_THealthExams_FK1" Association="Model.TEyeStatusInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TEyeStatusInfo" EntitySet="TEyeStatusInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TOwners_TGenders_FK1" Association="Model.TOwners_TGenders_FK1">
+            <End Role="TGender" EntitySet="TGenders" />
+            <End Role="TOwner" EntitySet="TOwners" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TGenders_FK1" Association="Model.TPets_TGenders_FK1">
+            <End Role="TGender" EntitySet="TGenders" />
+            <End Role="TPet" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TGIInfos_THealthExams_FK1" Association="Model.TGIInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TGIInfo" EntitySet="TGIInfos" />
+          </AssociationSet>
+          <AssociationSet Name="THealthExams_TVisitServices_FK1" Association="Model.THealthExams_TVisitServices_FK1">
+            <End Role="TVisitService" EntitySet="TVisitServices" />
+            <End Role="THealthExam" EntitySet="THealthExams" />
+          </AssociationSet>
+          <AssociationSet Name="THeartInfos_THealthExams_FK1" Association="Model.THeartInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="THeartInfo" EntitySet="THeartInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TLungInfos_THealthExams_FK1" Association="Model.TLungInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TLungInfo" EntitySet="TLungInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TMouthInfos_THealthExams_FK1" Association="Model.TMouthInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TMouthInfo" EntitySet="TMouthInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TMusculoskeletalInfos_THealthExams_FK1" Association="Model.TMusculoskeletalInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TMusculoskeletalInfo" EntitySet="TMusculoskeletalInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TNeurologicalInfos_THealthExams_FK1" Association="Model.TNeurologicalInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TNeurologicalInfo" EntitySet="TNeurologicalInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TNoseThroatInfos_THealthExams_FK1" Association="Model.TNoseThroatInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TNoseThroatInfo" EntitySet="TNoseThroatInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TSkinInfos_THealthExams_FK1" Association="Model.TSkinInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TSkinInfo" EntitySet="TSkinInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TUrogenitalInfos_THealthExams_FK1" Association="Model.TUrogenitalInfos_THealthExams_FK1">
+            <End Role="THealthExam" EntitySet="THealthExams" />
+            <End Role="TUrogenitalInfo" EntitySet="TUrogenitalInfos" />
+          </AssociationSet>
+          <AssociationSet Name="TMedications_TMethods_FK1" Association="Model.TMedications_TMethods_FK1">
+            <End Role="TMethod" EntitySet="TMethods" />
+            <End Role="TMedication" EntitySet="TMedications" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitMedications_TMedications_FK1" Association="Model.TVisitMedications_TMedications_FK1">
+            <End Role="TMedication" EntitySet="TMedications" />
+            <End Role="TVisitMedication" EntitySet="TVisitMedications" />
+          </AssociationSet>
+          <AssociationSet Name="TOwners_TStates_FK1" Association="Model.TOwners_TStates_FK1">
+            <End Role="TState" EntitySet="TStates" />
+            <End Role="TOwner" EntitySet="TOwners" />
+          </AssociationSet>
+          <AssociationSet Name="TOwners_TUsers_FK1" Association="Model.TOwners_TUsers_FK1">
+            <End Role="TUser" EntitySet="TUsers" />
+            <End Role="TOwner" EntitySet="TOwners" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TOwners_FK1" Association="Model.TPets_TOwners_FK1">
+            <End Role="TOwner" EntitySet="TOwners" />
+            <End Role="TPet" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TPetImages_TPets_FK1" Association="Model.TPetImages_TPets_FK1">
+            <End Role="TPet" EntitySet="TPets" />
+            <End Role="TPetImage" EntitySet="TPetImages" />
+          </AssociationSet>
+          <AssociationSet Name="TPets_TPetTypes_FK1" Association="Model.TPets_TPetTypes_FK1">
+            <End Role="TPetType" EntitySet="TPetTypes" />
+            <End Role="TPet" EntitySet="TPets" />
+          </AssociationSet>
+          <AssociationSet Name="TVisits_TPets_FK1" Association="Model.TVisits_TPets_FK1">
+            <End Role="TPet" EntitySet="TPets" />
+            <End Role="TVisit" EntitySet="TVisits" />
+          </AssociationSet>
+          <AssociationSet Name="TUsers_TRoles_FK1" Association="Model.TUsers_TRoles_FK1">
+            <End Role="TRole" EntitySet="TRoles" />
+            <End Role="TUser" EntitySet="TUsers" />
+          </AssociationSet>
+          <AssociationSet Name="TServices_TServiceTypes_FK1" Association="Model.TServices_TServiceTypes_FK1">
+            <End Role="TServiceType" EntitySet="TServiceTypes" />
+            <End Role="TService" EntitySet="TServices" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitServices_TServices_FK1" Association="Model.TVisitServices_TServices_FK1">
+            <End Role="TService" EntitySet="TServices" />
+            <End Role="TVisitService" EntitySet="TVisitServices" />
+          </AssociationSet>
+          <AssociationSet Name="TVaccinations_TVisitServices_FK1" Association="Model.TVaccinations_TVisitServices_FK1">
+            <End Role="TVisitService" EntitySet="TVisitServices" />
+            <End Role="TVaccination" EntitySet="TVaccinations" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitEmployees_TVisits_FK1" Association="Model.TVisitEmployees_TVisits_FK1">
+            <End Role="TVisit" EntitySet="TVisits" />
+            <End Role="TVisitEmployee" EntitySet="TVisitEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitMedications_TVisits_FK1" Association="Model.TVisitMedications_TVisits_FK1">
+            <End Role="TVisit" EntitySet="TVisits" />
+            <End Role="TVisitMedication" EntitySet="TVisitMedications" />
+          </AssociationSet>
+          <AssociationSet Name="TVisits_TVisitReasons_FK1" Association="Model.TVisits_TVisitReasons_FK1">
+            <End Role="TVisitReason" EntitySet="TVisitReasons" />
+            <End Role="TVisit" EntitySet="TVisits" />
+          </AssociationSet>
+          <AssociationSet Name="TVisitServices_TVisits_FK1" Association="Model.TVisitServices_TVisits_FK1">
+            <End Role="TVisit" EntitySet="TVisits" />
+            <End Role="TVisitService" EntitySet="TVisitServices" />
+          </AssociationSet>
+
           <FunctionImport Name="uspAddEarStatusInfo2">
             <Parameter Name="isNormal" Mode="In" Type="Boolean" />
             <Parameter Name="isInflamed" Mode="In" Type="Boolean" />
@@ -2815,6 +3005,7 @@
           <FunctionImport Name="uspGetOwnerID2" ReturnType="Collection(Int32)">
             <Parameter Name="intUserID" Mode="In" Type="Int32" />
           </FunctionImport>
+
           <EntitySet Name="TAbdomenInfos" EntityType="Model.TAbdomenInfo" />
           <EntitySet Name="TBreeds" EntityType="Model.TBreed" />
           <EntitySet Name="TEarStatusInfos" EntityType="Model.TEarStatusInfo" />
@@ -3141,6 +3332,7 @@
           <FunctionImport Name="uspViewPetVaccinations5" ReturnType="Collection(Model.uspViewPetVaccinations5_Result)" />
           <FunctionImport Name="uspViewPetVisits5" ReturnType="Collection(Model.uspViewPetVisits5_Result)" />
           <FunctionImport Name="uspViewServices5" ReturnType="Collection(Model.uspViewServices5_Result)" />
+
           </EntityContainer>
         <ComplexType Name="uspViewEmployees_Result">
           <Property Type="Int32" Name="intEmployeeID" Nullable="false" />
@@ -3356,6 +3548,7 @@
           <Property Type="Int32" Name="intServiceTypeID" Nullable="false" />
           <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
         </ComplexType>
+
         <ComplexType Name="uspSelectLatestPetImages_Result">
           <Property Type="Int32" Name="intPetImageID" Nullable="false" />
           <Property Type="Int32" Name="intPetID" Nullable="false" />
@@ -3409,13 +3602,20 @@
           <Property Type="Int32" Name="intOwnerID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="uspViewEmployees2_Result">
+
+        <ComplexType Name="uspViewEmployees1_Result">
+
           <Property Type="Int32" Name="intEmployeeID" Nullable="false" />
           <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="intJobTitleID" Nullable="false" />
           <Property Type="Int32" Name="intUserID" Nullable="false" />
         </ComplexType>
+
         <ComplexType Name="uspViewMedications2_Result">
+
+        <ComplexType Name="uspViewMedications1_Result">
+
           <Property Type="Int32" Name="intMedicationID" Nullable="false" />
           <Property Type="String" Name="strMedicationName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strMedicationDesc" Nullable="false" MaxLength="50" />
@@ -3425,7 +3625,11 @@
           <Property Type="Int32" Name="intQuantity" Nullable="false" />
           <Property Type="Int32" Name="intMethodID" Nullable="false" />
         </ComplexType>
+
         <ComplexType Name="uspViewOwnerPets1_Result">
+
+        <ComplexType Name="uspViewOwnerPets_Result">
+
           <Property Type="Int32" Name="intPetID" Nullable="false" />
           <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
@@ -3449,7 +3653,11 @@
           <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
         </ComplexType>
+
         <ComplexType Name="uspViewOwners2_Result">
+
+        <ComplexType Name="uspViewOwners1_Result">
+
           <Property Type="Int32" Name="intOwnerID" Nullable="false" />
           <Property Type="String" Name="strFirstName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strLastName" Nullable="false" MaxLength="50" />
@@ -3466,7 +3674,11 @@
           <Property Type="String" Name="strNotes" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="intUserID" Nullable="false" />
         </ComplexType>
+
         <ComplexType Name="uspViewPetGeneralInformation2_Result">
+
+        <ComplexType Name="uspViewPetGeneralInformation1_Result">
+
           <Property Type="Int32" Name="intPetID" Nullable="false" />
           <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
@@ -3481,14 +3693,22 @@
           <Property Type="String" Name="strEmail" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strOwnerAddress" Nullable="false" MaxLength="203" />
         </ComplexType>
+
         <ComplexType Name="uspViewPetMedications2_Result">
+
+        <ComplexType Name="uspViewPetMedications1_Result">
+
           <Property Type="Int32" Name="intPetID" Nullable="false" />
           <Property Type="DateTime" Name="dtmDatePrescribed" Nullable="false" />
           <Property Type="Int32" Name="intMedicationID" Nullable="false" />
           <Property Type="Int32" Name="intQuantity" Nullable="false" />
           <Property Type="String" Name="strNotes" Nullable="false" MaxLength="50" />
         </ComplexType>
+
         <ComplexType Name="uspViewPets2_Result">
+
+        <ComplexType Name="uspViewPets1_Result">
+
           <Property Type="Int32" Name="intPetID" Nullable="false" />
           <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
@@ -3507,7 +3727,11 @@
           <Property Type="String" Name="strNotes" Nullable="false" MaxLength="1000" />
           <Property Type="Int32" Name="intOwnerID" Nullable="false" />
         </ComplexType>
+
         <ComplexType Name="uspViewPetVaccinations2_Result">
+
+        <ComplexType Name="uspViewPetVaccinations1_Result">
+
           <Property Type="Int32" Name="intVaccinationID" Nullable="false" />
           <Property Type="Int32" Name="intVisitServiceID" Nullable="false" />
           <Property Type="DateTime" Name="dtmDateOfVaccination" Nullable="false" />
@@ -3515,6 +3739,7 @@
           <Property Type="String" Name="strVaccineDesc" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strRabiesNumber" Nullable="false" MaxLength="50" />
         </ComplexType>
+
         <ComplexType Name="uspViewPetVisits2_Result">
           <Property Type="Int32" Name="intPetID" Nullable="false" />
           <Property Type="DateTime" Name="dtmDateOfVist" Nullable="false" />
@@ -3522,17 +3747,25 @@
           <Property Type="String" Name="strDoctor" Nullable="false" MaxLength="105" />
         </ComplexType>
         <ComplexType Name="uspViewPetVisitsByPet_Result">
+
+        <ComplexType Name="uspViewPetVisits1_Result">
+
           <Property Type="Int32" Name="intPetID" Nullable="false" />
           <Property Type="DateTime" Name="dtmDateOfVist" Nullable="false" />
           <Property Type="String" Name="strVisitReason" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strDoctor" Nullable="false" MaxLength="105" />
         </ComplexType>
+
         <ComplexType Name="uspViewServices2_Result">
+
+        <ComplexType Name="uspViewServices1_Result">
+
           <Property Type="Int32" Name="intServiceID" Nullable="false" />
           <Property Type="String" Name="strServiceDesc" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="intServiceTypeID" Nullable="false" />
           <Property Type="Decimal" Name="dblPrice" Nullable="false" Precision="19" />
         </ComplexType>
+
         <ComplexType Name="uspSelectPetImages1_Result">
           <Property Type="Int32" Name="intPetImageID" Nullable="false" />
           <Property Type="String" Name="strFileName" Nullable="true" MaxLength="255" />
@@ -3565,10 +3798,21 @@
           <Property Type="Binary" Name="imgContent" Nullable="false" />
           <Property Type="String" Name="strFileType" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="intPetID" Nullable="false" />
+
+        <ComplexType Name="uspSelectLatestPetImages_Result">
+          <Property Type="Int32" Name="intPetImageID" Nullable="false" />
+          <Property Type="Int32" Name="intPetID" Nullable="false" />
+          <Property Type="String" Name="imgPrimaryImage" Nullable="false" MaxLength="1" />
+          <Property Type="Binary" Name="imgImage" Nullable="false" />
+          <Property Type="String" Name="strFileName" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="intImageSize" Nullable="false" />
+          <Property Type="DateTime" Name="dtmDateAdded" Nullable="false" />
+
           <Property Type="Int32" Name="intPetID1" Nullable="false" />
           <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+
           <Property Type="Int32" Name="intPetTypeID" Nullable="false" />
           <Property Type="Int32" Name="intGenderID" Nullable="false" />
           <Property Type="Int32" Name="intBreedID" Nullable="false" />
@@ -3724,6 +3968,7 @@
           <Property Type="String" Name="strPetNumber" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strMicrochipID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="strPetName" Nullable="false" MaxLength="50" />
+
           <Property Type="Int32" Name="intPetTypeID" Nullable="false" />
           <Property Type="Int32" Name="intGenderID" Nullable="false" />
           <Property Type="Int32" Name="intBreedID" Nullable="false" />
@@ -3867,6 +4112,7 @@
           <Property Name="strLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="intJobTitleID" Type="Int32" Nullable="false" />
           <Property Name="intUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TJobTitle" Relationship="Model.TEmployees_TJobTitles_FK1" FromRole="TEmployee" ToRole="TJobTitle" />
           <NavigationProperty Name="TVisitEmployees" Relationship="Model.TVisitEmployees_TEmployees_FK1" FromRole="TEmployee" ToRole="TVisitEmployee" />
         </EntityType>
         <EntityType Name="TEyeStatusInfo">
@@ -3954,6 +4200,10 @@
           </Key>
           <Property Name="intJobTitleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="strJobTitleDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+
+          <NavigationProperty Name="TEmployees" Relationship="Model.Employees_TJobtitles_FK1" FromRole="TJobTitle" ToRole="TEmployee" />
+
+
         </EntityType>
         <EntityType Name="TLungInfo">
           <Key>
@@ -4307,6 +4557,18 @@
             </Principal>
             <Dependent Role="TEarStatusInfo">
               <PropertyRef Name="intHealthExamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TEmployees_TJobTitles_FK1">
+          <End Type="Model.TJobTitle" Role="TJobTitle" Multiplicity="1" />
+          <End Type="Model.TEmployee" Role="TEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TJobTitle">
+              <PropertyRef Name="intJobTitleID" />
+            </Principal>
+            <Dependent Role="TEmployee">
+              <PropertyRef Name="intJobTitleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

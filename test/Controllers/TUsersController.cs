@@ -40,12 +40,8 @@ namespace test.Controllers {
                     dc.Configuration.ProxyCreationEnabled = false;
 
                     var User = from a in dc.TUsers
-                               join b in dc.TRoles on
-                               a.intRoleID equals b.intRoleID
                                select new {
                                    a,
-                                   b.intRoleID,
-                                   b.strRoleName
                                };
 
                     if (User != null) {
@@ -54,7 +50,6 @@ namespace test.Controllers {
                         foreach (var i in User) {
 
                             TUser con = i.a;
-                            con.intRoleID = i.intRoleID;
 
                             all.Add(con);
                         }
@@ -62,14 +57,6 @@ namespace test.Controllers {
                 }
 
                 return new JsonResult { Data = all, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            }
-
-
-            //Get Roles from database  
-            private List<TRole> GetRole() {
-                using (CapstoneEntities dc = new CapstoneEntities()) {
-                    return dc.TRoles.OrderBy(a => a.strRoleName).ToList();
-                }
             }
 
 
@@ -82,126 +69,119 @@ namespace test.Controllers {
                 using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     var v = (from a in dc.TUsers
-                             join b in dc.TRoles
-                             on a.intRoleID equals b.intRoleID
                              where a.intUserID.Equals(intUserID)
                              select new {
                                  a,
-                                 b.intRoleID,
-                                 b.strRoleName
                              }).FirstOrDefault();
 
                     if (v != null) {
                         user = v.a;
-                        user.intRoleID = v.intRoleID; ;
                     }
                     return user;
                 }
             }
 
-            //for get view for Save User  
-            public ActionResult Save(int id = 0) {
+            ////for get view for Save User  
+            //public ActionResult Save(int id = 0) {
 
-                CapstoneEntities dc = new CapstoneEntities();
-                List<TRole> roles = GetRole();
+            //    CapstoneEntities dc = new CapstoneEntities();
 
-                if (id > 0) {
-                    var c = GetUser(id);
+            //    if (id > 0) {
+            //        var c = GetUser(id);
 
-                    if (c != null) {
-                        ViewBag.Roles = new SelectList(roles, "intRoleID", "strRoleName", c.intRoleID);
-                    }
-                    else {
-                        return HttpNotFound();
-                    }
-                    return PartialView("Save", c);
+            //        if (c != null) {
+            //        }
+            //        else {
+            //            return HttpNotFound();
+            //        }
+            //        return PartialView("Save", c);
 
-                }
-                else {
-                    ViewBag.Roles = new SelectList(roles, "intRoleID", "strRoleName");
-                    return PartialView("Save");
-                }
-            
-            }
+            //    }
+            //    else {
+            //        return PartialView("Save");
+            //    }
 
-            //for POST User for Save records to the database.  
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            public ActionResult Save(TUser c) {
+            //}
 
-                string message = "";
-                bool status = false;
+            ////for POST User for Save records to the database.  
+            //[HttpPost]
+            //[ValidateAntiForgeryToken]
+            //public ActionResult Save(TUser c) {
 
-                if (ModelState.IsValid) {
+            //    string message = "";
+            //    bool status = false;
 
-                    using (CapstoneEntities dc = new CapstoneEntities()) {
+            //    if (ModelState.IsValid) {
 
-                        if (c.intUserID > 0) {
-                            var v = dc.TUsers.Where(a => a.intUserID.Equals(c.intUserID)).FirstOrDefault();
-                            if (v != null) {
-                                v.strUserName = c.strUserName;
-                                v.strPassword = c.strPassword;
-                                v.intRoleID = c.intRoleID;
-                            }
-                            else {
-                                return HttpNotFound();
-                            }
-                        }
-                        else {
-                            dc.TUsers.Add(c);
-                        }
-                        dc.SaveChanges();
-                        status = true;
-                        message = "Data Is Successfully Saved.";
-                    }
-                }
-                else {
-                    message = "Error! Please try again.";
-                }
+            //        using (CapstoneEntities dc = new CapstoneEntities()) {
 
-                return new JsonResult { Data = new { status = status, message = message } };
-            }
+            //            if (c.intUserID > 0) {
+            //                var v = dc.TUsers.Where(a => a.intUserID.Equals(c.intUserID)).FirstOrDefault();
+            //                if (v != null) {
+            //                    v.strUserName = c.strUserName;
+            //                    v.strPassword = c.strPassword;
+            //                }
+            //                else {
+            //                    return HttpNotFound();
+            //                }
+            //            }
+            //            else {
+            //                dc.TUsers.Add(c);
+            //            }
+            //            dc.SaveChanges();
+            //            status = true;
+            //            message = "Data Is Successfully Saved.";
+            //        }
+            //    }
+            //    else {
+            //        message = "Error! Please try again.";
+            //    }
+
+            //    return new JsonResult { Data = new { status = status, message = message } };
+            //}
 
 
 
-            //for get view for update User
+            // Get view for Save User
             public ActionResult Update(int id = 0) {
 
 
-                CapstoneEntities dc = new CapstoneEntities();
-                List<TRole> roles = GetRole();
-
                 if (id > 0) {
+
                     var c = GetUser(id);
-                    if (c != null) 
+
+                    if (c == null) 
                     {
-                        ViewBag.Roles = new SelectList(roles, "intRoleID", "strRoleName", c.intRoleID);
-                    }
-                    else {
                         return HttpNotFound();
                     }
-                    return PartialView("Update", c);
-                }
+                    else 
+                        return PartialView("Update", c);
+                    }                    
                 else {
-                    ViewBag.Roles = new SelectList(roles, "intRoleID", "strRoleName");
                     return PartialView("Update");
                 }
             }
 
                 //for POST User for update records to the database.  
-                [HttpPost]
+            [HttpPost]
             [ValidateAntiForgeryToken]
             public ActionResult Update(TUser c) {
+
                 string message = "";
                 bool status = false;
+
                 if (ModelState.IsValid) {
+
                     using (CapstoneEntities dc = new CapstoneEntities()) {
+
                         if (c.intUserID > 0) {
+
                             var v = dc.TUsers.Where(a => a.intUserID.Equals(c.intUserID)).FirstOrDefault();
+                            
                             if (v != null) {
+
                                 v.strUserName = c.strUserName;
                                 v.strPassword = c.strPassword;
-                                v.intRoleID = c.intRoleID;
                             }
                             else {
                                 return HttpNotFound();
@@ -210,6 +190,7 @@ namespace test.Controllers {
                         else {
                             dc.TUsers.Add(c);
                         }
+
                         dc.SaveChanges();
                         status = true;
                         message = "Data Is Successfully Updated.";
