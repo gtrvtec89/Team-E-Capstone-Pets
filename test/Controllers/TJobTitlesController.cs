@@ -12,7 +12,7 @@ namespace test.Controllers
 {
     public class TJobTitlesController : Controller
     {
-        //private CapstoneEntities db = new CapstoneEntities();
+        //private Entities db = new Entities();
 
         // GET: TJobTitles
         public ActionResult Index()

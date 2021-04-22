@@ -153,7 +153,7 @@ namespace test.Controllers {
                         }
                         petToUpdate.TPetImages = new List<TPetImage> { avatar };
                     }
-                    db.Entry(petToUpdate).State = EntityState.Modified;
+                    db.Entry(petToUpdate).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
 
                     return RedirectToAction("Details", new { id = tPet.intPetID });
@@ -383,7 +383,7 @@ namespace test.Controllers {
                                 }
                                 petToUpdate.TPetImages = new List<TPetImage> { avatar };
                             }
-                            db.Entry(petToUpdate).State = EntityState.Modified;
+                            db.Entry(petToUpdate).State = System.Data.Entity.EntityState.Modified;
                             // db.Entry(ownerToUpdate).State = EntityState.Modified;
                             db.SaveChanges();
 
@@ -403,7 +403,7 @@ namespace test.Controllers {
                             ownerToUpdate.strPhoneNumber = tPet.TOwner.strPhoneNumber;
 
                             if (ModelState.IsValid) {
-                                db.Entry(ownerToUpdate).State = EntityState.Modified;
+                                db.Entry(ownerToUpdate).State = System.Data.Entity.EntityState.Modified;
                                 db.SaveChanges();
                             }
 

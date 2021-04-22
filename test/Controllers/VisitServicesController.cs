@@ -23,7 +23,7 @@ namespace test.Controllers
                           join j in db.TJobTitles
                           on e.intJobTitleID equals j.intJobTitleID
                           where ve.intVisitID == intVisitId
-                          where j.intJobTitleID == 4
+                          where j.strJobTitleDesc == "Doctor"
                           select new
                           {
                               doctorName = "Dr. " + e.strFirstName + " " + e.strLastName
@@ -41,7 +41,14 @@ namespace test.Controllers
             myModel.strPetName = petData.name;
             myModel.strDoctor = doctor.doctorName;
             myModel.dtmDateOfVisit = petData.dtmDateOfVisit;
-            myModel.Services = db.TServices;
+            List<TService> availableServices = (from s in db.TServices
+                                                  where !(from tvs in db.TVisitServices
+                                                          where tvs.intVisitID == intVisitId
+                                                          select tvs.intServiceID).DefaultIfEmpty().Contains(s.intServiceID)
+                                                  select s).ToList();
+
+
+            myModel.Services = availableServices;
             myModel.PetVisitServices = db.TVisitServices.Where(x => x.intVisitID == intVisitId).ToList();
             ViewBag.Name = petData.name;
             return View(myModel);
@@ -49,26 +56,35 @@ namespace test.Controllers
 
         public ActionResult AddPetService(int serviceID)
         {
-            TVisitService visitService = new TVisitService()
-            {
-                intServiceID = serviceID,
-                intVisitID = (int)Session["intVisitId"]
-            };
 
-            db.TVisitServices.Add(visitService);
-            db.SaveChanges();
-
-            int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
-            int service = db.TVisitServices.Where(x => x.intVisitServiceID == lastInsertedVisitServiceID).Select(x => x.intServiceID).FirstOrDefault();
-            //If it's a health exam
+            int intPetId = (int)Session["intPetID"];
+            //int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
             int healthExamService = db.TServices.Where(x => x.strServiceDesc == "Health Exam").Select(z => z.intServiceID).FirstOrDefault();
-            if (service == healthExamService)
+            if (serviceID == healthExamService)
             {
-                DateTime dateOfHealthExam = DateTime.Now;
-                int intPetId = (int)Session["intPetID"];
-                return RedirectToAction("Create", "THealthExam", new { id = intPetId , dateOfVisit = dateOfHealthExam });
+                return RedirectToAction("Create", "THealthExam", new { id = intPetId });
+            }
+            else
+            {
+                TVisitService visitService = new TVisitService()
+                {
+                    intServiceID = serviceID,
+                    intVisitID = (int)Session["intVisitId"]
+                };
+
+                db.TVisitServices.Add(visitService);
+                db.SaveChanges();
             }
 
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeletePetService(int serviceID)
+        {
+            int intVisitId = (int)Session["intVisitId"];
+            TVisitService visitService = db.TVisitServices.Where(x => x.intVisitServiceID == serviceID).FirstOrDefault();
+            db.TVisitServices.Remove(visitService);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

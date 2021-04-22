@@ -6,7 +6,11 @@
 
 <h2>@ViewBag.PetName</h2>>
 
-
+<p style="margin-left: 25px; font-size:15px">
+    <button class="btn-primary" onclick="location.href='@Url.Action("PetVisits", "TVisits", new { id = Session["intPetID"]})';return false;">
+        <i class="fas fa-arrow-left"></i>  Back
+    </button>
+</p>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()

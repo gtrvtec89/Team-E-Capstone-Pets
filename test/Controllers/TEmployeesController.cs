@@ -16,7 +16,8 @@ namespace test.Controllers
         private Entities db = new Entities();
 
         // GET: TEmployees
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             var tEmployee = db.TEmployees;
             return View(tEmployee.ToList());
         }
@@ -93,7 +94,7 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tEmployee).State = EntityState.Modified;
+                db.Entry(tEmployee).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
 

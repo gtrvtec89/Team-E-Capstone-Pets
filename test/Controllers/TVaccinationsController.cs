@@ -9,6 +9,11 @@ using System.Web.Mvc;
 using test;
 using test.Models;
 
+namespace test.Controllers
+{
+    public class TVaccinationsController : Controller
+    {
+        private Entities db = new Entities();
 
 
 namespace test.Controllers {
@@ -40,28 +45,25 @@ namespace test.Controllers {
 
 
         // GET: TVaccinations/Create
-        public ActionResult Create(int serviceID) {
+        public ActionResult Create(int serviceID)
+        {
             int intVisitId = (int)Session["intVisitId"];
             int intPetId = (int)Session["intPetID"];
             Session["intServiceId"] = serviceID;
-
-
 
             int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
             string strServiceDesc = db.TServices.Where(x => x.intServiceID == serviceID).Select(z => z.strServiceDesc).FirstOrDefault();
             Session["isRabiesVaccine"] = null;
             ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
 
-
-
-            if (serviceID == rabiesVaccineServiceId) {
+            if (serviceID == rabiesVaccineServiceId)
+            {
                 Session["isRabiesVaccine"] = true;
             }
 
-
-
             DateTime today = DateTime.Now;
-            VisitVaccination visitVaccination = new VisitVaccination() {
+            VisitVaccination visitVaccination = new VisitVaccination()
+            {
                 intServiceId = serviceID,
                 intVisitServiceId = serviceID,
                 strServiceName = strServiceDesc,
@@ -71,43 +73,38 @@ namespace test.Controllers {
                 strRabiesNumber = " "
             };
 
-
-
             return View(visitVaccination);
         }
-
-
 
         // POST: TVaccinations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(VisitVaccination vaccination) {
+        public ActionResult Create(VisitVaccination vaccination)
+        {
             int intVisitId = (int)Session["intVisitId"];
             int intPetId = (int)Session["intPetID"];
             int serviceID = (int)Session["intServiceId"];
 
-
-
-            if (ModelState.IsValid) {
-                TVisitService newVisitService = new TVisitService() {
+            if (ModelState.IsValid)
+            {
+                TVisitService newVisitService = new TVisitService()
+                {
                     intVisitID = intVisitId,
                     intServiceID = serviceID
                 };
 
-
-
                 db.TVisitServices.Add(newVisitService);
                 db.SaveChanges();
 
-
-
                 int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
-                if (vaccination.strRabiesNumber == null) {
+                if (vaccination.strRabiesNumber == null)
+                {
                     vaccination.strRabiesNumber = string.Empty;
                 }
-                TVaccination newVisitVaccination = new TVaccination() {
+                TVaccination newVisitVaccination = new TVaccination()
+                {
                     intVisitServiceID = lastInsertedVisitServiceID,
                     dtmDateOfVaccination = Convert.ToDateTime(vaccination.dtmDateofVaccination),
                     dtmDateOfExpiration = Convert.ToDateTime(vaccination.dtmDateOfExpiration),
@@ -115,31 +112,23 @@ namespace test.Controllers {
                     strRabiesNumber = vaccination.strRabiesNumber
                 };
 
-
-
                 db.TVaccinations.Add(newVisitVaccination);
                 db.SaveChanges();
-
-
 
                 return RedirectToAction("Index", "VisitServices");
             }
 
-
-
             return View(vaccination);
         }
 
-
-
         // GET: TVaccinations/Edit/5
-        public ActionResult Edit(int visitServiceId) {
+        public ActionResult Edit(int visitServiceId)
+        {
             TVaccination tVaccination = db.TVaccinations.Where(x => x.intVisitServiceID == visitServiceId).FirstOrDefault();
-            if (tVaccination == null) {
+            if (tVaccination == null)
+            {
                 return HttpNotFound();
             }
-
-
 
             int intPetId = (int)Session["intPetID"];
             int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intServiceID).FirstOrDefault();
@@ -150,14 +139,27 @@ namespace test.Controllers {
             DateTime dateOfVaccination = tVaccination.dtmDateOfVaccination;
             DateTime dateOfExpiration = tVaccination.dtmDateOfExpiration;
 
-
-
-            if (serviceId == rabiesVaccineServiceId) {
+            if (serviceId == rabiesVaccineServiceId)
+            {
                 Session["isRabiesVaccine"] = true;
 
-
-
             }
+
+            VisitVaccination visitVaccination = new VisitVaccination()
+                {
+                    intServiceId = serviceId,
+                    intVisitServiceId = visitServiceId,
+                    strServiceName = serviceName,
+                    dtmDateofVaccination = dateOfVaccination.Month + "/" + dateOfVaccination.Day + "/" + dateOfVaccination.Year,
+                    dtmDateOfExpiration = dateOfExpiration.Month + "/" + dateOfExpiration.Day + "/" + dateOfExpiration.Year,
+                    strVaccineNotes = tVaccination.strVaccineDesc,
+                    strRabiesNumber = tVaccination.strRabiesNumber
+                };
+
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            return View(visitVaccination);
+
+        }
 
 
 
@@ -187,12 +189,15 @@ namespace test.Controllers {
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(VisitVaccination visitVaccination) {
+        public ActionResult Edit(VisitVaccination visitVaccination)
+        {
             int intPetId = (int)Session["intPetID"];
             int vaccinationId = db.TVaccinations.Where(x => x.intVisitServiceID == visitVaccination.intVisitServiceId).Select(z => z.intVaccinationID).FirstOrDefault();
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 if (visitVaccination.strRabiesNumber == null) { visitVaccination.strRabiesNumber = string.Empty; };
-                TVaccination vaccination = new TVaccination() {
+                TVaccination vaccination = new TVaccination()
+                {
                     intVaccinationID = vaccinationId,
                     intVisitServiceID = visitVaccination.intVisitServiceId,
                     dtmDateOfVaccination = Convert.ToDateTime(visitVaccination.dtmDateofVaccination),
@@ -201,29 +206,20 @@ namespace test.Controllers {
                     strRabiesNumber = visitVaccination.strRabiesNumber
                 };
 
-
-
-                db.Entry(vaccination).State = EntityState.Modified;
+                db.Entry(vaccination).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-
-
 
                 return RedirectToAction("Index", "VisitServices");
             };
 
-
-
             int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitVaccination.intVisitServiceId).Select(z => z.intServiceID).FirstOrDefault();
             int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
             Session["isRabiesVaccine"] = null;
-            if (serviceId == rabiesVaccineServiceId) {
+            if (serviceId == rabiesVaccineServiceId)
+            {
                 Session["isRabiesVaccine"] = true;
 
-
-
             }
-
-
 
             ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
             return View(visitVaccination);

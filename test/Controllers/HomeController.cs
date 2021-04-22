@@ -109,7 +109,7 @@ namespace test.Controllers {
 		//[HttpPost]
 		//[ValidateAntiForgeryToken]
 		//public ActionResult Login(FormCollection col) {
-		//	CapstoneEntities db = new CapstoneEntities();
+		//	Entities db = new Entities();
 		//	try {
 		//		TUser u = new TUser();
 		//		u.strUserName = col["strUserName"];

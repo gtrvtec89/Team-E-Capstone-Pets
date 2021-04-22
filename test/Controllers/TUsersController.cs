@@ -22,7 +22,7 @@ namespace test.Controllers {
 
     namespace test.Controllers {
         public class TUsersController : Controller {
-            //private CapstoneEntities db = new CapstoneEntities();
+            //private Entities db = new Entities();
 
             // GET: TUsers
             public ActionResult Index() {
@@ -84,7 +84,7 @@ namespace test.Controllers {
             ////for get view for Save User  
             //public ActionResult Save(int id = 0) {
 
-            //    CapstoneEntities dc = new CapstoneEntities();
+            //    Entities dc = new Entities();
 
             //    if (id > 0) {
             //        var c = GetUser(id);
@@ -113,7 +113,7 @@ namespace test.Controllers {
 
             //    if (ModelState.IsValid) {
 
-            //        using (CapstoneEntities dc = new CapstoneEntities()) {
+            //        using (Entities dc = new Entities()) {
 
             //            if (c.intUserID > 0) {
             //                var v = dc.TUsers.Where(a => a.intUserID.Equals(c.intUserID)).FirstOrDefault();
@@ -244,7 +244,7 @@ namespace test.Controllers {
 
 //    public class TUsersController : Controller
 //    {
-//        private CapstoneEntities db = new CapstoneEntities();
+//        private Entities db = new Entities();
 
 //        // GET: TUsers
 //        public ActionResult Index()

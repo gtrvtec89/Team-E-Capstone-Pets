@@ -84,7 +84,7 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tMedication).State = EntityState.Modified;
+                db.Entry(tMedication).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -13,7 +13,7 @@ namespace test.Controllers
     public class TMethodsController : Controller
     {
 
-        //private CapstoneEntities db = new CapstoneEntities();
+        //private Entities db = new Entities();
 
         // GET: TMethods
         public ActionResult Index() {
@@ -215,7 +215,7 @@ namespace test.Controllers
 
 
 
-//        private CapstoneEntities db = new CapstoneEntities();
+//        private Entities db = new Entities();
 
 //        // GET: TMethods
 //        public ActionResult Index()

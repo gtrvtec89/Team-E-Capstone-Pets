@@ -211,7 +211,7 @@ namespace test.Controllers
     }
 }
 
-//private CapstoneEntities db = new CapstoneEntities();
+//private Entities db = new Entities();
 
 //        // GET: TPetTypes
 //        public ActionResult Index()

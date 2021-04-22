@@ -22,7 +22,7 @@ namespace test.Controllers {
         // GET: TVisits/Details/5
         public ActionResult Details(int? id) {
             if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
             }
             TVisit tVisit = db.TVisits.Find(id);
             if (tVisit == null) {
@@ -103,10 +103,12 @@ namespace test.Controllers {
                 int wellnessExam = db.TVisitReasons.Where(x => x.strVisitReason == "Wellness Exam").Select(z => z.intVisitReasonID).FirstOrDefault();
                 int medicationExam = db.TVisitReasons.Where(x => x.strVisitReason == "Medication").Select(z => z.intVisitReasonID).FirstOrDefault();
 
-                if (newPetVisit.intVisitReasonID == wellnessExam) {
+                if (newPetVisit.intVisitReasonID == wellnessExam)
+                {
                     return RedirectToAction("Create", "THealthExam", new { id = petID });
                 }
-                else if (newPetVisit.intVisitReasonID == medicationExam) {
+                else if(newPetVisit.intVisitReasonID == medicationExam)
+                {
                     return RedirectToAction("Index", "VisitMedications");
                 }
                 else {
@@ -136,9 +138,11 @@ namespace test.Controllers {
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "intVisitID,intPetID,intVisitReasonID,dtmDateOfVist")] TVisit tVisit) {
-            if (ModelState.IsValid) {
-                db.Entry(tVisit).State = EntityState.Modified;
+        public ActionResult Edit([Bind(Include = "intVisitID,intPetID,intVisitReasonID,dtmDateOfVist")] TVisit tVisit)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tVisit).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
