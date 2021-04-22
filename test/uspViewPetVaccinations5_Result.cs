@@ -10,11 +10,14 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TJobTitle
+    public partial class uspViewPetVaccinations5_Result
     {
-        public int intJobTitleID { get; set; }
-        public string strJobTitleDesc { get; set; }
+        public int intVaccinationID { get; set; }
+        public int intVisitServiceID { get; set; }
+        public System.DateTime dtmDateOfVaccination { get; set; }
+        public System.DateTime dtmDateOfExpiration { get; set; }
+        public string strVaccineDesc { get; set; }
+        public string strRabiesNumber { get; set; }
     }
 }

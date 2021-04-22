@@ -10,11 +10,12 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TJobTitle
+    public partial class uspViewPetVisits5_Result
     {
-        public int intJobTitleID { get; set; }
-        public string strJobTitleDesc { get; set; }
+        public int intPetID { get; set; }
+        public System.DateTime dtmDateOfVist { get; set; }
+        public string strVisitReason { get; set; }
+        public string strDoctor { get; set; }
     }
 }

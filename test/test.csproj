@@ -319,6 +319,9 @@
     <Compile Include="uspViewEmployees4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewEmployees5_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewEmployees_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -334,6 +337,9 @@
     <Compile Include="uspViewMedications4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewMedications5_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -344,6 +350,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewOwnerPets3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewOwnerPets4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewOwnerPets_Result.cs">
@@ -361,6 +370,9 @@
     <Compile Include="uspViewOwners4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewOwners5_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewOwners_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -374,6 +386,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetGeneralInformation4_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetGeneralInformation5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetGeneralInformation_Result.cs">
@@ -391,6 +406,9 @@
     <Compile Include="uspViewPetMedications4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetMedications5_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -404,6 +422,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPets4_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPets5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPets_Result.cs">
@@ -421,6 +442,9 @@
     <Compile Include="uspViewPetVaccinations4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetVaccinations5_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetVaccinations_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -434,6 +458,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetVisits4_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetVisits5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetVisitsByPet_Result.cs">
@@ -452,6 +479,9 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewServices4_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewServices5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewServices_Result.cs">
@@ -481,6 +511,7 @@
     <Content Include="Content\Images\icon3.PNG" />
     <Content Include="Content\Images\LogoBanner.JPG" />
     <Content Include="Content\Images\medications.JPG" />
+    <Content Include="Content\Images\pawprint.jpg" />
     <Content Include="Content\Images\pets.JPG" />
     <Content Include="Content\Images\reports.JPG" />
     <Content Include="Content\Images\services.JPG" />

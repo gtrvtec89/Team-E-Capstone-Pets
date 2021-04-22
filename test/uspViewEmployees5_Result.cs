@@ -10,11 +10,13 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TJobTitle
+    public partial class uspViewEmployees5_Result
     {
+        public int intEmployeeID { get; set; }
+        public string strFirstName { get; set; }
+        public string strLastName { get; set; }
         public int intJobTitleID { get; set; }
-        public string strJobTitleDesc { get; set; }
+        public int intUserID { get; set; }
     }
 }

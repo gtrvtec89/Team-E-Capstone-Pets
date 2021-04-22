@@ -4,6 +4,23 @@
 	ViewBag.Title = "Delete";
 }
 
+@if (Model.TVisits.Count > 0) {
+<div class="body-content">
+
+	<div class="form-horizontal" style="padding-bottom:50px">
+		<div class="center" style="text-align:center">
+			<h3>Cannot Delete!</h3>
+			<p style="margin-left: 25px; font-size:15px">
+				You cannot delete this pet because there are visits assigned to them.
+			</p>
+			<div>
+				<button class="btn-primary" onclick="location.href='@Url.Action("Index", "TPets")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+			</div>
+		</div>
+	</div>
+</div> }
+else {
+
 <h2>Delete</h2>
 <p style="margin-left: 25px; font-size:15px">
 
@@ -21,13 +38,22 @@
 
 
 			<dl style="" class="dl-horizontal">
-				<dt>
-					Image
-				</dt>
-				<dd>
-					<img src="/TPetImages/getimg?intPetImageID=@Model.TPetImages.First(f => f.strFileType == ".jpg").intPetImageID" alt="avatar" style="max-height:200px; max-width:200px" />
-				</dd>
-
+				@if (Model.TPetImages.Count > 0) {
+					<dt>
+						Image
+					</dt>
+					<dd>
+						<img src="/TPetImages/getimg?intPetImageID=@Model.TPetImages.First(f => f.strFileType == ".jpg").intPetImageID" alt="avatar" style="max-height:200px; max-width:200px" />
+					</dd>
+				}
+				else {
+					<dt>
+						Image
+					</dt>
+					<dd>
+						<img src="~/Content/Images/pawprint.jpg" />
+					</dd>
+				}
 				<dt>
 					@Html.DisplayName("Pet Name")
 				</dt>
@@ -167,15 +193,16 @@
 				@Html.AntiForgeryToken()
 
 				<div class="form-actions no-color">
-					<input type="submit" value="Delete" class="btn-danger" /> 
+					<input type="submit" value="Delete" class="btn-danger" />
 					<button class="btn-warning" onclick="location.href='@Url.Action("Index", "TPets")';return false;">
 						<i class="fas fa-times"></i>  Cancel
 					</button>
-				</div>			
-				}
+				</div>
+			}
 
 		</div>
 	</div>
 
 
 </div>
+}
