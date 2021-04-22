@@ -8,7 +8,7 @@
 
 <p style="margin-left: 30px">
     <button class="btn-primary" onclick="location.href='@Url.Action("PetProfile", "TPets", new { id = Model.intPetID })';return false;">
-        <i class="fas fa-arrow-left"></i>  Back to List
+        <i class="fas fa-arrow-left"></i>  Back to My Pets
     </button>
 </p>
 @using (Html.BeginForm("PetProfileEdit", "TPets", null, FormMethod.Post, new { enctype = "multipart/form-data" })) {

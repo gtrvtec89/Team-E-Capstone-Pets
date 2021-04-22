@@ -682,6 +682,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\TVisits\PetProfilePetVisits.cshtml" />
+    <Content Include="Views\TVisits\PetProfileVisitDetails.cshtml" />
+    <Content Include="Views\TVaccinations\PetProfileVaccinations.cshtml" />
     <Content Include="Views\THealthExam\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
