@@ -322,6 +322,7 @@ namespace test.Controllers
             int visitServiceId = (int)Session["intVisitServiceID"];
             int healthExamId = db.THealthExams.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intHealthExamID).FirstOrDefault();
 
+            //Health Exam
             THealthExam exam = new THealthExam()
             {
                 intHealthExamID = healthExamId,
@@ -336,6 +337,133 @@ namespace test.Controllers
             };
 
             db.Entry(exam).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            
+            //Eye Status Information
+            int eyestatusId = db.TEyeStatusInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intEyeStatusInfoID).FirstOrDefault();
+            TEyeStatusInfo eyeStatus = new TEyeStatusInfo()
+            {
+                intEyeStatusInfoID = eyestatusId,
+                isNormal = healthExam.isEyeNormal,
+                isDischarge = healthExam.isDischarge,
+                isInfection = healthExam.isInfection,
+                isSclerosisLeft = healthExam.isSclerosisLeft,
+                isSclerosisRight = healthExam.isSclerosisRight,
+                isCataractLeft = healthExam.isCataractLeft,
+                isCataractRight = healthExam.isCataractRight,
+                isInflamed = healthExam.isEyeInflamed,
+                isEyelidTumor = healthExam.isEyelidTumor,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(eyeStatus).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Ear Status Information
+            int earstatusId = db.TEarStatusInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intEarStatusInfoID).FirstOrDefault();
+            TEarStatusInfo earStatus = new TEarStatusInfo()
+            {
+                intEarStatusInfoID = earstatusId,
+                isNormal = healthExam.isEarNormal,
+                isInflamed = healthExam.isEarInflamed,
+                isTumor = healthExam.isEarTumor,
+                isDirty = healthExam.isDirty,
+                isPainful = healthExam.isEarPainful,
+                isExcessiveHair = healthExam.isExcessiveHair,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(earStatus).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Skin Status Information
+            int skinstatusId = db.TSkinInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intSkinInfoID).FirstOrDefault();
+            TSkinInfo skinInfo = new TSkinInfo()
+            {
+                intSkinInfoID = earstatusId,
+                isNormal = healthExam.isSkinNormal,
+                isScaly = healthExam.isScaly,
+                isInfected = healthExam.isInfected,
+                isMatted = healthExam.isMatted,
+                isSkinScrape = healthExam.isSkinScrape,
+                isPruritus = healthExam.isPruritus,
+                isHairLoss = healthExam.isHairLoss,
+                isMass = healthExam.isMass,
+                isParasites = healthExam.isSkinParasites,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(skinInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Mouth Status Infomration
+            int mouthstatusId = db.TMouthInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intMouthInfoID).FirstOrDefault();
+            TMouthInfo mouthInfo = new TMouthInfo()
+            {
+                intMouthInfoID = mouthstatusId,
+                isNormal = healthExam.isMouthNormal,
+                isTumor = healthExam.isMouthTumor,
+                isGingivitis = healthExam.isGingivitis,
+                isPeriodontitis = healthExam.isPeriodontitis,
+                isTartarBuildup = healthExam.isTartarBuildup,
+                isLooseTeeth = healthExam.isLooseTeeth,
+                isBiteOVerUnder = healthExam.isBiteOVerUnder,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(mouthInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Nose and Throat Status Information
+            int nosethroatstatusId = db.TNoseThroatInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intNoseThroatInfoID).FirstOrDefault();
+            TNoseThroatInfo noseThroatInfo = new TNoseThroatInfo()
+            {
+                intNoseThroatInfoID = nosethroatstatusId,
+                isNormal = healthExam.isNoseThroatNormal,
+                isLargeLymphNodes = healthExam.isLargeLymphNodes,
+                isInflamedThroat = healthExam.isInflamedThroat,
+                isNasalDishcharge = healthExam.isNasalDishcharge,
+                isInflamedTonsils = healthExam.isInflamedTonsils,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(noseThroatInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //GI Status Information
+            int gistatusId = db.TGIInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intGIInfoID).FirstOrDefault();
+            TGIInfo gIInfo = new TGIInfo()
+            {
+                intGIInfoID = nosethroatstatusId,
+                isNormal = healthExam.isGINormal,
+                isExcessiveGas = healthExam.isExcessiveGas,
+                isParasites = healthExam.isGIParasites,
+                isAbnormalFeces = healthExam.isAbnormalFeces,
+                isAnorexia = healthExam.isAnorexia,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(gIInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Nuerological Status Information
+            int neurologicalStatusInfo = db.TNeurologicalInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intNeurologicalInfoID).FirstOrDefault();
+            TNeurologicalInfo neurologicalInfo = new TNeurologicalInfo()
+            {
+                intNeurologicalInfoID = nosethroatstatusId,
+                isNormal = healthExam.isNeurologicalNormal,
+                isPLRL = healthExam.isPLRL,
+                isPLRR = healthExam.isPLRR,
+                isCPLF = healthExam.isCPLF,
+                isCPRF = healthExam.isCPRF,
+                isCPLR = healthExam.isCPLR,
+                isCPRR = healthExam.isCPRR,
+                isPalpebralL = healthExam.isPalpebralL,
+                isPalpebralR = healthExam.isPalpebralR,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(neurologicalInfo).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index", "VisitServices");
