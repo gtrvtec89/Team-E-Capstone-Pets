@@ -10,17 +10,13 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TPetImage
+    public partial class uspViewEmployees3_Result
     {
-        public int intPetImageID { get; set; }
-        public string strFileName { get; set; }
-        public string strContentType { get; set; }
-        public byte[] imgContent { get; set; }
-        public string strFileType { get; set; }
-        public int intPetID { get; set; }
-    
-        public virtual TPet TPet { get; set; }
+        public int intEmployeeID { get; set; }
+        public string strFirstName { get; set; }
+        public string strLastName { get; set; }
+        public int intJobTitleID { get; set; }
+        public int intUserID { get; set; }
     }
 }

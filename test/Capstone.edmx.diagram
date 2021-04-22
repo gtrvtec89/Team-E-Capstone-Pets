@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="83f1cb1a554a4d08807e27901b069251" Name="Diagram1">
+      <Diagram DiagramId="83f1cb1a554a4d08807e27901b069251" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="Model.TAbdomenInfo" Width="1.5" PointX="17.25" PointY="38" />
         <EntityTypeShape EntityType="Model.TBreed" Width="1.5" PointX="3" PointY="26.5" />
         <EntityTypeShape EntityType="Model.TEarStatusInfo" Width="1.5" PointX="17.25" PointY="45" />
@@ -73,6 +73,7 @@
         <AssociationConnector Association="Model.TVisitMedications_TVisits_FK1" />
         <AssociationConnector Association="Model.TVisits_TVisitReasons_FK1" />
         <AssociationConnector Association="Model.TVisitServices_TVisits_FK1" />
+        <AssociationConnector Association="Model.Employees_TJobtitles_FK1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

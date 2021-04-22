@@ -10,17 +10,9 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TPet
+    public partial class uspViewPets4_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TPet()
-        {
-            this.TPetImages = new HashSet<TPetImage>();
-            this.TVisits = new HashSet<TVisit>();
-        }
-    
         public int intPetID { get; set; }
         public string strPetNumber { get; set; }
         public string strMicrochipID { get; set; }
@@ -38,15 +30,5 @@ namespace test
         public string strColor { get; set; }
         public string strNotes { get; set; }
         public int intOwnerID { get; set; }
-    
-        public virtual TBreed TBreed { get; set; }
-        public virtual TGender TGender { get; set; }
-        public virtual TOwner TOwner { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TPetImage> TPetImages { get; set; }
-        public virtual TPetType TPetType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TVisit> TVisits { get; set; }
-		public TPetImage TPetImage { get; internal set; }
-	}
+    }
 }

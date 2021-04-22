@@ -10,17 +10,12 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TPetImage
+    public partial class uspViewServices4_Result
     {
-        public int intPetImageID { get; set; }
-        public string strFileName { get; set; }
-        public string strContentType { get; set; }
-        public byte[] imgContent { get; set; }
-        public string strFileType { get; set; }
-        public int intPetID { get; set; }
-    
-        public virtual TPet TPet { get; set; }
+        public int intServiceID { get; set; }
+        public string strServiceDesc { get; set; }
+        public int intServiceTypeID { get; set; }
+        public decimal dblPrice { get; set; }
     }
 }

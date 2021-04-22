@@ -191,12 +191,17 @@
     <Compile Include="Models\EmployeeInformation.cs" />
     <Compile Include="Models\HealthExam.cs" />
     <Compile Include="Models\Medication.cs" />
+
     <Compile Include="Models\Reasons.cs" />
+
+    <Compile Include="Models\PetOwnerImage.cs" />
+
     <Compile Include="Models\Vaccination.cs" />
     <Compile Include="Models\VisitEmployeeViewModel.cs" />
     <Compile Include="Models\VisitMedicationViewModel.cs" />
     <Compile Include="Models\Visits.cs" />
     <Compile Include="Models\VisitServiceViewModel.cs" />
+    <Compile Include="Models\OwnerHome.cs" />
     <Compile Include="Models\VisitSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TAbdomenInfo.cs">
@@ -307,6 +312,9 @@
     <Compile Include="uspSelectLatestPetImages_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspSelectPetImages1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspSelectPetImages_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -314,6 +322,12 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewEmployees2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewEmployees3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewEmployees4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewEmployees_Result.cs">
@@ -325,10 +339,22 @@
     <Compile Include="uspViewMedications2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewMedications3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewMedications4_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewOwnerPets1_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewOwnerPets2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewOwnerPets3_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewOwnerPets_Result.cs">
@@ -340,6 +366,12 @@
     <Compile Include="uspViewOwners2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewOwners3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewOwners4_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewOwners_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -347,6 +379,12 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetGeneralInformation2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetGeneralInformation3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetGeneralInformation4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetGeneralInformation_Result.cs">
@@ -358,6 +396,12 @@
     <Compile Include="uspViewPetMedications2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetMedications3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetMedications4_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -365,6 +409,12 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPets2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPets3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPets4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPets_Result.cs">
@@ -376,6 +426,12 @@
     <Compile Include="uspViewPetVaccinations2_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
+    <Compile Include="uspViewPetVaccinations3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetVaccinations4_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
     <Compile Include="uspViewPetVaccinations_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
@@ -383,6 +439,12 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetVisits2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetVisits3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewPetVisits4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetVisitsByPet_Result.cs">
@@ -395,6 +457,12 @@
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewServices2_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewServices3_Result.cs">
+      <DependentUpon>Capstone.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspViewServices4_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewServices_Result.cs">
@@ -422,6 +490,7 @@
     <Content Include="Content\Images\icon.PNG" />
     <Content Include="Content\Images\icon2.PNG" />
     <Content Include="Content\Images\icon3.PNG" />
+    <Content Include="Content\Images\LogoBanner.JPG" />
     <Content Include="Content\Images\medications.JPG" />
     <Content Include="Content\Images\pets.JPG" />
     <Content Include="Content\Images\reports.JPG" />
@@ -634,10 +703,18 @@
     <Content Include="Views\TUsers\Save.cshtml" />
     <Content Include="Views\TUsers\Update.cshtml" />
     <Content Include="Views\TUsers\Delete.cshtml" />
+
     <Content Include="Views\TVisitReasons\Save.cshtml" />
     <Content Include="Views\TVisitReasons\Update.cshtml" />
     <Content Include="Views\TVisitReasons\Delete.cshtml" />
     <Content Include="Views\TVisits\Invoice.cshtml" />
+
+    <Content Include="Views\Home\OwnerHome.cshtml" />
+    <Content Include="Views\TPetImages\PetOwnerHome.cshtml" />
+    <Content Include="Views\TPets\PetProfile.cshtml" />
+    <Content Include="Views\OwnerHome\OwnerHome.cshtml" />
+    <Content Include="Views\TPets\PetProfileEdit.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

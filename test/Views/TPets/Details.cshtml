@@ -4,9 +4,10 @@
 	ViewBag.Title = "Details";
 }
 
-<h2><a href="@Url.Action("Details", "TPets", new {  id = Session["intPetID"]})">@ViewBag.PetName</h2>
+<h2 style="margin-bottom:0px; margin-top:10px">
+	@Html.DisplayFor(model => model.strPetName)
+</h2>
 <p style="margin-left: 25px; font-size:15px">
-
     <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TPets")';return false;"><i class="fas fa-arrow-left"></i> Pet List</button>
 </p>
 

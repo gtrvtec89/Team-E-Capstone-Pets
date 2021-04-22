@@ -10,17 +10,14 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TPetImage
+    public partial class uspViewPetVaccinations3_Result
     {
-        public int intPetImageID { get; set; }
-        public string strFileName { get; set; }
-        public string strContentType { get; set; }
-        public byte[] imgContent { get; set; }
-        public string strFileType { get; set; }
-        public int intPetID { get; set; }
-    
-        public virtual TPet TPet { get; set; }
+        public int intVaccinationID { get; set; }
+        public int intVisitServiceID { get; set; }
+        public System.DateTime dtmDateOfVaccination { get; set; }
+        public System.DateTime dtmDateOfExpiration { get; set; }
+        public string strVaccineDesc { get; set; }
+        public string strRabiesNumber { get; set; }
     }
 }
