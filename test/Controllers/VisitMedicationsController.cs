@@ -11,7 +11,7 @@ namespace test.Controllers
 {
     public class VisitMedicationsController : Controller
     {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities db = new Entities();
 
         // GET: VisitMedications
         public ActionResult Index()
