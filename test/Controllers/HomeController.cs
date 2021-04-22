@@ -19,12 +19,13 @@ namespace test.Controllers {
 
 
 		public ActionResult Index(int? id) {
+			if (id == null) { Logout(); return RedirectToAction("Login", "Home"); }
 			var owner = db.TOwners
 				.Include(t => t.TPets)
 				.Include(t => t.TGender)
 				.Include(t => t.TState);
 
-			if (id == null) { Logout(); return RedirectToAction("Login", "Home"); }
+			//if (id == null) { Logout(); return RedirectToAction("Login", "Home"); }
 			TUser user = new TUser();
 			user.intUserID = (int)id;
 			var intRoleID = user.intRoleID;
