@@ -11,7 +11,7 @@
 </h2>
 
 <body>
-	<div class="invisible-box">
+	<div class="invisible-box" style="width:fit-content">
 		@foreach (var item in Model.PetImageData) {
 			<a style="color:#5cb85c; text-decoration:none; padding-left: 15px" href='@Url.Action("PetProfile", "TPets", new { id = item.intPetID })' ;return false;>
 

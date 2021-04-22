@@ -27,7 +27,6 @@ namespace test.Controllers
                 .Include(t => t.TPet.TOwner)
                 .Include(t => t.TPet.TBreed)
                 .Include(t => t.TPet.TGender);
-                //.Include(t => t.imgContent);
 
             return View(tPetImages.ToList());
         }
