@@ -1,8 +1,9 @@
-@model test.Models.HealthExam
+﻿@model test.Models.HealthExam
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
+
 <style>
     .topnav {
         overflow: hidden;
@@ -41,9 +42,9 @@
             color: white;
         }
 
-        .checkbox-mainlabel > h4 {
-            text-decoration: none;
-        }
+    .checkbox-mainlabel > h4 {
+        text-decoration: none;
+    }
 </style>
 
 
@@ -51,16 +52,16 @@
 <link rel="stylesheet" href="~/Content/Site.css" type="text/css" />
 
 @*<div class="form-horizontal">
-    <div class="topnav">
-        <ul>
-            <li class="active">@Html.ActionLink("Health Exam", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
-            <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
-            <li>@Html.ActionLink("Medications", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
-            <li>@Html.ActionLink("Team", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
-            <li>@Html.ActionLink("Summary", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
-        </ul>
-    </div>
-</div>*@
+        <div class="topnav">
+            <ul>
+                <li class="active">@Html.ActionLink("Health Exam", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
+                <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
+                <li>@Html.ActionLink("Medications", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
+                <li>@Html.ActionLink("Team", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
+                <li>@Html.ActionLink("Summary", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
+            </ul>
+        </div>
+    </div>*@
 <p style="margin-left: 25px; font-size:15px">
     <button class="btn-primary" onclick="location.href='@Url.Action("Index", "VisitServices")';return false;">
         <i class="fas fa-arrow-left"></i>  Back
@@ -250,7 +251,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     <div style="display: flex;">
                         <div class="check-box-health-exam" id="divAllOtherEarStatusInformation">
                             <div class="check-box-health-exam">
@@ -304,7 +305,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -491,7 +492,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="form-horizontal" style="display: flex;">
                 <div class="flex-container" style="margin: 20px 10px 20px 0px">
                     <div class="checkbox-mainlabel">
@@ -554,7 +555,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div class="flex-container" style="margin: 20px 0px 20px 10px;">
@@ -617,10 +618,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
             <div class="form-horizontal" style="display: flex;">
                 <div class="flex-container" style="margin: 20px 10px 20px 0px;">
                     <div class="checkbox-mainlabel">
@@ -807,7 +808,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="form-horizontal" style="display: flex;">
                 <div class="flex-container" style="margin: 20px 0px 20px 10px;">
                     <div class="checkbox-mainlabel">
@@ -994,7 +995,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="form-horizontal" style="display: flex;">
                 <div class="flex-container" style="margin: 20px 10px 20px 0px;">
                     <div class="checkbox-mainlabel">
@@ -1076,7 +1077,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="flex-container" style="margin: 20px 0px 20px 10px;">
                     <div class="checkbox-mainlabel">
@@ -1140,27 +1141,26 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="flex-container" style="border: none; padding: 15px;">
                 <div class="col-md-offset-2" style="margin-left:inherit; margin-right:10px">
-                    <button class="btn-primary" id="btnCancel">
-                        <i class="fas fa-arrow-left"></i> Back
+                    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "VisitServices")';return false;">
+                        <i class="fas fa-arrow-left"></i>  Back
                     </button>
                 </div>
                 <div class="col-md-offset-2" style="margin-left:inherit">
                     <button class="btn-success" type="submit">
-                        Save
+                        Update
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
 }
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
-    $(function () {
+    @*$(function () {
         $("#btnCancel").click(function (e) {
             var bResponse = confirm('Are you sure you want to exit?');
 
@@ -1171,7 +1171,7 @@
         }
         return bResponse;
         });
-    });
+    });*@
 
     $(function () {
         $("#isEyeNormal").click(function () {
@@ -1384,3 +1384,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

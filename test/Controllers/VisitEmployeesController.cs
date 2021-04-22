@@ -22,7 +22,7 @@ namespace test.Controllers
                           join j in db.TJobTitles
                           on e.intJobTitleID equals j.intJobTitleID
                           where ve.intVisitID == intVisitId
-                          where j.intJobTitleID == 4
+                          where j.strJobTitleDesc == "Doctor"
                           select new
                           {
                               doctorName = "Dr. " + e.strFirstName + " " + e.strLastName
@@ -40,9 +40,19 @@ namespace test.Controllers
             myModel.strPetName = petData.name;
             myModel.strDoctor = doctor.doctorName;
             myModel.dtmDateOfVisit = petData.dtmDateOfVisit;
-            myModel.Employees = db.TEmployees;
-            myModel.PetVisitEmployees = db.TVisitEmployees.Where(x => x.intVisitID == intVisitId).ToList();
+
+            int doctorJobTitleId = db.TJobTitles.Where(t => t.strJobTitleDesc == "Doctor").Select(z => z.intJobTitleID).FirstOrDefault();
+            List<TEmployee> availableEmployees = (from e in db.TEmployees
+                                        where e.intJobTitleID != doctorJobTitleId
+                                        where !(from tve in db.TVisitEmployees
+                                                where tve.intVisitID == intVisitId
+                                                select tve.intEmployeeID).Contains(e.intEmployeeID)
+                                        select e).Distinct().ToList();
+
+            myModel.Employees = availableEmployees;
+            myModel.PetVisitEmployees = db.TVisitEmployees.Where(x => x.intVisitID == intVisitId && x.TEmployee.intJobTitleID != doctorJobTitleId).ToList();
             ViewBag.Name = petData.name;
+            
             return View(myModel);
         }
 
@@ -57,6 +67,15 @@ namespace test.Controllers
             db.TVisitEmployees.Add(visitEmployee);
             db.SaveChanges();
 
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteVisitEmployee(int employeeID)
+        {
+            int intVisitId = (int)Session["intVisitId"];
+            TVisitEmployee visitEmployee = db.TVisitEmployees.Where(x => x.intVisitID == intVisitId && x.intEmployeeID == employeeID).FirstOrDefault();
+            db.TVisitEmployees.Remove(visitEmployee);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

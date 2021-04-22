@@ -10,11 +10,16 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TJobTitle
+    public partial class uspViewMedications5_Result
     {
-        public int intJobTitleID { get; set; }
-        public string strJobTitleDesc { get; set; }
+        public int intMedicationID { get; set; }
+        public string strMedicationName { get; set; }
+        public string strMedicationDesc { get; set; }
+        public decimal dblCost { get; set; }
+        public decimal dblPrice { get; set; }
+        public string strNotes { get; set; }
+        public int intQuantity { get; set; }
+        public int intMethodID { get; set; }
     }
 }

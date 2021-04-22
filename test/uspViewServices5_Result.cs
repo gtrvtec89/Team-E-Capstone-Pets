@@ -10,11 +10,12 @@
 namespace test
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TJobTitle
+    public partial class uspViewServices5_Result
     {
-        public int intJobTitleID { get; set; }
-        public string strJobTitleDesc { get; set; }
+        public int intServiceID { get; set; }
+        public string strServiceDesc { get; set; }
+        public int intServiceTypeID { get; set; }
+        public decimal dblPrice { get; set; }
     }
 }

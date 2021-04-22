@@ -19,6 +19,7 @@
     /*dynamic width based on screensize*/
     max-width: 95%;
     margin: auto;
+    margin-top:15px;
     overflow: auto;
     /*dynamic height based on screensize*/
     max-height: calc(100vh - 200px);
@@ -217,7 +218,12 @@ h4{
     width: 900px;
     margin: auto;
 }
-
+.invisible-boxpet {
+    padding-top: 30px;
+    height: 625px;
+    width: fit-content();
+    margin: auto;
+}
 .center {
     display: block;
     margin-left: auto;
