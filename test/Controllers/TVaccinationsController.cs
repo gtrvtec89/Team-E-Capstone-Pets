@@ -123,6 +123,7 @@ namespace test.Controllers
                 return HttpNotFound();
             }
 
+            int intPetId = (int)Session["intPetID"];
             int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intServiceID).FirstOrDefault();
             int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
             string serviceName = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.TService.strServiceDesc).FirstOrDefault();
@@ -148,6 +149,7 @@ namespace test.Controllers
                     strRabiesNumber = tVaccination.strRabiesNumber
                 };
 
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
             return View(visitVaccination);
 
         }
@@ -159,6 +161,7 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(VisitVaccination visitVaccination)
         {
+            int intPetId = (int)Session["intPetID"];
             int vaccinationId = db.TVaccinations.Where(x => x.intVisitServiceID == visitVaccination.intVisitServiceId).Select(z => z.intVaccinationID).FirstOrDefault();
             if (ModelState.IsValid)
             {
@@ -188,6 +191,7 @@ namespace test.Controllers
 
             }
 
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
             return View(visitVaccination);
         }
 

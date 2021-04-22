@@ -66,10 +66,6 @@
 <div class="form-horizontal">
     <div class="topnav">
         <ul>
-            @if (Session["isHealthExam"] != null)
-            {
-                <li>@Html.ActionLink("Health Exam", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
-            }
             <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
             <li>@Html.ActionLink("Medications", "Index", "VisitMedications")</li>
             <li>@Html.ActionLink("Team", "Index", "VisitEmployees")</li>

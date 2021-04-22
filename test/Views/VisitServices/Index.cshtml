@@ -65,10 +65,6 @@
 <div class="form-horizontal">
     <div class="topnav">
         <ul>
-            @if (Session["isHealthExam"] != null)
-            {
-                <li>@Html.ActionLink("Health Exam", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
-            }
             <li class="active">@Html.ActionLink("Services", "Index", "VisitServices")</li>
             <li>@Html.ActionLink("Medications", "Index", "VisitMedications")</li>
             <li>@Html.ActionLink("Team", "Index", "VisitEmployees")</li>
@@ -173,9 +169,17 @@
                             <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices", new { serviceID = petService.intVisitServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
                         </td>
                     }
+                    else if (petService.intServiceID == 7)
+                    {
+                        <td style="white-space:nowrap">
+                            <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "THealthExam", new { visitServiceId = petService.intVisitServiceID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                            <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices", new { serviceID = petService.intVisitServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    }
                     else
                     {
                         <td style="white-space:nowrap">
+                            <a style="color:dimgray; padding-left: 15px; visibility:hidden;" ;return false;>  <i class="fas fa-pencil-alt"></i></a>
                             <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetService", "VisitServices", new { serviceID = petService.intVisitServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
                         </td>
                     }

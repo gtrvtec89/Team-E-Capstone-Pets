@@ -56,31 +56,26 @@ namespace test.Controllers
 
         public ActionResult AddPetService(int serviceID)
         {
-            TVisitService visitService = new TVisitService()
-            {
-                intServiceID = serviceID,
-                intVisitID = (int)Session["intVisitId"]
-            };
 
-            db.TVisitServices.Add(visitService);
-            db.SaveChanges();
-
-            int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
-            int service = db.TVisitServices.Where(x => x.intVisitServiceID == lastInsertedVisitServiceID).Select(x => x.intServiceID).FirstOrDefault();
-            //If it's a health exam
+            int intPetId = (int)Session["intPetID"];
+            //int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
             int healthExamService = db.TServices.Where(x => x.strServiceDesc == "Health Exam").Select(z => z.intServiceID).FirstOrDefault();
-            int vaccinationServiceType = db.TServiceTypes.Where(x => x.strServiceType == "Vaccination").Select(s => s.intServiceTypeID).FirstOrDefault();
-            int visitVaccinationServiceType = db.TVisitServices.Select(v => v.TService.intServiceTypeID).FirstOrDefault();
-            if (service == healthExamService)
+            if (serviceID == healthExamService)
             {
-                DateTime dateOfHealthExam = DateTime.Now;
-                int intPetId = (int)Session["intPetID"];
-                return RedirectToAction("Create", "THealthExam", new { id = intPetId , dateOfVisit = dateOfHealthExam });
+                return RedirectToAction("Create", "THealthExam", new { id = intPetId });
             }
-            else if(visitVaccinationServiceType == vaccinationServiceType)
+            else
             {
+                TVisitService visitService = new TVisitService()
+                {
+                    intServiceID = serviceID,
+                    intVisitID = (int)Session["intVisitId"]
+                };
 
+                db.TVisitServices.Add(visitService);
+                db.SaveChanges();
             }
+
             return RedirectToAction("Index");
         }
 
