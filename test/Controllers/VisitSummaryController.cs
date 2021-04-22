@@ -53,43 +53,27 @@ namespace test.Controllers {
 							  doctorName = "Dr. " + e.strFirstName + " " + e.strLastName
 						  }).FirstOrDefault();
 
+            //Save to model
+            myModel.strOwnerName = informationPacket.ownerName;
+            myModel.strAddress = informationPacket.address;
+            myModel.strPhoneNumber = informationPacket.phoneNumber;
+            myModel.intOwnerNumber = informationPacket.clientNumber;
+            myModel.strPetName = informationPacket.petName;
+            myModel.strPetNumber = informationPacket.petNumber;
+            myModel.dtmOfVisit = informationPacket.dateOfVisit;
+            myModel.strDoctor = doctor.doctorName;
+            myModel.intPetID = intPetId;
+            myModel.PetVisitServices = db.TVisitServices.Where(x => x.intVisitID == intVisitId).ToList();
+            myModel.PetVisitMedications = db.TVisitMedications.Where(x => x.intVisitID == intVisitId).ToList();
 
+            ViewBag.Name = informationPacket.petName;
+            ViewBag.Total = db.TVisitServices
+                            .Where(x => x.intVisitID == intVisitId)
+                            .Select(z => z.TService.dblPrice)
+                            .DefaultIfEmpty()
+                            .Sum();
 
-			//Save to model
-			myModel.strOwnerName = informationPacket.ownerName;
-			myModel.strAddress = informationPacket.address;
-			myModel.strPhoneNumber = informationPacket.phoneNumber;
-			myModel.intOwnerNumber = informationPacket.clientNumber;
-			myModel.strPetName = informationPacket.petName;
-			myModel.strPetNumber = informationPacket.petNumber;
-			myModel.dtmOfVisit = informationPacket.dateOfVisit;
-			myModel.strDoctor = doctor.doctorName;
-			myModel.intPetID = intPetId;
-			myModel.PetVisitServices = db.TVisitServices.Where(x => x.intVisitID == intVisitId).ToList();
-			myModel.PetVisitMedications = db.TVisitMedications.Where(x => x.intVisitID == intVisitId).ToList();
-
-
-
-			ViewBag.Name = informationPacket.petName;
-			decimal visitServicesSum = db.TVisitServices
-			.Where(x => x.intVisitID == intVisitId)
-			.Select(z => z.TService.dblPrice)
-			.DefaultIfEmpty()
-			.Sum();
-			decimal visitMedicationsSum = db.TVisitMedications
-			.Where(x => x.intVisitID == intVisitId)
-			.Select(z => z.TMedication.dblPrice * z.intQuantity)
-			.DefaultIfEmpty()
-			.Sum();
-
-
-
-			ViewBag.ServicesTotal = "$ " + Math.Round(visitServicesSum, 2);
-			ViewBag.MedicationsTotal = "$ " + Math.Round(visitMedicationsSum, 2);
-
-			ViewBag.myModel = myModel;
-
-			return View(myModel);
-		}	
-	}
+            return View(myModel);
+        }
+    }
 }

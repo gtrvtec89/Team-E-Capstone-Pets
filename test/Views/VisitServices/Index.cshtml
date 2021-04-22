@@ -1,6 +1,7 @@
 ﻿@model test.Models.VisitServiceViewModel
 
-<h2>Add Services</h2>
+<h2>@ViewBag.Name</h2>
+
 <style>
     .topnav {
         overflow: hidden;
@@ -38,6 +39,22 @@
             background-color: #6495ed;
             color: white;
         }
+
+        .flex-row
+        {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .flex-container
+        {
+            display: flex;
+            flex-wrap: wrap;
+            border:ridge;
+            margin:20px;
+            width: 99%;
+        }
 </style>
 
 <div class="form-horizontal">
@@ -56,6 +73,28 @@
 </div>
 
 <div class="body-content">
+    @*<h4 style="text-decoration: none; padding-top: 10px; padding-left: 32px">
+            @ViewBag.Name
+        </h4>
+        <hr style="margin:5px; margin-bottom: 15px" />*@
+    <div class="flex-container" style="border: none; padding: 0px;">
+        <div class="flex-row" style="margin: 0px">
+            <div class="form-group-inline">
+                @Html.LabelFor(model => model.dtmDateOfVisit, "Date", new { htmlAttributes = new { @class = "control-label col-md-2" }, style = "font-size: 16px; font-weight: 700; padding-left:  15px;" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dtmDateOfVisit, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "width:300px" } })
+                </div>
+            </div>
+        </div>
+        <div class="flex-row" style="margin: 0px">
+            <div class="form-group-inline">
+                @Html.LabelFor(model => model.strDoctor, "Doctor", new { htmlAttributes = new { @class = "control-label col-md-2" }, style = "font-size: 16px; font-weight: 700; padding-left:  15px;" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.strDoctor, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "width:300px" } })
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="form-horizontal" style="display: flex;">
         <div class="flex-container">
             <table class="table">
@@ -106,6 +145,13 @@
                 }
 
             </table>
+        </div>
+    </div>
+    <div class="flex-container" style="margin: 0px; border:none; padding: 0px 0px 20px 22px">
+        <div class="col-md-offset-2" style="margin-left:inherit">
+            <button class="btn-success" onclick='window.location.href = "@Url.Action("Index", "VisitMedications", routeValues: null)"'>
+                Next
+            </button>
         </div>
     </div>
 </div>

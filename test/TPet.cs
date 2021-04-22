@@ -42,10 +42,12 @@ namespace test
         public virtual TBreed TBreed { get; set; }
         public virtual TGender TGender { get; set; }
         public virtual TOwner TOwner { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")] 
+        public TPetImage TPetImage;
         public virtual ICollection<TPetImage> TPetImages { get; set; }
         public virtual TPetType TPetType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TVisit> TVisits { get; set; }
+
     }
 }
