@@ -16,7 +16,8 @@ namespace test.Controllers
         private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TEmployees
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             var tEmployee = db.TEmployees;
             return View(tEmployee.ToList());
         }
