@@ -15,7 +15,7 @@ using test.Models;
 
 namespace test.Controllers {
     public class TPetsController : Controller {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities db = new Entities();
 
         // GET: TPets
         public ActionResult Index() {

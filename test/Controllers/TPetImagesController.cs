@@ -16,7 +16,7 @@ namespace test.Controllers
 {
     public class TPetImagesController : Controller
     {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities db = new Entities();
 
         // GET: TPetImages
         public ActionResult Index()

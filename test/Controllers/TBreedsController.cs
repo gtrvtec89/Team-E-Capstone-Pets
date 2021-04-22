@@ -26,7 +26,7 @@ namespace test.Controllers
         public JsonResult GetBreeds() {
             List<TBreed> all = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities dc = new Entities()) {
 
 				dc.Configuration.ProxyCreationEnabled = false;
 
@@ -58,7 +58,7 @@ namespace test.Controllers
 
             TBreed breeds = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities dc = new Entities()) {
 
                 var v = (from a in dc.TBreeds
                          where a.intBreedID.Equals(intBreedID)
@@ -106,7 +106,7 @@ namespace test.Controllers
 
             if (ModelState.IsValid) {
 
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities dc = new Entities()) {
 
                     if (c.intBreedID > 0) {
                         var v = dc.TBreeds.Where(a => a.intBreedID.Equals(c.intBreedID)).FirstOrDefault();
@@ -158,7 +158,7 @@ namespace test.Controllers
             string message = "";
             bool status = false;
             if (ModelState.IsValid) {
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities dc = new Entities()) {
                     if (c.intBreedID > 0) {
                         var v = dc.TBreeds.Where(a => a.intBreedID.Equals(c.intBreedID)).FirstOrDefault();
                         if (v != null) {
@@ -202,7 +202,7 @@ namespace test.Controllers
         public ActionResult DeleteBreed(int id) {
             bool status = false;
             string message = "";
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities dc = new Entities()) {
                 var v = dc.TBreeds.Where(a => a.intBreedID.Equals(id)).FirstOrDefault();
                 if (v != null) {
                     dc.TBreeds.Remove(v);

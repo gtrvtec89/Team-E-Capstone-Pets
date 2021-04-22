@@ -10,7 +10,7 @@ using test;
 
 namespace test.Controllers {
     public class TRolesController : Controller {
-        //private CapstoneEntities db = new CapstoneEntities();
+        //private Entities db = new Entities();
 
         // GET: TRoles
         public ActionResult Index() {
@@ -23,7 +23,7 @@ namespace test.Controllers {
         public JsonResult GetRoles() {
             List<TRole> all = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities dc = new Entities()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
@@ -53,7 +53,7 @@ namespace test.Controllers {
 
             TRole role = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities dc = new Entities()) {
 
                 var v = (from a in dc.TRoles
                          where a.intRoleID.Equals(intRoleID)
@@ -97,7 +97,7 @@ namespace test.Controllers {
 
             if (ModelState.IsValid) {
 
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities dc = new Entities()) {
 
                     if (c.intRoleID > 0) {
                         var v = dc.TRoles.Where(a => a.intRoleID.Equals(c.intRoleID)).FirstOrDefault();
@@ -148,7 +148,7 @@ namespace test.Controllers {
             string message = "";
             bool status = false;
             if (ModelState.IsValid) {
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities dc = new Entities()) {
                     if (c.intRoleID > 0) {
                         var v = dc.TRoles.Where(a => a.intRoleID.Equals(c.intRoleID)).FirstOrDefault();
                         if (v != null) {
@@ -190,7 +190,7 @@ namespace test.Controllers {
         public ActionResult DeleteRole(int id) {
             bool status = false;
             string message = "";
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities dc = new Entities()) {
                 var v = dc.TRoles.Where(a => a.intRoleID.Equals(id)).FirstOrDefault();
                 if (v != null) {
                     dc.TRoles.Remove(v);

@@ -137,7 +137,7 @@
 			<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TPets", new { id = item.intPetID })' ;return false;>  <i class="far fa-eye"></i></a>
 			<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TPets", new { id = item.intPetID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
 
-			@if (item.TPetImages.Count > 0) {
+			@if (item.TVisits.Count > 0) {
 				<a style="color:dimgrey; padding-left: 15px" title="Cannot Delete. Visits are assigned to this pet." return false;>  <i class="fas fa-trash-alt"></i></a>
 
 			}

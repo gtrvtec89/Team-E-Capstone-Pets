@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,14 +46,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -191,17 +189,13 @@
     <Compile Include="Models\EmployeeInformation.cs" />
     <Compile Include="Models\HealthExam.cs" />
     <Compile Include="Models\Medication.cs" />
-
-    <Compile Include="Models\Reasons.cs" />
-
     <Compile Include="Models\PetOwnerImage.cs" />
-
     <Compile Include="Models\Vaccination.cs" />
     <Compile Include="Models\VisitEmployeeViewModel.cs" />
     <Compile Include="Models\VisitMedicationViewModel.cs" />
-    <Compile Include="Models\Visits.cs" />
     <Compile Include="Models\VisitServiceViewModel.cs" />
     <Compile Include="Models\OwnerHome.cs" />
+    <Compile Include="Models\VisitVaccination.cs" />
     <Compile Include="Models\VisitSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TAbdomenInfo.cs">
@@ -306,193 +300,31 @@
     <Compile Include="TVisitService.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
-    <Compile Include="uspSelectLatestPetImages1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspSelectLatestPetImages_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspSelectPetImages1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspSelectPetImages_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewEmployees1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewEmployees2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewEmployees3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewEmployees4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewEmployees5_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
     <Compile Include="uspViewEmployees_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewMedications1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewMedications2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewMedications3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewMedications4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewMedications5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
-    <Compile Include="uspViewOwnerPets1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewOwnerPets2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewOwnerPets3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewOwnerPets4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
     <Compile Include="uspViewOwnerPets_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewOwners1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewOwners2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewOwners3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewOwners4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewOwners5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewOwners_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
-    <Compile Include="uspViewPetGeneralInformation1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetGeneralInformation2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetGeneralInformation3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetGeneralInformation4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetGeneralInformation5_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
     <Compile Include="uspViewPetGeneralInformation_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetMedications1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetMedications2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetMedications3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetMedications4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetMedications5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetMedications_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
-    <Compile Include="uspViewPets1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPets2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPets3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPets4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPets5_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
     <Compile Include="uspViewPets_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVaccinations1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVaccinations2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVaccinations3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVaccinations4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVaccinations5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewPetVaccinations_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
-    <Compile Include="uspViewPetVisits1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVisits2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVisits3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVisits4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVisits5_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewPetVisitsByPet_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
     <Compile Include="uspViewPetVisits_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewServices1_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewServices2_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewServices3_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewServices4_Result.cs">
-      <DependentUpon>Capstone.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspViewServices5_Result.cs">
       <DependentUpon>Capstone.tt</DependentUpon>
     </Compile>
     <Compile Include="uspViewServices_Result.cs">
@@ -569,10 +401,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
-    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
-    <Content Include="Rotativa\wkhtmltoimage.exe" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\Breeds.js" />
     <Content Include="Scripts\JobTitles.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
@@ -594,7 +422,6 @@
     <Content Include="Capstone.edmx.diagram">
       <DependentUpon>Capstone.edmx</DependentUpon>
     </Content>
-    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -607,7 +434,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Users.js" />
-    <Content Include="Scripts\VisitReasons.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -672,7 +498,7 @@
     <Content Include="Views\TRoles\Edit.cshtml" />
     <Content Include="Views\TRoles\Index.cshtml" />
     <Content Include="Views\TVisitReasons\Create.cshtml" />
-    <Content Include="Views\TVisitReasons\OrgDelete.cshtml" />
+    <Content Include="Views\TVisitReasons\Delete.cshtml" />
     <Content Include="Views\TVisitReasons\Details.cshtml" />
     <Content Include="Views\TVisitReasons\Edit.cshtml" />
     <Content Include="Views\TVisitReasons\Index.cshtml" />
@@ -734,18 +560,11 @@
     <Content Include="Views\TUsers\Save.cshtml" />
     <Content Include="Views\TUsers\Update.cshtml" />
     <Content Include="Views\TUsers\Delete.cshtml" />
-
-    <Content Include="Views\TVisitReasons\Save.cshtml" />
-    <Content Include="Views\TVisitReasons\Update.cshtml" />
-    <Content Include="Views\TVisitReasons\Delete.cshtml" />
-    <Content Include="Views\TVisits\Invoice.cshtml" />
-
     <Content Include="Views\Home\OwnerHome.cshtml" />
     <Content Include="Views\TPetImages\PetOwnerHome.cshtml" />
     <Content Include="Views\TPets\PetProfile.cshtml" />
     <Content Include="Views\OwnerHome\OwnerHome.cshtml" />
     <Content Include="Views\TPets\PetProfileEdit.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -799,7 +618,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

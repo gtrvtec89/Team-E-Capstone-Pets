@@ -16,7 +16,7 @@ using SmtpClient = System.Net.Mail.SmtpClient;
 
 namespace test.Controllers {
     public class TOwnersController : Controller {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities db = new Entities();
 
  
 

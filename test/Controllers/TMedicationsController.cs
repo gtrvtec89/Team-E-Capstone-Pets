@@ -12,7 +12,7 @@ namespace test.Controllers
 {
     public class TMedicationsController : Controller
     {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities db = new Entities();
 
         // GET: TMedications
         public ActionResult Index()
