@@ -44,29 +44,26 @@
             color: white;
         }
 
-        .flex-row
-        {
-            width: 50%;
-            display: flex;
-            flex-wrap: wrap;
-        }
+    .flex-row {
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+    }
 
-        .flex-container
-        {
-            display: flex;
-            flex-wrap: wrap;
-            border:ridge;
-            margin:20px;
-            
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        border: ridge;
+        margin: 20px;
+    }
+    h4 {
+        margin-left: 200px;
+        text-decoration: none;
+    }
 </style>
-
 <div class="form-horizontal">
     <div class="topnav">
         <ul>
-            @if (Session["isHealthExam"] != null)
-            {
-                <li>@Html.ActionLink("Health Exam", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
-            }
             <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
             <li class="active">@Html.ActionLink("Medications", "Index", "VisitMedications")</li>
             <li>@Html.ActionLink("Team", "Index", "VisitEmployees")</li>
@@ -93,63 +90,90 @@
             </div>
         </div>
     </div>
+
+    <div class="flex-container" style="border: none; padding: 0px; margin: 0px;">
+        <div style="text-align: center; width: 50%;">
+            <h4 style="margin:auto;">Available Medications</h4>
+        </div>
+        <div style="text-align: center;  width: 50%;">
+            <h4 style="margin:auto;">Pet Medications</h4>
+        </div>
+    </div>
+
     <div class="form-horizontal" style="display:flex">
         <div class="flex-container">
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayName("Medication")
-                    </th>
-                    <th style="white-space:nowrap">
-                        @Html.DisplayName("Add")
-                    </th>
-                </tr>
-
-                @foreach (TMedication medication in Model.Medications)
-                {
+            @if (Model.Medications.Count() > 0)
+            {
+                <table class="table">
                     <tr>
-                        <td>
-                            @medication.strMedicationName
-                        </td>
-                        <td style="white-space:nowrap">
-                            <a style="color:#5cb85c; padding-left: 10px" href='' ;return false;>  <i class="far fa-plus"></i></a>
-                        </td>
+                        <th>
+                            @Html.DisplayName("Medication")
+                        </th>
+                        <th style="white-space:nowrap">
+                            @Html.DisplayName("Add")
+                        </th>
                     </tr>
-                }
 
-            </table>
+                    @foreach (TMedication medication in Model.Medications)
+                    {
+                        <tr>
+                            <td>
+                                @medication.strMedicationName
+                            </td>
+                            <td style="white-space:nowrap">
+                                <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetMedication", "VisitMedications", new { medicationId = medication.intMedicationID })' ;return false;>  <i class="far fa-plus"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <h4 style="margin:auto; color: dimgray;">No available medications</h4>
+            }
+
         </div>
 
         <div class="flex-container">
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayName("Medication")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Quantity")
-                    </th>
-                    <th style="white-space:nowrap">
-                        @Html.DisplayName("Delete")
-                    </th>
-                </tr>
-
-                @foreach (TVisitMedication visitMedication in Model.PetVisitMedications)
-                {
+            @if (Model.PetVisitMedications.Count() > 0)
+            {
+                <table class="table">
                     <tr>
-                        <td>
-                            @visitMedication.TMedication.strMedicationDesc
-                        </td>
-                        <td>
-                            @visitMedication.intQuantity
-                        </td>
-                        <td style="white-space:nowrap">
-                            <a style="color:red; padding-left: 10px" href='' ;return false;>  <i class="fas fa-trash-alt"></i></a>
-                        </td>
+                        <th>
+                            @Html.DisplayName("Medication")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Quantity")
+                        </th>
+                        <th style="white-space:nowrap">
+                            @Html.DisplayName("Edit | Delete")
+                        </th>
                     </tr>
-                }
 
-            </table>
+                    @foreach (TVisitMedication visitMedication in Model.PetVisitMedications)
+                    {
+                        <tr>
+                            <td>
+                                @visitMedication.TMedication.strMedicationName
+                            </td>
+                            <td>
+                                @visitMedication.intQuantity
+                            </td>
+                            <td style="white-space:nowrap">
+                                <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("EditMedication", "VisitMedications", new { medicationId = visitMedication.intVisitMedicationID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                                <a style="color:red; padding-left: 10px" href='@Url.Action("DeletePetMedication", "VisitMedications", new { medicationId = visitMedication.intVisitMedicationID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <h4 style="margin:auto; color: dimgray;">No added pet medications</h4>
+            }
+
         </div>
     </div>
     <div class="flex-container" style="margin: 0px; border:none; padding: 0px 0px 20px 22px">

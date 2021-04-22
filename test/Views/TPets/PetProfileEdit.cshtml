@@ -7,9 +7,9 @@
 <h2>Edit (@Html.DisplayFor(model => model.strPetName))</h2>
 
 <p style="margin-left: 30px">
-	<button class="btn-primary" onclick="location.href='@Url.Action("PetProfile", "TPets")';return false;">
-		<i class="fas fa-arrow-left"></i>  Back to List
-	</button>
+    <button class="btn-primary" onclick="location.href='@Url.Action("PetProfile", "TPets", new { id = Model.intPetID })';return false;">
+        <i class="fas fa-arrow-left"></i>  Back to List
+    </button>
 </p>
 @using (Html.BeginForm("PetProfileEdit", "TPets", null, FormMethod.Post, new { enctype = "multipart/form-data" })) {
 	@Html.AntiForgeryToken()

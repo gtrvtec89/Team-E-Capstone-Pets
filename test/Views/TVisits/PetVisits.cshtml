@@ -4,7 +4,7 @@
     ViewBag.Title = "PetVisits";
 }
 
-<h2><a href="@Url.Action("Details", "TPets", new {  id = Session["intPetID"]})">@ViewBag.PetName</h2>
+<h2><a href="@Url.Action("Details", "TPets", new {  id = Session["intPetID"]})">@ViewBag.PetName</a></h2>
 <div style="display:flex; flex-wrap:wrap;">
     <p style="margin-left: 25px; font-size:15px">
 
@@ -94,10 +94,10 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.dtmDateOfVist)
+                    @Html.DisplayName("Date")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TVisitReason.strVisitReason)
+                    @Html.DisplayName("Visit Reason")
                 </th>
                 <th>
                     @Html.DisplayName("View | Edit | Delete | Print Invoice")

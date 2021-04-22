@@ -13,7 +13,7 @@ using Rotativa;
 namespace test.Controllers
 {
     public class TVisitsController : Controller {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities db = new Entities();
 
         // GET: TVisits
         public ActionResult Index() {
@@ -25,7 +25,7 @@ namespace test.Controllers
         // GET: TVisits/Details/5
         public ActionResult Details(int? id) {
             if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
             }
             TVisit tVisit = db.TVisits.Find(id);
             if (tVisit == null) {
@@ -221,25 +221,16 @@ namespace test.Controllers
 
                 //Remove existing data from session for pet id
 
-                Session["isHealthExam"] = null;
-                int healthExam = db.TVisitReasons.Where(x => x.strVisitReason == "Health Exam").Select(z => z.intVisitReasonID).FirstOrDefault();
-                
-                if(newPetVisit.intVisitReasonID == healthExam)
+                int wellnessExam = db.TVisitReasons.Where(x => x.strVisitReason == "Wellness Exam").Select(z => z.intVisitReasonID).FirstOrDefault();
+                int medicationExam = db.TVisitReasons.Where(x => x.strVisitReason == "Medication").Select(z => z.intVisitReasonID).FirstOrDefault();
+
+                if (newPetVisit.intVisitReasonID == wellnessExam)
                 {
-                    int healthExamService = db.TServices.Where(x => x.strServiceDesc == "Health Exam").Select(z => z.intServiceID).FirstOrDefault();
-                    TVisitService visitService = new TVisitService()
-                    {
-                        intVisitID = lastInsertedVisitID,
-                        intServiceID = healthExamService
-                    };
-
-                    db.TVisitServices.Add(visitService);
-                    db.SaveChanges();
-                    int lastInsertedVisitServiceID = db.TVisitServices.Max(v => v.intVisitServiceID);
-
-                    Session["isHealthExam"] = true;
-                    Session["intVisitServiceID"] = lastInsertedVisitServiceID;
-                    return RedirectToAction("Create", "THealthExam", new { id = petID, dateOfVisit = newPetVisit.dtmDateOfVist });
+                    return RedirectToAction("Create", "THealthExam", new { id = petID });
+                }
+                else if(newPetVisit.intVisitReasonID == medicationExam)
+                {
+                    return RedirectToAction("Index", "VisitMedications");
                 }
                 else
                 {
@@ -277,7 +268,7 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tVisit).State = EntityState.Modified;
+                db.Entry(tVisit).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

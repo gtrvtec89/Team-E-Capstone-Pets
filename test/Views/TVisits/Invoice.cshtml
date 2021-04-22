@@ -186,7 +186,7 @@
 <br />
 <hr />
 
-@if (Model.VisitService.Count() > 0) {
+@if (Model.VisitService != null) {
 	<table>
 		<caption class="caption">Service Summary</caption>
 
@@ -211,7 +211,7 @@
 
 
 <hr />
-@if (Model.VisitMed.Count() > 0) {
+@if (Model.VisitMed != null) {
 	<table>
 		<caption>Medication Summary</caption>
 

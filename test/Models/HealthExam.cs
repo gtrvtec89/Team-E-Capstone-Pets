@@ -9,6 +9,7 @@ namespace test.Models
 {
     public class HealthExam
     {
+
         // Health Exam Parameters 
         public float dblWeight { get; set; }
         public float dblTemperature { get; set; }

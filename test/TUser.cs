@@ -11,9 +11,8 @@ namespace test
 {
     using System;
     using System.Collections.Generic;
-	using System.Web;
-
-	public partial class TUser
+    
+    public partial class TUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TUser()
@@ -29,33 +28,5 @@ namespace test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TOwner> TOwners { get; set; }
         public virtual TRole TRole { get; set; }
-
-		public bool RemoveUserSession() {
-			try {
-				HttpContext.Current.Session["CurrentUser"] = null;
-				return true;
-			}
-			catch (Exception ex) { throw new Exception(ex.Message); }
-		}
-
-		public TUser GetUserSession() {
-			try {
-				TUser u = new TUser();
-				if (HttpContext.Current.Session["CurrentUser"] == null) {
-					return u;
-				}
-				u = (TUser)HttpContext.Current.Session["CurrentUser"];
-				return u;
-			}
-			catch (Exception ex) { throw new Exception(ex.Message); }
-		}
-		public bool SaveUserSession() {
-			try {
-				HttpContext.Current.Session["CurrentUser"] = this;
-				return true;
-			}
-			catch (Exception ex) { throw new Exception(ex.Message); }
-		}
-
-	}
+    }
 }
