@@ -42,6 +42,7 @@
         <AssociationConnector Association="Model.TAbdomenInfos_THealthExams_FK1" />
         <AssociationConnector Association="Model.TPets_TBreeds_FK1" />
         <AssociationConnector Association="Model.TEarStatusInfos_THealthExams_FK1" />
+        <AssociationConnector Association="Model.TEmployees_TJobTitles_FK1" />
         <AssociationConnector Association="Model.TVisitEmployees_TEmployees_FK1" />
         <AssociationConnector Association="Model.TEyeStatusInfos_THealthExams_FK1" />
         <AssociationConnector Association="Model.TOwners_TGenders_FK1" />

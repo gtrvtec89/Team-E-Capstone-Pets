@@ -7,10 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using test;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 using System.IO;
-using iTextSharp.tool.xml;
+
 
 
 namespace test.Controllers

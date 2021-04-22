@@ -17,7 +17,11 @@ namespace test
         public string strFileName { get; set; }
         public string strContentType { get; set; }
         public byte[] imgContent { get; set; }
+
+        public int intFileType { get; set; }
+
         public string strFileType { get; set; }
+
         public int intPetID { get; set; }
         public int intPetID1 { get; set; }
         public string strPetNumber { get; set; }
