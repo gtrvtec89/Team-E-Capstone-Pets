@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -185,6 +186,8 @@ namespace test.Controllers
 
         public ActionResult Edit(int visitServiceId)
         {
+            Session["intVisitServiceID"] = visitServiceId;
+
             THealthExam healthExam = db.THealthExams.Where(x => x.intVisitServiceID == visitServiceId).FirstOrDefault();
             TEyeStatusInfo eyeStatusInfo = db.TEyeStatusInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
             TEarStatusInfo earStatusInfo = db.TEarStatusInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
@@ -311,6 +314,31 @@ namespace test.Controllers
             int id = (int)Session["intPetID"];
             ViewBag.Name = db.TPets.Where(x => x.intPetID == id).Select(z => z.strPetName).FirstOrDefault();
             return View(hExam);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(HealthExam healthExam)
+        {
+            int visitServiceId = (int)Session["intVisitServiceID"];
+            int healthExamId = db.THealthExams.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intHealthExamID).FirstOrDefault();
+
+            THealthExam exam = new THealthExam()
+            {
+                intHealthExamID = healthExamId,
+                dblWeight = (float)healthExam.dblWeight,
+                dblTemperature = (float)healthExam.dblTemperature,
+                intHeartRate = healthExam.intHeartRate,
+                intRespRate = healthExam.intRespRate,
+                intCapillaryRefillTime = healthExam.intCapillaryRefillTime,
+                strMucousMembrane = healthExam.strMucousMembrane,
+                intVisitServiceID = visitServiceId,
+                strNotes = healthExam.strNotes
+            };
+
+            db.Entry(exam).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "VisitServices");
         }
     }
 }
