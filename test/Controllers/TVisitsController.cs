@@ -323,7 +323,34 @@ namespace test.Controllers
 
 
 
+        public ActionResult PetProfilePetVisits(int? id) {
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Session["intPetID"] = id;
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+            var tVisits = db.TVisits.Where(x => x.intPetID == id);
 
+            if (petName == null) {
+                return HttpNotFound();
+            }
+            ViewBag.PetName = petName;
+
+            return View(tVisits);
+        }
+
+        // GET: TVisits/PetProfileVisitDetails/5
+        public ActionResult PetProfileVisitDetails(int? id) {
+            if (id == null) {
+                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+            }
+            TVisit tVisit = db.TVisits.Find(id);
+            if (tVisit == null) {
+                return HttpNotFound();
+            }
+
+            return View(tVisit);
+        }
 
 
 

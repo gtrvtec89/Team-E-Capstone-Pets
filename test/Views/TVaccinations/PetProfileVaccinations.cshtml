@@ -1,7 +1,7 @@
-﻿@model IEnumerable<test.TVisitMedication>
+﻿@model IEnumerable<test.Models.Vaccination>
 
 @{
-    ViewBag.Title = "PetMedications";
+    ViewBag.Title = "PetVaccinations";
 }
 
 <h2><a href="@Url.Action("Details", "TPets", new {  id = Session["intPetID"]})">@ViewBag.PetName</a></h2>
@@ -26,7 +26,6 @@
         color:cornflowerblue;
         text-decoration: none;
     }
-
     dt {
         white-space: nowrap
     }
@@ -77,25 +76,30 @@
     <div class="topnav">
         <ul>
             <li>@Html.ActionLink("General", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
-            <li>@Html.ActionLink("Visits", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
-            <li>@Html.ActionLink("Vaccinations", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
-            <li class="active">@Html.ActionLink("Medications", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
+            <li >@Html.ActionLink("Visits", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
+            <li class="active">@Html.ActionLink("Vaccinations", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Medications", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
         </ul>
     </div>
 </div>
-
 <div class="body-content">
     <div class="form-horizontal">
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayName("Date Prescribed")
+                    @Html.DisplayName("Date of Vaccination")
                 </th>
                 <th>
-                    @Html.DisplayName("Medication")
+                    @Html.DisplayName("Description")
+                </th>
+                <th>
+                    @Html.DisplayName("Rabies Tag")
+                </th>
+                <th>
+                    @Html.DisplayName("Date of Expiration")
                 </th>
                 <th style="white-space:nowrap">
-                    @Html.DisplayName("Details")
+                    @Html.DisplayName("Edit | Delete")
                 </th>
             </tr>
 
@@ -103,14 +107,20 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.dtmDatePrescribed)
+                        @Html.DisplayFor(modelItem => item.dtmDateOfVaccination)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TMedication.strMedicationName)
+                        @Html.DisplayFor(modelItem => item.strVaccineDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strRabiesNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dtmDateOfExpiration)
                     </td>
                     <td style="white-space:nowrap">
-                        @*TO DO: FIX THIS*@
-                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("PetMedicationDetails", "TVisitMedication", new { id = item.intVisitMedicationID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TVaccinations", new { id = item.intVaccinationID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                        <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TVaccinations", new { id = item.intVaccinationID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             }
@@ -118,3 +128,4 @@
         </table>
     </div>
 </div>
+

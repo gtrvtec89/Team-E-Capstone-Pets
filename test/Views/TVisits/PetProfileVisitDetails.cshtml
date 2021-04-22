@@ -1,0 +1,44 @@
+﻿@model test.TVisit
+
+@{
+	ViewBag.Title = "PetProfileDetails";
+}
+
+
+<h2>Details</h2>
+
+<div>
+	<h4>TVisit</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.intPetID)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.intPetID)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.dtmDateOfVist)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.dtmDateOfVist)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.TVisitReason.strVisitReason)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.TVisitReason.strVisitReason)
+		</dd>
+
+	</dl>
+</div>
+
+<button class="btn-primary" onclick="location.href='@Url.Action("PetProfile", "TPets", new { id = Model.intPetID })';return false;">
+	<i class="fas fa-arrow-left"></i>  Back to My Pets
+</button>
+</p>
