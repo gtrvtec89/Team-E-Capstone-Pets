@@ -9,7 +9,7 @@
 	@Html.ValidationSummary(true)
 	@Html.AntiForgeryToken()
 
-	<div class="form-group">
+	<div class="form-group row">
 		@Html.HiddenFor(model => model.intRoleID)
 		@Html.LabelFor(model => model.strRoleName, "User Role:")
 		@Html.TextBoxFor(model => model.strRoleName, new { @class = "form-control" })

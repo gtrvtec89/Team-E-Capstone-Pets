@@ -17,7 +17,7 @@
 		<hr />
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-		<div class="form-group">
+		<div class="form-group row">
 			@Html.LabelFor(model => model.strMethod, "Form", htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
 				@Html.EditorFor(model => model.strMethod, new { htmlAttributes = new { @class = "form-control" } })
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-md-offset-2 col-md-10">
 				<input type="submit" value="Create" class="btn btn-default" />
 			</div>

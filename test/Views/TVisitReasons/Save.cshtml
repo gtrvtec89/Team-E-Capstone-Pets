@@ -9,7 +9,7 @@
 	@Html.ValidationSummary(true)
 	@Html.AntiForgeryToken()
 
-	<div class="form-group">
+	<div class="form-group row">
 		@Html.HiddenFor(model => model.intVisitReasonID)
 		@Html.LabelFor(model => model.strVisitReason, "Visit Reason:")
 		@Html.TextBoxFor(model => model.strVisitReason, new { @class = "form-control" })
