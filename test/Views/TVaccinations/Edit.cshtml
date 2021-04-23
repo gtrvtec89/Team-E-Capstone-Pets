@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dtmDateofVaccination, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.dtmDateofVaccination, "Date of Vaccination", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.dtmDateofVaccination, new { htmlAttributes = new { @class = "datepicker" } })
                 @Html.ValidationMessageFor(model => model.dtmDateofVaccination, "", new { @class = "text-danger" })
@@ -48,31 +48,33 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dtmDateOfExpiration, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.dtmDateOfExpiration, "Date of Expiration", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.dtmDateOfExpiration, new { htmlAttributes = new { @class = "datepicker" } })
                 @Html.ValidationMessageFor(model => model.dtmDateOfExpiration, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.strVaccineNotes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.strVaccineNotes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.strVaccineNotes, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
 
         @if (Session["isRabiesVaccine"] != null)
         {
-            <div class="form-group" >
-                @Html.LabelFor(model => model.strRabiesNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.strRabiesNumber, "Rabies Number", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.strRabiesNumber, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.strRabiesNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
         }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.strVaccineNotes, "Notes", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.strVaccineNotes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.strVaccineNotes, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -1652,5 +1652,18 @@ namespace test
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Validate_User", strUserNameParameter, strPasswordParameter);
         }
+    
+        public virtual int uspUpdateVisitMedication(Nullable<int> intVisitMedicationID, Nullable<int> intQuantity)
+        {
+            var intVisitMedicationIDParameter = intVisitMedicationID.HasValue ?
+                new ObjectParameter("intVisitMedicationID", intVisitMedicationID) :
+                new ObjectParameter("intVisitMedicationID", typeof(int));
+    
+            var intQuantityParameter = intQuantity.HasValue ?
+                new ObjectParameter("intQuantity", intQuantity) :
+                new ObjectParameter("intQuantity", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspUpdateVisitMedication", intVisitMedicationIDParameter, intQuantityParameter);
+        }
     }
 }

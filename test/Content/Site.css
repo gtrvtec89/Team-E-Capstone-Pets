@@ -19,10 +19,10 @@
     /*dynamic width based on screensize*/
     max-width: 95%;
     margin: auto;
-    margin-top:15px;
     overflow: auto;
     /*dynamic height based on screensize*/
-    max-height: calc(100vh - 200px);
+    /*max-height: calc(100vh - 200px);*/
+    max-height: calc(94vh - 195px);
 }
 
 /*Health Exam Page CSS - start*/

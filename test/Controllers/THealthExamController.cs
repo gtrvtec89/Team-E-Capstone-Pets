@@ -22,6 +22,137 @@ namespace test.Controllers
             return View();
         }
 
+        // GET: Details
+        public ActionResult Details(int visitServiceId)
+        {
+            THealthExam healthExam = db.THealthExams.Where(x => x.intVisitServiceID == visitServiceId).FirstOrDefault();
+            TEyeStatusInfo eyeStatusInfo = db.TEyeStatusInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TEarStatusInfo earStatusInfo = db.TEarStatusInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TSkinInfo skinInfo = db.TSkinInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TMouthInfo mouthInfo = db.TMouthInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TNoseThroatInfo noseThroatInfo = db.TNoseThroatInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TGIInfo gIInfo = db.TGIInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TNeurologicalInfo neurologicalInfo = db.TNeurologicalInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TAbdomenInfo abdomenInfo = db.TAbdomenInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TUrogenitalInfo urogenitalInfo = db.TUrogenitalInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TMusculoskeletalInfo musculoskeletalInfo = db.TMusculoskeletalInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            TLungInfo lungInfo = db.TLungInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+            THeartInfo heartInfo = db.THeartInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
+
+            HealthExam hExam = new HealthExam()
+            {
+                dblWeight = (float)healthExam.dblWeight,
+                dblTemperature = (float)healthExam.dblTemperature,
+                intHeartRate = healthExam.intHeartRate,
+                intRespRate = healthExam.intRespRate,
+                intCapillaryRefillTime = healthExam.intCapillaryRefillTime,
+                strMucousMembrane = healthExam.strMucousMembrane,
+                strNotes = healthExam.strNotes,
+
+                isEyeNormal = eyeStatusInfo.isNormal,
+                isDischarge = eyeStatusInfo.isDischarge,
+                isInfection = eyeStatusInfo.isInfection,
+                isSclerosisLeft = eyeStatusInfo.isSclerosisLeft,
+                isSclerosisRight = eyeStatusInfo.isSclerosisRight,
+                isCataractLeft = eyeStatusInfo.isCataractLeft,
+                isCataractRight = eyeStatusInfo.isCataractRight,
+                isEyeInflamed = eyeStatusInfo.isInflamed,
+                isEyelidTumor = eyeStatusInfo.isEyelidTumor,
+
+                isEarNormal = earStatusInfo.isNormal,
+                isEarInflamed = earStatusInfo.isInflamed,
+                isEarTumor = earStatusInfo.isTumor,
+                isDirty = earStatusInfo.isDirty,
+                isEarPainful = earStatusInfo.isPainful,
+                isExcessiveHair = earStatusInfo.isExcessiveHair,
+
+                isSkinNormal = skinInfo.isNormal,
+                isScaly = skinInfo.isScaly,
+                isInfected = skinInfo.isInfected,
+                isMatted = skinInfo.isMatted,
+                isSkinScrape = skinInfo.isSkinScrape,
+                isPruritus = skinInfo.isPruritus,
+                isHairLoss = skinInfo.isHairLoss,
+                isMass = skinInfo.isMass,
+                isSkinParasites = skinInfo.isParasites,
+
+                isMouthNormal = mouthInfo.isNormal,
+                isMouthTumor = mouthInfo.isTumor,
+                isGingivitis = mouthInfo.isGingivitis,
+                isPeriodontitis = mouthInfo.isPeriodontitis,
+                isTartarBuildup = mouthInfo.isTartarBuildup,
+                isLooseTeeth = mouthInfo.isLooseTeeth,
+                isBiteOVerUnder = mouthInfo.isBiteOVerUnder,
+
+                isNoseThroatNormal = noseThroatInfo.isNormal,
+                isLargeLymphNodes = noseThroatInfo.isLargeLymphNodes,
+                isInflamedThroat = noseThroatInfo.isInflamedThroat,
+                isNasalDishcharge = noseThroatInfo.isNasalDishcharge,
+                isInflamedTonsils = noseThroatInfo.isInflamedTonsils,
+
+                isGINormal = gIInfo.isNormal,
+                isExcessiveGas = gIInfo.isExcessiveGas,
+                isGIParasites = gIInfo.isParasites,
+                isAbnormalFeces = gIInfo.isAbnormalFeces,
+                isAnorexia = gIInfo.isAnorexia,
+
+                isNeurologicalNormal = neurologicalInfo.isNormal,
+                isPLRL = neurologicalInfo.isPLRL,
+                isPLRR = neurologicalInfo.isPLRR,
+                isCPLF = neurologicalInfo.isCPLF,
+                isCPRF = neurologicalInfo.isCPRF,
+                isCPLR = neurologicalInfo.isCPLR,
+                isCPRR = neurologicalInfo.isCPRR,
+                isPalpebralL = neurologicalInfo.isPalpebralL,
+                isPalpebralR = neurologicalInfo.isPalpebralR,
+
+                isAbdomenNormal = abdomenInfo.isNormal,
+                isAbnormalMass = abdomenInfo.isAbnormalMass,
+                isAbdomenPainful = abdomenInfo.isPainful,
+                isBloated = abdomenInfo.isBloated,
+                isEnlarged = abdomenInfo.isEnlarged,
+                isFluid = abdomenInfo.isFluid,
+                isHernia = abdomenInfo.isHernia,
+
+                isUrogenitalNormal = urogenitalInfo.isNormal,
+                isUrogenAbnormalUrination = urogenitalInfo.isAbnormalUrination,
+                isGenitalDischarge = urogenitalInfo.isGenitalDischarge,
+                isAnalSacs = urogenitalInfo.isAnalSacs,
+                isRectal = urogenitalInfo.isRectal,
+                isMammaryTumors = urogenitalInfo.isMammaryTumors,
+                isAbnormalTesticles = urogenitalInfo.isAbnormalTesticles,
+                isBloodSeen = urogenitalInfo.isBloodSeen,
+
+                isMusculoskeletalNormal = musculoskeletalInfo.isNormal,
+                isJointProblems = musculoskeletalInfo.isJointProblems,
+                isNailProblems = musculoskeletalInfo.isNailProblems,
+                isLamenessLF = musculoskeletalInfo.isLamenessLF,
+                isLamenessRF = musculoskeletalInfo.isLamenessRF,
+                isLamenessLR = musculoskeletalInfo.isLamenessLR,
+                isLamenessRR = musculoskeletalInfo.isLamenessRR,
+                isLigaments = musculoskeletalInfo.isLigaments,
+
+                isLungNormal = lungInfo.isNormal,
+                isBreathingDifficulty = lungInfo.isBreathingDifficulty,
+                isRapidRespiration = lungInfo.isRapidRespiration,
+                isTrachealPinchPositive = lungInfo.isTrachealPinchPositive,
+                isTrachealPinchNegative = lungInfo.isTrachealPinchNegative,
+                isCongestion = lungInfo.isCongestion,
+                isAbnormalSound = lungInfo.isAbnormalSound,
+
+                isHeartNormal = heartInfo.isNormal,
+                isMurMur = heartInfo.isMurMur,
+                isFast = heartInfo.isFast,
+                isSlow = heartInfo.isSlow,
+                isMuffled = heartInfo.isMuffled
+
+            };
+
+            int id = (int)Session["intPetID"];
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == id).Select(z => z.strPetName).FirstOrDefault();
+            return View(hExam);
+        }
+
         // GET: Create 
         public ActionResult Create(int? id)
         {
@@ -464,6 +595,97 @@ namespace test.Controllers
             };
 
             db.Entry(neurologicalInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Abdomen Status Information
+            int abdomenstatusId = db.TAbdomenInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intAbdomenInfoID).FirstOrDefault();
+            TAbdomenInfo abdomenInfo = new TAbdomenInfo()
+            {
+                intAbdomenInfoID = abdomenstatusId,
+                isNormal = healthExam.isAbdomenNormal,
+                isAbnormalMass = healthExam.isAbnormalMass,
+                isPainful = healthExam.isAbdomenPainful,
+                isBloated = healthExam.isBloated,
+                isEnlarged = healthExam.isEnlarged,
+                isFluid = healthExam.isFluid,
+                isHernia = healthExam.isHernia,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(abdomenInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Urogenital Status Information
+            int urogenitalstatusId = db.TUrogenitalInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intUrogenitalInfoID).FirstOrDefault();
+            TUrogenitalInfo urogenitalInfo = new TUrogenitalInfo()
+            {
+                intUrogenitalInfoID = urogenitalstatusId,
+                isNormal = healthExam.isUrogenitalNormal,
+                isAbnormalUrination = healthExam.isUrogenAbnormalUrination,
+                isGenitalDischarge = healthExam.isGenitalDischarge,
+                isAnalSacs = healthExam.isAnalSacs,
+                isRectal = healthExam.isRectal,
+                isMammaryTumors = healthExam.isMammaryTumors,
+                isAbnormalTesticles = healthExam.isAbnormalTesticles,
+                isBloodSeen = healthExam.isBloodSeen,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(urogenitalInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Musculoskeletal Status Information
+            int musculoskeletalstatusId = db.TMusculoskeletalInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intMusculoskeletalInfoID).FirstOrDefault();
+            TMusculoskeletalInfo musculoskeletalInfo = new TMusculoskeletalInfo()
+            {
+                intMusculoskeletalInfoID = musculoskeletalstatusId,
+                isNormal = healthExam.isMusculoskeletalNormal,
+                isJointProblems = healthExam.isJointProblems,
+                isNailProblems = healthExam.isNailProblems,
+                isLamenessLF = healthExam.isLamenessLF,
+                isLamenessRF = healthExam.isLamenessRF,
+                isLamenessLR = healthExam.isLamenessLR,
+                isLamenessRR = healthExam.isLamenessRR,
+                isLigaments = healthExam.isLigaments,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(musculoskeletalInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            //Lung Status Information
+            int lungstatusId = db.TLungInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intLungInfoID).FirstOrDefault();
+            TLungInfo lungInfo = new TLungInfo()
+            {
+                intLungInfoID = lungstatusId,
+                isNormal = healthExam.isLungNormal,
+                isBreathingDifficulty = healthExam.isBreathingDifficulty,
+                isRapidRespiration = healthExam.isRapidRespiration,
+                isTrachealPinchPositive = healthExam.isTrachealPinchPositive,
+                isTrachealPinchNegative = healthExam.isTrachealPinchNegative,
+                isCongestion = healthExam.isCongestion,
+                isAbnormalSound = healthExam.isAbnormalSound,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(lungInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+
+            //Heart Status Information
+            int heartstatusId = db.THeartInfos.Where(x => x.intHealthExamID == healthExamId).Select(z => z.intHeartInfoID).FirstOrDefault();
+            THeartInfo heartInfo = new THeartInfo()
+            {
+                intHeartInfoID = heartstatusId,
+                isNormal = healthExam.isHeartNormal,
+                isMurMur = healthExam.isMurMur,
+                isFast = healthExam.isFast,
+                isSlow = healthExam.isSlow,
+                isMuffled = healthExam.isMuffled,
+                intHealthExamID = healthExamId
+            };
+
+            db.Entry(heartInfo).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index", "VisitServices");

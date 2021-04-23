@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TAbdomenInfos">
           <Key>
             <PropertyRef Name="intAbdomenInfoID" />
@@ -1214,6 +1214,10 @@
           <Parameter Name="intServiceTypeID" Type="int" Mode="In" />
           <Parameter Name="dblPrice" Type="money" Mode="In" />
         </Function>
+        <Function Name="uspUpdateVisitMedication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
+          <Parameter Name="intVisitMedicationID" Type="int" Mode="In" />
+          <Parameter Name="intQuantity" Type="int" Mode="In" />
+        </Function>
         <Function Name="uspUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_owner">
           <Parameter Name="strUserName" Type="varchar" Mode="In" />
           <Parameter Name="strPassword" Type="varchar" Mode="In" />
@@ -1406,8 +1410,7 @@
             <End Role="TVisitServices" EntitySet="TVisitServices" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2781,31 +2784,31 @@
             <Parameter Name="intServiceID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspCheckEmployees" ReturnType="Collection(Int32)">
-            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspCheckMedication" ReturnType="Collection(Int32)">
-            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+          <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspCheckServices" ReturnType="Collection(Int32)">
-            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          <Parameter Name="intServiceID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspDeleteEmployee">
-            <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
+          <Parameter Name="intEmployeeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspDeleteMedication">
-            <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
+          <Parameter Name="intMedicationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspDeleteService">
-            <Parameter Name="intServiceID" Mode="In" Type="Int32" />
+          <Parameter Name="intServiceID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspGetOwnerID" ReturnType="Collection(Int32)">
-            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          <Parameter Name="intUserID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspGetOwnerIDFromUser" ReturnType="Collection(Int32)">
-            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          <Parameter Name="intUserID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspGetRole" ReturnType="Collection(Int32)">
-            <Parameter Name="intUserID" Mode="In" Type="Int32" />
+          <Parameter Name="intUserID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="uspGetUserID" ReturnType="Collection(Int32)">
             <Parameter Name="un" Mode="In" Type="String" />
@@ -2866,7 +2869,7 @@
           <FunctionImport Name="uspViewEmployees" ReturnType="Collection(Model1.uspViewEmployees_Result)" />
           <FunctionImport Name="uspViewMedications" ReturnType="Collection(Model1.uspViewMedications_Result)" />
           <FunctionImport Name="uspViewOwnerPets" ReturnType="Collection(Model1.uspViewOwnerPets_Result)">
-            <Parameter Name="ownerid" Mode="In" Type="Int64" />
+          <Parameter Name="ownerid" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="uspViewOwners" ReturnType="Collection(Model1.uspViewOwners_Result)" />
           <FunctionImport Name="uspViewPetGeneralInformation" ReturnType="Collection(Model1.uspViewPetGeneralInformation_Result)" />
@@ -2878,6 +2881,10 @@
           <FunctionImport Name="Validate_User" ReturnType="Collection(Int32)">
             <Parameter Name="strUserName" Mode="In" Type="String" />
             <Parameter Name="strPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspUpdateVisitMedication">
+            <Parameter Name="intVisitMedicationID" Mode="In" Type="Int32" />
+            <Parameter Name="intQuantity" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="uspViewEmployees_Result">
@@ -3630,6 +3637,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Validate_User" FunctionName="Model1.Store.Validate_User" />
+          <FunctionImportMapping FunctionImportName="uspUpdateVisitMedication" FunctionName="Model1.Store.uspUpdateVisitMedication" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
