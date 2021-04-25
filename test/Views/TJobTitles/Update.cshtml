@@ -6,7 +6,7 @@
 	@Html.ValidationSummary(true)
 	@Html.AntiForgeryToken()
 
-	<div class="form-group">
+	<div class="form-group row">
 		@Html.HiddenFor(model => model.intJobTitleID)
 		@Html.LabelFor(model => model.strJobTitleDesc, "Job Title:")
 		@Html.TextBoxFor(model => model.strJobTitleDesc, new { @class = "form-control" })

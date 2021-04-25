@@ -19,12 +19,13 @@ namespace test.Controllers {
 
 
 		public ActionResult Index(int? id) {
+			if (id == null) { Logout(); return RedirectToAction("Login", "Home"); }
 			var owner = db.TOwners
 				.Include(t => t.TPets)
 				.Include(t => t.TGender)
 				.Include(t => t.TState);
 
-			if (id == null) { Logout(); return RedirectToAction("Login", "Home"); }
+			//if (id == null) { Logout(); return RedirectToAction("Login", "Home"); }
 			TUser user = new TUser();
 			user.intUserID = (int)id;
 			var intRoleID = user.intRoleID;
@@ -62,18 +63,14 @@ namespace test.Controllers {
 
 		}
 
-
-
 		public ActionResult Login() {
 			TUser u = new TUser();
 			return View();
-
-
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Login(TUser objUser) {
-			
+
 			if (ModelState.IsValid) {
 				using (CapstoneEntities db = new CapstoneEntities()) {
 					var obj = db.TUsers.Where(a => a.strUserName.Equals(objUser.strUserName) && a.strPassword.Equals(objUser.strPassword)).FirstOrDefault();
@@ -104,6 +101,13 @@ namespace test.Controllers {
 
 		}
 
+		public ActionResult LogOff()
+        {
+			Session["intUserID"] = null;
+			Session.Clear();
+			Session.Abandon();
+			return RedirectToAction("Login");
+        }
 
 		//[HttpPost]
 		//[ValidateAntiForgeryToken]

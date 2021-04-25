@@ -8,7 +8,7 @@
 	@Html.ValidationSummary(true)
 	@Html.AntiForgeryToken()
 
-	<div class="form-group">
+	<div class="form-group row">
 		@Html.HiddenFor(model => model.intServiceTypeID)
 		@Html.LabelFor(model => model.strServiceType, "Service Type:")
 		@Html.TextBoxFor(model => model.strServiceType, new { @class = "form-control" })

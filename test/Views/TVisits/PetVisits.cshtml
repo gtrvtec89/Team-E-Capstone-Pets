@@ -1,4 +1,4 @@
-﻿@model IEnumerable<test.TVisit>
+﻿    @model IEnumerable<test.TVisit>
 
 @{
     ViewBag.Title = "PetVisits";
@@ -83,7 +83,7 @@
         <ul>
             <li>@Html.ActionLink("General", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
             <li class="active">@Html.ActionLink("Visits", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
-            <li>@Html.ActionLink("Vaccinnations", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Vaccinations", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
             <li>@Html.ActionLink("Medications", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
         </ul>
     </div>
@@ -99,7 +99,7 @@
                 <th>
                     @Html.DisplayName("Visit Reason")
                 </th>
-                <th>
+                <th style="white-space:nowrap">
                     @Html.DisplayName("View | Edit | Delete | Print Invoice")
                 </th>
             </tr>
@@ -114,11 +114,10 @@
                         @Html.DisplayFor(modelItem => item.TVisitReason.strVisitReason)
                     </td>
 					<td style="white-space:nowrap">
-						<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="far fa-eye"></i></a>
+						<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Index", "VisitSummary", new { id = item.intVisitID })' ;return false;>  <i class="far fa-eye"></i></a>
 						<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
 						<a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
 						<a style="color:dodgerblue; padding-left: 15px" href='@Url.Action("PrintInvoice", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="far fa-file-pdf"></i></a>
-						<p>
 					</td>
                 </tr>
             }

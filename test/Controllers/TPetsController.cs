@@ -38,26 +38,60 @@ namespace test.Controllers {
 
         // GET: TPets/Details/5
         public ActionResult Details(int? id){
-            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType");
-            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender");
-            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
-            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName");
-            ViewBag.intPetImageID = new SelectList(db.TPetImages, "intPetImageID", "imgContent");
+            TPet pet = new TPet();
+            if (Session["intUserID"] == null)
+            {
+                //ViewBag.ErrorMessage = "Authorized Users Only";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                var oInfo = (from o in db.TOwners
+                             join p in db.TPets
+                              on o.intOwnerID equals p.intOwnerID
+                             join u in db.TUsers
+                              on o.intUserID equals u.intUserID
+                             where p.intPetID == (int)id
+                             select new
+                             {
+                                 intOwnerID = o.intOwnerID,
+                                 strFirstName = o.strFirstName,
+                                 strLastName = o.strLastName,
+                                 intUserID = u.intUserID
+                             }).FirstOrDefault();
+                if (Session["intUserID"].ToString() != oInfo.intUserID.ToString())
+                {
+                    //ViewBag.ErrorMessage = "Authorized Users Only";
+                    return RedirectToAction("Login", "Home");
+                }
+                else
+                {
 
-            if (id == null) {
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-  
-            Session["intPetID"] = id;
-            // TPet tPet = db.TPets.Find(id);
-            //TPetImage tPetImage = db.TPetImages.Find(db.);
-            //
-            TPet tPet = db.TPets.Include(s => s.TPetImages).SingleOrDefault(s => s.intPetID == id);
+                    ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType");
+                    ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender");
+                    ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
+                    ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName");
+                    ViewBag.intPetImageID = new SelectList(db.TPetImages, "intPetImageID", "imgContent");
+                    ViewBag.intVisitID = new SelectList(db.TVisits, "intVisitID", "dtmDateOfVist");
 
-            if (tPet == null) {
-				return HttpNotFound();
-			}
-			return View(tPet);
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+
+                    TPet tPet = db.TPets.Include(s => s.TPetImages).SingleOrDefault(s => s.intPetID == id);
+
+                    //Get List of Visits and put in PetProfile View
+
+
+                    if (tPet == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    return View(tPet);
+                }
+            }
         }
 
         // GET: TPets/Create
