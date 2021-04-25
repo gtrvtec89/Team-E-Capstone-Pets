@@ -13,7 +13,7 @@ namespace test.Controllers
     public class TPetTypesController : Controller
     {
 
-        //private Entities db = new Entities();
+        //private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TPetTypes
         public ActionResult Index() {
@@ -26,7 +26,7 @@ namespace test.Controllers
         public JsonResult GetPetTypes() {
             List<TPetType> all = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
@@ -56,7 +56,7 @@ namespace test.Controllers
 
             TPetType petType = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 var v = (from a in dc.TPetTypes
                          where a.intPetTypeID.Equals(intPetTypeID)
@@ -100,7 +100,7 @@ namespace test.Controllers
 
             if (ModelState.IsValid) {
 
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     if (c.intPetTypeID > 0) {
                         var v = dc.TPetTypes.Where(a => a.intPetTypeID.Equals(c.intPetTypeID)).FirstOrDefault();
@@ -151,7 +151,7 @@ namespace test.Controllers
             string message = "";
             bool status = false;
             if (ModelState.IsValid) {
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
                     if (c.intPetTypeID > 0) {
                         var v = dc.TPetTypes.Where(a => a.intPetTypeID.Equals(c.intPetTypeID)).FirstOrDefault();
                         if (v != null) {
@@ -193,7 +193,7 @@ namespace test.Controllers
         public ActionResult DeletePetType(int id) {
             bool status = false;
             string message = "";
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
                 var v = dc.TPetTypes.Where(a => a.intPetTypeID.Equals(id)).FirstOrDefault();
                 if (v != null) {
                     dc.TPetTypes.Remove(v);
@@ -211,7 +211,7 @@ namespace test.Controllers
     }
 }
 
-//private Entities db = new Entities();
+//private CapstoneEntities db = new CapstoneEntities();
 
 //        // GET: TPetTypes
 //        public ActionResult Index()

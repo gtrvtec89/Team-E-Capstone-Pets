@@ -16,7 +16,7 @@ namespace test.Controllers
 {
     public class TPetImagesController : Controller
     {
-        private Entities db = new Entities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TPetImages
         public ActionResult Index()
@@ -66,66 +66,66 @@ namespace test.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isDeceased,intOwnerID")] TPet tPet, HttpPostedFileBase upload) {
-            //try {
-            //    if (ModelState.IsValid) {
-            //        //Other Pet Profile info
-            //        SqlParameter[] param = new SqlParameter[] {
-            //        new SqlParameter("@strPetName", tPet.strPetName),
-            //        new SqlParameter("@strPetNumber",  tPet.strPetNumber),
-            //        new SqlParameter("@strMicrochipID",  tPet.strMicrochipID),
-            //        new SqlParameter("@intPetTypeID", tPet.TPetType.intPetTypeID),
-            //        //.intPetTypeID),
-            //        new SqlParameter("@intGenderID",  tPet.intGenderID),
-            //        new SqlParameter("@intBreedID",  tPet.intBreedID),
-            //        new SqlParameter("@dtmDateofBirth",  tPet.dtmDateofBirth),
-            //        new SqlParameter("@dblWeight",  tPet.dblWeight),
-            //        new SqlParameter("@isBlind",  tPet.isBlind),
-            //        new SqlParameter("@isDeaf",  tPet.isDeaf),
-            //        new SqlParameter("@isAggressive",  tPet.isAggressive),
-            //        new SqlParameter("@isDeceased",  tPet.isDeceased),
-            //        new SqlParameter("@isAllergic",  tPet.isAllergic),
-            //        new SqlParameter("@strColor",  tPet.strColor),
-            //        new SqlParameter("@strNotes",  tPet.strNotes),
-            //        new SqlParameter("@intOwnerID",  tPet.intOwnerID)
-            //    };
-            //        db.Database.ExecuteSqlCommand("uspAddPets @strPetName, @strPetNumber, @strMicrochipID, @intPetTypeID, @intGenderID, @intBreedID, @dtmDateofBirth, @dblWeight, @isBlind, @isDeaf, @isAggressive, @isDeceased, @isAllergic, @strColor, @strNotes, @intOwnerID", param);
+            try {
+                if (ModelState.IsValid) {
+                    //Other Pet Profile info
+                    SqlParameter[] param = new SqlParameter[] {
+                    new SqlParameter("@strPetName", tPet.strPetName),
+                    new SqlParameter("@strPetNumber",  tPet.strPetNumber),
+                    new SqlParameter("@strMicrochipID",  tPet.strMicrochipID),
+                    new SqlParameter("@intPetTypeID", tPet.TPetType.intPetTypeID),
+                    //.intPetTypeID),
+                    new SqlParameter("@intGenderID",  tPet.intGenderID),
+                    new SqlParameter("@intBreedID",  tPet.intBreedID),
+                    new SqlParameter("@dtmDateofBirth",  tPet.dtmDateofBirth),
+                    new SqlParameter("@dblWeight",  tPet.dblWeight),
+                    new SqlParameter("@isBlind",  tPet.isBlind),
+                    new SqlParameter("@isDeaf",  tPet.isDeaf),
+                    new SqlParameter("@isAggressive",  tPet.isAggressive),
+                    new SqlParameter("@isDeceased",  tPet.isDeceased),
+                    new SqlParameter("@isAllergic",  tPet.isAllergic),
+                    new SqlParameter("@strColor",  tPet.strColor),
+                    new SqlParameter("@strNotes",  tPet.strNotes),
+                    new SqlParameter("@intOwnerID",  tPet.intOwnerID)
+                };
+                    db.Database.ExecuteSqlCommand("uspAddPets @strPetName, @strPetNumber, @strMicrochipID, @intPetTypeID, @intGenderID, @intBreedID, @dtmDateofBirth, @dblWeight, @isBlind, @isDeaf, @isAggressive, @isDeceased, @isAllergic, @strColor, @strNotes, @intOwnerID", param);
+                    
+                    //PetImage
+                    if (upload != null && upload.ContentLength > 0) {
 
-            //        //PetImage
-            //        if (upload != null && upload.ContentLength > 0) {
+                        var image = new TPetImage {
+                            strFileName = Path.GetFileName(upload.FileName),
+                            strFileType = Path.GetExtension(upload.FileName),
+                            strContentType = upload.ContentType,
+                            intPetID = tPet.intPetID
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream)) {
+                            image.imgContent = reader.ReadBytes(upload.ContentLength);
+                        }
+                        tPet.TPetImages = new List<TPetImage> { image };
+                        
+                    }
+                    db.TPetImages.Add(tPet.TPetImage);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (RetryLimitExceededException /* dex */) {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
 
-            //            var image = new TPetImage {
-            //                strFileName = Path.GetFileName(upload.FileName),
-            //                strFileType = Path.GetExtension(upload.FileName),
-            //                strContentType = upload.ContentType,
-            //                intPetID = tPet.intPetID
-            //            };
-            //            using (var reader = new System.IO.BinaryReader(upload.InputStream)) {
-            //                image.imgContent = reader.ReadBytes(upload.ContentLength);
-            //            }
-            //            tPet.TPetImages = new List<TPetImage> { image };
+            ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
+                return View(tPet.TPetImage);
+            }
 
-            //        }
-            //        db.TPetImages.Add(tPet.TPetImage);
-            //        db.SaveChanges();
-            return RedirectToAction("Index");
-            //    }
-            //}
-            //catch (RetryLimitExceededException /* dex */) {
-            //    //Log the error (uncomment dex variable name and add a line here to write a log.
-            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            //}
-            //ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
-            //ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
-            //ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
-            //ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
-
-            //ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
-            //    return View(tPet.TPetImage);
-        }
-
-		//private ActionResult View(object petImage) {
-		//	throw new NotImplementedException();
-		//}
+		private ActionResult View(object petImage) {
+			throw new NotImplementedException();
+		}
 
 
 		// GET: TPetImages/Edit/5
@@ -157,64 +157,64 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isDeceased,intOwnerID")] TPet tPet, HttpPostedFileBase upload) 
         {
-            //try {
+            try {
 
-            //    if (ModelState.IsValid) {
-            //        SqlParameter[] param = new SqlParameter[] {
-            //            new SqlParameter("@intPetID", tPet.intPetID),
-            //            new SqlParameter("@strPetName", tPet.strPetName),
-            //            new SqlParameter("@strPetNumber",  tPet.strPetNumber),
-            //            new SqlParameter("@strMicrochipID",  tPet.strMicrochipID),
-            //            new SqlParameter("@intPetTypeID", tPet.intPetTypeID),
-            //            //.intPetTypeID),
-            //            new SqlParameter("@intGenderID",  tPet.intGenderID),
-            //            new SqlParameter("@intBreedID",  tPet.intBreedID),
-            //            new SqlParameter("@dtmDateofBirth",  tPet.dtmDateofBirth),
-            //            new SqlParameter("@dblWeight",  tPet.dblWeight),
-            //            new SqlParameter("@isBlind",  tPet.isBlind),
-            //            new SqlParameter("@isDeaf",  tPet.isDeaf),
-            //            new SqlParameter("@isAggressive",  tPet.isAggressive),
-            //            new SqlParameter("@isDeceased",  tPet.isDeceased),
-            //            new SqlParameter("@isAllergic",  tPet.isAllergic),
-            //            new SqlParameter("@strColor",  tPet.strColor),
-            //            new SqlParameter("@strNotes",  tPet.strNotes),
-            //            new SqlParameter("@intOwnerID",  tPet.intOwnerID)
-            //    };
-            //        db.Database.ExecuteSqlCommand("uspUpdatePets @strPetName, @strPetNumber, @strMicrochipID, @intPetTypeID, @intGenderID, @intBreedID, @dtmDateofBirth, @dblWeight, @isBlind, @isDeaf, @isAggressive, @isDeceased, @isAllergic, @strColor, @strNotes, @intOwnerID", param);
+                if (ModelState.IsValid) {
+                    SqlParameter[] param = new SqlParameter[] {
+                        new SqlParameter("@intPetID", tPet.intPetID),
+                        new SqlParameter("@strPetName", tPet.strPetName),
+                        new SqlParameter("@strPetNumber",  tPet.strPetNumber),
+                        new SqlParameter("@strMicrochipID",  tPet.strMicrochipID),
+                        new SqlParameter("@intPetTypeID", tPet.intPetTypeID),
+                        //.intPetTypeID),
+                        new SqlParameter("@intGenderID",  tPet.intGenderID),
+                        new SqlParameter("@intBreedID",  tPet.intBreedID),
+                        new SqlParameter("@dtmDateofBirth",  tPet.dtmDateofBirth),
+                        new SqlParameter("@dblWeight",  tPet.dblWeight),
+                        new SqlParameter("@isBlind",  tPet.isBlind),
+                        new SqlParameter("@isDeaf",  tPet.isDeaf),
+                        new SqlParameter("@isAggressive",  tPet.isAggressive),
+                        new SqlParameter("@isDeceased",  tPet.isDeceased),
+                        new SqlParameter("@isAllergic",  tPet.isAllergic),
+                        new SqlParameter("@strColor",  tPet.strColor),
+                        new SqlParameter("@strNotes",  tPet.strNotes),
+                        new SqlParameter("@intOwnerID",  tPet.intOwnerID)
+                };
+                    db.Database.ExecuteSqlCommand("uspUpdatePets @strPetName, @strPetNumber, @strMicrochipID, @intPetTypeID, @intGenderID, @intBreedID, @dtmDateofBirth, @dblWeight, @isBlind, @isDeaf, @isAggressive, @isDeceased, @isAllergic, @strColor, @strNotes, @intOwnerID", param);
 
-            //        //PetImage
-            //        if (upload != null && upload.ContentLength > 0) {
+                    //PetImage
+                    if (upload != null && upload.ContentLength > 0) {
 
-            //            var image = new TPetImage {
-            //                strFileName = Path.GetFileName(upload.FileName),
-            //                strFileType = Path.GetExtension(upload.FileName),
-            //                strContentType = upload.ContentType,
-            //                intPetID = tPet.intPetID
-            //            };
-            //            using (var reader = new System.IO.BinaryReader(upload.InputStream)) {
-            //                image.imgContent = reader.ReadBytes(upload.ContentLength);
-            //            }
-            //            tPet.TPetImages = new List<TPetImage> { image };
+                        var image = new TPetImage {
+                            strFileName = Path.GetFileName(upload.FileName),
+                            strFileType = Path.GetExtension(upload.FileName),
+                            strContentType = upload.ContentType,
+                            intPetID = tPet.intPetID
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream)) {
+                            image.imgContent = reader.ReadBytes(upload.ContentLength);
+                        }
+                        tPet.TPetImages = new List<TPetImage> { image };
 
-            //        }
+                    }
 
-            //        db.Entry(tPet.TPetImage).State = System.Data.Entity.EntityState.Modified;
-            //        db.SaveChanges();
-            return RedirectToAction("Index");
-            //    }
-            //}
-            //catch (RetryLimitExceededException /* dex */) {
-            //    //Log the error (uncomment dex variable name and add a line here to write a log.
-            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            //}
-            //ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
-            //    ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
-            //    ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
-            //    ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
+                    db.Entry(tPet.TPetImage).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (RetryLimitExceededException /* dex */) {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType", tPet.intPetTypeID);
+                ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender", tPet.intGenderID);
+                ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName", tPet.intOwnerID);
+                ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName", tPet.intBreedID);
 
-            //    ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
-            //    return View(tPet.TPetImage);
-        }
+                ViewBag.intPetID = new SelectList(db.TPets, "intPetID", "strPetNumber", tPet.intPetID);
+                return View(tPet.TPetImage);
+            }
         
         // GET: TPetImages/Delete/5
         public ActionResult Delete(int? id)

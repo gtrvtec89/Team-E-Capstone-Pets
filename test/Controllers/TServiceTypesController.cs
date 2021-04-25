@@ -13,7 +13,7 @@ namespace test.Controllers {
 
     public class TServiceTypesController : Controller {
 
-        //private Entities db = new Entities();
+        //private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TServiceTypes
         public ActionResult Index() {
@@ -24,7 +24,7 @@ namespace test.Controllers {
         public JsonResult GetServiceTypes() {
             List<TServiceType> all = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
@@ -56,7 +56,7 @@ namespace test.Controllers {
 
             TServiceType serviceTypes = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 var v = (from a in dc.TServiceTypes 
                          where a.intServiceTypeID.Equals(intServiceTypeID)
@@ -99,7 +99,7 @@ namespace test.Controllers {
 
 			if (ModelState.IsValid) {
 
-				using (Entities dc = new Entities()) {
+				using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     if (c.intServiceTypeID > 0) {
                         var v = dc.TServiceTypes.Where(a => a.intServiceTypeID.Equals(c.intServiceTypeID)).FirstOrDefault();
@@ -148,7 +148,7 @@ namespace test.Controllers {
             string message = "";
             bool status = false;
             if (ModelState.IsValid) {
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
                     if (c.intServiceTypeID > 0) {
                         var v = dc.TServiceTypes.Where(a => a.intServiceTypeID.Equals(c.intServiceTypeID)).FirstOrDefault();
                         if (v != null) {
@@ -190,7 +190,7 @@ namespace test.Controllers {
         public ActionResult DeleteServiceType(int id) {
             bool status = false;
             string message = "";
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
                 var v = dc.TServiceTypes.Where(a => a.intServiceTypeID.Equals(id)).FirstOrDefault();
                 if (v != null) {
                     dc.TServiceTypes.Remove(v);

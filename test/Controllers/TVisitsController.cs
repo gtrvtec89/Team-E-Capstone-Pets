@@ -13,7 +13,7 @@ using Rotativa;
 namespace test.Controllers
 {
     public class TVisitsController : Controller {
-        private Entities db = new Entities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TVisits
         public ActionResult Index() {
@@ -25,7 +25,7 @@ namespace test.Controllers
         // GET: TVisits/Details/5
         public ActionResult Details(int? id) {
             if (id == null) {
-                return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TVisit tVisit = db.TVisits.Find(id);
             if (tVisit == null) {
@@ -268,7 +268,7 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tVisit).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(tVisit).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

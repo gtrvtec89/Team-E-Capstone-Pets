@@ -13,7 +13,7 @@ namespace test.Controllers
 {
     public class TVaccinationsController : Controller
     {
-        private Entities db = new Entities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TVaccinations
         public ActionResult Index()
@@ -176,7 +176,7 @@ namespace test.Controllers
                     strRabiesNumber = visitVaccination.strRabiesNumber
                 };
 
-                db.Entry(vaccination).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(vaccination).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index", "VisitServices");

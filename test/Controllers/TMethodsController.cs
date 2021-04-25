@@ -13,7 +13,7 @@ namespace test.Controllers
     public class TMethodsController : Controller
     {
 
-        //private Entities db = new Entities();
+        //private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TMethods
         public ActionResult Index() {
@@ -26,7 +26,7 @@ namespace test.Controllers
         public JsonResult GetMethods() {
             List<TMethod> all = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
@@ -56,7 +56,7 @@ namespace test.Controllers
 
             TMethod method = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 var v = (from a in dc.TMethods
                          where a.intMethodID.Equals(intMethodID)
@@ -100,7 +100,7 @@ namespace test.Controllers
 
             if (ModelState.IsValid) {
 
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     if (c.intMethodID > 0) {
                         var v = dc.TMethods.Where(a => a.intMethodID.Equals(c.intMethodID)).FirstOrDefault();
@@ -151,7 +151,7 @@ namespace test.Controllers
             string message = "";
             bool status = false;
             if (ModelState.IsValid) {
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
                     if (c.intMethodID > 0) {
                         var v = dc.TMethods.Where(a => a.intMethodID.Equals(c.intMethodID)).FirstOrDefault();
                         if (v != null) {
@@ -193,7 +193,7 @@ namespace test.Controllers
         public ActionResult DeleteMethod(int id) {
             bool status = false;
             string message = "";
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
                 var v = dc.TMethods.Where(a => a.intMethodID.Equals(id)).FirstOrDefault();
                 if (v != null) {
                     dc.TMethods.Remove(v);
@@ -215,7 +215,7 @@ namespace test.Controllers
 
 
 
-//        private Entities db = new Entities();
+//        private CapstoneEntities db = new CapstoneEntities();
 
 //        // GET: TMethods
 //        public ActionResult Index()

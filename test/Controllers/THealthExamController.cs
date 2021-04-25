@@ -14,7 +14,7 @@ namespace test.Controllers
 {
     public class THealthExamController : Controller
     {
-        private Entities db = new Entities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: THealthExam
         public ActionResult Index()
@@ -335,7 +335,7 @@ namespace test.Controllers
                 strNotes = healthExam.strNotes
             };
 
-            db.Entry(exam).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(exam).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index", "VisitServices");

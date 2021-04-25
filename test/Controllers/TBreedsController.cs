@@ -12,7 +12,7 @@ namespace test.Controllers
 {
     public class TBreedsController : Controller
     {
-        //private Entities db = new Entities();
+        //private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TBreeds
         public ActionResult Index()
@@ -26,7 +26,7 @@ namespace test.Controllers
         public JsonResult GetBreeds() {
             List<TBreed> all = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
 				dc.Configuration.ProxyCreationEnabled = false;
 
@@ -58,7 +58,7 @@ namespace test.Controllers
 
             TBreed breeds = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 var v = (from a in dc.TBreeds
                          where a.intBreedID.Equals(intBreedID)
@@ -106,7 +106,7 @@ namespace test.Controllers
 
             if (ModelState.IsValid) {
 
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     if (c.intBreedID > 0) {
                         var v = dc.TBreeds.Where(a => a.intBreedID.Equals(c.intBreedID)).FirstOrDefault();
@@ -158,7 +158,7 @@ namespace test.Controllers
             string message = "";
             bool status = false;
             if (ModelState.IsValid) {
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
                     if (c.intBreedID > 0) {
                         var v = dc.TBreeds.Where(a => a.intBreedID.Equals(c.intBreedID)).FirstOrDefault();
                         if (v != null) {
@@ -202,7 +202,7 @@ namespace test.Controllers
         public ActionResult DeleteBreed(int id) {
             bool status = false;
             string message = "";
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
                 var v = dc.TBreeds.Where(a => a.intBreedID.Equals(id)).FirstOrDefault();
                 if (v != null) {
                     dc.TBreeds.Remove(v);

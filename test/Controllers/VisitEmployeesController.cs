@@ -9,7 +9,7 @@ namespace test.Controllers
 {
     public class VisitEmployeesController : Controller
     {
-        private Entities db = new Entities();
+        private CapstoneEntities db = new CapstoneEntities();
 
         // GET: VisitEmployees
         public ActionResult Index()

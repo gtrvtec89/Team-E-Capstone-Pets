@@ -12,7 +12,7 @@ namespace test.Controllers
 {
     public class TJobTitlesController : Controller
     {
-        //private Entities db = new Entities();
+        //private CapstoneEntities db = new CapstoneEntities();
 
         // GET: TJobTitles
         public ActionResult Index()
@@ -26,7 +26,7 @@ namespace test.Controllers
         public JsonResult GetJobTitles() {
             List<TJobTitle> all = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
@@ -56,7 +56,7 @@ namespace test.Controllers
 
             TJobTitle jobTitle = null;
 
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
 
                 var v = (from a in dc.TJobTitles
                          where a.intJobTitleID.Equals(intJobTitleID)
@@ -100,7 +100,7 @@ namespace test.Controllers
 
             if (ModelState.IsValid) {
 
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     if (c.intJobTitleID > 0) {
                         var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(c.intJobTitleID)).FirstOrDefault();
@@ -151,7 +151,7 @@ namespace test.Controllers
             string message = "";
             bool status = false;
             if (ModelState.IsValid) {
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
                     if (c.intJobTitleID > 0) {
                         var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(c.intJobTitleID)).FirstOrDefault();
                         if (v != null) {
@@ -193,7 +193,7 @@ namespace test.Controllers
         public ActionResult DeleteJobTitle(int id) {
             bool status = false;
             string message = "";
-            using (Entities dc = new Entities()) {
+            using (CapstoneEntities dc = new CapstoneEntities()) {
                 var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(id)).FirstOrDefault();
                 if (v != null) {
                     dc.TJobTitles.Remove(v);

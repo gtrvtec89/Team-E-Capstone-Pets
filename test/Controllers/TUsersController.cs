@@ -22,7 +22,7 @@ namespace test.Controllers {
 
     namespace test.Controllers {
         public class TUsersController : Controller {
-            //private Entities db = new Entities();
+            //private CapstoneEntities db = new CapstoneEntities();
 
             // GET: TUsers
             public ActionResult Index() {
@@ -35,7 +35,7 @@ namespace test.Controllers {
             public JsonResult GetUsers() {
                 List<TUser> all = null;
 
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     dc.Configuration.ProxyCreationEnabled = false;
 
@@ -66,7 +66,7 @@ namespace test.Controllers {
 
                 TUser user = null;
 
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
 
                     var v = (from a in dc.TUsers
                              where a.intUserID.Equals(intUserID)
@@ -84,7 +84,7 @@ namespace test.Controllers {
             ////for get view for Save User  
             //public ActionResult Save(int id = 0) {
 
-            //    Entities dc = new Entities();
+            //    CapstoneEntities dc = new CapstoneEntities();
 
             //    if (id > 0) {
             //        var c = GetUser(id);
@@ -113,7 +113,7 @@ namespace test.Controllers {
 
             //    if (ModelState.IsValid) {
 
-            //        using (Entities dc = new Entities()) {
+            //        using (CapstoneEntities dc = new CapstoneEntities()) {
 
             //            if (c.intUserID > 0) {
             //                var v = dc.TUsers.Where(a => a.intUserID.Equals(c.intUserID)).FirstOrDefault();
@@ -172,7 +172,7 @@ namespace test.Controllers {
 
                 if (ModelState.IsValid) {
 
-                    using (Entities dc = new Entities()) {
+                    using (CapstoneEntities dc = new CapstoneEntities()) {
 
                         if (c.intUserID > 0) {
 
@@ -220,7 +220,7 @@ namespace test.Controllers {
             public ActionResult DeleteUser(int id) {
                 bool status = false;
                 string message = "";
-                using (Entities dc = new Entities()) {
+                using (CapstoneEntities dc = new CapstoneEntities()) {
                     var v = dc.TUsers.Where(a => a.intUserID.Equals(id)).FirstOrDefault();
                     if (v != null) {
                         dc.TUsers.Remove(v);
@@ -244,7 +244,7 @@ namespace test.Controllers {
 
 //    public class TUsersController : Controller
 //    {
-//        private Entities db = new Entities();
+//        private CapstoneEntities db = new CapstoneEntities();
 
 //        // GET: TUsers
 //        public ActionResult Index()
