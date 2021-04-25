@@ -63,18 +63,14 @@ namespace test.Controllers {
 
 		}
 
-
-
 		public ActionResult Login() {
 			TUser u = new TUser();
 			return View();
-
-
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Login(TUser objUser) {
-			
+
 			if (ModelState.IsValid) {
 				using (Entities db = new Entities()) {
 					var obj = db.TUsers.Where(a => a.strUserName.Equals(objUser.strUserName) && a.strPassword.Equals(objUser.strPassword)).FirstOrDefault();
@@ -105,6 +101,13 @@ namespace test.Controllers {
 
 		}
 
+		public ActionResult LogOff()
+        {
+			Session["intUserID"] = null;
+			Session.Clear();
+			Session.Abandon();
+			return RedirectToAction("Login");
+        }
 
 		//[HttpPost]
 		//[ValidateAntiForgeryToken]

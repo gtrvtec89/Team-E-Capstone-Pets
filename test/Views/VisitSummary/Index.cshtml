@@ -60,16 +60,28 @@
         text-decoration: none;
     }
 </style>
-<div class="form-horizontal">
-    <div class="topnav">
-        <ul>
-            <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
-            <li>@Html.ActionLink("Medications", "Index", "VisitMedications")</li>
-            <li>@Html.ActionLink("Team", "Index", "VisitEmployees")</li>
-            <li class="active">@Html.ActionLink("Summary", "Index", "VisitSummary")</li>
-        </ul>
+@if (Session["isSummary"] == null)
+{
+    <div class="form-horizontal">
+        <div class="topnav">
+            <ul>
+                <li>@Html.ActionLink("Services", "Index", "VisitServices")</li>
+                <li>@Html.ActionLink("Medications", "Index", "VisitMedications")</li>
+                <li>@Html.ActionLink("Team", "Index", "VisitEmployees")</li>
+                <li class="active">@Html.ActionLink("Summary", "Index", "VisitSummary")</li>
+            </ul>
+        </div>
     </div>
-</div>
+}
+else
+{
+    <p style="margin-left: 25px; font-size:15px">
+        <button class="btn-primary" onclick="location.href='@Url.Action("PetVisits", "TVisits",  new { id = Model.intPetID })';return false;">
+            <i class="fas fa-arrow-left"></i>  Back
+        </button>
+    </p>
+}
+
 <div class="body-content">
     <div class="form-horizontal">
         <div class="flex-container" style="border: none;">
@@ -167,7 +179,8 @@
                             <td>
                                 $ @Math.Round(service.TService.dblPrice, 2)
                             </td>
-                            @if(service.intServiceID == 7) { 
+                            @if (service.intServiceID == 7)
+                            {
                                 <td style="white-space:nowrap">
                                     <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "THealthExam", new { visitServiceId = service.intVisitServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
                                 </td>
@@ -185,7 +198,6 @@
                             Total
                         </td>
                         <td>
-
                         </td>
                         <td style="font-weight: 800">
                             @ViewBag.ServicesTotal
@@ -235,17 +247,21 @@
             </div>
         </div>
     </div>
-    <div class="flex-container" style="margin: 0px; border:none; padding: 0px 0px 20px 22px">
-        <div class="col-md-offset-2" style="margin-left:inherit; margin-right:10px">
-            <button class="btn-primary" onclick='window.location.href = "@Url.Action("Index", "VisitEmployees", routeValues: null)"'>
-                Previous
-            </button>
+    @if (Session["isSummary"] == null)
+    {
+        <div class="flex-container" style="margin: 0px; border:none; padding: 0px 0px 20px 22px">
+            <div class="col-md-offset-2" style="margin-left:inherit; margin-right:10px">
+                <button class="btn-primary" onclick='window.location.href = "@Url.Action("Index", "VisitEmployees", routeValues: null)"'>
+                    Previous
+                </button>
+            </div>
+            <div class="col-md-offset-2" style="margin-left:inherit">
+                <button class="btn-success" onclick="location.href='@Url.Action("PetVisits", "TVisits", new { id = Model.intPetID})'">
+                    Save
+                </button>
+            </div>
         </div>
-        <div class="col-md-offset-2" style="margin-left:inherit">
-            <button class="btn-success" onclick="location.href='@Url.Action("PetVisits", "TVisits", new { id = Model.intPetID})'">
-                Save
-            </button>
-        </div>
-    </div>
+    }
+
 </div>
 

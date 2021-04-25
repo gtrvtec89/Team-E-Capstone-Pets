@@ -310,7 +310,7 @@ namespace test.Controllers
             }
             Session["intPetID"] = id;
             var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
-            var tVisits = db.TVisits.Where(x => x.intPetID == id);
+            var tVisits = db.TVisits.Where(x => x.intPetID == id).OrderByDescending(c => c.intVisitID).ToList();
 
             if (petName == null)
             {

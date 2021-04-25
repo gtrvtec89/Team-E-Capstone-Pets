@@ -32,7 +32,7 @@ else
         <a style="display:inline-block; text-align:left; vertical-align:middle; color:cornflowerblue; text-decoration:none; font-family:Calibri; font-size: 25px;  padding-top: 5px; padding-left: 7px; padding-right:15px">
 
             Capstone Pets
-        </a>        
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -70,7 +70,12 @@ else
             <p>&copy; @DateTime.Now.Year - Capstone Pets</p>
         </footer>
     </div>
-    
+
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Partial("~/Views/Shared/_KeepAlive.cshtml")
+    }
+
     @Scripts.Render("~/bundles/jquery")
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/bootstrap")
@@ -80,6 +85,17 @@ else
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        var sessionTimeoutWarning = @Session.Timeout - 1;
+
+        var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+        setTimeout('SessionEnd()', sTimeout);
+
+        function SessionEnd() {
+            window.location = "/Home/LogOff"
+        }
+
+    </script>
     @*<script src="~/Scripts/notify.min.js"></script>*@
 </body>
 }

@@ -12,11 +12,24 @@ namespace test.Controllers
         private Entities db = new Entities();
 
         // GET: VisitSummary
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             VisitSummary myModel = new VisitSummary();
-            int intVisitId = (int)Session["intVisitId"];
-            int intPetId = (int)Session["intPetID"];
+            int intVisitId = 0;
+            int intPetId = 0;
+            Session["isSummary"] = null;
+            if (!id.HasValue)
+            {
+                intVisitId = (int)Session["intVisitId"];
+                intPetId = (int)Session["intPetID"];
+            }
+            else
+            {
+                Session["isSummary"] = true;
+                intVisitId = (int)id;
+                intPetId = db.TVisits.Where(x => x.intVisitID == intVisitId).Select(z => z.intPetID).FirstOrDefault();
+            }
+            
 
             //General Information
             var informationPacket = (from o in db.TOwners
@@ -27,6 +40,7 @@ namespace test.Controllers
                                     join v in db.TVisits
                                     on p.intPetID equals v.intPetID
                                     where p.intPetID == intPetId
+                                    where v.intVisitID == intVisitId
                                     select new
                                     {
                                         ownerName = o.strFirstName + " " + o.strLastName,
