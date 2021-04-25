@@ -12,7 +12,7 @@ namespace test.Controllers
 {
     public class TMedicationsController : Controller
     {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities db = new Entities();
 
         // GET: TMedications
         public ActionResult Index()
@@ -84,7 +84,7 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tMedication).State = EntityState.Modified;
+                db.Entry(tMedication).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

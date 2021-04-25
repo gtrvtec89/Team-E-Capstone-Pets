@@ -18,7 +18,7 @@ using SmtpClient = System.Net.Mail.SmtpClient;
 
 namespace test.Controllers {
 public class TOwnersController : Controller {
-private CapstoneEntities db = new CapstoneEntities();
+private Entities db = new Entities();
 
 
 
@@ -156,7 +156,7 @@ return View(tOwner);
 [ValidateAntiForgeryToken]
 public ActionResult Edit([Bind(Include = "intOwnerID,strFirstName,strLastName,intGenderID,strAddress,strCity,intStateID,strZip,strPhoneNumber,strEmail,strOwner2Name,strOwner2PhoneNumber,strOwner2Email,strNotes,intUserID")] TOwner tOwner) {
 if (ModelState.IsValid) {
-db.Entry(tOwner).State = EntityState.Modified;
+db.Entry(tOwner).State = System.Data.Entity.EntityState.Modified;
 db.SaveChanges();
 return RedirectToAction("Index");
 }
