@@ -9,7 +9,9 @@
 		@Html.DisplayFor(model => model.strPetName)
 	</h2>
 	<p style="margin-left: 25px; font-size:15px">
-		<button class="btn-primary" onclick="location.href='@Url.Action("OwnerHome", "Home", new { id = Model.intOwnerID })';return false;"><i class="fas fa-arrow-left"></i> Back To My Pets</button>
+		
+
+			<button class="btn-primary" onclick="location.href='@Url.Action("OwnerHome", "Home", new { id = Model.intOwnerID })';return false;"><i class="fas fa-arrow-left"></i> Back To My Pets</button>
 	</p>
 
 	<style>
@@ -78,7 +80,7 @@
 		<div class="topnav">
 			<ul>
 				<li class="active">@Html.ActionLink("General", "Details", "TPets")</li>
-				<li>@Html.ActionLink("Visits", "PetVisits", "TVisits", new { id = Model.intPetID }, null)</li>
+				<li>@Html.ActionLink("Visits", "PetProfilePetVisits", "TVisits", new { id = Model.intPetID }, null)</li>
 				<li>@Html.ActionLink("Vaccinations", "PetVaccinations", "TVaccinations", new { id = Model.intPetID }, null)</li>
 				<li>@Html.ActionLink("Medications", "PetMedications", "TVisitMedications", new { id = Model.intPetID }, null)</li>
 			</ul>

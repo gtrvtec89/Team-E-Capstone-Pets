@@ -153,6 +153,9 @@
                         <th>
                             @Html.DisplayName("Price")
                         </th>
+                        <th>
+                            @Html.DisplayName("View")
+                        </th>
                     </tr>
 
                     @foreach (TVisitService service in Model.PetVisitServices)
@@ -164,11 +167,25 @@
                             <td>
                                 $ @Math.Round(service.TService.dblPrice, 2)
                             </td>
+                            @if(service.intServiceID == 7) { 
+                                <td style="white-space:nowrap">
+                                    <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "THealthExam", new { visitServiceId = service.intVisitServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="white-space:nowrap">
+                                    <a style="color:dimgray; padding-left: 15px; display:none;" ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                                </td>
+                            }
                         </tr>
                     }
                     <tr>
                         <td style="font-weight: 800">
                             Total
+                        </td>
+                        <td>
+
                         </td>
                         <td style="font-weight: 800">
                             @ViewBag.ServicesTotal

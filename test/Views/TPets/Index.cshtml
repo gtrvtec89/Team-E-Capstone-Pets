@@ -58,21 +58,7 @@
 				<th style="white-space:nowrap">
 					@Html.DisplayName("Microchip #")
 				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Blind")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Deaf")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Aggressive")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Deceased")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Allergies")
-				</th>
+
 
 				<th>
 					@Html.DisplayName("View | Edit | Delete")
@@ -116,22 +102,7 @@
 			<td>
 				@Html.DisplayFor(modelItem => item.strMicrochipID)
 			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.isBlind)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.isDeaf)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.isAggressive)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.isDeceased)
-			</td>
 
-			<td>
-				@Html.DisplayFor(modelItem => item.isAllergic)
-			</td>
 
 		<td style="white-space:nowrap">
 			<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TPets", new { id = item.intPetID })' ;return false;>  <i class="far fa-eye"></i></a>

@@ -22,7 +22,7 @@
             </h4>
             <hr style="margin:5px; margin-bottom: 15px" />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group" style="display:none;">
+            <div class="form-group row" style="display:none;">
                 @Html.LabelFor(model => model.intServiceId, "Service Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.intServiceId, new { htmlAttributes = new { @class = "form-control" } })
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="form-group" style="display: none;">
+            <div class="form-group row" style="display: none;">
                 @Html.LabelFor(model => model.intVisitServiceId, "Visit Service Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.intVisitServiceId, new { htmlAttributes = new { @class = "form-control" } })
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group row">
                 @Html.LabelFor(model => model.strServiceName, "Service Name", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.strServiceName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group row">
                 @Html.LabelFor(model => model.dtmDateofVaccination, "Date of Vaccination", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.dtmDateofVaccination, new { htmlAttributes = new { @class = "datepicker" } })
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group row">
                 @Html.LabelFor(model => model.dtmDateOfExpiration, "Date of Expiration", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.dtmDateOfExpiration, new { htmlAttributes = new { @class = "datepicker" } })
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group row">
                 @Html.LabelFor(model => model.strVaccineNotes, "Notes", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.strVaccineNotes, new { htmlAttributes = new { @class = "form-control" } })
@@ -72,7 +72,7 @@
 
             @if (Session["isRabiesVaccine"] != null)
             {
-                <div class="form-group">
+                <div class="form-group row">
                     @Html.LabelFor(model => model.strRabiesNumber, "Rabies Number", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.strRabiesNumber, new { htmlAttributes = new { @class = "form-control" } })
@@ -81,7 +81,7 @@
                 </div>
             }
 
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Add" class="btn-success" />
                 </div>

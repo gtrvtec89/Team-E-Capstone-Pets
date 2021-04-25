@@ -6,7 +6,7 @@
 	@Html.ValidationSummary(true)
 	@Html.AntiForgeryToken()
 
-	<div class="form-group">
+	<div class="form-group row">
 		@Html.HiddenFor(model => model.intMethodID)
 		@Html.LabelFor(model => model.strMethod, "Medication Method:")
 		@Html.TextBoxFor(model => model.strMethod, new { @class = "form-control" })

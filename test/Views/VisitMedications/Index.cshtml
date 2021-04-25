@@ -109,6 +109,9 @@
                         <th>
                             @Html.DisplayName("Medication")
                         </th>
+                        <th>
+                            @Html.DisplayName("Quantity")
+                        </th>
                         <th style="white-space:nowrap">
                             @Html.DisplayName("Add")
                         </th>
@@ -119,6 +122,9 @@
                         <tr>
                             <td>
                                 @medication.strMedicationName
+                            </td>
+                            <td>
+                                @medication.intQuantity
                             </td>
                             <td style="white-space:nowrap">
                                 <a style="color:#5cb85c; padding-left: 10px" href='@Url.Action("AddPetMedication", "VisitMedications", new { medicationId = medication.intMedicationID })' ;return false;>  <i class="far fa-plus"></i></a>

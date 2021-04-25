@@ -1,75 +1,87 @@
 ﻿<!DOCTYPE html>
 <html style="height:100%">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewBag.Title - My ASP.NET Application</title>
-	@Styles.Render("~/Content/css")
-	@Scripts.Render("~/bundles/modernizr")
-	<script src="https://kit.fontawesome.com/a75ff89abd.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://kit.fontawesome.com/a75ff89abd.js" crossorigin="anonymous"></script>
+
+    <style>
+        .bg-dark {
+            background-color: #252424 !important
+        }
+
+        .table th, .table td {
+            padding: 0.50rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
 </head>
-@if (Session["intUserID"].ToString() == null) {
+@if (Session["intUserID"].ToString() == null)
+{
 
 }
-else {
-	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container" style="margin: 0px">
-				<div class="navbar-header">
-					<a style="display:inline-block; text-align:left; vertical-align:middle; color:cornflowerblue; text-decoration:none; font-family:Calibri; font-size: 25px;  padding-top: 5px; padding-left: 7px; padding-right:15px">
+else
+{
+<body style="padding-top: 0px">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a style="display:inline-block; text-align:left; vertical-align:middle; color:cornflowerblue; text-decoration:none; font-family:Calibri; font-size: 25px;  padding-top: 5px; padding-left: 7px; padding-right:15px">
 
-						Capstone Pets
-					</a>
+            Capstone Pets
+        </a>        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+                @if (Session["intRoleID"].ToString() == 1.ToString())
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("OwnerHome","Home", new { id = Session["intUserID"].ToString() })">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Home", new { id = Session["intUserID"].ToString() })">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                }
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Help","Home")">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("About","Home")">About</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <a class="nav-link" href="@Url.Action("Login","Home")">Sign Out</a>
+            </form>
+        </div>
+    </nav>
 
-					@*@{
-							test.TUser uCurrent = new test.TUser();
-							uCurrent = uCurrent.GetUserSession();
-						}*@
+    <div style="padding-top: 10px;">
+        @RenderBody()
 
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-
-				</div>
-
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						@if (Session["intRoleID"].ToString() == 1.ToString()) {
-						<li>@Html.ActionLink("Home", "OwnerHome", "Home", new { id = Session["intUserID"].ToString() }, null)</li>
-						}
-						else {
-						<li>@Html.ActionLink("Home", "Index", "Home", new { id = Session["intUserID"].ToString() }, null)</li>
-						}
-						}
-						<li>@Html.ActionLink("Help", "Help", "Home")</li>
-						<li>@Html.ActionLink("About", "About", "Home")</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right" style="padding-right:15px">
-						<li>@Html.ActionLink("Sign Out", "Login", "Home")</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-
-		@RenderBody()
-
-		<footer>
-			<p>&copy; @DateTime.Now.Year - Capstone Pets</p>
-		</footer>
-
-
-		@Scripts.Render("~/bundles/jquery")
-		@Scripts.Render("~/bundles/bootstrap")
-		@RenderSection("scripts", required: false)
-		<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-		<script src="~/Scripts/bootstrap.min.js"></script>
-		<script src="~/Scripts/jquery.validate.min.js"></script>
-		<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-		<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-		@*<script src="~/Scripts/notify.min.js"></script>*@
-	</body>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Capstone Pets</p>
+        </footer>
+    </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @*<script src="~/Scripts/notify.min.js"></script>*@
+</body>
 }
 </html>
+
+

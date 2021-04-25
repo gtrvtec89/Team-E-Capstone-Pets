@@ -98,7 +98,7 @@
                             @Html.ValidationMessageFor(model => model.intCapillaryRefillTime, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group" style="display:inline-grid; width: 60%; margin: 3px;">
+                    <div class="form-group row" style="display:inline-grid; width: 60%; margin: 3px;">
                         @Html.LabelFor(model => model.strNotes, "Notes", new { htmlAttributes = new { @class = "control-label col-md-2" }, style = "font-size: 16px; font-weight: 700; padding-left:  15px;" })
                         <div class="col-md-10">
                             @Html.TextAreaFor(model => model.strNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width:100%; height: 170px;" })

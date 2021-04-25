@@ -9,7 +9,7 @@
 	@Html.ValidationSummary(true)
 	@Html.AntiForgeryToken()
 
-	<div class="form-group">
+	<div class="form-group row">
 		@Html.HiddenFor(model => model.intPetTypeID)
 		@Html.LabelFor(model => model.strPetType, "Pet Type:")
 		@Html.TextBoxFor(model => model.strPetType, new { @class = "form-control" })

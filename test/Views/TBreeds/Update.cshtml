@@ -8,7 +8,7 @@
 	@Html.ValidationSummary(true)
 	@Html.AntiForgeryToken()
 
-	<div class="form-group">
+	<div class="form-group row">
 		@Html.HiddenFor(model => model.intBreedID)
 		@Html.LabelFor(model => model.strBreedName, "Breed:")
 		@Html.TextBoxFor(model => model.strBreedName, new { @class = "form-control" })
