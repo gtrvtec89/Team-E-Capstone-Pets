@@ -12,7 +12,7 @@ namespace test.Controllers
 {
     public class TJobTitlesController : Controller
     {
-        //private CapstoneEntities db = new CapstoneEntities();
+        //private Entities1 db = new Entities1();
 
         // GET: TJobTitles
         public ActionResult Index()
@@ -26,7 +26,7 @@ namespace test.Controllers
         public JsonResult GetJobTitles() {
             List<TJobTitle> all = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities1 dc = new Entities1()) {
 
                 dc.Configuration.ProxyCreationEnabled = false;
 
@@ -56,7 +56,7 @@ namespace test.Controllers
 
             TJobTitle jobTitle = null;
 
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities1 dc = new Entities1()) {
 
                 var v = (from a in dc.TJobTitles
                          where a.intJobTitleID.Equals(intJobTitleID)
@@ -100,7 +100,7 @@ namespace test.Controllers
 
             if (ModelState.IsValid) {
 
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities1 dc = new Entities1()) {
 
                     if (c.intJobTitleID > 0) {
                         var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(c.intJobTitleID)).FirstOrDefault();
@@ -151,7 +151,7 @@ namespace test.Controllers
             string message = "";
             bool status = false;
             if (ModelState.IsValid) {
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities1 dc = new Entities1()) {
                     if (c.intJobTitleID > 0) {
                         var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(c.intJobTitleID)).FirstOrDefault();
                         if (v != null) {
@@ -193,7 +193,7 @@ namespace test.Controllers
         public ActionResult DeleteJobTitle(int id) {
             bool status = false;
             string message = "";
-            using (CapstoneEntities dc = new CapstoneEntities()) {
+            using (Entities1 dc = new Entities1()) {
                 var v = dc.TJobTitles.Where(a => a.intJobTitleID.Equals(id)).FirstOrDefault();
                 if (v != null) {
                     dc.TJobTitles.Remove(v);

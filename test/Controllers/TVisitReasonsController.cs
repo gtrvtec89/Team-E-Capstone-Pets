@@ -15,7 +15,7 @@ namespace test.Controllers
 {
     public class TVisitReasonsController : Controller
     {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities1 db = new Entities1();
 
 
             // GET: TVisitReasons
@@ -28,7 +28,7 @@ namespace test.Controllers
             public JsonResult GetVisitReasons() {
                 List<TVisitReason> all = null;
 
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities1 dc = new Entities1()) {
 
                     dc.Configuration.ProxyCreationEnabled = false;
 
@@ -58,7 +58,7 @@ namespace test.Controllers
 
                 TVisitReason visitReason = null;
 
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities1 dc = new Entities1()) {
 
                     var v = (from a in dc.TVisitReasons
                              where a.intVisitReasonID.Equals(intVisitReasonID)
@@ -103,7 +103,7 @@ namespace test.Controllers
 
                 if (ModelState.IsValid) {
 
-                    using (CapstoneEntities dc = new CapstoneEntities()) {
+                    using (Entities1 dc = new Entities1()) {
 
                         if (c.intVisitReasonID > 0) {
                             var v = dc.TVisitReasons.Where(a => a.intVisitReasonID.Equals(c.intVisitReasonID)).FirstOrDefault();
@@ -157,7 +157,7 @@ namespace test.Controllers
                 string message = "";
                 bool status = false;
                 if (ModelState.IsValid) {
-                    using (CapstoneEntities dc = new CapstoneEntities()) {
+                    using (Entities1 dc = new Entities1()) {
                         if (c.intVisitReasonID > 0) {
                             var v = dc.TVisitReasons.Where(a => a.intVisitReasonID.Equals(c.intVisitReasonID)).FirstOrDefault();
                             if (v != null) {
@@ -199,7 +199,7 @@ namespace test.Controllers
             public ActionResult DeleteVisitReason(int id) {
                 bool status = false;
                 string message = "";
-                using (CapstoneEntities dc = new CapstoneEntities()) {
+                using (Entities1 dc = new Entities1()) {
                     var v = dc.TVisitReasons.Where(a => a.intVisitReasonID.Equals(id)).FirstOrDefault();
                     if (v != null) {
                         dc.TVisitReasons.Remove(v);

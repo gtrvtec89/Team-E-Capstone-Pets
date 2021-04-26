@@ -11,16 +11,12 @@ namespace test
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TVisitMedication
     {
         public int intVisitMedicationID { get; set; }
         public int intVisitID { get; set; }
         public int intMedicationID { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime dtmDatePrescribed { get; set; }
         public int intQuantity { get; set; }
     

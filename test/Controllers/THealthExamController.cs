@@ -14,7 +14,7 @@ namespace test.Controllers
 {
     public class THealthExamController : Controller
     {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities1 db = new Entities1();
 
         // GET: THealthExam
         public ActionResult Index()

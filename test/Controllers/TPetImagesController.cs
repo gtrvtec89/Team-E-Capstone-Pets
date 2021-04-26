@@ -16,7 +16,7 @@ namespace test.Controllers
 {
     public class TPetImagesController : Controller
     {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities1 db = new Entities1();
 
         // GET: TPetImages
         public ActionResult Index()
@@ -105,7 +105,7 @@ namespace test.Controllers
                         tPet.TPetImages = new List<TPetImage> { image };
                         
                     }
-                    db.TPetImages.Add(tPet.TPetImage);
+                    db.TPetImages.Add((TPetImage)tPet.TPetImage);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

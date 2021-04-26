@@ -15,7 +15,7 @@ using test.Models;
 namespace test.Controllers {
 	public class HomeController : Controller {
 
-		private CapstoneEntities db = new CapstoneEntities();
+		private Entities1 db = new Entities1();
 
 
 		public ActionResult Index(int? id) {
@@ -72,7 +72,7 @@ namespace test.Controllers {
 		public ActionResult Login(TUser objUser) {
 
 			if (ModelState.IsValid) {
-				using (CapstoneEntities db = new CapstoneEntities()) {
+				using (Entities1 db = new Entities1()) {
 					var obj = db.TUsers.Where(a => a.strUserName.Equals(objUser.strUserName) && a.strPassword.Equals(objUser.strPassword)).FirstOrDefault();
 					if (obj != null) {
 						Session["intUserID"] = obj.intUserID.ToString();
@@ -112,7 +112,7 @@ namespace test.Controllers {
 		//[HttpPost]
 		//[ValidateAntiForgeryToken]
 		//public ActionResult Login(FormCollection col) {
-		//	CapstoneEntities db = new CapstoneEntities();
+		//	Entities1 db = new Entities1();
 		//	try {
 		//		TUser u = new TUser();
 		//		u.strUserName = col["strUserName"];
@@ -191,7 +191,7 @@ namespace test.Controllers {
 				return RedirectToAction("Login");
 			}
 			else {
-				int? intOwnerID = db.uspGetOwnerID3(id).FirstOrDefault();
+				int? intOwnerID = db.uspGetOwnerID(id).FirstOrDefault();
 				OwnerHome ownerHome = new OwnerHome();
 				owner = db.TOwners.Include(s => s.TPets).SingleOrDefault(s => s.intOwnerID == id);
 				if (Session["intUserID"].ToString() != owner.intUserID.ToString()) 

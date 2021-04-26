@@ -13,7 +13,7 @@ namespace test.Controllers
 {
     public class TServicesController : Controller
     {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities1 db = new Entities1();
 
         // GET: TServices
         public ActionResult Index()

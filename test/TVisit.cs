@@ -11,8 +11,7 @@ namespace test
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TVisit
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,9 +25,6 @@ namespace test
         public int intVisitID { get; set; }
         public int intPetID { get; set; }
         public int intVisitReasonID { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime dtmDateOfVist { get; set; }
     
         public virtual TPet TPet { get; set; }

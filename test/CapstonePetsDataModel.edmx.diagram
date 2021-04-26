@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ae505a2e2e6247ea820ee4c92e4c28a9" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.TAbdomenInfo" Width="1.5" PointX="17.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBreed" Width="1.5" PointX="3" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TEarStatusInfo" Width="1.5" PointX="17.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TEmployee" Width="1.5" PointX="10.5" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TEyeStatusInfo" Width="1.5" PointX="17.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TGender" Width="1.5" PointX="0.75" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TGIInfo" Width="1.5" PointX="17.25" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.THealthExam" Width="1.5" PointX="15" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.THeartInfo" Width="1.5" PointX="17.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TJobTitle" Width="1.5" PointX="8.25" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TLungInfo" Width="1.5" PointX="17.25" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TMedication" Width="1.5" PointX="10.5" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TMethod" Width="1.5" PointX="8.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TMouthInfo" Width="1.5" PointX="17.25" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TMusculoskeletalInfo" Width="1.5" PointX="17.25" PointY="36.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TNeurologicalInfo" Width="1.5" PointX="17.25" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TNoseThroatInfo" Width="1.5" PointX="17.25" PointY="44.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TOwner" Width="1.5" PointX="3" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TPetImage" Width="1.5" PointX="7.5" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TPet" Width="1.5" PointX="5.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TPetType" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TRole" Width="1.5" PointX="1.5" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TService" Width="1.5" PointX="10.5" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TServiceType" Width="1.5" PointX="8.25" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TSkinInfo" Width="1.5" PointX="17.25" PointY="47.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TState" Width="1.5" PointX="0.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TUrogenitalInfo" Width="1.5" PointX="17.25" PointY="51.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TUser" Width="1.5" PointX="0.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TVaccination" Width="1.5" PointX="15" PointY="55.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TVisitEmployee" Width="1.5" PointX="12.75" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TVisitMedication" Width="1.5" PointX="12.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TVisitReason" Width="1.5" PointX="8.25" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TVisit" Width="1.5" PointX="10.5" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TVisitService" Width="1.5" PointX="12.75" PointY="33.375" IsExpanded="true" />
+        <AssociationConnector Association="Model.TAbdomenInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TPets_TBreeds_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TEarStatusInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TEmployees_TJobTitles_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVisitEmployees_TEmployees_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TEyeStatusInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TOwners_TGenders_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TPets_TGenders_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TGIInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.THealthExams_TVisitServices_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.THeartInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TLungInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TMouthInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TMusculoskeletalInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TNeurologicalInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TNoseThroatInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TSkinInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TUrogenitalInfos_THealthExams_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TMedications_TMethods_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVisitMedications_TMedications_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TOwners_TStates_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TOwners_TUsers_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TPets_TOwners_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TPetImages_TPets_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TPets_TPetTypes_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVisits_TPets_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TUsers_TRoles_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TServices_TServiceTypes_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVisitServices_TServices_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVaccinations_TVisitServices_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVisitEmployees_TVisits_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVisitMedications_TVisits_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVisits_TVisitReasons_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TVisitServices_TVisits_FK1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

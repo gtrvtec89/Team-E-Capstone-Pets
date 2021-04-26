@@ -12,7 +12,7 @@ using test.Models;
 
 namespace test.Controllers {
     public class OwnerHomeController : Controller {
-        private CapstoneEntities db = new CapstoneEntities();
+        private Entities1 db = new Entities1();
 
 
         public ActionResult Index(int? id) {
