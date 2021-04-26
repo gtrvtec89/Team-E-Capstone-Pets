@@ -1,16 +1,14 @@
-﻿@model IEnumerable<test.Models.Vaccination>
+﻿@model IEnumerable<test.TVisitMedication>
 
 @{
-    ViewBag.Title = "PetProfileVaccinations";
+    ViewBag.Title = "PetMedications";
 }
 
 <h2><a href="@Url.Action("Details", "TPets", new {  id = Session["intPetID"]})">@ViewBag.PetName</a></h2>
 <div style="display:flex; flex-wrap:wrap;">
     <p style="margin-left: 25px; font-size:15px">
-
-        <button class="btn-primary" onclick="location.href='@Url.Action("PetProfile", "TPets", new { id =  Session["intPetID"]})';return false;"><i class="fas fa-arrow-left"></i> Profile</button>
+        <button class="btn-primary" onclick="location.href='@Url.Action("PetProfile", "TPets", new { id =  Session["intPetID"]})';return false;"><i class="fas fa-arrow-left"></i> Profile </button>
     </p>
-
 </div>
 
 <style>
@@ -73,13 +71,14 @@
             color: white;
         }
 </style>
+
 <div class="form-horizontal">
     <div class="topnav">
         <ul>
             <li>@Html.ActionLink("General", "PetProfile", "TPets", new { id = Session["intPetID"] }, null)</li>
             <li>@Html.ActionLink("Visits", "PetProfilePetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
-            <li class="active">@Html.ActionLink("Vaccinations", "PetProfileVaccinations", new { id = Session["intPetID"] }, null)</li>
-            <li>@Html.ActionLink("Medications", "PetProfileMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Vaccinations", "PetProfileVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
+            <li class="active">@Html.ActionLink("Medications", "PetProfileMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
         </ul>
     </div>
 </div>
@@ -89,16 +88,10 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayName("Date of Vaccination")
+                    @Html.DisplayName("Date Prescribed")
                 </th>
                 <th>
-                    @Html.DisplayName("Description")
-                </th>
-                <th>
-                    @Html.DisplayName("Rabies Tag")
-                </th>
-                <th>
-                    @Html.DisplayName("Date of Expiration")
+                    @Html.DisplayName("Medication")
                 </th>
 
             </tr>
@@ -107,22 +100,14 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.dtmDateOfVaccination)
+                        @Html.DisplayFor(modelItem => item.dtmDatePrescribed)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.strVaccineDesc)
+                        @Html.DisplayFor(modelItem => item.TMedication.strMedicationName)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.strRabiesNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dtmDateOfExpiration)
-                    </td>
-
                 </tr>
             }
 
         </table>
     </div>
 </div>
-

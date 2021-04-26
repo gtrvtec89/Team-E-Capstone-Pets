@@ -243,6 +243,39 @@ namespace test.Controllers
             return View(tVaccinations);
         }
 
+        public ActionResult PetProfileVaccinations(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Session["intPetID"] = id;
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+            List<Vaccination> tVaccinations = (from vc in db.TVaccinations
+                                               join vs in db.TVisitServices
+                                               on vc.intVisitServiceID equals vs.intVisitServiceID
+                                               join v in db.TVisits
+                                               on vs.intVisitID equals v.intVisitID
+                                               where v.intPetID == id
+                                               select new Vaccination
+                                               {
+                                                   intVaccinationID = vc.intVaccinationID,
+                                                   intVisitServiceID = vc.intVisitServiceID,
+                                                   dtmDateOfVaccination = vc.dtmDateOfVaccination,
+                                                   dtmDateOfExpiration = vc.dtmDateOfExpiration,
+                                                   strVaccineDesc = vc.strVaccineDesc,
+                                                   strRabiesNumber = vc.strRabiesNumber
+                                               }).ToList();
+
+            if (petName == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.PetName = petName;
+
+            return View(tVaccinations);
+        }
+
         // POST: TVaccinations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

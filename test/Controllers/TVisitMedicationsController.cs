@@ -182,5 +182,48 @@ namespace test.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult PetProfileMedications(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Session["intPetID"] = id;
+            var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
+
+            // Get data from database with LINQ
+            List<Medication> data = (from m in db.TMedications
+                                     join vm in db.TVisitMedications
+                                     on m.intMedicationID equals vm.intMedicationID
+                                     join v in db.TVisits
+                                     on vm.intVisitID equals v.intVisitID
+                                     where v.intPetID == id
+                                     select new Medication
+                                     {
+                                         intVisitMedicationID = vm.intMedicationID,
+                                         intVisitID = vm.intVisitID,
+                                         intMedicationID = vm.intMedicationID,
+                                         dtmDatePrescribed = vm.dtmDatePrescribed,
+                                         intQuantity = vm.intQuantity
+                                     }).ToList();
+
+            // Convert raw data
+            List<TVisitMedication> tPetMedications = data.Select(a => new TVisitMedication
+            {
+                intVisitMedicationID = a.intMedicationID,
+                intVisitID = a.intVisitID,
+                intMedicationID = a.intMedicationID,
+                dtmDatePrescribed = a.dtmDatePrescribed,
+                intQuantity = a.intQuantity
+            }).ToList();
+            if (petName == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.PetName = petName;
+
+            return View(tPetMedications);
+        }
     }
 }

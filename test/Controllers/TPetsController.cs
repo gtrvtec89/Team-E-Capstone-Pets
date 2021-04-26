@@ -37,61 +37,34 @@ namespace test.Controllers {
         }
 
         // GET: TPets/Details/5
-        public ActionResult Details(int? id){
+        public ActionResult Details(int? id)
+        {
             TPet pet = new TPet();
-            if (Session["intUserID"] == null)
+            ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType");
+            ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender");
+            ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
+            ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName");
+            ViewBag.intPetImageID = new SelectList(db.TPetImages, "intPetImageID", "imgContent");
+            ViewBag.intVisitID = new SelectList(db.TVisits, "intVisitID", "dtmDateOfVist");
+
+
+
+            if (id == null)
             {
-                //ViewBag.ErrorMessage = "Authorized Users Only";
-                return RedirectToAction("Login", "Home");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else
+
+
+            TPet tPet = db.TPets.Include(s => s.TPetImages).SingleOrDefault(s => s.intPetID == id);
+
+            //Get List of Visits and put in PetProfile View
+
+            if (tPet == null)
             {
-                var oInfo = (from o in db.TOwners
-                             join p in db.TPets
-                              on o.intOwnerID equals p.intOwnerID
-                             join u in db.TUsers
-                              on o.intUserID equals u.intUserID
-                             where p.intPetID == (int)id
-                             select new
-                             {
-                                 intOwnerID = o.intOwnerID,
-                                 strFirstName = o.strFirstName,
-                                 strLastName = o.strLastName,
-                                 intUserID = u.intUserID
-                             }).FirstOrDefault();
-                if (Session["intUserID"].ToString() != oInfo.intUserID.ToString())
-                {
-                    //ViewBag.ErrorMessage = "Authorized Users Only";
-                    return RedirectToAction("Login", "Home");
-                }
-                else
-                {
-
-                    ViewBag.intPetTypeID = new SelectList(db.TPetTypes, "intPetTypeID", "strPetType");
-                    ViewBag.intGenderID = new SelectList(db.TGenders, "intGenderID", "strGender");
-                    ViewBag.intOwnerID = new SelectList(db.TOwners, "intOwnerID", "strLastName");
-                    ViewBag.intBreedID = new SelectList(db.TBreeds, "intBreedID", "strBreedName");
-                    ViewBag.intPetImageID = new SelectList(db.TPetImages, "intPetImageID", "imgContent");
-                    ViewBag.intVisitID = new SelectList(db.TVisits, "intVisitID", "dtmDateOfVist");
-
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-
-                    TPet tPet = db.TPets.Include(s => s.TPetImages).SingleOrDefault(s => s.intPetID == id);
-
-                    //Get List of Visits and put in PetProfile View
-
-
-                    if (tPet == null)
-                    {
-                        return HttpNotFound();
-                    }
-
-                    return View(tPet);
-                }
+                return HttpNotFound();
             }
+
+            return View(tPet);
         }
 
         // GET: TPets/Create
@@ -110,6 +83,7 @@ namespace test.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "intPetID,strPetNumber,strMicrochipID,strPetName,intPetTypeID,intGenderID,intBreedID,dtmDateofBirth,dblWeight,isBlind,isDeaf,isAggressive,isDeceased,isAllergic,strColor,strNotes,isDeceased,intOwnerID")] TPet tPet, HttpPostedFileBase upload) {
+
             try {
                 if (ModelState.IsValid) {
                     if (upload != null && upload.ContentLength > 0) {
