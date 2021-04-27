@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>@ViewBag.PetName</h2>>
+<h2>@ViewBag.PetName</h2>
 
 <p style="margin-left: 25px; font-size:15px">
     <button class="btn-primary" onclick="location.href='@Url.Action("PetVisits", "TVisits", new { id = Session["intPetID"]})';return false;">
@@ -33,7 +33,7 @@
 
                 <div class="form-group row">
                     @Html.LabelFor(model => model.intVisitReasonID,"Visit Reason", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-4">
                         @Html.DropDownList("intVisitReasonID", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.intVisitReasonID, "", new { @class = "text-danger" })
                     </div>
@@ -41,7 +41,7 @@
 
                 <div class="form-group row">
                     @Html.LabelFor(model => model.intEmployeeID, "Doctor", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-4">
                         @Html.DropDownList("intEmployeeID", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.intEmployeeID, "", new { @class = "text-danger" })
                     </div>
