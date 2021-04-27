@@ -163,7 +163,11 @@ namespace test.Controllers
         //TO DO: Finish the logic for this
         public ActionResult PetMedicationDetails(int id)
         {
-            return View();
+            int intPetId = db.TVisitMedications.Where(x => x.intVisitMedicationID == id).Select(z => z.TVisit.intPetID).FirstOrDefault();
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            Session["intPetID"] = intPetId;
+            TVisitMedication visitMedication = db.TVisitMedications.Where(x => x.intVisitMedicationID == id).FirstOrDefault();
+            return View(visitMedication);
         }
 
         // POST: TVisitMedications/Delete/5

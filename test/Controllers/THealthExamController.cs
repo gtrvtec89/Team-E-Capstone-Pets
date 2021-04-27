@@ -25,6 +25,9 @@ namespace test.Controllers
         // GET: Details
         public ActionResult Details(int visitServiceId)
         {
+            int visitId = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intVisitID).FirstOrDefault();
+            Session["intVisitId"] = visitId;
+
             THealthExam healthExam = db.THealthExams.Where(x => x.intVisitServiceID == visitServiceId).FirstOrDefault();
             TEyeStatusInfo eyeStatusInfo = db.TEyeStatusInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();
             TEarStatusInfo earStatusInfo = db.TEarStatusInfos.Where(x => x.intHealthExamID == healthExam.intHealthExamID).FirstOrDefault();

@@ -93,6 +93,9 @@
                 <th>
                     @Html.DisplayName("Medication")
                 </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
 
             </tr>
 
@@ -104,6 +107,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.strMedicationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.intQuantity)
                     </td>
                 </tr>
             }

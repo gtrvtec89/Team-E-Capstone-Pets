@@ -94,6 +94,9 @@
                 <th>
                     @Html.DisplayName("Medication")
                 </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
                 <th style="white-space:nowrap">
                     @Html.DisplayName("Details")
                 </th>
@@ -108,9 +111,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.strMedicationName)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.intQuantity)
+                    </td>
                     <td style="white-space:nowrap">
 
-                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("PetMedicationDetails", "TVisitMedication", new { id = item.intVisitMedicationID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("PetMedicationDetails", "TVisitMedications", new { id = item.intVisitMedicationID })' ;return false;>  <i class="far fa-eye"></i></a>
                     </td>
                 </tr>
             }

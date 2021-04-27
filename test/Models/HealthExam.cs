@@ -11,11 +11,22 @@ namespace test.Models
     {
 
         // Health Exam Parameters 
+        [Required(ErrorMessage = "Weight is required")]
         public float dblWeight { get; set; }
+
+        [Required(ErrorMessage = "Temperature is required")]
         public float dblTemperature { get; set; }
+
+        [Required(ErrorMessage = "Heart is required")]
         public int intHeartRate { get; set; }
+
+        [Required(ErrorMessage = "Respiratory Rate is required")]
         public int intRespRate { get; set; }
+
+        [Required(ErrorMessage = "Capillary Refill Time is required")]
         public int intCapillaryRefillTime { get; set; }
+
+        [Required(ErrorMessage = "Mucous Membrane Date is required")]
         public string strMucousMembrane { get; set; }
 
         // TO DO: Pull this information from the session or something
