@@ -14,18 +14,19 @@
 
 <style>
     h2 {
-        text-decoration:none;
-    }
-
-    h2 > a {
-        color:black;
-        text-decoration:none;
-    }
-
-    h2 > a:hover, a:focus {
-        color:cornflowerblue;
         text-decoration: none;
     }
+
+        h2 > a {
+            color: black;
+            text-decoration: none;
+        }
+
+            h2 > a:hover, a:focus {
+                color: cornflowerblue;
+                text-decoration: none;
+            }
+
     dt {
         white-space: nowrap
     }
@@ -76,7 +77,7 @@
     <div class="topnav">
         <ul>
             <li>@Html.ActionLink("General", "Details", "TPets", new { id = Session["intPetID"] }, null)</li>
-            <li >@Html.ActionLink("Visits", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
+            <li>@Html.ActionLink("Visits", "PetVisits", "TVisits", new { id = Session["intPetID"] }, null)</li>
             <li class="active">@Html.ActionLink("Vaccinations", "PetVaccinations", "TVaccinations", new { id = Session["intPetID"] }, null)</li>
             <li>@Html.ActionLink("Medications", "PetMedications", "TVisitMedications", new { id = Session["intPetID"] }, null)</li>
         </ul>
@@ -110,7 +111,7 @@
                         @Html.DisplayFor(modelItem => item.dtmDateOfVaccination)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.strVaccineDesc)
+                        @Html.DisplayFor(modelItem => item.strServiceDesc)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.strRabiesNumber)

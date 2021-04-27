@@ -12,5 +12,8 @@ namespace test.Models
         public int intMedicationID { get; set; }
         public System.DateTime dtmDatePrescribed { get; set; }
         public int intQuantity { get; set; }
+        public String strMedicationName { get; set; }
+        public String strNotes { get; set; }
+
     }
 }

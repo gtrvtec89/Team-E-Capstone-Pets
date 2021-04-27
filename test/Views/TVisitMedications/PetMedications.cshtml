@@ -14,18 +14,18 @@
 
 <style>
     h2 {
-        text-decoration:none;
-    }
-
-    h2 > a {
-        color:black;
-        text-decoration:none;
-    }
-
-    h2 > a:hover, a:focus {
-        color:cornflowerblue;
         text-decoration: none;
     }
+
+        h2 > a {
+            color: black;
+            text-decoration: none;
+        }
+
+            h2 > a:hover, a:focus {
+                color: cornflowerblue;
+                text-decoration: none;
+            }
 
     dt {
         white-space: nowrap
@@ -106,10 +106,10 @@
                         @Html.DisplayFor(modelItem => item.dtmDatePrescribed)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TMedication.strMedicationDesc)
+                        @Html.DisplayFor(modelItem => item.strMedicationName)
                     </td>
                     <td style="white-space:nowrap">
-                        @*TO DO: FIX THIS*@
+
                         <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("PetMedicationDetails", "TVisitMedication", new { id = item.intVisitMedicationID })' ;return false;>  <i class="far fa-eye"></i></a>
                     </td>
                 </tr>

@@ -6,11 +6,13 @@
 
 <h2>Employees</h2>
 
-<p style="margin-left: 25px; font-size:15px">
+<div style="display: flex;">
+    <p style="margin-left: 25px; font-size:15px">
 
-    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TEmployees")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
-</p>
+        <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TEmployees")';return false;"><i class="fas fa-arrow-left"></i> Back To List</button>
+    </p>
 
+</div>
 
 <div class="body-content">
     <h4 style="text-decoration: none; padding-top: 10px; padding-left: 10px">
@@ -20,7 +22,7 @@
 
     <div>
         <hr />
-        <dl class="dl-horizontal">
+        <dl class="d-lg-table">
 
             <dt>
                 @Html.DisplayName("First Name")
@@ -45,14 +47,6 @@
 
             <dd>
                 @Html.DisplayFor(model => model.TJobTitle.strJobTitleDesc)
-            </dd>
-
-            <dt>
-                @Html.DisplayName("User ID")
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.intUserID)
             </dd>
 
         </dl>

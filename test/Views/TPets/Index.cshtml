@@ -5,11 +5,21 @@
 }
 
 <h2>Pets</h2>
-<p style="margin-left: 35px">
-	<button class="btn-success" onclick="location.href='@Url.Action("Create", "TPets")';return false;">
-		<i class="fas fa-plus"></i>  Create New
-	</button>
-</p>
+
+<div style="display: flex;">
+    <p style="margin-left: 30px">
+        <button class="btn-primary" onclick="location.href='@Url.Action("Index","Home", new { id = Session["intUserID"].ToString() })';return false;">
+            <i class="fas fa-arrow-left"></i>  Home
+        </button>
+    </p>
+
+    <p style="margin-left: 35px">
+        <button class="btn-success" onclick="location.href='@Url.Action("Create", "TPets")';return false;">
+            <i class="fas fa-plus"></i>  Create New
+        </button>
+    </p>
+</div>
+
 <style>
 	th {
 		white-space: nowrap;

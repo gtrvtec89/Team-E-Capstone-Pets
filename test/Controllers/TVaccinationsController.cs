@@ -223,13 +223,17 @@ namespace test.Controllers
                            on vc.intVisitServiceID equals vs.intVisitServiceID
                            join v in db.TVisits
                            on vs.intVisitID equals v.intVisitID
+                           join s in db.TServices
+                           on vs.intServiceID equals s.intServiceID
                            where v.intPetID == id
+                           where s.intServiceTypeID == 1
                            select new Vaccination
                            {
                                intVaccinationID = vc.intVaccinationID,
                                intVisitServiceID = vc.intVisitServiceID,
                                dtmDateOfVaccination = vc.dtmDateOfVaccination,
                                dtmDateOfExpiration = vc.dtmDateOfExpiration,
+                               strServiceDesc = vs.TService.strServiceDesc,
                                strVaccineDesc = vc.strVaccineDesc,
                                strRabiesNumber = vc.strRabiesNumber
                            }).ToList();
@@ -256,13 +260,17 @@ namespace test.Controllers
                                                on vc.intVisitServiceID equals vs.intVisitServiceID
                                                join v in db.TVisits
                                                on vs.intVisitID equals v.intVisitID
+                                               join s in db.TServices
+                                               on vs.intServiceID equals s.intServiceID
                                                where v.intPetID == id
+                                               where s.intServiceTypeID == 1
                                                select new Vaccination
                                                {
                                                    intVaccinationID = vc.intVaccinationID,
                                                    intVisitServiceID = vc.intVisitServiceID,
                                                    dtmDateOfVaccination = vc.dtmDateOfVaccination,
                                                    dtmDateOfExpiration = vc.dtmDateOfExpiration,
+                                                   strServiceDesc = vs.TService.strServiceDesc,
                                                    strVaccineDesc = vc.strVaccineDesc,
                                                    strRabiesNumber = vc.strRabiesNumber
                                                }).ToList();
