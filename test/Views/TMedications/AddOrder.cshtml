@@ -1,0 +1,104 @@
+﻿@model test.Models.OrderMedication
+
+@{
+    ViewBag.Title = "AddOrder";
+}
+
+<h2>Medications</h2>
+
+
+<p style="margin-left: 25px; font-size:15px">
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TMedications")';return false;">
+        <i class="fas fa-arrow-left"></i>  Back
+    </button>
+</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="body-content">
+    <div class="form-horizontal">
+        <h4 style="text-decoration: none; padding-top: 10px; padding-left: 2px">
+            New Order
+        </h4>
+        <hr style="margin:5px; margin-bottom: 15px" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.dtmDateOfOrder, "Order Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.dtmDateOfOrder, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtmDateOfOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.strMedicationName, "Medication Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.strMedicationName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.strMedicationName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dblUnitCost, "Unit Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.dblUnitCost, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.dblUnitCost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.intCurrentQuantity, "Current Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.intCurrentQuantity, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.intCurrentQuantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.intOrderQuantity, "Order Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.intOrderQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.intOrderQuantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row" style="display:inline-grid; width: 60%; margin: 3px;">
+            @Html.LabelFor(model => model.strNotes, "Notes", new { htmlAttributes = new { @class = "control-label col-md-2" }, style = "font-size: 16px; font-weight: 700; padding-left:  15px;" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.strNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width:100%; height: 170px;" })
+                @Html.ValidationMessageFor(model => model.strNotes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn-success" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group" style="visibility:hidden">
+    @Html.LabelFor(model => model.dblTotal, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.dblTotal, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.dblTotal, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group" style="visibility:hidden">
+    @Html.LabelFor(model => model.intMedicationId, "Medication Name", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.intMedicationId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.intMedicationId, "", new { @class = "text-danger" })
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

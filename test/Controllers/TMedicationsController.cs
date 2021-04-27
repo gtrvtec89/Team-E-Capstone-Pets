@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using test;
+using test.Models;
 
 namespace test.Controllers
 {
@@ -117,6 +119,51 @@ namespace test.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult AddOrder(int id)
+        {
+            TMedication medication = db.TMedications.Where(x => x.intMedicationID == id).FirstOrDefault();
+
+            OrderMedication orderMedication = new OrderMedication()
+            {
+                dtmDateOfOrder = DateTime.Now,
+                intMedicationId = medication.intMedicationID,
+                strMedicationName = medication.strMedicationName,
+                dblUnitCost = medication.dblCost,
+                intCurrentQuantity = medication.intQuantity,
+                intOrderQuantity = 0,
+                dblTotal = 0,
+                strNotes = ""
+            };
+
+            ViewBag.intMedicationId = new SelectList(db.TMedications, "intMedicationID", "strMedicationName");
+            return View(orderMedication);
+        }
+
+        [HttpPost]
+        public ActionResult AddOrder (OrderMedication order)
+        {
+            TMedication medication = db.TMedications.Where(x => x.intMedicationID == order.intMedicationId).FirstOrDefault();
+            SqlParameter[] param = new SqlParameter[]
+            {
+              new SqlParameter("@intMedicationID", medication.intMedicationID),
+              new SqlParameter("@strMedicationName", medication.strMedicationName),
+              new SqlParameter("@strMedicationDesc", medication.strMedicationDesc),
+              new SqlParameter("@dblCost", medication.dblCost),
+              new SqlParameter("@dblPrice", medication.dblPrice),
+              new SqlParameter("@strNotes", medication.strNotes),
+              new SqlParameter("@intQuantity", medication.intQuantity + order.intOrderQuantity),
+              new SqlParameter("@intMethodID", medication.intMethodID),
+            };
+
+            db.uspAddMedicationOrder(order.dtmDateOfOrder, medication.intMedicationID, medication.strMedicationName, medication.dblCost, order.intOrderQuantity, medication.dblCost * order.intOrderQuantity, order.strNotes);
+            db.Database.ExecuteSqlCommand("uspUpdateMedication @intMedicationID, @strMedicationName, @strMedicationDesc,@dblCost, @dblPrice,@strNotes,@intQuantity, @intMethodID ", param);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Inventory()
+        {
+            return View(db.TMedicationOrders.ToList());
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

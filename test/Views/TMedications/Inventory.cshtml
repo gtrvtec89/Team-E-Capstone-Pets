@@ -1,0 +1,70 @@
+﻿@model IEnumerable<test.TMedicationOrder>
+
+@{
+    ViewBag.Title = "Inventory";
+}
+
+<h2>Inventory</h2>
+
+<p style="margin-left: 30px">
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "TMedications")';return false;">
+        <i class="fas fa-arrow-left"></i>  Medication List
+    </button>
+</p>
+<div class="body-content">
+    <div class="form-group">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Order Date")
+
+                </th>
+                <th>
+                    @Html.DisplayName("Medication Name")
+
+                </th>
+                <th>
+                    @Html.DisplayName("Unit Cost")
+
+                </th>
+                <th>
+                    @Html.DisplayName("Ouantity")
+
+                </th>
+                <th>
+                    @Html.DisplayName("Total Cost")
+
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dtmOrderDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strMedicationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dblUnitCost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.intOrderQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dblTotal)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.intMedicationOrderID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.intMedicationOrderID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.intMedicationOrderID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
