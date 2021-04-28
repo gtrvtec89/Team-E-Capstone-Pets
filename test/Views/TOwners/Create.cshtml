@@ -31,7 +31,7 @@
 			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strFirstName, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-3">
 					@Html.EditorFor(model => model.strFirstName, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strFirstName, "", new { @class = "text-danger" })
 				</div>
@@ -39,7 +39,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strLastName, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-3">
 					@Html.EditorFor(model => model.strLastName, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strLastName, "", new { @class = "text-danger" })
 				</div>
@@ -47,7 +47,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.intGenderID, "Gender", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-2">
 					@Html.DropDownList("intGenderID", null, htmlAttributes: new { @class = "form-control" })
 					@Html.ValidationMessageFor(model => model.intGenderID, "", new { @class = "text-danger" })
 				</div>
@@ -55,7 +55,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strAddress, "Address", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-4">
 					@Html.EditorFor(model => model.strAddress, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strAddress, "", new { @class = "text-danger" })
 				</div>
@@ -63,7 +63,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strCity, "City", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-3">
 					@Html.EditorFor(model => model.strCity, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strCity, "", new { @class = "text-danger" })
 				</div>
@@ -71,7 +71,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.intStateID, "State", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-2">
 					@Html.DropDownList("intStateID", null, htmlAttributes: new { @class = "form-control" })
 					@Html.ValidationMessageFor(model => model.intStateID, "", new { @class = "text-danger" })
 				</div>
@@ -79,7 +79,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strZip, "Zip", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-2">
 					@Html.EditorFor(model => model.strZip, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strZip, "", new { @class = "text-danger" })
 				</div>
@@ -87,7 +87,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strPhoneNumber, "Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-3">
 					@Html.EditorFor(model => model.strPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strPhoneNumber, "", new { @class = "text-danger" })
 				</div>
@@ -95,7 +95,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strEmail, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-4">
 					@Html.EditorFor(model => model.strEmail, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strEmail, "", new { @class = "text-danger" })
 				</div>
@@ -103,7 +103,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strOwner2Name, "Owner 2 Name", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-4">
 					@Html.EditorFor(model => model.strOwner2Name, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strOwner2Name, "", new { @class = "text-danger" })
 				</div>
@@ -111,7 +111,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strOwner2PhoneNumber, "Owner 2 Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-4">
 					@Html.EditorFor(model => model.strOwner2PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strOwner2PhoneNumber, "", new { @class = "text-danger" })
 				</div>
@@ -119,7 +119,7 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strOwner2Email, "Owner 2 Email", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
+				<div class="col-md-4">
 					@Html.EditorFor(model => model.strOwner2Email, new { htmlAttributes = new { @class = "form-control" } })
 					@Html.ValidationMessageFor(model => model.strOwner2Email, "", new { @class = "text-danger" })
 				</div>
@@ -127,10 +127,10 @@
 
 			<div class="form-group row">
 				@Html.LabelFor(model => model.strNotes, "Notes", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.EditorFor(model => model.strNotes, new { htmlAttributes = new { @class = "form-control" } })
-					@Html.ValidationMessageFor(model => model.strNotes, "", new { @class = "text-danger" })
-				</div>
+                <div class="col-md-4">
+                    @Html.TextAreaFor(model => model.strNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width:100%; height: 170px;" })
+                    @Html.ValidationMessageFor(model => model.strNotes, "", new { @class = "text-danger" })
+                </div>
 			</div>
 
 			@*<div class="form-group row">

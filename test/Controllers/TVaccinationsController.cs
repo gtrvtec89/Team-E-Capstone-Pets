@@ -139,15 +139,15 @@ namespace test.Controllers
             }
 
             VisitVaccination visitVaccination = new VisitVaccination()
-                {
-                    intServiceId = serviceId,
-                    intVisitServiceId = visitServiceId,
-                    strServiceName = serviceName,
-                    dtmDateofVaccination = dateOfVaccination.Month + "/" + dateOfVaccination.Day + "/" + dateOfVaccination.Year,
-                    dtmDateOfExpiration = dateOfExpiration.Month + "/" + dateOfExpiration.Day + "/" + dateOfExpiration.Year,
-                    strVaccineNotes = tVaccination.strVaccineDesc,
-                    strRabiesNumber = tVaccination.strRabiesNumber
-                };
+            {
+                intServiceId = serviceId,
+                intVisitServiceId = visitServiceId,
+                strServiceName = serviceName,
+                dtmDateofVaccination = dateOfVaccination.Month + "/" + dateOfVaccination.Day + "/" + dateOfVaccination.Year,
+                dtmDateOfExpiration = dateOfExpiration.Month + "/" + dateOfExpiration.Day + "/" + dateOfExpiration.Year,
+                strVaccineNotes = tVaccination.strVaccineDesc,
+                strRabiesNumber = tVaccination.strRabiesNumber
+            };
 
             ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
             return View(visitVaccination);
@@ -219,24 +219,24 @@ namespace test.Controllers
             Session["intPetID"] = id;
             var petName = db.TPets.Where(x => x.intPetID == id).Select(x => x.strPetName).FirstOrDefault();
             List<Vaccination> tVaccinations = (from vc in db.TVaccinations
-                           join vs in db.TVisitServices
-                           on vc.intVisitServiceID equals vs.intVisitServiceID
-                           join v in db.TVisits
-                           on vs.intVisitID equals v.intVisitID
-                           join s in db.TServices
-                           on vs.intServiceID equals s.intServiceID
-                           where v.intPetID == id
-                           where s.intServiceTypeID == 1
-                           select new Vaccination
-                           {
-                               intVaccinationID = vc.intVaccinationID,
-                               intVisitServiceID = vc.intVisitServiceID,
-                               dtmDateOfVaccination = vc.dtmDateOfVaccination,
-                               dtmDateOfExpiration = vc.dtmDateOfExpiration,
-                               strServiceDesc = vs.TService.strServiceDesc,
-                               strVaccineDesc = vc.strVaccineDesc,
-                               strRabiesNumber = vc.strRabiesNumber
-                           }).ToList();
+                                               join vs in db.TVisitServices
+                                               on vc.intVisitServiceID equals vs.intVisitServiceID
+                                               join v in db.TVisits
+                                               on vs.intVisitID equals v.intVisitID
+                                               join s in db.TServices
+                                               on vs.intServiceID equals s.intServiceID
+                                               where v.intPetID == id
+                                               where s.intServiceTypeID == 1
+                                               select new Vaccination
+                                               {
+                                                   intVaccinationID = vc.intVaccinationID,
+                                                   intVisitServiceID = vc.intVisitServiceID,
+                                                   dtmDateOfVaccination = vc.dtmDateOfVaccination,
+                                                   dtmDateOfExpiration = vc.dtmDateOfExpiration,
+                                                   strServiceDesc = vs.TService.strServiceDesc,
+                                                   strVaccineDesc = vc.strVaccineDesc,
+                                                   strRabiesNumber = vc.strRabiesNumber
+                                               }).ToList();
 
             if (petName == null)
             {
