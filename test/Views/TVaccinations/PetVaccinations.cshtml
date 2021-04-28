@@ -100,7 +100,7 @@
                     @Html.DisplayName("Date of Expiration")
                 </th>
                 <th style="white-space:nowrap">
-                    @Html.DisplayName("Edit | Delete")
+                    @Html.DisplayName("Details | Edit | Delete")
                 </th>
             </tr>
 
@@ -120,6 +120,7 @@
                         @Html.DisplayFor(modelItem => item.dtmDateOfExpiration)
                     </td>
                     <td style="white-space:nowrap">
+                        <a style="color:#5cb85c; padding-left: 30px" href='@Url.Action("PetVaccinationDetails", "TVaccinations", new { visitServiceId = item.intVisitServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
                         <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TVaccinations", new { visitServiceId = item.intVisitServiceID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
                         <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TVaccinations", new { id = item.intVaccinationID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
                     </td>

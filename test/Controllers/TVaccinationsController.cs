@@ -33,6 +33,53 @@ namespace test.Controllers
 
             int intPetId = (int)Session["intPetID"];
             int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intServiceID).FirstOrDefault();
+            int intVisitId = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intVisitID).FirstOrDefault();
+            int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
+            string serviceName = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.TService.strServiceDesc).FirstOrDefault();
+            Session["intVisitServiceId"] = visitServiceId;
+            Session["isRabiesVaccine"] = null;
+            DateTime dateOfVaccination = tVaccination.dtmDateOfVaccination;
+            DateTime dateOfExpiration = tVaccination.dtmDateOfExpiration;
+
+            if (serviceId == rabiesVaccineServiceId)
+            {
+                Session["isRabiesVaccine"] = true;
+
+            }
+
+            Session["isFromSummary"] = null;
+            Session["intVisitId"] = intVisitId;
+            bool isSummary = (bool)Session["isSummary"];
+            if (isSummary == true)
+            {
+                Session["isFromSummary"] = true;
+            }
+
+            VisitVaccination visitVaccination = new VisitVaccination()
+            {
+                intServiceId = serviceId,
+                intVisitServiceId = (int)visitServiceId,
+                strServiceName = serviceName,
+                dtmDateofVaccination = dateOfVaccination.Month + "/" + dateOfVaccination.Day + "/" + dateOfVaccination.Year,
+                dtmDateOfExpiration = dateOfExpiration.Month + "/" + dateOfExpiration.Day + "/" + dateOfExpiration.Year,
+                strVaccineNotes = tVaccination.strVaccineDesc,
+                strRabiesNumber = tVaccination.strRabiesNumber
+            };
+
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            return View(visitVaccination);
+        }
+
+        public ActionResult PetVaccinationDetails(int visitServiceId)
+        {
+            TVaccination tVaccination = db.TVaccinations.Where(x => x.intVisitServiceID == visitServiceId).FirstOrDefault();
+            if (tVaccination == null)
+            {
+                return HttpNotFound();
+            }
+
+            int intPetId = (int)Session["intPetID"];
+            int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intServiceID).FirstOrDefault();
             int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
             string serviceName = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.TService.strServiceDesc).FirstOrDefault();
             Session["intVisitServiceId"] = visitServiceId;
@@ -60,6 +107,8 @@ namespace test.Controllers
             ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
             return View(visitVaccination);
         }
+
+
 
         // GET: TVaccinations/Create
         public ActionResult Create(int serviceID)

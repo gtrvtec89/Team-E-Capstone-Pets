@@ -137,7 +137,7 @@ namespace test.Controllers
                                          intMedicationID = vm.intMedicationID,
                                          dtmDatePrescribed = vm.dtmDatePrescribed,
                                          intQuantity = vm.intQuantity,
-                                         strMedicationName = m.strMedicationName
+                                         strMedicationName = m.strMedicationName,
                                      }).ToList();
 
             // Convert raw data
@@ -148,7 +148,7 @@ namespace test.Controllers
                 intMedicationID = a.intMedicationID,
                 dtmDatePrescribed = a.dtmDatePrescribed,
                 intQuantity = a.intQuantity,
-                strMedicationName = a.strMedicationName
+                strMedicationName = a.strMedicationName,
             }).ToList();
             if (petName == null)
             {

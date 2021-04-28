@@ -69,7 +69,8 @@ namespace test.Controllers
                 intVisitID = intVisitId,
                 intMedicationID = medicationId,
                 dtmDatePrescribed = DateTime.Now,
-                intQuantity = 0
+                intQuantity = 0,
+                strMedicationNotes = ""
             };
 
             ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
@@ -78,7 +79,7 @@ namespace test.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPetMedication([Bind(Include = "intVisitMedicationID, intVisitID, intMedicationID, dtmDatePrescribed, intQuantity")]TVisitMedication visitMedication)
+        public ActionResult AddPetMedication([Bind(Include = "intVisitMedicationID, intVisitID, intMedicationID, dtmDatePrescribed, intQuantity, strMedicationNotes")]TVisitMedication visitMedication)
         {
             int intMedicationId = (int)Session["intMedicationID"];
             int intPetId = (int)Session["intPetID"];
@@ -113,7 +114,8 @@ namespace test.Controllers
                         intVisitID = visitMedication.intVisitID,
                         intMedicationID = intMedicationId,
                         dtmDatePrescribed = visitMedication.dtmDatePrescribed,
-                        intQuantity = visitMedication.intQuantity
+                        intQuantity = visitMedication.intQuantity,
+                        strMedicationNotes = visitMedication.strMedicationNotes
                     };
 
                     db.TVisitMedications.Add(newVisitMedication);
@@ -128,7 +130,8 @@ namespace test.Controllers
                         intVisitID = visitMedication.intVisitID,
                         intMedicationID = intMedicationId,
                         dtmDatePrescribed = visitMedication.dtmDatePrescribed,
-                        intQuantity = currentVisitMedicationQuantity + visitMedication.intQuantity
+                        intQuantity = currentVisitMedicationQuantity + visitMedication.intQuantity,
+                        strMedicationNotes = visitMedication.strMedicationNotes
                     };
 
                     db.Entry(updatedVisitMedication).State = EntityState.Modified;
@@ -225,7 +228,7 @@ namespace test.Controllers
                     };
 
                     db.Database.ExecuteSqlCommand("uspUpdateMedication @intMedicationID, @strMedicationName, @strMedicationDesc,@dblCost, @dblPrice,@strNotes,@intQuantity, @intMethodID ", param);
-                    db.uspUpdateVisitMedication(visitMedication.intVisitMedicationID, visitMedication.intQuantity);
+                    db.uspUpdateVisitMedication(visitMedication.intVisitMedicationID, visitMedication.intQuantity, visitMedication.strMedicationNotes);
                     //db.Database.ExecuteSqlCommand("uspUpdateVisitMedication @intVisitMedicationID, @intQuantity", visitMedication.intVisitMedicationID, visitMedication.intQuantity);
 
                 }
@@ -246,14 +249,14 @@ namespace test.Controllers
                     };
 
                     db.Database.ExecuteSqlCommand("uspUpdateMedication @intMedicationID, @strMedicationName, @strMedicationDesc,@dblCost, @dblPrice,@strNotes,@intQuantity, @intMethodID ", param);
-                    db.uspUpdateVisitMedication(visitMedication.intVisitMedicationID, visitMedication.intQuantity);
+                    db.uspUpdateVisitMedication(visitMedication.intVisitMedicationID, visitMedication.intQuantity, visitMedication.strMedicationNotes);
                     //db.Database.ExecuteSqlCommand("uspUpdateVisitMedication @intVisitMedicationID, @intQuantity", visitMedication.intVisitMedicationID, visitMedication.intQuantity);
 
                 }
                 else
                 {
                     //TO DO: Need some error handling
-                    db.uspUpdateVisitMedication(visitMedication.intVisitMedicationID, oldQuantity);
+                    db.uspUpdateVisitMedication(visitMedication.intVisitMedicationID, oldQuantity, visitMedication.strMedicationNotes);
                     //db.Database.ExecuteSqlCommand("uspUpdateVisitMedication @intVisitMedicationID, @intQuantity", visitMedication.intVisitMedicationID, oldQuantity);
 
                 }

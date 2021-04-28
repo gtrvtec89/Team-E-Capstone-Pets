@@ -6,24 +6,12 @@
 
 <h2>@ViewBag.Name</h2>
 
-
-@if (Session["isFromSummary"] != null)
-{
     <p style="margin-left: 25px; font-size:15px">
-        <button class="btn-primary" onclick="location.href='@Url.Action("Index", "VisitSummary", new { id = Session["intVisitId"] })';return false;">
-            <i class="fas fa-arrow-left"></i>  Back
-        </button>
-    </p>
-}
-else
-{
-    <p style="margin-left: 25px; font-size:15px">
-        <button class="btn-primary" onclick="location.href='@Url.Action("Index", "VisitSummary")';return false;">
+        <button class="btn-primary" onclick="location.href='@Url.Action("PetVaccinations", "TVaccinations", new { id = Session["intPetID"] })';return false;">
             <i class="fas fa-arrow-left"></i>  Back
         </button>
     </p>
 
-}
 
 @using (Html.BeginForm())
 {
