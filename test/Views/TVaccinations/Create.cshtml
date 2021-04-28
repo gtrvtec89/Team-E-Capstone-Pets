@@ -62,14 +62,6 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                @Html.LabelFor(model => model.strVaccineNotes, "Notes", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.strVaccineNotes, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.strVaccineNotes, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
             @if (Session["isRabiesVaccine"] != null)
             {
                 <div class="form-group row">
@@ -80,6 +72,14 @@
                     </div>
                 </div>
             }
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.strVaccineNotes, "Notes", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.strVaccineNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width:100%; height: 170px;" })
+                    @Html.ValidationMessageFor(model => model.strVaccineNotes, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
             <div class="form-group row">
                 <div class="col-md-offset-2 col-md-10">

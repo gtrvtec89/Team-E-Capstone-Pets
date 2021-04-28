@@ -184,15 +184,22 @@
             </td>
             @if (service.intServiceID == 7)
             {
-<td style="white-space:nowrap">
-    <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "THealthExam", new { visitServiceId = service.intVisitServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
-</td> }
-                else
-                {
-<td style="white-space:nowrap">
-    <a style="color:dimgray; padding-left: 15px;" ;return false;>  <i class="fas fa-eye"></i></a>
-</td>
-}
+                <td style="white-space:nowrap">
+                    <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "THealthExam", new { visitServiceId = service.intVisitServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
+                </td> 
+            }
+            else if (service.TService.intServiceTypeID == 1)
+            {
+                <td style="white-space:nowrap">
+                    <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TVaccinations", new { visitServiceId = service.intVisitServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
+                </td> 
+            }
+            else
+            {
+                <td style="white-space:nowrap">
+                    <a style="color:dimgray; padding-left: 15px;" ;return false;>  <i class="fas fa-eye"></i></a>
+                </td>
+            }
         </tr>}
                     <tr>
                         <td style="font-weight: 800">

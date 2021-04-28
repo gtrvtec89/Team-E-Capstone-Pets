@@ -31,7 +31,7 @@ namespace test.Models
 
         // TO DO: Pull this information from the session or something
         // public int intVisitServiceID { get; set; }
-
+        [Required(ErrorMessage = "Notes are required")]
         public string strNotes { get; set; }
 
         // Eye Status Info Parameters

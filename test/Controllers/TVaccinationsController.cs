@@ -23,18 +23,42 @@ namespace test.Controllers
         }
 
         // GET: TVaccinations/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int visitServiceId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TVaccination tVaccination = db.TVaccinations.Find(id);
+            TVaccination tVaccination = db.TVaccinations.Where(x => x.intVisitServiceID == visitServiceId).FirstOrDefault();
             if (tVaccination == null)
             {
                 return HttpNotFound();
             }
-            return View(tVaccination);
+
+            int intPetId = (int)Session["intPetID"];
+            int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intServiceID).FirstOrDefault();
+            int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
+            string serviceName = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.TService.strServiceDesc).FirstOrDefault();
+            Session["intVisitServiceId"] = visitServiceId;
+            Session["isRabiesVaccine"] = null;
+            DateTime dateOfVaccination = tVaccination.dtmDateOfVaccination;
+            DateTime dateOfExpiration = tVaccination.dtmDateOfExpiration;
+
+            if (serviceId == rabiesVaccineServiceId)
+            {
+                Session["isRabiesVaccine"] = true;
+
+            }
+
+            VisitVaccination visitVaccination = new VisitVaccination()
+            {
+                intServiceId = serviceId,
+                intVisitServiceId = (int)visitServiceId,
+                strServiceName = serviceName,
+                dtmDateofVaccination = dateOfVaccination.Month + "/" + dateOfVaccination.Day + "/" + dateOfVaccination.Year,
+                dtmDateOfExpiration = dateOfExpiration.Month + "/" + dateOfExpiration.Day + "/" + dateOfExpiration.Year,
+                strVaccineNotes = tVaccination.strVaccineDesc,
+                strRabiesNumber = tVaccination.strRabiesNumber
+            };
+
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            return View(visitVaccination);
         }
 
         // GET: TVaccinations/Create
@@ -194,6 +218,88 @@ namespace test.Controllers
             ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
             return View(visitVaccination);
         }
+
+        // GET: TVaccinations/Edit/5
+        public ActionResult VisitVaccinationEdit(int visitServiceId)
+        {
+            TVaccination tVaccination = db.TVaccinations.Where(x => x.intVisitServiceID == visitServiceId).FirstOrDefault();
+            if (tVaccination == null)
+            {
+                return HttpNotFound();
+            }
+
+            int intPetId = (int)Session["intPetID"];
+            int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.intServiceID).FirstOrDefault();
+            int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
+            string serviceName = db.TVisitServices.Where(x => x.intVisitServiceID == visitServiceId).Select(z => z.TService.strServiceDesc).FirstOrDefault();
+            Session["intVisitServiceId"] = visitServiceId;
+            Session["isRabiesVaccine"] = null;
+            DateTime dateOfVaccination = tVaccination.dtmDateOfVaccination;
+            DateTime dateOfExpiration = tVaccination.dtmDateOfExpiration;
+
+            if (serviceId == rabiesVaccineServiceId)
+            {
+                Session["isRabiesVaccine"] = true;
+
+            }
+
+            VisitVaccination visitVaccination = new VisitVaccination()
+            {
+                intServiceId = serviceId,
+                intVisitServiceId = visitServiceId,
+                strServiceName = serviceName,
+                dtmDateofVaccination = dateOfVaccination.Month + "/" + dateOfVaccination.Day + "/" + dateOfVaccination.Year,
+                dtmDateOfExpiration = dateOfExpiration.Month + "/" + dateOfExpiration.Day + "/" + dateOfExpiration.Year,
+                strVaccineNotes = tVaccination.strVaccineDesc,
+                strRabiesNumber = tVaccination.strRabiesNumber
+            };
+
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            return View(visitVaccination);
+
+        }
+
+        // POST: TVaccinations/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VisitVaccinationEdit(VisitVaccination visitVaccination)
+        {
+            int intPetId = (int)Session["intPetID"];
+            int vaccinationId = db.TVaccinations.Where(x => x.intVisitServiceID == visitVaccination.intVisitServiceId).Select(z => z.intVaccinationID).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                if (visitVaccination.strRabiesNumber == null) { visitVaccination.strRabiesNumber = string.Empty; };
+                TVaccination vaccination = new TVaccination()
+                {
+                    intVaccinationID = vaccinationId,
+                    intVisitServiceID = visitVaccination.intVisitServiceId,
+                    dtmDateOfVaccination = Convert.ToDateTime(visitVaccination.dtmDateofVaccination),
+                    dtmDateOfExpiration = Convert.ToDateTime(visitVaccination.dtmDateOfExpiration),
+                    strVaccineDesc = visitVaccination.strVaccineNotes,
+                    strRabiesNumber = visitVaccination.strRabiesNumber
+                };
+
+                db.Entry(vaccination).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Index", "VisitServices");
+            };
+
+            int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitVaccination.intVisitServiceId).Select(z => z.intServiceID).FirstOrDefault();
+            int rabiesVaccineServiceId = db.TServices.Where(x => x.strServiceDesc == "Rabies Vaccine").Select(z => z.intServiceID).FirstOrDefault();
+            Session["isRabiesVaccine"] = null;
+            if (serviceId == rabiesVaccineServiceId)
+            {
+                Session["isRabiesVaccine"] = true;
+
+            }
+
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
+            return View(visitVaccination);
+        }
+
 
         // GET: TVaccinations/Delete/5
         public ActionResult Delete(int? id)

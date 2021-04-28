@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<test.TPet>
 
 @{
-	ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 <h2>Pets</h2>
@@ -21,115 +21,119 @@
 </div>
 
 <style>
-	th {
-		white-space: nowrap;
-	}
+    th {
+        white-space: nowrap;
+    }
 
-	td {
-		white-space: nowrap;
-	}
+    td {
+        white-space: nowrap;
+    }
 </style>
 
 
 <div class="body-content">
 
-	<div class="form-horizontal">
+    <div class="form-horizontal">
 
-		<table class="table">
-			<tr>
+        <table class="table">
+            <tr>
 
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Pet Name")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Owner")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Pet Type")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Gender")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Breed")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Birthdate")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Weight")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Color")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Tag Number")
-				</th>
-				<th style="white-space:nowrap">
-					@Html.DisplayName("Microchip #")
-				</th>
-
-
-				<th>
-					@Html.DisplayName("View | Edit | Delete")
-				</th>
-			</tr>
-
-			@foreach (var item in Model) {
-		<tr>
-
-			<td>
-				@Html.DisplayFor(modelItem => item.strPetName)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.TOwner.strFirstName)
-				@Html.DisplayFor(modelItem => item.TOwner.strLastName)
-
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.TPetType.strPetType)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.TGender.strGender)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.TBreed.strBreedName)
-			</td>
-			<td>
-
-				@Html.DisplayFor(modelItem => item.dtmDateofBirth)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.dblWeight)
-				lbs
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.strColor)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.strPetNumber)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.strMicrochipID)
-			</td>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Pet Name")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Owner")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Pet Type")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Gender")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Breed")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Birthdate")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Weight")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Color")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Tag Number")
+                </th>
+                <th style="white-space:nowrap">
+                    @Html.DisplayName("Microchip #")
+                </th>
 
 
-		<td style="white-space:nowrap">
-			<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TPets", new { id = item.intPetID })' ;return false;>  <i class="far fa-eye"></i></a>
-			<a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TPets", new { id = item.intPetID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                <th>
+                    @Html.DisplayName("View | Edit | Delete")
+                </th>
+            </tr>
 
-			@if (item.TPetImages.Count > 0) {
-				<a style="color:dimgrey; padding-left: 15px" title="Cannot Delete. Visits are assigned to this pet." return false;>  <i class="fas fa-trash-alt"></i></a>
+            @foreach (var item in Model)
+            {
+                <tr>
 
-			}
-			else {
-				<a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TPets", new { id = item.intPetID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
-			}
-		</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strPetName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TOwner.strFirstName)
+                        @Html.DisplayFor(modelItem => item.TOwner.strLastName)
 
-		</tr>
-			}
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TPetType.strPetType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TGender.strGender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TBreed.strBreedName)
+                    </td>
+                    <td>
 
-		</table>
-	</div>
+                        @Html.DisplayFor(modelItem => item.dtmDateofBirth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dblWeight)
+                        lbs
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strColor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strPetNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strMicrochipID)
+                    </td>
+
+
+                    <td style="white-space:nowrap">
+                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TPets", new { id = item.intPetID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TPets", new { id = item.intPetID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+
+                        @if (item.TVisits.Count > 0)
+                        {
+                            <a style="color:dimgrey; padding-left: 15px" title="Cannot Delete. Visits are assigned to this pet." return false;>  <i class="fas fa-trash-alt"></i></a>
+
+                        }
+                        else
+                        {
+                            <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TPets", new { id = item.intPetID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                        }
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
 </div>
+    

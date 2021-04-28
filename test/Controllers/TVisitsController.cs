@@ -73,6 +73,8 @@ namespace test.Controllers
                          on Pet.intGenderID equals Gen.intGenderID
                          join Owner in db.TOwners
                          on Pet.intOwnerID equals Owner.intOwnerID
+                         join State in db.TStates
+                         on Owner.intStateID equals State.intStateID
                          where Visit.intVisitID == id
                          select new {
                              Visit.dtmDateOfVist,
@@ -86,6 +88,7 @@ namespace test.Controllers
                              Owner.strFirstName,
                              Owner.strLastName,
                              Owner.strAddress,
+                             State.strStateCode,
                              Owner.strCity,
                              Owner.strZip,
                              Owner.strPhoneNumber,
@@ -100,6 +103,7 @@ namespace test.Controllers
             visitModel.intOwnerNumber = visit.intOwnerID;
             visitModel.strAddress = visit.strAddress;
             visitModel.strCity = visit.strCity;
+            visitModel.strState = visit.strStateCode;
             visitModel.strZip = visit.strZip;
             visitModel.strPhone = visit.strPhoneNumber;
             visitModel.strEmail = visit.strEmail;

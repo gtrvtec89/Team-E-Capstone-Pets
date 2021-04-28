@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 
 
@@ -9,16 +9,16 @@
 <style>
 
     .body-content {
-		position:absolute;
-		top: 35%;
-		left: 46%;
-		margin-top: -140px;
-		margin-left: -450px;
-		width: 1000px;
-		height:500px;
-		background-color: transparent;
-		border:outset; 
-		margin-bottom: auto;
+        position: absolute;
+        top: 35%;
+        left: 46%;
+        margin-top: -140px;
+        margin-left: -450px;
+        width: 1000px;
+        height: 500px;
+        background-color: transparent;
+        border: outset;
+        margin-bottom: auto;
         border-width: thick;
     }
 
@@ -28,24 +28,22 @@
         left: 3%;
     }
 
-	.hmebtn {
-		background-color: DodgerBlue;
-		border: solid;
+    .hmebtn {
+        background-color: DodgerBlue;
+        border: solid;
         border-color: #2e6da4;
-		color: white;
-		padding: 12px 16px;
-		font-size: 16px;
-		cursor: pointer;
-		display: inline-grid;
-		width: 200px;
-		height: 125px;
-		/*font-size: 20px;*/
-		color: black;
-		margin: 25px;
-		border-radius: 25px;
-	}
-	
-
+        color: white;
+        padding: 12px 16px;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-grid;
+        width: 200px;
+        height: 125px;
+        /*font-size: 20px;*/
+        color: black;
+        margin: 25px;
+        border-radius: 25px;
+    }
 </style>
 
 
@@ -53,20 +51,21 @@
     <div class="inner-div">
         <div style="margin-left:87px; display: flex; flex-wrap: wrap;">
 
-            <button type="submit" class="hmebtn" name="btnPets">
-                <i class="fas fa-dog" , style="font-size:45px; margin: 15px"></i>
-                @Html.ActionLink("Pets", "Index", "TPets", null, new { style = "color: #264e70;text-decoration: none;font-weight: 700;" })    
+            <button type="submit" class="hmebtn" name="btnPets" onclick="location.href='@Url.Action("Index", "TPets")';return false;" ; style="color: #264e70;text-decoration: none;font-weight: 700;">
+                <i class="fas fa-dog" , style="font-size:45px; margin: 15px; color:black"></i>
+                Pets
             </button>
 
-            <button type="submit" class="hmebtn" name="btnOwners">
-                <i class="fas fa-users" , style="font-size:45px; margin: 15px"></i>
-                @Html.ActionLink("Owners", "Index", "TOwners", null, new { style = "color: #264e70;text-decoration: none;font-weight: 700;" })
+            <button type="submit" class="hmebtn" name="btnOwners" onclick="location.href='@Url.Action("Index", "TOwners")';return false;" ; style="color: #264e70;text-decoration: none;font-weight: 700;">
+                <i class="fas fa-users" , style="font-size:45px; margin: 15px;  color:black"></i>
+                Owners
             </button>
 
-            <button type="submit" class="hmebtn" name="btnServices">
-                <i class="fas fa-notes-medical" , style="font-size:45px; margin: 15px"></i>
-                @Html.ActionLink("Services", "Index", "TServices", null, new { style = "color: #264e70;text-decoration: none;font-weight: 700;" })
+            <button type="submit" class="hmebtn" name="btnServices" onclick="location.href='@Url.Action("Index", "TServices")';return false;" ; style="color: #264e70;text-decoration: none;font-weight: 700;">
+                <i class="fas fa-notes-medical" , style="font-size:45px; margin: 15px;  color:black"></i>
+                Services
             </button>
+
 
         </div>
 
@@ -74,17 +73,20 @@
         <br />
 
         <div style="margin-left:87px;display: flex; flex-wrap: wrap;">
-            <button type="submit" class="hmebtn" name="btnMedications">
-                <i class="fas fa-prescription-bottle-alt" , style="font-size:45px; margin: 15px"></i>
-                @Html.ActionLink("Medications", "Index", "TMedications", null, new { style = "color: #264e70;text-decoration: none;font-weight: 700;" })
+
+            <button type="submit" class="hmebtn" name="btnMedications" onclick="location.href='@Url.Action("Index", "TMedications")';return false;" ; style="color: #264e70;text-decoration: none;font-weight: 700;">
+                <i class="fas fa-prescription-bottle-alt" , style="font-size:45px; margin: 15px;  color:black"></i>
+                Medications
             </button>
-            <button type="submit" class="hmebtn" name="btnSettings">
-                <i class="fas fa-cogs" , style="font-size:45px; margin: 15px"></i>
-                @Html.ActionLink("Settings", "Settings", null, new { style = "color: #264e70;text-decoration: none;font-weight: 700;" })
+
+            <button type="submit" class="hmebtn" name="btnSettings" onclick="location.href='@Url.Action("Settings")';return false;" ; style="color: #264e70;text-decoration: none;font-weight: 700;">
+                <i class="fas fa-cogs" , style="font-size:45px; margin: 15px;  color:black"></i>
+                Settings
             </button>
-            <button type="submit" class="hmebtn" name="btnEmployees">
-                <i class="fas fa-user-md" , style="font-size:45px; margin: 15px"></i>
-                @Html.ActionLink("Employees", "Index", "TEmployees", null, new { style = "color: #264e70;text-decoration: none;font-weight: 700;" })
+
+            <button type="submit" class="hmebtn" name="btnEmployees" onclick="location.href='@Url.Action("Index", "TEmployees")';return false;" ; style="color: #264e70;text-decoration: none;font-weight: 700;">
+                <i class="fas fa-user-md" , style="font-size:45px; margin: 15px;  color:black"></i>
+                Employees
             </button>
 
         </div>

@@ -7,23 +7,11 @@
 <h2>@ViewBag.Name</h2>
 
 
-@if (Session["isSummary"] != null)
-{
-    <p style="margin-left: 25px; font-size:15px">
-        <button class="btn-primary" onclick="location.href='@Url.Action("Index", "VisitSummary", new { id = Session["intVisitId"] })';return false;">
-            <i class="fas fa-arrow-left"></i>  Back
-        </button>
-    </p>
-}
-else
-{
-    <p style="margin-left: 25px; font-size:15px">
-        <button class="btn-primary" onclick="location.href='@Url.Action("Index", "VisitSummary")';return false;">
-            <i class="fas fa-arrow-left"></i>  Back
-        </button>
-    </p>
-
-}
+<p style="margin-left: 25px; font-size:15px">
+    <button class="btn-primary" onclick="location.href='@Url.Action("Index", "VisitServices")';return false;">
+        <i class="fas fa-arrow-left"></i>  Back
+    </button>
+</p>
 
 @using (Html.BeginForm())
 {
@@ -68,7 +56,7 @@ else
                 <div class="form-group row">
                     @Html.LabelFor(model => model.strRabiesNumber, "Rabies Number", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.strRabiesNumber, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.EditorFor(model => model.strRabiesNumber, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.strRabiesNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -77,8 +65,14 @@ else
             <div class="form-group row">
                 @Html.LabelFor(model => model.strVaccineNotes, "Notes", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.TextAreaFor(model => model.strVaccineNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width:100%; height: 170px;", disabled = "disabled" })
+                    @Html.TextAreaFor(model => model.strVaccineNotes, new { htmlAttributes = new { @class = "form-control" }, style = "width:100%; height: 170px;" })
                     @Html.ValidationMessageFor(model => model.strVaccineNotes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Update" class="btn-success" />
                 </div>
             </div>
         </div>
@@ -94,3 +88,15 @@ else
 }
 
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "mm/dd/yy",
+                changemonth: true,
+                changeyear: true
+            });
+        });
+    </script>
+}
