@@ -34,7 +34,7 @@
                 <th>
                     @Html.DisplayName("Price")
                 </th>
-           
+
                 <th style="white-space:nowrap">
                     @Html.DisplayName("View | Edit | Delete")
                 </th>
@@ -49,16 +49,24 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.TServiceType.strServiceType)
                     </td>
-                   
+
                     <td>
                         @Html.DisplayFor(modelItem => item.dblPrice)
                     </td>
-                    
+
 
                     <td style="white-space:nowrap">
                         <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TServices", new { id = item.intServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
                         <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TServices", new { id = item.intServiceID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
-                        <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TServices", new { id = item.intServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                        @if (item.TVisitServices.Count > 0)
+                        {
+                            <a style="color:dimgrey; padding-left: 15px" title="Cannot Delete. It is currently in use." return false;>  <i class="fas fa-trash-alt"></i></a>
+
+                        }
+                        else
+                        {
+                            <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TServices", new { id = item.intServiceID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                        }
                     </td>
                 </tr>
             }

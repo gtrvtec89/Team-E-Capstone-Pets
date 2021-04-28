@@ -18,7 +18,8 @@ namespace test.Controllers
         // GET: TEmployees
         public ActionResult Index()
         {
-            var tEmployee = db.TEmployees;
+            var tEmployee = db.TEmployees.Include(t => t.TVisitEmployees);
+
             return View(tEmployee.ToList());
         }
 

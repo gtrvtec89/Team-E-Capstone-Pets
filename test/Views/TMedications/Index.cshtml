@@ -54,33 +54,40 @@
 
             @foreach (var item in Model)
             {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.strMedicationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.strMedicationDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dblCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dblPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.intQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TMethod.strMethod)
-            </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strMedicationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strMedicationDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dblCost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dblPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.intQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TMethod.strMethod)
+                    </td>
 
-            <td style="white-space:nowrap;">
-                <a style="color:#5cb85c; padding-left: 45px" href='@Url.Action("AddOrder", "TMedications", new { id = item.intMedicationID })' ;return false;>  <i class="far fa-plus"></i></a>
-                <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TMedications", new { id = item.intMedicationID })' ;return false;>  <i class="far fa-eye"></i></a>
-                <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TMedications", new { id = item.intMedicationID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
-                <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TMedications", new { id = item.intMedicationID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
-            </td>
-        </tr>
+                    <td style="white-space:nowrap;">
+                        <a style="color:#5cb85c; padding-left: 70px" href='@Url.Action("AddOrder", "TMedications", new { id = item.intMedicationID })' ;return false;>  <i class="far fa-plus"></i></a>
+                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "TMedications", new { id = item.intMedicationID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        <a style="color:#f0ad4e; padding-left: 15px" href='@Url.Action("Edit", "TMedications", new { id = item.intMedicationID })' ;return false;>  <i class="fas fa-pencil-alt"></i></a>
+                        @if (item.TVisitMedications.Count > 0)
+                        {
+                            <a style="color:dimgrey; padding-left: 15px" title="Cannot Delete. Currently in use." return false;>  <i class="fas fa-trash-alt"></i></a>
+                        }
+                        else
+                        {
+                            <a style="color:red; padding-left: 15px" href='@Url.Action("Delete", "TMedications", new { id = item.intMedicationID })' ;return false;>  <i class="fas fa-trash-alt"></i></a>
+                        }
+                    </td>
+                </tr>
             }
 
         </table>

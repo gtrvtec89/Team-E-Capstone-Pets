@@ -79,6 +79,13 @@
 </p>}
 
 <div class="body-content">
+    @if (Session["isSummary"] != null)
+     {
+        <h4 style = "margin-left: 60px; padding-top: 10px" >
+         Visit Summary
+         </h4 >
+        <hr style = "margin:5px; margin-bottom: 15px" />
+     }
     <div class="form-horizontal">
         <div class="flex-container" style="border: none;">
             <div class="flex-row">
@@ -177,17 +184,16 @@
             </td>
             @if (service.intServiceID == 7)
             {
-    <td style="white-space:nowrap">
-        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "THealthExam", new { visitServiceId = service.intVisitServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
-    </td>
- }
-                    else
-                    {
-    <td style="white-space:nowrap">
-        <a style="color:dimgray; padding-left: 15px;" ;return false;>  <i class="fas fa-eye"></i></a>
-    </td>}
-        </tr>
+<td style="white-space:nowrap">
+    <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("Details", "THealthExam", new { visitServiceId = service.intVisitServiceID })' ;return false;>  <i class="far fa-eye"></i></a>
+</td> }
+                else
+                {
+<td style="white-space:nowrap">
+    <a style="color:dimgray; padding-left: 15px;" ;return false;>  <i class="fas fa-eye"></i></a>
+</td>
 }
+        </tr>}
                     <tr>
                         <td style="font-weight: 800">
                             Total
@@ -227,8 +233,7 @@
             <td>
                 $ @Math.Round(medication.TMedication.dblPrice * medication.intQuantity, 2)
             </td>
-        </tr>
-}
+        </tr>}
                     <tr>
                         <td style="font-weight: 800">
                             Total

@@ -207,6 +207,9 @@ namespace test.Controllers
             {
                 return HttpNotFound();
             }
+
+            int intPetId = (int)Session["intPetID"];
+            ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
             return View(tVaccination);
         }
 

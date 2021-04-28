@@ -140,7 +140,7 @@ namespace test.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddOrder (OrderMedication order)
+        public ActionResult AddOrder(OrderMedication order)
         {
             TMedication medication = db.TMedications.Where(x => x.intMedicationID == order.intMedicationId).FirstOrDefault();
             SqlParameter[] param = new SqlParameter[]

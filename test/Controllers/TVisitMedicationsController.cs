@@ -132,7 +132,7 @@ namespace test.Controllers
                                      where v.intPetID == id
                                      select new Medication
                                      {
-                                         intVisitMedicationID = vm.intMedicationID,
+                                         intVisitMedicationID = vm.intVisitMedicationID,
                                          intVisitID = vm.intVisitID,
                                          intMedicationID = vm.intMedicationID,
                                          dtmDatePrescribed = vm.dtmDatePrescribed,
@@ -143,7 +143,7 @@ namespace test.Controllers
             // Convert raw data
             List<TVisitMedication> tPetMedications = data.Select(a => new TVisitMedication
             {
-                intVisitMedicationID = a.intMedicationID,
+                intVisitMedicationID = a.intVisitMedicationID,
                 intVisitID = a.intVisitID,
                 intMedicationID = a.intMedicationID,
                 dtmDatePrescribed = a.dtmDatePrescribed,
@@ -163,9 +163,8 @@ namespace test.Controllers
         //TO DO: Finish the logic for this
         public ActionResult PetMedicationDetails(int id)
         {
-            int intPetId = db.TVisitMedications.Where(x => x.intVisitMedicationID == id).Select(z => z.TVisit.intPetID).FirstOrDefault();
+            int intPetId = (int)Session["intPetID"];
             ViewBag.Name = db.TPets.Where(x => x.intPetID == intPetId).Select(z => z.strPetName).FirstOrDefault();
-            Session["intPetID"] = intPetId;
             TVisitMedication visitMedication = db.TVisitMedications.Where(x => x.intVisitMedicationID == id).FirstOrDefault();
             return View(visitMedication);
         }
