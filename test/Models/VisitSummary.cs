@@ -20,6 +20,7 @@ namespace test.Models
         public string strPetNumber { get; set; }
 
         //Visit Information
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime dtmOfVisit { get; set; }
         public string strDoctor { get; set; }
         public IEnumerable<TVisitService> PetVisitServices { get; set; }

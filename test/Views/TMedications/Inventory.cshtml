@@ -28,7 +28,7 @@
 
                 </th>
                 <th>
-                    @Html.DisplayName("Ouantity")
+                    @Html.DisplayName("Quantity")
 
                 </th>
                 <th>
@@ -55,11 +55,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.dblTotal)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.intMedicationOrderID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.intMedicationOrderID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.intMedicationOrderID })
                     </td>
                 </tr>
             }

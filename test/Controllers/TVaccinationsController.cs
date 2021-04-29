@@ -247,7 +247,7 @@ namespace test.Controllers
                     dtmDateOfExpiration = Convert.ToDateTime(visitVaccination.dtmDateOfExpiration),
                     strVaccineDesc = visitVaccination.strVaccineNotes,
                     strRabiesNumber = visitVaccination.strRabiesNumber
-                };
+                };  
 
                 db.Entry(vaccination).State = EntityState.Modified;
                 db.SaveChanges();
@@ -333,7 +333,7 @@ namespace test.Controllers
                 db.Entry(vaccination).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "VisitServices");
+                return RedirectToAction("PetVaccinations", "TVaccinations", new { id = Session["intPetID"] });
             };
 
             int serviceId = db.TVisitServices.Where(x => x.intVisitServiceID == visitVaccination.intVisitServiceId).Select(z => z.intServiceID).FirstOrDefault();

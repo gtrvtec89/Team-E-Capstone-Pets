@@ -97,7 +97,7 @@
                     @Html.DisplayName("Visit Reason")
                 </th>
                 <th>
-                    @Html.DisplayName("View | Invoice")
+                    @Html.DisplayName("View")
                 </th>
             </tr>
 
@@ -111,7 +111,7 @@
                         @Html.DisplayFor(modelItem => item.TVisitReason.strVisitReason)
                     </td>
                     <td style="white-space:nowrap">
-                        <a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("PetProfileVisitDetails", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="far fa-eye"></i></a>
+                        @*<a style="color:#5cb85c; padding-left: 15px" href='@Url.Action("PetProfileVisitDetails", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="far fa-eye"></i></a>*@
 
                         <a style="color:dodgerblue; padding-left: 15px" href='@Url.Action("PrintInvoice", "TVisits", new { id = item.intVisitID })' ;return false;>  <i class="far fa-file-pdf"></i></a>
                     </td>

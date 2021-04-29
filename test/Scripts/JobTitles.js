@@ -50,8 +50,8 @@ function LoadJobTitles() {
                 $data.append(header);
                 $.each(d, function (i, row) {
                     var $row = $('<tr/>');
-                    $row.append($('<td/>').html(row.strJobTitle));
-                    $row.append($('<td/>').html("<a href='/TJobTitles/Update/" + row.intJobTitletID + "' class='popup'><i class='fas fa-pencil-alt'></i></a> | <a style='color: red;' href='/TJobTitles/Delete/" + row.intJobTitleID + "' class='popup'><i class='fas fa-trash-alt'></i></a>"));
+                    $row.append($('<td/>').html(row.strJobTitleDesc));
+                    $row.append($('<td/>').html("<a href='/TJobTitles/Update/" + row.intJobTitleID + "' class='popup'><i class='fas fa-pencil-alt'></i></a> | <a style='color: red;' href='/TJobTitles/Delete/" + row.intJobTitleID + "' class='popup'><i class='fas fa-trash-alt'></i></a>"));
                     $data.append($row);
                 });
 
