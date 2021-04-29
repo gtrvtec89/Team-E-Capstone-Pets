@@ -45,7 +45,7 @@ function LoadVisitReasons() {
         success: function (d) {
             if (d.length > 0) {
 
-                var $data = $('<table></table>').addClass('table table-responsive table-striped');
+                var $data = $('<table></table>').addClass('table');
                 var header = "<thead><tr><th style='background-color: darkgray; color: black; font: bold; font - size: large; font - weight: bold;'>Visit Reason</th><th style='background-color: darkgray; color: black; font: bold; font - size: large; font - weight: bold;'>Action</th></tr></thead>";
                 $data.append(header);
                 $.each(d, function (i, row) {

@@ -1,4 +1,11 @@
-﻿@*@model IEnumerable<test.TBreed>
+﻿<div style="display: flex; padding-top: 50px;">
+    <p style="margin-left: 30px">
+        <button class="btn-primary" onclick="location.href='@Url.Action("Settings","Home", new { id = Session["intUserID"].ToString() })';return false;">
+            <i class="fas fa-arrow-left"></i>  Settings
+        </button>
+    </p>
+</div>
+@*@model IEnumerable<test.TBreed>
 
 	@{
 		ViewBag.Title = "Index";

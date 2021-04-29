@@ -1,4 +1,12 @@
-﻿<div class="body-content">
+﻿
+<div style="display: flex; padding-top: 50px;">
+    <p style="margin-left: 30px">
+        <button class="btn-primary" onclick="location.href='@Url.Action("Settings","Home", new { id = Session["intUserID"].ToString() })';return false;">
+            <i class="fas fa-arrow-left"></i>  Settings
+        </button>
+    </p>
+</div>
+<div class="body-content">
 
 
 	<h2 style="background-color: white;color: black; text-align: center; font-style: oblique">Report Of Visit Reasons Offered</h2>
